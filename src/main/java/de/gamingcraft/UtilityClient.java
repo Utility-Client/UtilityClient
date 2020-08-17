@@ -1,7 +1,7 @@
 package de.gamingcraft;
 
 import de.gamingcraft.config.ConfigManager;
-import de.gamingcraft.discord.Discord;
+import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSModule;
@@ -21,19 +21,19 @@ public class UtilityClient {
 
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
 
-    public static final Discord DISCORD_INSTANCE = new Discord();
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
 
     public static Theme CURRENT_THEME = Theme.RED;
 
     public static void startup() throws IOException {
-        DISCORD_INSTANCE.start();
+        //DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         ModuleHandler.start();
         ConfigManager.start();
+        MacroManager.start();
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
-        addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom());
-        addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright());
+        addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
+        addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
     }
 
     public static void loop() {
@@ -51,6 +51,8 @@ public class UtilityClient {
             }
 
         }
+
+        MacroManager.loop();
     }
 
     public static String getName() {
@@ -61,10 +63,12 @@ public class UtilityClient {
         return CLIENT_VERSION;
     }
 
-    public static KeyBinding addKeyBind(String name, int keyCode) {
-        KeyBinding kb = new KeyBinding(name, keyCode, "Utility Client");
+    public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
+        String cat = "Utility Client";
+        if (isMacro) cat = "Auto-Commands";
+        KeyBinding kb = new KeyBinding(name, keyCode, cat);
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
-        keyBinds.add(kb);
+        if (!isMacro) keyBinds.add(kb);
         return kb;
     }
 }

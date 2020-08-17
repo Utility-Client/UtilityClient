@@ -28,12 +28,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.Vatuu</groupId>
-            <artifactId>discord-rpc</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>net.minecraft</groupId>
             <artifactId>minecraft</artifactId>
             <version>1.8.8</version>

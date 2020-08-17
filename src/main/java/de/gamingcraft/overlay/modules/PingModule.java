@@ -1,7 +1,6 @@
 package de.gamingcraft.overlay.modules;
 
 import de.gamingcraft.overlay.IModule;
-import net.minecraft.client.Minecraft;
 
 public class PingModule implements IModule {
     @Override
@@ -11,7 +10,8 @@ public class PingModule implements IModule {
 
     @Override
     public String getValue() {
-        return Minecraft.getMinecraft().getNetHandler().getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        //return Minecraft.getMinecraft().getNetHandler().getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        return "0ms";
     }
 
     @Override

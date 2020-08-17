@@ -18,10 +18,6 @@ MavenMCP.iml
 
 # Workspace Ignores (Made by @GamingCrafthd)
 
-workspace/screenshots/
-workspace/saves/
-workspace/options.txt
-workspace/servers.dat
-workspace/server.properties
-workspace/resourcepacks/
-workspace/logs/
+workspace/
+log.txt
+logs/

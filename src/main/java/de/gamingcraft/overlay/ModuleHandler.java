@@ -9,8 +9,8 @@ public class ModuleHandler {
             new FPSModule(),
             new CPSModule(),
             new CoordsModule(),
-            new PingModule()
-            //new BiomeModule()
+            // new PingModule()
+            // new BiomeModule()
     };
 
     public static void start() {

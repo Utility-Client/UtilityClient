@@ -37,7 +37,6 @@ import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.discord.Discord;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -1005,7 +1004,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.setIngameFocus();
         }
 
-        UtilityClient.DISCORD_INSTANCE.onScreenChangeEvent();
+        //UtilityClient.DISCORD_INSTANCE.onScreenChangeEvent();
     }
 
     /**
@@ -1428,7 +1427,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     public void shutdown()
     {
-        UtilityClient.DISCORD_INSTANCE.shutdown();
+        //UtilityClient.DISCORD_INSTANCE.shutdown();
         this.running = false;
     }
 

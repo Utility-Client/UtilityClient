@@ -1,6 +1,9 @@
 package net.minecraft.client.gui;
 
 import java.io.IOException;
+
+import de.gamingcraft.UtilityClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Keyboard;
@@ -67,6 +70,7 @@ public class GuiScreenServerList extends GuiScreen
             {
                 this.field_146301_f.serverIP = this.field_146302_g.getText();
                 this.field_146303_a.confirmClicked(true, 0);
+
             }
         }
     }
