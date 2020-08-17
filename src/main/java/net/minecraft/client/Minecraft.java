@@ -37,6 +37,7 @@ import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
 import de.gamingcraft.UtilityClient;
+import de.gamingcraft.discord.Discord;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -1003,6 +1004,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.mcSoundHandler.resumeSounds();
             this.setIngameFocus();
         }
+
+        UtilityClient.DISCORD_INSTANCE.onScreenChangeEvent();
     }
 
     /**
@@ -1425,6 +1428,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     public void shutdown()
     {
+        UtilityClient.DISCORD_INSTANCE.shutdown();
         this.running = false;
     }
 
@@ -2126,11 +2130,15 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 while (this.gameSettings.keyBindAttack.isPressed())
                 {
                     this.clickMouse();
+                    UtilityClient.CPS_THREAD_INSTANCE.addClick(true);
+                    // TODO: CPS
                 }
 
                 while (this.gameSettings.keyBindUseItem.isPressed())
                 {
                     this.rightClickMouse();
+                    // TODO: CPS
+                    UtilityClient.CPS_THREAD_INSTANCE.addClick(false);
                 }
 
                 while (this.gameSettings.keyBindPickBlock.isPressed())

@@ -6,6 +6,8 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+import de.gamingcraft.overlay.ModuleHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -203,7 +205,7 @@ public class GuiIngame extends Gui
         {
             this.renderHorseJumpBar(scaledresolution, k1);
         }
-        else if (this.mc.playerController.gameIsSurvivalOrAdventure())
+        else
         {
             this.renderExpBar(scaledresolution, k1);
         }
@@ -345,6 +347,8 @@ public class GuiIngame extends Gui
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
+
+        ModuleHandler.loop(this.getFontRenderer());
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks)

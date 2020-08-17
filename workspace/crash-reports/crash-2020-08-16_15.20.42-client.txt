@@ -1,0 +1,84 @@
+---- Minecraft Crash Report ----
+// My bad.
+
+Time: 16.08.20 15:20
+Description: Unexpected error
+
+java.lang.NullPointerException: Unexpected error
+	at net.minecraft.world.World.isValid(World.java:242)
+	at net.minecraft.world.World.isBlockLoaded(World.java:261)
+	at net.minecraft.world.World.isBlockLoaded(World.java:256)
+	at net.minecraft.world.World.getBiomeGenForCoords(World.java:174)
+	at de.gamingcraft.overlay.modules.BiomeModule.getValue(BiomeModule.java:14)
+	at de.gamingcraft.overlay.ModuleHandler.loop(ModuleHandler.java:31)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:351)
+	at net.minecraft.client.renderer.EntityRenderer.func_181560_a(EntityRenderer.java:1169)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1131)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:421)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.world.World.isValid(World.java:242)
+	at net.minecraft.world.World.isBlockLoaded(World.java:261)
+	at net.minecraft.world.World.isBlockLoaded(World.java:256)
+	at net.minecraft.world.World.getBiomeGenForCoords(World.java:174)
+	at de.gamingcraft.overlay.modules.BiomeModule.getValue(BiomeModule.java:14)
+	at de.gamingcraft.overlay.ModuleHandler.loop(ModuleHandler.java:31)
+	at net.minecraft.client.gui.GuiIngame.renderGameOverlay(GuiIngame.java:351)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player306'/121, l='MpServer', x=8,50, y=65,00, z=8,50]]
+	Chunk stats: MultiplayerChunkCache: 0, 0
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584,00,64,00,166,00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1 game time, 1 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 1 total; [EntityPlayerSP['Player306'/121, l='MpServer', x=8,50, y=65,00, z=8,50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:380)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2755)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:450)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_251, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 494878656 bytes (471 MB) / 807403520 bytes (770 MB) up to 7622623232 bytes (7269 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: GeForce RTX 2080 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 451.67, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 24x AMD Ryzen 9 3900X 12-Core Processor 

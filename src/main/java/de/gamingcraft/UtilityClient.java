@@ -1,9 +1,16 @@
 package de.gamingcraft;
 
+import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.discord.Discord;
+import de.gamingcraft.overlay.ModuleHandler;
+import de.gamingcraft.overlay.Theme;
+import de.gamingcraft.overlay.modules.CPSModule;
+import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UtilityClient {
@@ -14,15 +21,24 @@ public class UtilityClient {
 
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
 
-    public static void startup() {
-        Discord.start();
-        addKeyBind("Zoom", 46);
-        addKeyBind("Fulbright", 50);
+    public static final Discord DISCORD_INSTANCE = new Discord();
+    public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
+
+    public static Theme CURRENT_THEME = Theme.RED;
+
+    public static void startup() throws IOException {
+        DISCORD_INSTANCE.start();
+        CPS_THREAD_INSTANCE.start();
+        ModuleHandler.start();
+        ConfigManager.start();
+        CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
+        addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom());
+        addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright());
     }
 
     public static void loop() {
         if(keyBinds.get(0).isKeyDown()) {
-            fovModifier = 0.25f;
+            fovModifier = 0.15f;
         }else {
             fovModifier = 1.0f;
         }

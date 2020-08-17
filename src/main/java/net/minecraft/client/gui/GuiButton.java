@@ -38,6 +38,12 @@ public class GuiButton extends Gui
         this(buttonId, x, y, 200, 20, buttonText);
     }
 
+    public GuiButton(int buttonId, int x, int y, String buttonText, boolean _enabled)
+    {
+        this(buttonId, x, y, 200, 20, buttonText);
+        enabled = _enabled;
+    }
+
     public GuiButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText)
     {
         this.width = 200;

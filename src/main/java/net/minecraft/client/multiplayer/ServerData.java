@@ -33,11 +33,11 @@ public class ServerData
     private String serverIcon;
     private boolean field_181042_l;
 
-    public ServerData(String p_i46420_1_, String p_i46420_2_, boolean p_i46420_3_)
+    public ServerData(String serverName, String serverIp, boolean bool)
     {
-        this.serverName = p_i46420_1_;
-        this.serverIP = p_i46420_2_;
-        this.field_181042_l = p_i46420_3_;
+        this.serverName = serverName;
+        this.serverIP = serverIp;
+        this.field_181042_l = bool;
     }
 
     /**
