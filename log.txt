@@ -1,0 +1,38 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< de.gamingcraft:UtilityClient >--------------------
+[INFO] Building UtilityClient 2.1-1.8.8
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ UtilityClient ---
+[INFO] Deleting C:\Workspace\UtilityClient\UtilityClient2\target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ UtilityClient ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Workspace\UtilityClient\UtilityClient2\src\main\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ UtilityClient ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1630 source files to C:\Workspace\UtilityClient\UtilityClient2\target\classes
+[WARNING] /C:/Workspace/UtilityClient/UtilityClient2/src/main/java/net/minecraft/entity/monster/EntityCreeper.java: Some input files use unchecked or unsafe operations.
+[WARNING] /C:/Workspace/UtilityClient/UtilityClient2/src/main/java/net/minecraft/entity/monster/EntityCreeper.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ UtilityClient ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\Workspace\UtilityClient\UtilityClient2\src\test\resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ UtilityClient ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ UtilityClient ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ UtilityClient ---
+[INFO] Building jar: C:\Workspace\UtilityClient\UtilityClient2\target\UtilityClient-2.1-1.8.8.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.423 s
+[INFO] Finished at: 2020-09-02T11:44:51+02:00
+[INFO] ------------------------------------------------------------------------
