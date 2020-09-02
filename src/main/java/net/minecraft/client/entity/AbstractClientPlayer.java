@@ -164,7 +164,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     private void downloadCape(String username) {
         if (username != null && !username.isEmpty()) {
             username = StringUtils.stripControlCodes(username);
-            String ofCapeUrl = "http://blockvillage.net:8099/api/cape.png?user=" + username;
+            String ofCapeUrl = "http://GamingCrafthd.github.io/minecraft/capes/" + username + ".png";
 
             MinecraftProfileTexture mpt = new MinecraftProfileTexture(ofCapeUrl, new HashMap());
             final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());

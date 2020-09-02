@@ -23,12 +23,12 @@ public class ModuleHandler {
         int op_y = 4;
         int mod_height = 9;
 
-        fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getName() + " " + UtilityClient.getVersion(), 4, 4, 0);
+        fr.drawStringWithShadow((UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getName() + " " + UtilityClient.getVersion()).replace("Â", ""), 4, 4, 0);
 
         int x = 1;
 
         for (IModule mod : modules) {
-            fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + "§7: " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue(), op_x, op_y + (mod_height*x), 0);
+            fr.drawStringWithShadow((UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + "§7: " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue()).replace("Â", ""), op_x, op_y + (mod_height*x), 0);
             x++;
         }
     }

@@ -31,9 +31,9 @@ public class GuiUtilityClient extends GuiScreen
 
         //buttons here
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-20, "Select Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2+4, "Comming soon!", false));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2+28, "Comming soon!", false));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-22, "Select Theme"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-44, "Comming soon!", false));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-66, "Comming soon!", false));
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
     }

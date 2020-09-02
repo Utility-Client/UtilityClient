@@ -1,6 +1,8 @@
 package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
+
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import de.gamingcraft.UtilityClient;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.main.Main;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -250,6 +253,8 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     private void addDemoButtons(int p_73972_1_, int p_73972_2_)
     {
+        return;
+        /*
         this.buttonList.add(new GuiButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo", new Object[0])));
         this.buttonList.add(this.buttonResetDemo = new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1, I18n.format("menu.resetdemo", new Object[0])));
         ISaveFormat isaveformat = this.mc.getSaveLoader();
@@ -258,7 +263,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (worldinfo == null)
         {
             this.buttonResetDemo.enabled = false;
-        }
+        }*/
     }
 
     /**
@@ -547,6 +552,8 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
         GlStateManager.popMatrix();
         String s = UtilityClient.getName() + " " + UtilityClient.getVersion();
+
+        this.fontRendererObj.drawStringWithShadow(Main.getPlayerName(), 0, 0, 16777215);
 
         if (this.mc.isDemo())
         {

@@ -19,6 +19,8 @@ import net.minecraft.util.Session;
 
 public class Main
 {
+    private static String playername;
+
     public static void main(String[] p_main_0_)
     {
         System.setProperty("java.net.preferIPv4Stack", "true");
@@ -36,7 +38,8 @@ public class Main
         OptionSpec<Integer> optionspec6 = optionparser.accepts("proxyPort").withRequiredArg().defaultsTo("8080", new String[0]).<Integer>ofType(Integer.class);
         OptionSpec<String> optionspec7 = optionparser.accepts("proxyUser").withRequiredArg();
         OptionSpec<String> optionspec8 = optionparser.accepts("proxyPass").withRequiredArg();
-        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo("Player69420", new String[0]);
+        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo("Player", new String[0]);
+
         OptionSpec<String> optionspec10 = optionparser.accepts("uuid").withRequiredArg();
         OptionSpec<String> optionspec11 = optionparser.accepts("accessToken").withRequiredArg().required();
         OptionSpec<String> optionspec12 = optionparser.accepts("version").withRequiredArg().required();
@@ -48,6 +51,7 @@ public class Main
         OptionSpec<String> optionspec18 = optionparser.accepts("userType").withRequiredArg().defaultsTo("legacy", new String[0]);
         OptionSpec<String> optionspec19 = optionparser.nonOptions();
         OptionSet optionset = optionparser.parse(p_main_0_);
+        playername = optionspec9.value(optionset);
         List<String> list = optionset.valuesOf(optionspec19);
 
         if (!list.isEmpty())
@@ -116,5 +120,9 @@ public class Main
     private static boolean isNullOrEmpty(String str)
     {
         return str != null && !str.isEmpty();
+    }
+
+    public static String getPlayerName() {
+        return playername;
     }
 }

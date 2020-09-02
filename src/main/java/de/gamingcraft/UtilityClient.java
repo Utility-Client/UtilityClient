@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class UtilityClient {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.0";
+    private static String CLIENT_VERSION = "2.1";
 
     public static float fovModifier = 1.0f;
 
@@ -24,6 +24,8 @@ public class UtilityClient {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
 
     public static Theme CURRENT_THEME = Theme.RED;
+
+    public static boolean renderOverlay = true;
 
     public static void startup() throws IOException {
         //DISCORD_INSTANCE.start();
@@ -70,5 +72,9 @@ public class UtilityClient {
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
         if (!isMacro) keyBinds.add(kb);
         return kb;
+    }
+
+    public static boolean shouldRenderOverlay() {
+        return renderOverlay;
     }
 }

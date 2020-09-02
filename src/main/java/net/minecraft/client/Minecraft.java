@@ -920,14 +920,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             IOUtils.closeQuietly(inputstream);
         }
 
-        Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(0.0D, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos((double)this.displayWidth, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos((double)this.displayWidth, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-        tessellator.draw();
+        Tessellator tsl = Tessellator.getInstance();
+        WorldRenderer wr = tsl.getWorldRenderer();
+        wr.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        wr.pos(0.0D, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        wr.pos((double)this.displayWidth, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        wr.pos((double)this.displayWidth, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        wr.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        tsl.draw();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         int j = 256;
         int k = 256;
@@ -2004,6 +2004,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
                         if (k == 61)
                         {
+                            UtilityClient.renderOverlay = !UtilityClient.renderOverlay;
                             this.gameSettings.showDebugInfo = !this.gameSettings.showDebugInfo;
                             this.gameSettings.showDebugProfilerChart = GuiScreen.isShiftKeyDown();
                             this.gameSettings.field_181657_aC = GuiScreen.isAltKeyDown();
@@ -3271,7 +3272,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         Map<String, String> map = Maps.<String, String>newHashMap();
         map.put("X-Minecraft-Username", getMinecraft().getSession().getUsername());
         map.put("X-Minecraft-UUID", getMinecraft().getSession().getPlayerID());
-        map.put("X-Minecraft-Version", "1.8.8");
+        map.put("X-Minecraft-Version", "1.8.8-UtilityClient");
         return map;
     }
 

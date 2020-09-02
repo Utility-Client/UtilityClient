@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import de.gamingcraft.UtilityClient;
 import de.gamingcraft.overlay.ModuleHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -348,7 +349,10 @@ public class GuiIngame extends Gui
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
 
-        ModuleHandler.loop(this.getFontRenderer());
+        if(UtilityClient.shouldRenderOverlay()) {
+            ModuleHandler.loop(this.getFontRenderer());
+        }
+
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks)
