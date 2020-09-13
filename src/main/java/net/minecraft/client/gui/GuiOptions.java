@@ -1,13 +1,7 @@
 package net.minecraft.client.gui;
 
-import java.io.IOException;
-
 import de.gamingcraft.UtilityClient;
 import de.gamingcraft.gui.GuiUtilityClient;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.SoundCategory;
-import net.minecraft.client.audio.SoundEventAccessorComposite;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.stream.GuiStreamOptions;
 import net.minecraft.client.gui.stream.GuiStreamUnavailable;
 import net.minecraft.client.resources.I18n;
@@ -17,6 +11,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.EnumDifficulty;
+
+import java.io.IOException;
 
 public class GuiOptions extends GuiScreen implements GuiYesNoCallback
 {

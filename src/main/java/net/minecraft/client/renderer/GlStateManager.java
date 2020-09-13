@@ -1,7 +1,8 @@
 package net.minecraft.client.renderer;
 
-import java.nio.FloatBuffer;
 import org.lwjgl.opengl.GL11;
+
+import java.nio.FloatBuffer;
 
 public class GlStateManager
 {

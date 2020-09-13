@@ -1,19 +1,21 @@
 package de.gamingcraft.overlay;
 
+import net.minecraft.util.EnumChatFormatting;
+
 public enum Theme {
-    RED(0, '4', 'c'),
-    YELLOW(1, '6', 'e'),
-    GREEN(2, '2', 'a'),
-    BLUE(3, '1', '9'),
-    WHITE(4, 'f', 'f'),
-    BLACK(5, '0', '8'),
-    CONTRAST(6, '0', 'f');
+    RED(0, EnumChatFormatting.DARK_RED, EnumChatFormatting.RED),
+    YELLOW(1, EnumChatFormatting.GOLD, EnumChatFormatting.YELLOW),
+    GREEN(2, EnumChatFormatting.DARK_GREEN, EnumChatFormatting.GREEN),
+    BLUE(3, EnumChatFormatting.DARK_BLUE, EnumChatFormatting.BLUE),
+    WHITE(4, EnumChatFormatting.WHITE, EnumChatFormatting.WHITE),
+    BLACK(5, EnumChatFormatting.BLACK, EnumChatFormatting.DARK_GRAY),
+    CONTRAST(6, EnumChatFormatting.BLACK, EnumChatFormatting.WHITE);
 
     private final int id;
-    private final char prefix;
-    private final char suffix;
+    private final EnumChatFormatting prefix;
+    private final EnumChatFormatting suffix;
 
-    Theme(int id, char prefix, char suffix) {
+    Theme(int id, EnumChatFormatting prefix, EnumChatFormatting suffix) {
         this.id = id;
         this.prefix = prefix;
         this.suffix = suffix;
@@ -23,12 +25,12 @@ public enum Theme {
         return id;
     }
 
-    public String getPrefix() {
-        return "§"+prefix;
+    public EnumChatFormatting getPrefix() {
+        return prefix;
     }
 
-    public String getSuffix() {
-        return "§"+suffix;
+    public EnumChatFormatting getSuffix() {
+        return suffix;
     }
 
     public static Theme getThemeById(int id) {

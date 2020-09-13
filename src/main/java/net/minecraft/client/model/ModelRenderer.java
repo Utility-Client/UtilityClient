@@ -1,12 +1,13 @@
 package net.minecraft.client.model;
 
 import com.google.common.collect.Lists;
-import java.util.List;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public class ModelRenderer
 {

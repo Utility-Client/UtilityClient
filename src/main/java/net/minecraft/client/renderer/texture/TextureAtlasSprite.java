@@ -1,17 +1,18 @@
 package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.Lists;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
 import net.minecraft.client.resources.data.AnimationFrame;
 import net.minecraft.client.resources.data.AnimationMetadataSection;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 public class TextureAtlasSprite
 {

@@ -1,9 +1,6 @@
 package net.minecraft.client.gui.stream;
 
 import com.google.common.collect.Lists;
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
@@ -15,6 +12,10 @@ import net.minecraft.util.IChatComponent;
 import tv.twitch.chat.ChatUserInfo;
 import tv.twitch.chat.ChatUserMode;
 import tv.twitch.chat.ChatUserSubscription;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 public class GuiTwitchUserMode extends GuiScreen
 {

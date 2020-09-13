@@ -20,3 +20,6 @@ MavenMCP.iml
 
 workspace/
 log.txt
+!/workspace/libaries/
+!/workspace/versions/
+!/workspace/assets/

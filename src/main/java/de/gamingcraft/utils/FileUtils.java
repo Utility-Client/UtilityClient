@@ -8,14 +8,13 @@ import java.util.Scanner;
 
 public class FileUtils {
     public static String loadFile(File file) throws FileNotFoundException {
-        String str = "";
-
+        StringBuilder str = new StringBuilder();
         Scanner s = new Scanner(file);
         while(s.hasNextLine()) {
-            str = str + s.nextLine() + "#";
+            str.append(s.nextLine()).append("#");
         }
         s.close();
-        return str;
+        return str.toString();
     }
 
     public static void saveFile(File file, String content) throws IOException {

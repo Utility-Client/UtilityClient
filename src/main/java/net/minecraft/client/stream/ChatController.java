@@ -1,29 +1,15 @@
 package net.minecraft.client.stream;
 
 import com.google.common.collect.Lists;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tv.twitch.AuthToken;
 import tv.twitch.Core;
 import tv.twitch.ErrorCode;
 import tv.twitch.StandardCoreAPI;
-import tv.twitch.chat.Chat;
-import tv.twitch.chat.ChatBadgeData;
-import tv.twitch.chat.ChatChannelInfo;
-import tv.twitch.chat.ChatEmoticonData;
-import tv.twitch.chat.ChatEvent;
-import tv.twitch.chat.ChatRawMessage;
-import tv.twitch.chat.ChatTokenizationOption;
-import tv.twitch.chat.ChatTokenizedMessage;
-import tv.twitch.chat.ChatUserInfo;
-import tv.twitch.chat.IChatAPIListener;
-import tv.twitch.chat.IChatChannelListener;
-import tv.twitch.chat.StandardChatAPI;
+import tv.twitch.chat.*;
+
+import java.util.*;
 
 public class ChatController
 {

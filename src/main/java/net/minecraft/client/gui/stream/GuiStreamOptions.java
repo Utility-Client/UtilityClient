@@ -1,6 +1,5 @@
 package net.minecraft.client.gui.stream;
 
-import java.io.IOException;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiOptionButton;
 import net.minecraft.client.gui.GuiOptionSlider;
@@ -8,6 +7,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.EnumChatFormatting;
+
+import java.io.IOException;
 
 public class GuiStreamOptions extends GuiScreen
 {

@@ -3,6 +3,7 @@ package net.minecraft.client.stream;
 import com.google.common.base.Objects;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
+
 import java.util.Map;
 
 public class Metadata

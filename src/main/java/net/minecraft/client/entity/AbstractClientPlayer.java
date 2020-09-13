@@ -1,17 +1,9 @@
 package net.minecraft.client.entity;
 
 import com.mojang.authlib.GameProfile;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.util.HashMap;
-
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import de.gamingcraft.UtilityClient;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.main.Main;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ImageBufferDownload;
@@ -28,6 +20,12 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.util.HashMap;
+
 public abstract class AbstractClientPlayer extends EntityPlayer
 {
     private NetworkPlayerInfo playerInfo;
@@ -35,6 +33,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
     {
         super(worldIn, playerProfile);
+        if(!UtilityClient.capesEnabled) return;
         String username = playerProfile.getName();
         this.downloadCape(username);
     }

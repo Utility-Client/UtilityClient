@@ -4,10 +4,10 @@ import de.gamingcraft.config.ConfigManager;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
-import de.gamingcraft.overlay.modules.CPSModule;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class UtilityClient {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.1";
+    private static String CLIENT_VERSION = "2.2";
 
     public static float fovModifier = 1.0f;
 
@@ -26,6 +26,8 @@ public class UtilityClient {
     public static Theme CURRENT_THEME = Theme.RED;
 
     public static boolean renderOverlay = true;
+
+    public static boolean capesEnabled = true;
 
     public static void startup() throws IOException {
         //DISCORD_INSTANCE.start();
@@ -39,21 +41,8 @@ public class UtilityClient {
     }
 
     public static void loop() {
-        if(keyBinds.get(0).isKeyDown()) {
-            fovModifier = 0.15f;
-        }else {
-            fovModifier = 1.0f;
-        }
-
-        if(keyBinds.get(1).isPressed()) {
-            if(Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) {
-                Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
-            } else {
-                Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
-            }
-
-        }
-
+        if(keyBinds.get(0).isKeyDown()) fovModifier = 0.15f; else fovModifier = 1.0f;
+        if(keyBinds.get(1).isPressed()) if(Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) Minecraft.getMinecraft().gameSettings.gammaSetting = 999999; else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
         MacroManager.loop();
     }
 

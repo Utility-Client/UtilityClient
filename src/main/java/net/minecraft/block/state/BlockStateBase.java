@@ -3,11 +3,12 @@ package net.minecraft.block.state;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Iterables;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
 
 public abstract class BlockStateBase implements IBlockState
 {
