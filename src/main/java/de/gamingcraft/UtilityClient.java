@@ -1,6 +1,7 @@
 package de.gamingcraft;
 
 import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
@@ -23,6 +24,8 @@ public class UtilityClient {
 
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
 
+    public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
+
     public static Theme CURRENT_THEME = Theme.RED;
 
     public static boolean renderOverlay = true;
@@ -30,7 +33,7 @@ public class UtilityClient {
     public static boolean capesEnabled = true;
 
     public static void startup() throws IOException {
-        //DISCORD_INSTANCE.start();
+        DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         ModuleHandler.start();
         ConfigManager.start();
@@ -41,6 +44,7 @@ public class UtilityClient {
     }
 
     public static void loop() {
+        DISCORD_INSTANCE.loop();
         if(keyBinds.get(0).isKeyDown()) fovModifier = 0.15f; else fovModifier = 1.0f;
         if(keyBinds.get(1).isPressed()) if(Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) Minecraft.getMinecraft().gameSettings.gammaSetting = 999999; else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
         MacroManager.loop();
