@@ -1,3 +1,5 @@
+package net.minecraft;
+
 import net.minecraft.client.main.Main;
 
 import java.util.Arrays;

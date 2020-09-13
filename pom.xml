@@ -36,6 +36,8 @@
     </repositories>
 
     <dependencies>
+
+
         <dependency>
             <groupId>net.minecraft</groupId>
             <artifactId>minecraft</artifactId>
@@ -214,6 +216,12 @@
             <groupId>tv.twitch</groupId>
             <artifactId>twitch</artifactId>
             <version>6.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.Vatuu</groupId>
+            <artifactId>discord-rpc</artifactId>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
 
