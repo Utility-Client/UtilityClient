@@ -2512,4 +2512,4 @@ translation.test.escape=%%s %%%s %%%%s %%%%%s
 translation.test.invalid=salut %
 translation.test.invalid2=salut %s
 translation.test.none=Salut, lume!
-translation.test.world=lume
+translation.test.world=lume

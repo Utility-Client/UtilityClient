@@ -7,6 +7,7 @@ import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class UtilityClient {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.2";
+    private static String CLIENT_VERSION = "2.3-dev";
 
     public static float fovModifier = 1.0f;
 
@@ -39,8 +40,8 @@ public class UtilityClient {
         ConfigManager.start();
         MacroManager.start();
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
-        addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
-        addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
+        addKeyBind(I18n.format("uc.zoom"), ConfigManager.config.getHotkeyZoom(), false);
+        addKeyBind(I18n.format("uc.fulbright"), ConfigManager.config.getHotkeyFulbright(), false);
     }
 
     public static void loop() {
@@ -59,8 +60,8 @@ public class UtilityClient {
     }
 
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
-        String cat = "Utility Client";
-        if (isMacro) cat = "Auto-Commands";
+        String cat = CLIENT_NAME;
+        if (isMacro) cat = /*"Auto-Commands"*/ I18n.format("uc.autocommand");
         KeyBinding kb = new KeyBinding(name, keyCode, cat);
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
         if (!isMacro) keyBinds.add(kb);

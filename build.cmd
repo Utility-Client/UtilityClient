@@ -1,5 +1,5 @@
->log.txt (
-  mvn clean package
-  start bundle.cmd
-)
+mvn clean package
+echo ===============================
+echo Remember to execute bundle.cmd
+echo ===============================
 pause
