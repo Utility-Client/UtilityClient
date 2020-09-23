@@ -4,8 +4,10 @@
 You can download the client [here](https://github.com/Utility-Client/UtilityClient2/releases)
 
 ## Credits
+
 <img src="readme_content/profile_pictures/GamingCraft_hd.png" width="200">
-[**GamingCraft_hd**](http://gamingcraft.de)<br>
+
+GamingCraft_hd - http://gamingcraft.de <br>
 Developer of the Utility-Client
 
 ## Applications used
