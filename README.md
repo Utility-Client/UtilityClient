@@ -4,6 +4,7 @@
 You can download the client [here](https://github.com/Utility-Client/UtilityClient2/releases)
 
 ### Credits
+[!](https://avatars1.githubusercontent.com/u/49761607?v=4)<br>
 [**GamingCraft_hd**](http://gamingcraft.de/)<br>
 Utility Client Developer
 
