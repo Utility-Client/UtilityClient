@@ -5,7 +5,7 @@ You can download the client [here](https://github.com/Utility-Client/UtilityClie
 
 ## Credits
 
-<img src="readme_content/profile_pictures/GamingCraft_hd.png" width="200">
+<img src="readme_content/profile_pictures/GamingCraft_hd.png" width="100">
 
 GamingCraft_hd - http://gamingcraft.de <br>
 Developer of the Utility-Client
