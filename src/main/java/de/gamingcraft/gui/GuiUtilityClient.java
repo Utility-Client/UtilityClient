@@ -27,7 +27,7 @@ public class GuiUtilityClient extends GuiScreen
     public void initGui()
     {
         int i = 0;
-        this.title = UtilityClient.getName();
+        this.title = UtilityClient.getClientName();
 
         //buttons here
 

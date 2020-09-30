@@ -50,7 +50,7 @@ public class IntegratedServer extends MinecraftServer
         this.setServerOwner(mcIn.getSession().getUsername());
         this.setFolderName(folderName);
         this.setWorldName(worldName);
-        this.setDemo(mcIn.isDemo());
+        this.setDemo(false);
         this.canCreateBonusChest(settings.isBonusChestEnabled());
         this.setBuildLimit(256);
         this.setConfigManager(new IntegratedPlayerList(this));

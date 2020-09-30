@@ -31,10 +31,6 @@ public class GuiIngestServers extends GuiScreen
         this.field_152310_f = I18n.format("options.stream.ingest.title", new Object[0]);
         this.field_152311_g = new GuiIngestServers.ServerList(this.mc);
 
-        if (!this.mc.getTwitchStream().func_152908_z())
-        {
-            this.mc.getTwitchStream().func_152909_x();
-        }
 
         this.buttonList.add(new GuiButton(1, this.width / 2 - 155, this.height - 24 - 6, 150, 20, I18n.format("gui.done", new Object[0])));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 5, this.height - 24 - 6, 150, 20, I18n.format("options.stream.ingest.reset", new Object[0])));
@@ -54,10 +50,6 @@ public class GuiIngestServers extends GuiScreen
      */
     public void onGuiClosed()
     {
-        if (this.mc.getTwitchStream().func_152908_z())
-        {
-            this.mc.getTwitchStream().func_152932_y().func_153039_l();
-        }
     }
 
     /**
@@ -98,21 +90,22 @@ public class GuiIngestServers extends GuiScreen
             this.setShowSelectionBox(false);
         }
 
-        protected int getSize()
-        {
-            return this.mc.getTwitchStream().func_152925_v().length;
+
+        @Override
+        protected int getSize() {
+            return 0;
         }
 
         protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
         {
-            this.mc.gameSettings.streamPreferredServer = this.mc.getTwitchStream().func_152925_v()[slotIndex].serverUrl;
             this.mc.gameSettings.saveOptions();
         }
 
-        protected boolean isSelected(int slotIndex)
-        {
-            return this.mc.getTwitchStream().func_152925_v()[slotIndex].serverUrl.equals(this.mc.gameSettings.streamPreferredServer);
+        @Override
+        protected boolean isSelected(int slotIndex) {
+            return false;
         }
+
 
         protected void drawBackground()
         {
@@ -120,55 +113,6 @@ public class GuiIngestServers extends GuiScreen
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
-            IngestServer ingestserver = this.mc.getTwitchStream().func_152925_v()[entryID];
-            String s = ingestserver.serverUrl.replaceAll("\\{stream_key\\}", "");
-            String s1 = (int)ingestserver.bitrateKbps + " kbps";
-            String s2 = null;
-            IngestServerTester ingestservertester = this.mc.getTwitchStream().func_152932_y();
-
-            if (ingestservertester != null)
-            {
-                if (ingestserver == ingestservertester.func_153040_c())
-                {
-                    s = EnumChatFormatting.GREEN + s;
-                    s1 = (int)(ingestservertester.func_153030_h() * 100.0F) + "%";
-                }
-                else if (entryID < ingestservertester.func_153028_p())
-                {
-                    if (ingestserver.bitrateKbps == 0.0F)
-                    {
-                        s1 = EnumChatFormatting.RED + "Down!";
-                    }
-                }
-                else
-                {
-                    s1 = EnumChatFormatting.OBFUSCATED + "1234" + EnumChatFormatting.RESET + " kbps";
-                }
-            }
-            else if (ingestserver.bitrateKbps == 0.0F)
-            {
-                s1 = EnumChatFormatting.RED + "Down!";
-            }
-
-            p_180791_2_ = p_180791_2_ - 15;
-
-            if (this.isSelected(entryID))
-            {
-                s2 = EnumChatFormatting.BLUE + "(Preferred)";
-            }
-            else if (ingestserver.defaultServer)
-            {
-                s2 = EnumChatFormatting.GREEN + "(Default)";
-            }
-
-            GuiIngestServers.this.drawString(GuiIngestServers.this.fontRendererObj, ingestserver.serverName, p_180791_2_ + 2, p_180791_3_ + 5, 16777215);
-            GuiIngestServers.this.drawString(GuiIngestServers.this.fontRendererObj, s, p_180791_2_ + 2, p_180791_3_ + GuiIngestServers.this.fontRendererObj.FONT_HEIGHT + 5 + 3, 3158064);
-            GuiIngestServers.this.drawString(GuiIngestServers.this.fontRendererObj, s1, this.getScrollBarX() - 5 - GuiIngestServers.this.fontRendererObj.getStringWidth(s1), p_180791_3_ + 5, 8421504);
-
-            if (s2 != null)
-            {
-                GuiIngestServers.this.drawString(GuiIngestServers.this.fontRendererObj, s2, this.getScrollBarX() - 5 - GuiIngestServers.this.fontRendererObj.getStringWidth(s2), p_180791_3_ + 5 + 3 + GuiIngestServers.this.fontRendererObj.FONT_HEIGHT, 8421504);
-            }
         }
 
         protected int getScrollBarX()

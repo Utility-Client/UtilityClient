@@ -316,33 +316,6 @@ public class GameSettings
             this.renderDistanceChunks = (int)p_74304_2_;
             this.mc.renderGlobal.setDisplayListEntitiesDirty();
         }
-
-        if (p_74304_1_ == GameSettings.Options.STREAM_BYTES_PER_PIXEL)
-        {
-            this.streamBytesPerPixel = p_74304_2_;
-        }
-
-        if (p_74304_1_ == GameSettings.Options.STREAM_VOLUME_MIC)
-        {
-            this.streamMicVolume = p_74304_2_;
-            this.mc.getTwitchStream().updateStreamVolume();
-        }
-
-        if (p_74304_1_ == GameSettings.Options.STREAM_VOLUME_SYSTEM)
-        {
-            this.streamGameVolume = p_74304_2_;
-            this.mc.getTwitchStream().updateStreamVolume();
-        }
-
-        if (p_74304_1_ == GameSettings.Options.STREAM_KBPS)
-        {
-            this.streamKbps = p_74304_2_;
-        }
-
-        if (p_74304_1_ == GameSettings.Options.STREAM_FPS)
-        {
-            this.streamFps = p_74304_2_;
-        }
     }
 
     /**

@@ -75,7 +75,6 @@ public class GuiStreamOptions extends GuiScreen
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 155, this.height / 6 + 168, 150, 20, I18n.format("gui.done", new Object[0])));
         GuiButton guibutton = new GuiButton(201, this.width / 2 + 5, this.height / 6 + 168, 150, 20, I18n.format("options.stream.ingestSelection", new Object[0]));
-        guibutton.enabled = this.mc.getTwitchStream().isReadyToBroadcast() && this.mc.getTwitchStream().func_152925_v().length > 0 || this.mc.getTwitchStream().func_152908_z();
         this.buttonList.add(guibutton);
     }
 
@@ -92,25 +91,10 @@ public class GuiStreamOptions extends GuiScreen
                 this.field_152318_h.setOptionValue(gamesettings$options, 1);
                 button.displayString = this.field_152318_h.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
 
-                if (this.mc.getTwitchStream().isBroadcasting() && gamesettings$options != GameSettings.Options.STREAM_CHAT_ENABLED && gamesettings$options != GameSettings.Options.STREAM_CHAT_USER_FILTER)
-                {
-                    this.field_152315_t = true;
-                }
             }
             else if (button instanceof GuiOptionSlider)
             {
-                if (button.id == GameSettings.Options.STREAM_VOLUME_MIC.returnEnumOrdinal())
-                {
-                    this.mc.getTwitchStream().updateStreamVolume();
-                }
-                else if (button.id == GameSettings.Options.STREAM_VOLUME_SYSTEM.returnEnumOrdinal())
-                {
-                    this.mc.getTwitchStream().updateStreamVolume();
-                }
-                else if (this.mc.getTwitchStream().isBroadcasting())
-                {
-                    this.field_152315_t = true;
-                }
+
             }
 
             if (button.id == 200)

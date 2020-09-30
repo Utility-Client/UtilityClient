@@ -29,7 +29,7 @@ public class GuiThemeOptions extends GuiScreen
     public void initGui()
     {
         int i = 0;
-        this.title = UtilityClient.getName() + " Theme Options";
+        this.title = UtilityClient.getClientName() + " Theme Options";
 
         //buttons here
 

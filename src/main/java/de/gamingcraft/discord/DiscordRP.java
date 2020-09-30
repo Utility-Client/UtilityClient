@@ -61,7 +61,7 @@ public class DiscordRP extends Thread {
 
     public void setRichPresence(String topText, String bottomText) {
         DiscordRichPresence.Builder presence = new DiscordRichPresence.Builder(bottomText);
-        presence.setBigImage("utilityclient", UtilityClient.getName() + " " + UtilityClient.getVersion());
+        presence.setBigImage("utilityclient", UtilityClient.getClientName() + " " + UtilityClient.getVersion());
         presence.setDetails(topText);
         DiscordRPC.discordUpdatePresence(presence.build());
     }

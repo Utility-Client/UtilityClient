@@ -14,9 +14,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class UtilityClient {
+public class UtilityClient extends Thread {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.2";
+    private static String CLIENT_VERSION = "2.4-dev [LTS]";
+
+    private static UtilityClient CLIENT_INSTANCE = new UtilityClient();
+    // https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest
 
     public static float fovModifier = 1.0f;
 
@@ -32,12 +35,20 @@ public class UtilityClient {
 
     public static boolean capesEnabled = true;
 
-    public static void startup() throws IOException {
+    public static UtilityClient getInstance() {
+        return CLIENT_INSTANCE;
+    }
+
+    public void run() {
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         ModuleHandler.start();
-        ConfigManager.start();
-        MacroManager.start();
+        try {
+            ConfigManager.start();
+            MacroManager.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
@@ -50,7 +61,7 @@ public class UtilityClient {
         MacroManager.loop();
     }
 
-    public static String getName() {
+    public static String getClientName() {
         return CLIENT_NAME;
     }
 
@@ -59,7 +70,7 @@ public class UtilityClient {
     }
 
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
-        String cat = "Utility Client";
+        String cat = CLIENT_NAME;
         if (isMacro) cat = "Auto-Commands";
         KeyBinding kb = new KeyBinding(name, keyCode, cat);
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);

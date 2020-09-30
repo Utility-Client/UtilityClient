@@ -89,6 +89,6 @@ public class DefaultResourcePack implements IResourcePack
 
     public String getPackName()
     {
-        return "Default";
+        return "Minecraft Default";
     }
 }

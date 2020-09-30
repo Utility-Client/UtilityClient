@@ -22,7 +22,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.github.Vatuu:discord-rpc:1.6.2" level="project" />
     <orderEntry type="library" name="Maven: net.minecraft:minecraft:1.8.8" level="project" />
     <orderEntry type="library" name="Maven: oshi-project:oshi-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:3.4.0" level="project" />

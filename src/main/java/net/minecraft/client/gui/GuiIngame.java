@@ -49,7 +49,6 @@ public class GuiIngame extends Gui
 
     /** ChatGUI instance that retains all previous chat data */
     private final GuiNewChat persistantChatGUI;
-    private final GuiStreamIndicator streamIndicator;
     private int updateCounter;
 
     /** The string specifying which record music is playing */
@@ -94,7 +93,6 @@ public class GuiIngame extends Gui
         this.overlayDebug = new GuiOverlayDebug(mcIn);
         this.spectatorGui = new GuiSpectator(mcIn);
         this.persistantChatGUI = new GuiNewChat(mcIn);
-        this.streamIndicator = new GuiStreamIndicator(mcIn);
         this.overlayPlayerList = new GuiPlayerTabOverlay(mcIn, this);
         this.func_175177_a();
     }
@@ -120,7 +118,7 @@ public class GuiIngame extends Gui
         }
         else
         {
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
         }
 
         ItemStack itemstack = this.mc.thePlayer.inventory.armorItemInSlot(3);
@@ -155,7 +153,7 @@ public class GuiIngame extends Gui
 
         if (this.showCrosshair())
         {
-            //GlStateManager.tryBlendFuncSeparate(775, 769, 0, 0);
+            GlStateManager.tryBlendFuncSeparate(775, 769, 0, 0);
             GlStateManager.disableAlpha();
             this.drawTexturedModalRect(i / 2 - 7, j / 2 - 7, 0, 0, 16, 16);
         }
@@ -213,10 +211,6 @@ public class GuiIngame extends Gui
             this.spectatorGui.func_175263_a(scaledresolution);
         }
 
-        if (this.mc.isDemo())
-        {
-            this.renderDemo(scaledresolution);
-        }
 
         if (this.mc.gameSettings.showDebugInfo)
         {
@@ -524,11 +518,6 @@ public class GuiIngame extends Gui
         {
             return true;
         }
-    }
-
-    public void renderStreamIndicator(ScaledResolution p_180478_1_)
-    {
-        this.streamIndicator.render(p_180478_1_.getScaledWidth() - 10, 10);
     }
 
     private void renderScoreboard(ScoreObjective p_180475_1_, ScaledResolution p_180475_2_)
@@ -1064,7 +1053,6 @@ public class GuiIngame extends Gui
         }
 
         ++this.updateCounter;
-        this.streamIndicator.func_152439_a();
 
         if (this.mc.thePlayer != null)
         {
