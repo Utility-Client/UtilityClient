@@ -39,7 +39,7 @@ public class DiscordRP extends Thread {
         if((!Minecraft.getMinecraft().isSingleplayer())) {
             if(Minecraft.getMinecraft().theWorld != null) {
                 if(Minecraft.getMinecraft().theWorld.playerEntities.size() > 1) {
-                    setRichPresence("Playing Multiplayer", Minecraft.getMinecraft().getCurrentServerData().serverName);
+                    setRichPresence("Playing Multiplayer", Minecraft.getMinecraft().getCurrentServerData().serverIP);
                 }
             }
         }
