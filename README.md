@@ -1,5 +1,7 @@
 # Utility Client
 
+Join our discord [here](http://uc.gamingcraft.de/discord)!
+
 ## Download
 You can download the client [here](https://github.com/Utility-Client/UtilityClient2/releases)
 
