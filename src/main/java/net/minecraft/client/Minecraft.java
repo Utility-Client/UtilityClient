@@ -2130,7 +2130,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.mcProfiler.endSection();
         this.systemTime = getSystemTime();
 
-        UtilityClient.loop();
+        UtilityClient.getInstance().loop();
     }
 
     /**

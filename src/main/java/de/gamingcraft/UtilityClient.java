@@ -6,9 +6,10 @@ import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
+import de.gamingcraft.utils.CapeUtils;
+import de.gamingcraft.utils.JSONUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class UtilityClient extends Thread {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.4-dev [LTS]";
+    private static String CLIENT_VERSION = "2.4-dev";
 
     private static UtilityClient CLIENT_INSTANCE = new UtilityClient();
     // https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest
@@ -29,6 +30,8 @@ public class UtilityClient extends Thread {
 
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
 
+    public static CapeUtils capeUtilsInstance = new CapeUtils();
+
     public static Theme CURRENT_THEME = Theme.RED;
 
     public static boolean renderOverlay = true;
@@ -40,8 +43,7 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
-        DISCORD_INSTANCE.start();
-        CPS_THREAD_INSTANCE.start();
+
         ModuleHandler.start();
         try {
             ConfigManager.start();
@@ -52,9 +54,15 @@ public class UtilityClient extends Thread {
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
+
+        capeUtilsInstance.run();
+        DISCORD_INSTANCE.start();
+        CPS_THREAD_INSTANCE.start();
+
+        JSONUtils.parseJson();
     }
 
-    public static void loop() {
+    public void loop() {
         DISCORD_INSTANCE.loop();
         if(keyBinds.get(0).isKeyDown()) fovModifier = 0.15f; else fovModifier = 1.0f;
         if(keyBinds.get(1).isPressed()) if(Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) Minecraft.getMinecraft().gameSettings.gammaSetting = 999999; else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
