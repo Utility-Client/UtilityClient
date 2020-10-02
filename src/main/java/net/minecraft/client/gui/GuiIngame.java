@@ -121,13 +121,6 @@ public class GuiIngame extends Gui
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 1);
         }
 
-        ItemStack itemstack = this.mc.thePlayer.inventory.armorItemInSlot(3);
-
-        if (this.mc.gameSettings.thirdPersonView == 0 && itemstack != null && itemstack.getItem() == Item.getItemFromBlock(Blocks.pumpkin))
-        {
-            this.renderPumpkinOverlay(scaledresolution);
-        }
-
         if (!this.mc.thePlayer.isPotionActive(Potion.confusion))
         {
             float f = this.mc.thePlayer.prevTimeInPortal + (this.mc.thePlayer.timeInPortal - this.mc.thePlayer.prevTimeInPortal) * partialTicks;
@@ -153,9 +146,12 @@ public class GuiIngame extends Gui
 
         if (this.showCrosshair())
         {
-            GlStateManager.tryBlendFuncSeparate(775, 769, 0, 0);
-            GlStateManager.disableAlpha();
-            this.drawTexturedModalRect(i / 2 - 7, j / 2 - 7, 0, 0, 16, 16);
+            int centerX = scaledresolution.getScaledWidth() / 2;
+            int centerY = scaledresolution.getScaledHeight() / 2;
+            double scaleX = 3.5f;
+            double scaleY = 0.2f;
+            drawRect(centerX-scaleX, centerY-scaleY, centerX+scaleX, centerY+scaleY,-1);
+            drawRect(centerX-scaleY, centerY-scaleX, centerX+scaleY, centerY+scaleX,-1);
         }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
@@ -468,25 +464,6 @@ public class GuiIngame extends Gui
             }
         }
 
-        this.mc.mcProfiler.endSection();
-    }
-
-    public void renderDemo(ScaledResolution p_175185_1_)
-    {
-        this.mc.mcProfiler.startSection("demo");
-        String s = "";
-
-        if (this.mc.theWorld.getTotalWorldTime() >= 120500L)
-        {
-            s = I18n.format("demo.demoExpired", new Object[0]);
-        }
-        else
-        {
-            s = I18n.format("demo.remainingTime", new Object[] {StringUtils.ticksToElapsedTime((int)(120500L - this.mc.theWorld.getTotalWorldTime()))});
-        }
-
-        int i = this.getFontRenderer().getStringWidth(s);
-        this.getFontRenderer().drawStringWithShadow(s, (float)(p_175185_1_.getScaledWidth() - i - 10), 5.0F, 16777215);
         this.mc.mcProfiler.endSection();
     }
 
@@ -841,29 +818,6 @@ public class GuiIngame extends Gui
                     j9 -= 10;
                 }
             }
-
-            this.mc.mcProfiler.endStartSection("air");
-
-            if (entityplayer.isInsideOfMaterial(Material.water))
-            {
-                int l6 = this.mc.thePlayer.getAir();
-                int k7 = MathHelper.ceiling_double_int((double)(l6 - 2) * 10.0D / 300.0D);
-                int i8 = MathHelper.ceiling_double_int((double)l6 * 10.0D / 300.0D) - k7;
-
-                for (int l8 = 0; l8 < k7 + i8; ++l8)
-                {
-                    if (l8 < k7)
-                    {
-                        this.drawTexturedModalRect(j1 - l8 * 8 - 9, j2, 16, 18, 9, 9);
-                    }
-                    else
-                    {
-                        this.drawTexturedModalRect(j1 - l8 * 8 - 9, j2, 25, 18, 9, 9);
-                    }
-                }
-            }
-
-            this.mc.mcProfiler.endSection();
         }
     }
 
@@ -895,28 +849,6 @@ public class GuiIngame extends Gui
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.getTextureManager().bindTexture(icons);
         }
-    }
-
-    private void renderPumpkinOverlay(ScaledResolution p_180476_1_)
-    {
-        GlStateManager.disableDepth();
-        GlStateManager.depthMask(false);
-        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.disableAlpha();
-        this.mc.getTextureManager().bindTexture(pumpkinBlurTexPath);
-        Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(0.0D, (double)p_180476_1_.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
-        worldrenderer.pos((double)p_180476_1_.getScaledWidth(), (double)p_180476_1_.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
-        worldrenderer.pos((double)p_180476_1_.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
-        tessellator.draw();
-        GlStateManager.depthMask(true);
-        GlStateManager.enableDepth();
-        GlStateManager.enableAlpha();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     /**
