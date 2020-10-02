@@ -1,15 +1,12 @@
 # Utility Client
 
-Join our discord [here](http://uc.gamingcraft.de/discord)!
+[Discord Guild](http://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases)
 
-## Download
-You can download the client [here](https://github.com/Utility-Client/UtilityClient2/releases)
-
-## Credits
+## Creators
 
 <img src="readme_content/profile_pictures/GamingCraft_hd.png" width="100">
 
-GamingCraft_hd - http://gamingcraft.de <br>
+[GamingCraft_hd](http://gamingcraft.de)<br>
 Developer of the Utility-Client
 
 ## Applications used
