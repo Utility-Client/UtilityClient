@@ -364,12 +364,15 @@ public class PlayerControllerMP
      */
     private void syncCurrentPlayItem()
     {
-        int i = this.mc.thePlayer.inventory.currentItem;
-
-        if (i != this.currentPlayerItem)
-        {
-            this.currentPlayerItem = i;
-            this.netClientHandler.addToSendQueue(new C09PacketHeldItemChange(this.currentPlayerItem));
+        try {
+            int i = this.mc.thePlayer.inventory.currentItem;
+            if (i != this.currentPlayerItem)
+            {
+                this.currentPlayerItem = i;
+                this.netClientHandler.addToSendQueue(new C09PacketHeldItemChange(this.currentPlayerItem));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
