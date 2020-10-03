@@ -9,7 +9,7 @@ import net.minecraft.client.resources.I18n;
 
 import java.io.IOException;
 
-public class GuiThemeOptions extends GuiScreen
+public class GuiCrosshairOptions extends GuiScreen
 {
     /** The parent GUI for this GUI */
     private final GuiScreen parentScreen;
@@ -17,7 +17,7 @@ public class GuiThemeOptions extends GuiScreen
     /** The title of the GUI. */
     private String title;
 
-    public GuiThemeOptions(GuiScreen parentScreenIn)
+    public GuiCrosshairOptions(GuiScreen parentScreenIn)
     {
         this.parentScreen = parentScreenIn;
     }
@@ -29,12 +29,12 @@ public class GuiThemeOptions extends GuiScreen
     public void initGui()
     {
         int i = 0;
-        this.title = UtilityClient.getClientName() + " Theme Options";
+        this.title = UtilityClient.getClientName() + " Crosshair Options";
 
         //buttons here
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2, 98, 20, "Previous Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2, 98, 20, "Next Theme"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2, 98, 20, "Previous Crosshair"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2, 98, 20, "Next Crosshair"));
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
     }
@@ -48,11 +48,19 @@ public class GuiThemeOptions extends GuiScreen
         {
 
             if(button.id == 1) {
-                UtilityClient.CURRENT_THEME = Theme.getThemeById(UtilityClient.CURRENT_THEME.getId()-1);
+                if(ConfigManager.config.getCrosshair()-1 < 0) {
+                    ConfigManager.config.setCrosshair(UtilityClient.CROSSHAIR_MANAGER_INSTANCE.crosshairs.size()-1);
+                } else  {
+                    ConfigManager.config.setCrosshair(ConfigManager.config.getCrosshair() - 1);
+                }
             }
 
             if(button.id == 2) {
-                UtilityClient.CURRENT_THEME = Theme.getThemeById(UtilityClient.CURRENT_THEME.getId()+1);
+                if((ConfigManager.config.getCrosshair()+1) > (UtilityClient.CROSSHAIR_MANAGER_INSTANCE.crosshairs.size()-1)) {
+                    ConfigManager.config.setCrosshair(0);
+                } else {
+                    ConfigManager.config.setCrosshair(ConfigManager.config.getCrosshair() + 1);
+                }
             }
 
             if (button.id == 200)
@@ -74,8 +82,7 @@ public class GuiThemeOptions extends GuiScreen
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
 
-        // Strings go here
-        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + "Prefix§7: " + UtilityClient.CURRENT_THEME.getSuffix() + "Suffix", this.width / 2, this.height/2-30, 16777215);
+        UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(-50);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

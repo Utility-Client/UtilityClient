@@ -1,18 +1,16 @@
 package net.minecraft.client.gui;
 
-import de.gamingcraft.UtilityClient;
-import de.gamingcraft.gui.GuiUtilityClient;
-import net.minecraft.client.gui.stream.GuiStreamOptions;
-import net.minecraft.client.gui.stream.GuiStreamUnavailable;
+import de.gamingcraft.*;
+import de.gamingcraft.gui.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.stream.IStream;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.EnumDifficulty;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class GuiOptions extends GuiScreen implements GuiYesNoCallback
 {
@@ -38,7 +36,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
     public void initGui()
     {
         int i = 0;
-        this.field_146442_a = I18n.format("options.title", new Object[0]);
+        this.field_146442_a = I18n.format("options.title");
 
         for (GameSettings.Options gamesettings$options : field_146440_f)
         {
@@ -76,27 +74,27 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
             }
         }
 
-        this.buttonList.add(new GuiButton(110, this.width / 2 - 155, this.height / 6 + 48 - 6, 150, 20, I18n.format("options.skinCustomisation", new Object[0])));
-        this.buttonList.add(new GuiButton(99, this.width / 2 + 5, this.height / 6 + 48 - 6, 150, 20, UtilityClient.getClientName()));
-        this.buttonList.add(new GuiButton(106, this.width / 2 - 155, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.sounds", new Object[0])));
-        this.buttonList.add(new GuiButton(107, this.width / 2 + 5, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.stream", new Object[0])));
-        this.buttonList.add(new GuiButton(101, this.width / 2 - 155, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.video", new Object[0])));
-        this.buttonList.add(new GuiButton(100, this.width / 2 + 5, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.controls", new Object[0])));
-        this.buttonList.add(new GuiButton(102, this.width / 2 - 155, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.language", new Object[0])));
-        this.buttonList.add(new GuiButton(103, this.width / 2 + 5, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.chat.title", new Object[0])));
-        GuiButton btn = new GuiButton(105, this.width / 2 - 155, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.resourcepack", new Object[0]));
-        btn.enabled = false;
-        this.buttonList.add(btn);
-        this.buttonList.add(new GuiButton(104, this.width / 2 + 5, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.snooper.view", new Object[0])));
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new GuiButton(99,   this.width / 2 + 5,     this.height / 6 + 48 - 6, 150, 20, UtilityClient.getClientName() + "..."));
+        this.buttonList.add(new GuiButton(100,  this.width / 2 - 155,   this.height / 6 + 48 - 6, 150, 20, I18n.format("options.controls")));
+
+        this.buttonList.add(new GuiButton(106,  this.width / 2 + 5,     this.height / 6 + 72 - 6, 150, 20, I18n.format("options.sounds")));
+        this.buttonList.add(new GuiButton(101,  this.width / 2 - 155,   this.height / 6 + 72 - 6, 150, 20, I18n.format("options.video")));
+
+        this.buttonList.add(new GuiButton(103,  this.width / 2 + 5,     this.height / 6 + 96 - 6, 150, 20, I18n.format("options.chat.title")));
+        this.buttonList.add(new GuiButton(102,  this.width / 2 - 155,   this.height / 6 + 96 - 6, 150, 20, I18n.format("options.language")));
+
+        this.buttonList.add(new GuiButton(110,  this.width / 2 + 5,     this.height / 6 + 120 - 6,150, 20, I18n.format("options.skinCustomisation")));
+        this.buttonList.add(new GuiButton(105,  this.width / 2 - 155,   this.height / 6 + 120 - 6,150, 20, I18n.format("options.resourcepack"), false));
+
+        this.buttonList.add(new GuiButton(200,  this.width / 2 - 100,   this.height / 6 + 168,                            I18n.format("gui.done")));
     }
 
     public String func_175355_a(EnumDifficulty p_175355_1_)
     {
         IChatComponent ichatcomponent = new ChatComponentText("");
-        ichatcomponent.appendSibling(new ChatComponentTranslation("options.difficulty", new Object[0]));
+        ichatcomponent.appendSibling(new ChatComponentTranslation("options.difficulty"));
         ichatcomponent.appendText(": ");
-        ichatcomponent.appendSibling(new ChatComponentTranslation(p_175355_1_.getDifficultyResourceKey(), new Object[0]));
+        ichatcomponent.appendSibling(new ChatComponentTranslation(p_175355_1_.getDifficultyResourceKey()));
         return ichatcomponent.getFormattedText();
     }
 
@@ -124,7 +122,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
             {
                 GameSettings.Options gamesettings$options = ((GuiOptionButton)button).returnEnumOptions();
                 this.game_settings_1.setOptionValue(gamesettings$options, 1);
-                button.displayString = this.game_settings_1.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
+                button.displayString = this.game_settings_1.getKeyBinding(Objects.requireNonNull(GameSettings.Options.getEnumOptions(button.id)));
             }
 
             if (button.id == 108)
@@ -135,7 +133,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
 
             if (button.id == 109)
             {
-                this.mc.displayGuiScreen(new GuiYesNo(this, (new ChatComponentTranslation("difficulty.lock.title", new Object[0])).getFormattedText(), (new ChatComponentTranslation("difficulty.lock.question", new Object[] {new ChatComponentTranslation(this.mc.theWorld.getWorldInfo().getDifficulty().getDifficultyResourceKey(), new Object[0])})).getFormattedText(), 109));
+                this.mc.displayGuiScreen(new GuiYesNo(this, (new ChatComponentTranslation("difficulty.lock.title")).getFormattedText(), (new ChatComponentTranslation("difficulty.lock.question", new ChatComponentTranslation(this.mc.theWorld.getWorldInfo().getDifficulty().getDifficultyResourceKey()))).getFormattedText(), 109));
             }
 
             if (button.id == 110)

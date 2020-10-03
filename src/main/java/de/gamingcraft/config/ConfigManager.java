@@ -17,18 +17,21 @@ public class ConfigManager {
         setup();
         if(!configFile.exists()) save();
         load();
+        overrideConfig(config.getSelectedTheme(), config.getHotkeyZoom(), config.getHotkeyFulbright(), config.getCrosshair());
     }
 
     public static void setup() {
         conf.setProperty("selectedTheme", "0");
         conf.setProperty("hotkeyZoom", "46");
         conf.setProperty("hotkeyFulbright", "50");
+        conf.setProperty("selectedCrosshair", "0");
     }
 
-    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright) throws IOException {
+    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright, int crosshair) throws IOException {
         conf.setProperty("selectedTheme", selTheme+"");
         conf.setProperty("hotkeyZoom", hotKeyZoom+"");
         conf.setProperty("hotkeyFulbright", hotkeyFulbright+"");
+        conf.setProperty("selectedCrosshair", crosshair+"");
         save();
         load();
     }
@@ -39,7 +42,8 @@ public class ConfigManager {
         config = new Config(
                 Integer.parseInt(conf.getProperty("selectedTheme")),
                 Integer.parseInt(conf.getProperty("hotkeyZoom")),
-                Integer.parseInt(conf.getProperty("hotkeyFulbright"))
+                Integer.parseInt(conf.getProperty("hotkeyFulbright")),
+                Integer.parseInt(conf.getProperty("selectedCrosshair"))
         );
     }
 

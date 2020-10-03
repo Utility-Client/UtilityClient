@@ -58,6 +58,21 @@ public class GuiButton extends Gui
         this.displayString = buttonText;
     }
 
+    public GuiButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText, boolean _enabled)
+    {
+        this.width = 200;
+        this.height = 20;
+        this.enabled = true;
+        this.visible = true;
+        this.id = buttonId;
+        this.xPosition = x;
+        this.yPosition = y;
+        this.width = widthIn;
+        this.height = heightIn;
+        this.displayString = buttonText;
+        this.enabled = _enabled;
+    }
+
     /**
      * Returns 0 if the button is disabled, 1 if the mouse is NOT hovering over this button and 2 if it IS hovering over
      * this button.

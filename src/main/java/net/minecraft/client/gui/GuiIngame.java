@@ -146,12 +146,8 @@ public class GuiIngame extends Gui
 
         if (this.showCrosshair())
         {
-            int centerX = scaledresolution.getScaledWidth() / 2;
-            int centerY = scaledresolution.getScaledHeight() / 2;
-            double scaleX = 3.5f;
-            double scaleY = 0.2f;
-            drawRect(centerX-scaleX, centerY-scaleY, centerX+scaleX, centerY+scaleY,-1);
-            drawRect(centerX-scaleY, centerY-scaleX, centerX+scaleY, centerY+scaleX,-1);
+
+            UtilityClient.getInstance().CROSSHAIR_MANAGER_INSTANCE.loop(0);
         }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

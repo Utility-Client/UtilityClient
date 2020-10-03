@@ -1,6 +1,7 @@
 package de.gamingcraft;
 
 import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
@@ -30,6 +31,8 @@ public class UtilityClient extends Thread {
 
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
 
+    public static final CrosshairManager CROSSHAIR_MANAGER_INSTANCE = new CrosshairManager();
+
     public static CapeUtils capeUtilsInstance = new CapeUtils();
 
     public static Theme CURRENT_THEME = Theme.RED;
@@ -55,9 +58,10 @@ public class UtilityClient extends Thread {
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
 
-        capeUtilsInstance.run();
+        capeUtilsInstance.start();
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
+        CROSSHAIR_MANAGER_INSTANCE.start();
 
         JSONUtils.parseJson();
     }

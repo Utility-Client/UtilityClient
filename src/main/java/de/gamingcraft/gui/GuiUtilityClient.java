@@ -33,7 +33,7 @@ public class GuiUtilityClient extends GuiScreen
 
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-44, "Disable Capes"));
-        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-22, "Comming soon!", false));
+        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-22, "Select Crosshair"));
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done", new Object[0])));
     }
@@ -54,6 +54,11 @@ public class GuiUtilityClient extends GuiScreen
                 UtilityClient.capesEnabled = !UtilityClient.capesEnabled;
                 if(UtilityClient.capesEnabled) this.buttonList.get(1).displayString = "Disable Capes"; else this.buttonList.get(1).displayString = "Enable Capes";
 
+            }
+
+            if(button.id == 3) {
+                this.mc.gameSettings.saveOptions();
+                this.mc.displayGuiScreen(new GuiCrosshairOptions(this));
             }
 
             if (button.id == 200)
