@@ -58,7 +58,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate() {
         super.onUpdate();
 
         if (this.lightningState == 2)
@@ -80,7 +80,12 @@ public class EntityLightningBolt extends EntityWeatherEffect
                 --this.boltLivingTime;
                 this.lightningState = 1;
                 this.boltVertex = this.rand.nextLong();
-                BlockPos blockpos = new BlockPos(this);
+                BlockPos blockpos = null;
+                try {
+                    blockpos = new BlockPos(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (!this.worldObj.isRemote && this.worldObj.getGameRules().getBoolean("doFireTick") && this.worldObj.isAreaLoaded(blockpos, 10) && this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(this.worldObj, blockpos))
                 {

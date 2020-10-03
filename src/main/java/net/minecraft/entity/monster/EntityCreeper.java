@@ -100,7 +100,11 @@ public class EntityCreeper extends EntityMob
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        super.readEntityFromNBT(tagCompund);
+        try {
+            super.readEntityFromNBT(tagCompund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.dataWatcher.updateObject(17, Byte.valueOf((byte)(tagCompund.getBoolean("powered") ? 1 : 0)));
 
         if (tagCompund.hasKey("Fuse", 99))
@@ -154,7 +158,11 @@ public class EntityCreeper extends EntityMob
             }
         }
 
-        super.onUpdate();
+        try {
+            super.onUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

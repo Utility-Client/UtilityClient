@@ -52,7 +52,11 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
      */
     public void update()
     {
-        this.spawnerLogic.updateSpawner();
+        try {
+            this.spawnerLogic.updateSpawner();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

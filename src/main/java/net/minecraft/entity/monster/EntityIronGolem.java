@@ -57,7 +57,11 @@ public class EntityIronGolem extends EntityGolem
         if (--this.homeCheckTimer <= 0)
         {
             this.homeCheckTimer = 70 + this.rand.nextInt(50);
-            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this), 32);
+            try {
+                this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this), 32);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (this.villageObj == null)
             {
@@ -70,7 +74,11 @@ public class EntityIronGolem extends EntityGolem
             }
         }
 
-        super.updateAITasks();
+        try {
+            super.updateAITasks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void applyEntityAttributes()
@@ -104,7 +112,11 @@ public class EntityIronGolem extends EntityGolem
      */
     public void onLivingUpdate()
     {
-        super.onLivingUpdate();
+        try {
+            super.onLivingUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (this.attackTimer > 0)
         {
@@ -153,7 +165,11 @@ public class EntityIronGolem extends EntityGolem
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        super.readEntityFromNBT(tagCompund);
+        try {
+            super.readEntityFromNBT(tagCompund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.setPlayerCreated(tagCompund.getBoolean("PlayerCreated"));
     }
 
@@ -330,8 +346,12 @@ public class EntityIronGolem extends EntityGolem
                             }
                         }
 
-                        return AINearestAttackableTargetNonCreeper.this.isSuitableTarget(p_apply_1_, false);
-                    }
+                        try {
+                            return AINearestAttackableTargetNonCreeper.this.isSuitableTarget(p_apply_1_, false);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }return false;
                 }
             };
         }

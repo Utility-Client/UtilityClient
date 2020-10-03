@@ -22,7 +22,12 @@ public class PathNavigateClimber extends PathNavigateGround
     public PathEntity getPathToPos(BlockPos pos)
     {
         this.targetPosition = pos;
-        return super.getPathToPos(pos);
+        try {
+            return super.getPathToPos(pos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -30,8 +35,13 @@ public class PathNavigateClimber extends PathNavigateGround
      */
     public PathEntity getPathToEntityLiving(Entity entityIn)
     {
-        this.targetPosition = new BlockPos(entityIn);
-        return super.getPathToEntityLiving(entityIn);
+        try {
+            this.targetPosition = new BlockPos(entityIn);
+            return super.getPathToEntityLiving(entityIn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -47,7 +57,11 @@ public class PathNavigateClimber extends PathNavigateGround
         }
         else
         {
-            this.targetPosition = new BlockPos(entityIn);
+            try {
+                this.targetPosition = new BlockPos(entityIn);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.speed = speedIn;
             return true;
         }

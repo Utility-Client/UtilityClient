@@ -235,7 +235,11 @@ public class EntityGhast extends EntityFlying implements IMob
 
                 if (this.attackTimer == 10)
                 {
-                    world.playAuxSFXAtEntity((EntityPlayer)null, 1007, new BlockPos(this.parentEntity), 0);
+                    try {
+                        world.playAuxSFXAtEntity((EntityPlayer)null, 1007, new BlockPos(this.parentEntity), 0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 if (this.attackTimer == 20)
@@ -245,7 +249,11 @@ public class EntityGhast extends EntityFlying implements IMob
                     double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3.xCoord * d1);
                     double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
                     double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3.zCoord * d1);
-                    world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.parentEntity), 0);
+                    try {
+                        world.playAuxSFXAtEntity((EntityPlayer)null, 1008, new BlockPos(this.parentEntity), 0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);
                     entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
                     entitylargefireball.posX = this.parentEntity.posX + vec3.xCoord * d1;

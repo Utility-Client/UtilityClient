@@ -266,12 +266,16 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate() {
         super.onUpdate();
 
         if (!this.worldObj.isRemote)
         {
-            this.updateLeashedState();
+            try {
+                this.updateLeashedState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -379,8 +383,12 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
-        super.readEntityFromNBT(tagCompund);
+    public void readEntityFromNBT(NBTTagCompound tagCompund) {
+        try {
+            super.readEntityFromNBT(tagCompund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (tagCompund.hasKey("CanPickUpLoot", 1))
         {

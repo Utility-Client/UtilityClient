@@ -97,7 +97,11 @@ public class EntityPigZombie extends EntityZombie
             this.recentlyHit = this.getRevengeTimer();
         }
 
-        super.updateAITasks();
+        try {
+            super.updateAITasks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

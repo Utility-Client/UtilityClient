@@ -49,7 +49,12 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
         }
         else
         {
-            Village village = this.theEntity.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.theEntity), 0);
+            Village village = null;
+            try {
+                village = this.theEntity.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.theEntity), 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (village == null)
             {
@@ -68,7 +73,11 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                     PathNavigateGround pathnavigateground = (PathNavigateGround)this.theEntity.getNavigator();
                     boolean flag = pathnavigateground.getEnterDoors();
                     pathnavigateground.setBreakDoors(false);
-                    this.entityPathNavigate = pathnavigateground.getPathToPos(this.doorInfo.getDoorBlockPos());
+                    try {
+                        this.entityPathNavigate = pathnavigateground.getPathToPos(this.doorInfo.getDoorBlockPos());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     pathnavigateground.setBreakDoors(flag);
 
                     if (this.entityPathNavigate != null)
@@ -86,7 +95,11 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                         else
                         {
                             pathnavigateground.setBreakDoors(false);
-                            this.entityPathNavigate = this.theEntity.getNavigator().getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+                            try {
+                                this.entityPathNavigate = this.theEntity.getNavigator().getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             pathnavigateground.setBreakDoors(flag);
                             return this.entityPathNavigate != null;
                         }

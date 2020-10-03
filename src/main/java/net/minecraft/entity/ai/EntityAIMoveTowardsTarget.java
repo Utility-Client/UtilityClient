@@ -80,6 +80,10 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.speed);
+        try {
+            this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.speed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -228,7 +228,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate() {
         this.theItemInWorldManager.updateBlockRemoving();
         --this.respawnInvulnerabilityTicks;
 
@@ -309,7 +309,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 for (Chunk chunk1 : list)
                 {
-                    this.getServerForPlayer().getEntityTracker().func_85172_a(this, chunk1);
+                    try {
+                        this.getServerForPlayer().getEntityTracker().func_85172_a(this, chunk1);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

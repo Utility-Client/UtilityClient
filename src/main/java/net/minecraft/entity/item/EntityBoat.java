@@ -553,9 +553,15 @@ public class EntityBoat extends Entity
                 this.fallDistance = 0.0F;
             }
         }
-        else if (this.worldObj.getBlockState((new BlockPos(this)).down()).getBlock().getMaterial() != Material.water && y < 0.0D)
-        {
-            this.fallDistance = (float)((double)this.fallDistance - y);
+        else {
+            try {
+                if (this.worldObj.getBlockState((new BlockPos(this)).down()).getBlock().getMaterial() != Material.water && y < 0.0D)
+                {
+                    this.fallDistance = (float)((double)this.fallDistance - y);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

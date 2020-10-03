@@ -24,21 +24,29 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
         super(worldIn);
     }
 
-    protected void updateAITasks() throws Exception {
+    protected void updateAITasks() {
         if (this.getGrowingAge() != 0)
         {
             this.inLove = 0;
         }
 
-        super.updateAITasks();
+        try {
+            super.updateAITasks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate() throws Exception {
-        super.onLivingUpdate();
+    public void onLivingUpdate() {
+        try {
+            super.onLivingUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (this.getGrowingAge() != 0)
         {
@@ -92,7 +100,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) {
         super.readEntityFromNBT(tagCompund);
         this.inLove = tagCompund.getInteger("InLove");
     }

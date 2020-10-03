@@ -107,7 +107,11 @@ public class EntityAIFollowParent extends EntityAIBase
         if (--this.delayCounter <= 0)
         {
             this.delayCounter = 10;
-            this.childAnimal.getNavigator().tryMoveToEntityLiving(this.parentAnimal, this.moveSpeed);
+            try {
+                this.childAnimal.getNavigator().tryMoveToEntityLiving(this.parentAnimal, this.moveSpeed);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

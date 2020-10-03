@@ -376,8 +376,12 @@ public abstract class Entity implements ICommandSender
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
-        this.onEntityUpdate();
+    public void onUpdate() {
+        try {
+            this.onEntityUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

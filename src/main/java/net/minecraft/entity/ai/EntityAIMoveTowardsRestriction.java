@@ -24,27 +24,32 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.theEntity.isWithinHomeDistanceCurrentPosition())
-        {
-            return false;
-        }
-        else
-        {
-            BlockPos blockpos = this.theEntity.getHomePosition();
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ()));
-
-            if (vec3 == null)
+        try {
+            if (this.theEntity.isWithinHomeDistanceCurrentPosition())
             {
                 return false;
             }
             else
             {
-                this.movePosX = vec3.xCoord;
-                this.movePosY = vec3.yCoord;
-                this.movePosZ = vec3.zCoord;
-                return true;
+                BlockPos blockpos = this.theEntity.getHomePosition();
+                Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ()));
+
+                if (vec3 == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    this.movePosX = vec3.xCoord;
+                    this.movePosY = vec3.yCoord;
+                    this.movePosZ = vec3.zCoord;
+                    return true;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     /**
@@ -60,6 +65,10 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);
+        try {
+            this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

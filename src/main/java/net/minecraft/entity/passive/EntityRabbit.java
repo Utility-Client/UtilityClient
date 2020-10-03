@@ -518,7 +518,11 @@ public class EntityRabbit extends EntityAnimal
 
         public void updateTask()
         {
-            super.updateTask();
+            try {
+                super.updateTask();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.theEntity.setMovementSpeed(this.speed);
         }
     }

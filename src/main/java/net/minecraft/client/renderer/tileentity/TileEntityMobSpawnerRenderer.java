@@ -21,7 +21,12 @@ public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer<Tile
      */
     public static void renderMob(MobSpawnerBaseLogic mobSpawnerLogic, double posX, double posY, double posZ, float partialTicks)
     {
-        Entity entity = mobSpawnerLogic.func_180612_a(mobSpawnerLogic.getSpawnerWorld());
+        Entity entity = null;
+        try {
+            entity = mobSpawnerLogic.func_180612_a(mobSpawnerLogic.getSpawnerWorld());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (entity != null)
         {

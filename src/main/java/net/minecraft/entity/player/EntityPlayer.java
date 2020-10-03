@@ -235,7 +235,7 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate() {
         this.noClip = this.isSpectator();
 
         if (this.isSpectator())
