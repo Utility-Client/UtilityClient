@@ -329,7 +329,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
         if (packetIn.func_149053_g() == 1)
         {
-            entity = new EntityLightningBolt(this.clientWorldController, d0, d1, d2);
+            try {
+                entity = new EntityLightningBolt(this.clientWorldController, d0, d1, d2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (entity != null)

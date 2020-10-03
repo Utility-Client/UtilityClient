@@ -48,7 +48,7 @@ public class CommandSummon extends CommandBase
     /**
      * Callback when the command is invoked
      */
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException
+    public void processCommand(ICommandSender sender, String[] args) throws Exception
     {
         if (args.length < 1)
         {

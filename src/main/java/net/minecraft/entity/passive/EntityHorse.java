@@ -1054,8 +1054,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() throws Exception {
         if (this.rand.nextInt(200) == 0)
         {
             this.func_110210_cH();
@@ -1096,8 +1095,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (this.worldObj.isRemote && this.dataWatcher.hasObjectChanged())
@@ -1421,8 +1419,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund)
-    {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
         super.readEntityFromNBT(tagCompund);
         this.setEatingHaystack(tagCompund.getBoolean("EatingHaystack"));
         this.setBreeding(tagCompund.getBoolean("Bred"));

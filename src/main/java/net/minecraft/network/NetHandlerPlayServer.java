@@ -171,8 +171,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     /**
      * Processes clients perspective on player positioning and/or orientation
      */
-    public void processPlayer(C03PacketPlayer packetIn)
-    {
+    public void processPlayer(C03PacketPlayer packetIn) throws Exception {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
         if (this.func_183006_b(packetIn))
@@ -595,8 +594,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         }
     }
 
-    public void handleSpectate(C18PacketSpectate packetIn)
-    {
+    public void handleSpectate(C18PacketSpectate packetIn) throws Exception {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
         if (this.playerEntity.isSpectator())
@@ -897,8 +895,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
      * Processes the client status updates: respawn attempt from player, opening statistics or achievements, or
      * acquiring 'open inventory' achievement
      */
-    public void processClientStatus(C16PacketClientStatus packetIn)
-    {
+    public void processClientStatus(C16PacketClientStatus packetIn) throws Exception {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
         this.playerEntity.markPlayerActive();
         C16PacketClientStatus.EnumState c16packetclientstatus$enumstate = packetIn.getStatus();

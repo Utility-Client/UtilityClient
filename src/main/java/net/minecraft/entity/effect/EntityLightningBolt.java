@@ -28,8 +28,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
      */
     private int boltLivingTime;
 
-    public EntityLightningBolt(World worldIn, double posX, double posY, double posZ)
-    {
+    public EntityLightningBolt(World worldIn, double posX, double posY, double posZ) throws Exception {
         super(worldIn);
         this.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
         this.lightningState = 2;
@@ -59,8 +58,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (this.lightningState == 2)

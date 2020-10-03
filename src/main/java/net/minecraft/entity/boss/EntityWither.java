@@ -80,8 +80,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund)
-    {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
         super.readEntityFromNBT(tagCompund);
         this.setInvulTime(tagCompund.getInteger("Invul"));
     }
@@ -114,8 +113,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() throws Exception {
         this.motionY *= 0.6000000238418579D;
 
         if (!this.worldObj.isRemote && this.getWatchedTargetId(0) > 0)
@@ -214,8 +212,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
     }
 
-    protected void updateAITasks()
-    {
+    protected void updateAITasks() throws Exception {
         if (this.getInvulTime() > 0)
         {
             int j1 = this.getInvulTime() - 1;
@@ -446,16 +443,14 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         return p_82204_1_ + f;
     }
 
-    private void launchWitherSkullToEntity(int p_82216_1_, EntityLivingBase p_82216_2_)
-    {
+    private void launchWitherSkullToEntity(int p_82216_1_, EntityLivingBase p_82216_2_) throws Exception {
         this.launchWitherSkullToCoords(p_82216_1_, p_82216_2_.posX, p_82216_2_.posY + (double)p_82216_2_.getEyeHeight() * 0.5D, p_82216_2_.posZ, p_82216_1_ == 0 && this.rand.nextFloat() < 0.001F);
     }
 
     /**
      * Launches a Wither skull toward (par2, par4, par6)
      */
-    private void launchWitherSkullToCoords(int p_82209_1_, double x, double y, double z, boolean invulnerable)
-    {
+    private void launchWitherSkullToCoords(int p_82209_1_, double x, double y, double z, boolean invulnerable) throws Exception {
         this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
         double d0 = this.func_82214_u(p_82209_1_);
         double d1 = this.func_82208_v(p_82209_1_);
@@ -479,8 +474,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     /**
      * Attack the specified entity using a ranged attack.
      */
-    public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
-    {
+    public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_) throws Exception {
         this.launchWitherSkullToEntity(0, p_82196_1_);
     }
 

@@ -46,7 +46,12 @@ public class EntityFootStepFX extends EntityFX
         float f3 = (float)(this.posX - interpPosX);
         float f4 = (float)(this.posY - interpPosY);
         float f5 = (float)(this.posZ - interpPosZ);
-        float f6 = this.worldObj.getLightBrightness(new BlockPos(this));
+        float f6 = 0;
+        try {
+            f6 = this.worldObj.getLightBrightness(new BlockPos(this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.currentFootSteps.bindTexture(FOOTPRINT_TEXTURE);
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(770, 771);

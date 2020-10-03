@@ -189,7 +189,12 @@ public class WalkNodeProcessor extends NodeProcessor
     public static int func_176170_a(IBlockAccess blockaccessIn, Entity entityIn, int x, int y, int z, int sizeX, int sizeY, int sizeZ, boolean avoidWater, boolean breakDoors, boolean enterDoors)
     {
         boolean flag = false;
-        BlockPos blockpos = new BlockPos(entityIn);
+        BlockPos blockpos = null;
+        try {
+            blockpos = new BlockPos(entityIn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
         for (int i = x; i < x + sizeX; ++i)

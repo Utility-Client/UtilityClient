@@ -49,8 +49,7 @@ public class ItemInWorldManager
         this.theWorld = worldIn;
     }
 
-    public void setGameType(WorldSettings.GameType type)
-    {
+    public void setGameType(WorldSettings.GameType type) throws Exception {
         this.gameType = type;
         type.configurePlayerCapabilities(this.thisPlayerMP.capabilities);
         this.thisPlayerMP.sendPlayerAbilities();
@@ -78,8 +77,7 @@ public class ItemInWorldManager
     /**
      * if the gameType is currently NOT_SET then change it to par1
      */
-    public void initializeGameType(WorldSettings.GameType type)
-    {
+    public void initializeGameType(WorldSettings.GameType type) throws Exception {
         if (this.gameType == WorldSettings.GameType.NOT_SET)
         {
             this.gameType = type;

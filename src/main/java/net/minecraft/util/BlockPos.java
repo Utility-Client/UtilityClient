@@ -28,9 +28,9 @@ public class BlockPos extends Vec3i
         super(x, y, z);
     }
 
-    public BlockPos(Entity source)
+    public BlockPos(Entity source) throws Exception
     {
-        this(source.posX, source.posY, source.posZ);
+        super(source.posX, source.posY, source.posZ);
     }
 
     public BlockPos(Vec3 source)

@@ -156,8 +156,7 @@ public abstract class EntityAgeable extends EntityCreature
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund)
-    {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
         super.readEntityFromNBT(tagCompund);
         this.setGrowingAge(tagCompund.getInteger("Age"));
         this.field_175502_b = tagCompund.getInteger("ForcedAge");
@@ -167,8 +166,7 @@ public abstract class EntityAgeable extends EntityCreature
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() throws Exception {
         super.onLivingUpdate();
 
         if (this.worldObj.isRemote)

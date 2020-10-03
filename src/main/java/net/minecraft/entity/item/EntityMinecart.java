@@ -231,8 +231,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() throws Exception {
         if (this.getRollingAmplitude() > 0)
         {
             this.setRollingAmplitude(this.getRollingAmplitude() - 1);

@@ -281,8 +281,7 @@ public class StructureVillagePieces
             return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175854_1_, structureboundingbox) == null ? new StructureVillagePieces.Church(start, p_175854_7_, rand, structureboundingbox, facing) : null;
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -605,8 +604,7 @@ public class StructureVillagePieces
             return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175857_1_, structureboundingbox) == null ? new StructureVillagePieces.Hall(start, p_175857_7_, rand, structureboundingbox, facing) : null;
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -725,8 +723,7 @@ public class StructureVillagePieces
             return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175850_1_, structureboundingbox) == null ? new StructureVillagePieces.House1(start, p_175850_7_, rand, structureboundingbox, facing) : null;
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -863,8 +860,7 @@ public class StructureVillagePieces
             this.hasMadeChest = tagCompound.getBoolean("Chest");
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -965,8 +961,7 @@ public class StructureVillagePieces
             return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175849_1_, structureboundingbox) == null ? new StructureVillagePieces.House3(start, p_175849_7_, rand, structureboundingbox, facing) : null;
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -1137,8 +1132,7 @@ public class StructureVillagePieces
             return StructureComponent.findIntersecting(p_175858_1_, structureboundingbox) != null ? null : new StructureVillagePieces.House4Garden(start, p_175858_7_, rand, structureboundingbox, facing);
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
@@ -1598,8 +1592,7 @@ public class StructureVillagePieces
             return p_74895_0_ != null && p_74895_0_.minY > 10;
         }
 
-        protected void spawnVillagers(World worldIn, StructureBoundingBox p_74893_2_, int p_74893_3_, int p_74893_4_, int p_74893_5_, int p_74893_6_)
-        {
+        protected void spawnVillagers(World worldIn, StructureBoundingBox p_74893_2_, int p_74893_3_, int p_74893_4_, int p_74893_5_, int p_74893_6_) throws Exception {
             if (this.villagersSpawned < p_74893_6_)
             {
                 for (int i = this.villagersSpawned; i < p_74893_6_; ++i)
@@ -1805,8 +1798,7 @@ public class StructureVillagePieces
             return canVillageGoDeeper(structureboundingbox) && StructureComponent.findIntersecting(p_175853_1_, structureboundingbox) == null ? new StructureVillagePieces.WoodHut(start, p_175853_7_, rand, structureboundingbox, facing) : null;
         }
 
-        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-        {
+        public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) throws Exception {
             if (this.field_143015_k < 0)
             {
                 this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
