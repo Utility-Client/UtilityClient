@@ -1,5 +1,6 @@
 package de.gamingcraft;
 
+import de.gamingcraft.addons.AddonManager;
 import de.gamingcraft.config.ConfigManager;
 import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
@@ -48,6 +49,8 @@ public class UtilityClient extends Thread {
 
     public void run() {
 
+        AddonManager.start();
+
         ModuleHandler.start();
         try {
             ConfigManager.start();
@@ -64,6 +67,8 @@ public class UtilityClient extends Thread {
         CROSSHAIR_MANAGER_INSTANCE.start();
 
         AbstractClientPlayer.entry();
+
+
     }
 
     public void loop() {
