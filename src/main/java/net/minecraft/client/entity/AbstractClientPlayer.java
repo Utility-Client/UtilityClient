@@ -25,13 +25,13 @@ import net.minecraft.world.WorldSettings;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Collection;
+import java.util.List;
 
 public abstract class AbstractClientPlayer extends EntityPlayer
 {
     private NetworkPlayerInfo playerInfo;
     private static String rawCapesIndex;
-    private static Collection<CapeOwner> capesIndex;
+    private static List<CapeOwner> capesIndex;
     private CapeUtils capeUtils = new CapeUtils();
 
 
@@ -40,15 +40,15 @@ public abstract class AbstractClientPlayer extends EntityPlayer
         super(worldIn, playerProfile);
         for (CapeOwner cOwner: capesIndex) {
             if (cOwner.username.equalsIgnoreCase(playerProfile.getName())) {
-                capeUtils.downloadCape("http://api.gamingcraft.de/capes/", cOwner.filename);
+                capeUtils.downloadCape("https://api.gamingcraft.de/capes/", cOwner.filename);
             }
         }
     }
 
     public static void entry() {
         try {
-            rawCapesIndex = JSONUtils.downloadJson(new URL("http://api.gamingcraft.de/capes/index.json"));
-            capesIndex = (Collection<CapeOwner>) JSONUtils.parseToJson(rawCapesIndex, new TypeToken<Collection<CapeOwner>>(){}.getType());
+            rawCapesIndex = JSONUtils.downloadJson(new URL("https://api.gamingcraft.de/capes/index.json"));
+            capesIndex = (List<CapeOwner>) JSONUtils.parseToJson(rawCapesIndex, new TypeToken<List<CapeOwner>>(){}.getType());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
