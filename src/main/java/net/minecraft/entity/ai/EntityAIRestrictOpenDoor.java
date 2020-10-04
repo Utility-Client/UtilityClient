@@ -32,12 +32,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
         }
         else
         {
-            BlockPos blockpos = null;
-            try {
-                blockpos = new BlockPos(this.entityObj);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            BlockPos blockpos = new BlockPos(this.entityObj);
             Village village = this.entityObj.worldObj.getVillageCollection().getNearestVillage(blockpos, 16);
 
             if (village == null)
@@ -57,12 +52,7 @@ public class EntityAIRestrictOpenDoor extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        try {
-            return !this.entityObj.worldObj.isDaytime() && !this.frontDoor.getIsDetachedFromVillageFlag() && this.frontDoor.func_179850_c(new BlockPos(this.entityObj));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        return this.entityObj.worldObj.isDaytime() ? false : !this.frontDoor.getIsDetachedFromVillageFlag() && this.frontDoor.func_179850_c(new BlockPos(this.entityObj));
     }
 
     /**

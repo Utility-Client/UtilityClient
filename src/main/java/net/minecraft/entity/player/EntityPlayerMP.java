@@ -162,7 +162,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
         super.readEntityFromNBT(tagCompund);
 
         if (tagCompund.hasKey("playerGameType", 99))
@@ -228,7 +229,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         this.theItemInWorldManager.updateBlockRemoving();
         --this.respawnInvulnerabilityTicks;
 
@@ -557,7 +559,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * Teleports the entity to another dimension. Params: Dimension number to teleport to
      */
-    public void travelToDimension(int dimensionId) throws Exception {
+    public void travelToDimension(int dimensionId)
+    {
         if (this.dimension == 1 && dimensionId == 1)
         {
             this.triggerAchievement(AchievementList.theEnd2);
@@ -1042,7 +1045,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * Sends the player's abilities to the server (if there is one).
      */
-    public void sendPlayerAbilities() throws Exception {
+    public void sendPlayerAbilities()
+    {
         if (this.playerNetServerHandler != null)
         {
             this.playerNetServerHandler.sendPacket(new S39PacketPlayerAbilities(this.capabilities));
@@ -1058,7 +1062,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     /**
      * Sets the player's game mode and sends it to them.
      */
-    public void setGameType(WorldSettings.GameType gameType) throws Exception {
+    public void setGameType(WorldSettings.GameType gameType)
+    {
         this.theItemInWorldManager.setGameType(gameType);
         this.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(3, (float)gameType.getID()));
 
@@ -1188,7 +1193,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      * Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color,
      * ambience, and invisibility metadata values
      */
-    protected void updatePotionMetadata() throws Exception {
+    protected void updatePotionMetadata()
+    {
         if (this.isSpectator())
         {
             this.resetPotionEffectMetadata();

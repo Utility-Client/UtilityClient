@@ -79,11 +79,7 @@ public class BlockEndPortal extends BlockContainer
     {
         if (entityIn.ridingEntity == null && entityIn.riddenByEntity == null && !worldIn.isRemote)
         {
-            try {
-                entityIn.travelToDimension(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            entityIn.travelToDimension(1);
         }
     }
 

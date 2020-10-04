@@ -30,7 +30,8 @@ public class Teleporter
         this.random = new Random(worldIn.getSeed());
     }
 
-    public void placeInPortal(Entity entityIn, float rotationYaw) throws Exception {
+    public void placeInPortal(Entity entityIn, float rotationYaw)
+    {
         if (this.worldServerInstance.provider.getDimensionId() != 1)
         {
             if (!this.placeInExistingPortal(entityIn, rotationYaw))
@@ -67,7 +68,8 @@ public class Teleporter
         }
     }
 
-    public boolean placeInExistingPortal(Entity entityIn, float rotationYaw) throws Exception {
+    public boolean placeInExistingPortal(Entity entityIn, float rotationYaw)
+    {
         int i = 128;
         double d0 = -1.0D;
         int j = MathHelper.floor_double(entityIn.posX);

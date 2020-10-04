@@ -74,7 +74,8 @@ public class EntityFallingBlock extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         Block block = this.fallTile.getBlock();
 
         if (block.getMaterial() == Material.air)

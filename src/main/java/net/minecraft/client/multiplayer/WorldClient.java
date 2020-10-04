@@ -62,11 +62,7 @@ public class WorldClient extends World
      */
     public void tick()
     {
-        try {
-            super.tick();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.tick();
         this.setTotalWorldTime(this.getTotalWorldTime() + 1L);
 
         if (this.getGameRules().getBoolean("doDaylightCycle"))
@@ -113,11 +109,7 @@ public class WorldClient extends World
 
     protected void updateBlocks()
     {
-        try {
-            super.updateBlocks();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.updateBlocks();
         this.previousActiveChunkSet.retainAll(this.activeChunkSet);
 
         if (this.previousActiveChunkSet.size() == this.activeChunkSet.size())

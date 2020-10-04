@@ -637,15 +637,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
                             boolean flag3 = this.mc.getRenderViewEntity() instanceof EntityLivingBase ? ((EntityLivingBase)this.mc.getRenderViewEntity()).isPlayerSleeping() : false;
 
-                            try {
-                                if ((entity2 != this.mc.getRenderViewEntity() || this.mc.gameSettings.thirdPersonView != 0 || flag3) && (entity2.posY < 0.0D || entity2.posY >= 256.0D || this.theWorld.isBlockLoaded(new BlockPos(entity2))))
-                                {
-                                    ++this.countEntitiesRendered;
-                                    this.renderManager.renderEntitySimple(entity2, partialTicks);
-                                    break;
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if ((entity2 != this.mc.getRenderViewEntity() || this.mc.gameSettings.thirdPersonView != 0 || flag3) && (entity2.posY < 0.0D || entity2.posY >= 256.0D || this.theWorld.isBlockLoaded(new BlockPos(entity2))))
+                            {
+                                ++this.countEntitiesRendered;
+                                this.renderManager.renderEntitySimple(entity2, partialTicks);
+                                break;
                             }
                         }
 

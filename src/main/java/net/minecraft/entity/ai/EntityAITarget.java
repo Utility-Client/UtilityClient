@@ -187,7 +187,8 @@ public abstract class EntityAITarget extends EntityAIBase
      * A method used to see if an entity is a suitable target through a number of checks. Args : entity,
      * canTargetInvinciblePlayer
      */
-    protected boolean isSuitableTarget(EntityLivingBase target, boolean includeInvincibles) throws Exception {
+    protected boolean isSuitableTarget(EntityLivingBase target, boolean includeInvincibles)
+    {
         if (!isSuitableTarget(this.taskOwner, target, includeInvincibles, this.shouldCheckSight))
         {
             return false;
@@ -223,7 +224,8 @@ public abstract class EntityAITarget extends EntityAIBase
     /**
      * Checks to see if this entity can find a short path to the given target.
      */
-    private boolean canEasilyReach(EntityLivingBase p_75295_1_) throws Exception {
+    private boolean canEasilyReach(EntityLivingBase p_75295_1_)
+    {
         this.targetSearchDelay = 10 + this.taskOwner.getRNG().nextInt(5);
         PathEntity pathentity = this.taskOwner.getNavigator().getPathToEntityLiving(p_75295_1_);
 

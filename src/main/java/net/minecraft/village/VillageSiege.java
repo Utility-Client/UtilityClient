@@ -35,7 +35,8 @@ public class VillageSiege
     /**
      * Runs a single tick for the village siege
      */
-    public void tick() throws Exception {
+    public void tick()
+    {
         if (this.worldObj.isDaytime())
         {
             this.field_75536_c = 0;
@@ -94,7 +95,8 @@ public class VillageSiege
         }
     }
 
-    private boolean func_75529_b() throws Exception {
+    private boolean func_75529_b()
+    {
         List<EntityPlayer> list = this.worldObj.playerEntities;
         Iterator iterator = list.iterator();
 

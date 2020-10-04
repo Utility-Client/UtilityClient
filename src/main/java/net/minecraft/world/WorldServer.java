@@ -140,7 +140,8 @@ public class WorldServer extends World implements IThreadListener
     /**
      * Runs a single tick for the world
      */
-    public void tick() throws Exception {
+    public void tick()
+    {
         super.tick();
 
         if (this.getWorldInfo().isHardcoreModeEnabled() && this.getDifficulty() != EnumDifficulty.HARD)
@@ -312,7 +313,8 @@ public class WorldServer extends World implements IThreadListener
         this.worldInfo.setSpawnZ(j);
     }
 
-    protected void updateBlocks() throws Exception {
+    protected void updateBlocks()
+    {
         super.updateBlocks();
 
         if (this.worldInfo.getTerrainType() == WorldType.DEBUG_WORLD)
@@ -662,7 +664,8 @@ public class WorldServer extends World implements IThreadListener
      * Will update the entity in the world if the chunk the entity is in is currently loaded or its forced to update.
      * Args: entity, forceUpdate
      */
-    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate) throws Exception {
+    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate)
+    {
         if (!this.canSpawnAnimals() && (entityIn instanceof EntityAnimal || entityIn instanceof EntityWaterMob))
         {
             entityIn.setDead();

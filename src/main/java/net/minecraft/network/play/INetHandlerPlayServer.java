@@ -21,7 +21,7 @@ public interface INetHandlerPlayServer extends INetHandler
      * Processes the client status updates: respawn attempt from player, opening statistics or achievements, or
      * acquiring 'open inventory' achievement
      */
-    void processClientStatus(C16PacketClientStatus packetIn) throws Exception;
+    void processClientStatus(C16PacketClientStatus packetIn);
 
     /**
      * Updates serverside copy of client settings: language, render distance, chat visibility, chat colours, difficulty,
@@ -73,7 +73,7 @@ public interface INetHandlerPlayServer extends INetHandler
     /**
      * Processes clients perspective on player positioning and/or orientation
      */
-    void processPlayer(C03PacketPlayer packetIn) throws Exception;
+    void processPlayer(C03PacketPlayer packetIn);
 
     /**
      * Processes a player starting/stopping flying
@@ -116,7 +116,7 @@ public interface INetHandlerPlayServer extends INetHandler
      */
     void processPlayerBlockPlacement(C08PacketPlayerBlockPlacement packetIn);
 
-    void handleSpectate(C18PacketSpectate packetIn) throws Exception;
+    void handleSpectate(C18PacketSpectate packetIn);
 
     void handleResourcePackStatus(C19PacketResourcePackStatus packetIn);
 }

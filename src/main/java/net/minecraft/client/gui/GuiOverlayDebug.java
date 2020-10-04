@@ -142,11 +142,7 @@ public class GuiOverlayDebug extends Gui
 
                     if (entityplayermp != null)
                     {
-                        try {
-                            difficultyinstance = entityplayermp.worldObj.getDifficultyForLocation(new BlockPos(entityplayermp));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        difficultyinstance = entityplayermp.worldObj.getDifficultyForLocation(new BlockPos(entityplayermp));
                     }
                 }
 

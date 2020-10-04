@@ -31,13 +31,9 @@ public class EntitySuspendFX extends EntityFX
         this.prevPosZ = this.posZ;
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
 
-        try {
-            if (this.worldObj.getBlockState(new BlockPos(this)).getBlock().getMaterial() != Material.water)
-            {
-                this.setDead();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (this.worldObj.getBlockState(new BlockPos(this)).getBlock().getMaterial() != Material.water)
+        {
+            this.setDead();
         }
 
         if (this.particleMaxAge-- <= 0)

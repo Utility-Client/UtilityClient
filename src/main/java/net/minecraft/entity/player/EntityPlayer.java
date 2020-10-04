@@ -235,7 +235,8 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         this.noClip = this.isSpectator();
 
         if (this.isSpectator())
@@ -514,7 +515,8 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Handles updating while being ridden by an entity
      */
-    public void updateRidden() throws Exception {
+    public void updateRidden()
+    {
         if (!this.worldObj.isRemote && this.isSneaking())
         {
             this.mountEntity((Entity)null);
@@ -553,7 +555,8 @@ public abstract class EntityPlayer extends EntityLivingBase
         this.deathTime = 0;
     }
 
-    protected void updateEntityActionState() throws Exception {
+    protected void updateEntityActionState()
+    {
         super.updateEntityActionState();
         this.updateArmSwingProgress();
         this.rotationYawHead = this.rotationYaw;
@@ -563,7 +566,8 @@ public abstract class EntityPlayer extends EntityLivingBase
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate() throws Exception {
+    public void onLivingUpdate()
+    {
         if (this.flyToggleTimer > 0)
         {
             --this.flyToggleTimer;
@@ -935,7 +939,8 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
         super.readEntityFromNBT(tagCompund);
         this.entityUniqueID = getUUID(this.gameProfile);
         NBTTagList nbttaglist = tagCompund.getTagList("Inventory", 10);
@@ -1856,7 +1861,8 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Adds a value to a mounted movement statistic field - by minecart, boat, or pig.
      */
-    private void addMountedMovementStat(double p_71015_1_, double p_71015_3_, double p_71015_5_) throws Exception {
+    private void addMountedMovementStat(double p_71015_1_, double p_71015_3_, double p_71015_5_)
+    {
         if (this.ridingEntity != null)
         {
             int i = Math.round(MathHelper.sqrt_double(p_71015_1_ * p_71015_1_ + p_71015_3_ * p_71015_3_ + p_71015_5_ * p_71015_5_) * 100.0F);
@@ -2176,13 +2182,15 @@ public abstract class EntityPlayer extends EntityLivingBase
     /**
      * Sends the player's abilities to the server (if there is one).
      */
-    public void sendPlayerAbilities() throws Exception {
+    public void sendPlayerAbilities()
+    {
     }
 
     /**
      * Sets the player's game mode and sends it to them.
      */
-    public void setGameType(WorldSettings.GameType gameType) throws Exception {
+    public void setGameType(WorldSettings.GameType gameType)
+    {
     }
 
     /**

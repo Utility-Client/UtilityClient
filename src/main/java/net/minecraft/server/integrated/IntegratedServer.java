@@ -171,11 +171,7 @@ public class IntegratedServer extends MinecraftServer
         }
         else
         {
-            try {
-                super.tick();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super.tick();
 
             if (this.mc.gameSettings.renderDistanceChunks != this.getConfigurationManager().getViewDistance())
             {

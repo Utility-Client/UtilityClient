@@ -76,13 +76,8 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
                         }
                     }
 
-                    try {
-                        return EntityAINearestAttackableTarget.this.isSuitableTarget(p_apply_1_, false);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    return EntityAINearestAttackableTarget.this.isSuitableTarget(p_apply_1_, false);
                 }
-                return false;
             }
         };
     }

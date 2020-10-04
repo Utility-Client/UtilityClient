@@ -71,7 +71,8 @@ public class EntityAIWander extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting() throws Exception {
+    public void startExecuting()
+    {
         this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
     }
 

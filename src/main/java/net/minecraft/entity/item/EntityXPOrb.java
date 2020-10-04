@@ -83,7 +83,8 @@ public class EntityXPOrb extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         super.onUpdate();
 
         if (this.delayBeforeCanPickup > 0)

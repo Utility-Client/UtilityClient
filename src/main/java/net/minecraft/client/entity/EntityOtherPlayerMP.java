@@ -52,11 +52,7 @@ public class EntityOtherPlayerMP extends AbstractClientPlayer
     public void onUpdate()
     {
         this.renderOffsetY = 0.0F;
-        try {
-            super.onUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onUpdate();
         this.prevLimbSwingAmount = this.limbSwingAmount;
         double d0 = this.posX - this.prevPosX;
         double d1 = this.posZ - this.prevPosZ;

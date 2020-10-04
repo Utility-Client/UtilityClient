@@ -36,12 +36,7 @@ public class RenderFallingBlock extends Render<EntityFallingBlock>
             this.bindTexture(TextureMap.locationBlocksTexture);
             IBlockState iblockstate = entity.getBlock();
             Block block = iblockstate.getBlock();
-            BlockPos blockpos = null;
-            try {
-                blockpos = new BlockPos(entity);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            BlockPos blockpos = new BlockPos(entity);
             World world = entity.getWorldObj();
 
             if (iblockstate != world.getBlockState(blockpos) && block.getRenderType() != -1)

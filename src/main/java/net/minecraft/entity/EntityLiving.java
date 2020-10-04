@@ -190,7 +190,8 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * Gets called every tick from main Entity class
      */
-    public void onEntityUpdate() throws Exception {
+    public void onEntityUpdate()
+    {
         super.onEntityUpdate();
         this.worldObj.theProfiler.startSection("mobBaseTick");
 
@@ -266,7 +267,8 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         super.onUpdate();
 
         if (!this.worldObj.isRemote)
@@ -379,7 +381,8 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
         super.readEntityFromNBT(tagCompund);
 
         if (tagCompund.hasKey("CanPickUpLoot", 1))
@@ -437,7 +440,8 @@ public abstract class EntityLiving extends EntityLivingBase
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate() throws Exception {
+    public void onLivingUpdate()
+    {
         super.onLivingUpdate();
         this.worldObj.theProfiler.startSection("looting");
 
@@ -600,7 +604,8 @@ public abstract class EntityLiving extends EntityLivingBase
         }
     }
 
-    protected final void updateEntityActionState() throws Exception {
+    protected final void updateEntityActionState()
+    {
         ++this.entityAge;
         this.worldObj.theProfiler.startSection("checkDespawn");
         this.despawnEntity();
@@ -631,7 +636,8 @@ public abstract class EntityLiving extends EntityLivingBase
         this.worldObj.theProfiler.endSection();
     }
 
-    protected void updateAITasks() throws Exception {
+    protected void updateAITasks()
+    {
     }
 
     /**
@@ -1116,7 +1122,8 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * Applies logic related to leashes, for example dragging the entity or breaking the leash.
      */
-    protected void updateLeashedState() throws Exception {
+    protected void updateLeashedState()
+    {
         if (this.leashNBTTag != null)
         {
             this.recreateLeash();

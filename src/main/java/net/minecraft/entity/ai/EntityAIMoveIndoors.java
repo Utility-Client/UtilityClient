@@ -24,12 +24,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        BlockPos blockpos = null;
-        try {
-            blockpos = new BlockPos(this.entityObj);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        BlockPos blockpos = new BlockPos(this.entityObj);
 
         if ((!this.entityObj.worldObj.isDaytime() || this.entityObj.worldObj.isRaining() && !this.entityObj.worldObj.getBiomeGenForCoords(blockpos).canSpawnLightningBolt()) && !this.entityObj.worldObj.provider.getHasNoSky())
         {
@@ -87,20 +82,12 @@ public class EntityAIMoveIndoors extends EntityAIBase
 
             if (vec3 != null)
             {
-                try {
-                    this.entityObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0D);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                this.entityObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0D);
             }
         }
         else
         {
-            try {
-                this.entityObj.getNavigator().tryMoveToXYZ((double)i + 0.5D, (double)j, (double)k + 0.5D, 1.0D);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.entityObj.getNavigator().tryMoveToXYZ((double)i + 0.5D, (double)j, (double)k + 0.5D, 1.0D);
         }
     }
 

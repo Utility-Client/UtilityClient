@@ -376,14 +376,16 @@ public abstract class Entity implements ICommandSender
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         this.onEntityUpdate();
     }
 
     /**
      * Gets called every tick from main Entity class
      */
-    public void onEntityUpdate() throws Exception {
+    public void onEntityUpdate()
+    {
         this.worldObj.theProfiler.startSection("entityBaseTick");
 
         if (this.ridingEntity != null && this.ridingEntity.isDead)
@@ -1720,7 +1722,7 @@ public abstract class Entity implements ICommandSender
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    protected abstract void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception;
+    protected abstract void readEntityFromNBT(NBTTagCompound tagCompund);
 
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
@@ -1851,7 +1853,8 @@ public abstract class Entity implements ICommandSender
     /**
      * Handles updating while being ridden by an entity
      */
-    public void updateRidden() throws Exception {
+    public void updateRidden()
+    {
         if (this.ridingEntity.isDead)
         {
             this.ridingEntity = null;
@@ -2416,7 +2419,8 @@ public abstract class Entity implements ICommandSender
     /**
      * Teleports the entity to another dimension. Params: Dimension number to teleport to
      */
-    public void travelToDimension(int dimensionId) throws Exception {
+    public void travelToDimension(int dimensionId)
+    {
         if (!this.worldObj.isRemote && !this.isDead)
         {
             this.worldObj.theProfiler.startSection("changeDimension");

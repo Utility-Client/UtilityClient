@@ -98,7 +98,8 @@ public class EntityTrackerEntry
         return this.trackedEntity.getEntityId();
     }
 
-    public void updatePlayerList(List<EntityPlayer> p_73122_1_) throws Exception {
+    public void updatePlayerList(List<EntityPlayer> p_73122_1_)
+    {
         this.playerEntitiesUpdated = false;
 
         if (!this.firstUpdateDone || this.trackedEntity.getDistanceSq(this.lastTrackedEntityPosX, this.lastTrackedEntityPosY, this.lastTrackedEntityPosZ) > 16.0D)
@@ -331,7 +332,8 @@ public class EntityTrackerEntry
         }
     }
 
-    public void updatePlayerEntity(EntityPlayerMP playerMP) throws Exception {
+    public void updatePlayerEntity(EntityPlayerMP playerMP)
+    {
         if (playerMP != this.trackedEntity)
         {
             if (this.func_180233_c(playerMP))
@@ -438,7 +440,8 @@ public class EntityTrackerEntry
         return playerMP.getServerForPlayer().getPlayerManager().isPlayerWatchingChunk(playerMP, this.trackedEntity.chunkCoordX, this.trackedEntity.chunkCoordZ);
     }
 
-    public void updatePlayerEntities(List<EntityPlayer> p_73125_1_) throws Exception {
+    public void updatePlayerEntities(List<EntityPlayer> p_73125_1_)
+    {
         for (int i = 0; i < p_73125_1_.size(); ++i)
         {
             this.updatePlayerEntity((EntityPlayerMP)p_73125_1_.get(i));

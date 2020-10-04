@@ -384,12 +384,7 @@ public class ItemRenderer
 
         if (this.mc.thePlayer.isEntityInsideOpaqueBlock())
         {
-            IBlockState iblockstate = null;
-            try {
-                iblockstate = this.mc.theWorld.getBlockState(new BlockPos(this.mc.thePlayer));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            IBlockState iblockstate = this.mc.theWorld.getBlockState(new BlockPos(this.mc.thePlayer));
             EntityPlayer entityplayer = this.mc.thePlayer;
 
             for (int i = 0; i < 8; ++i)

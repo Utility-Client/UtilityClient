@@ -21,7 +21,7 @@ public interface ICommand extends Comparable<ICommand>
     /**
      * Callback when the command is invoked
      */
-    void processCommand(ICommandSender sender, String[] args) throws Exception;
+    void processCommand(ICommandSender sender, String[] args) throws CommandException;
 
     /**
      * Returns true if the given command sender is allowed to use this command.

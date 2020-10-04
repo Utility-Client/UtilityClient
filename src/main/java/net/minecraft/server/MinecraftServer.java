@@ -646,7 +646,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     /**
      * Main function called by run() every loop.
      */
-    public void tick() throws Exception {
+    public void tick()
+    {
         long i = System.nanoTime();
         ++this.tickCounter;
 
@@ -703,7 +704,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.theProfiler.endSection();
     }
 
-    public void updateTimeLightAndEntities() throws Exception {
+    public void updateTimeLightAndEntities()
+    {
         this.theProfiler.startSection("jobs");
 
         synchronized (this.futureTaskQueue)

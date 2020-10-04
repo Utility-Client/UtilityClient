@@ -84,7 +84,8 @@ public class EntityEnderman extends EntityMob
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
         super.readEntityFromNBT(tagCompund);
         IBlockState iblockstate;
 
@@ -131,7 +132,8 @@ public class EntityEnderman extends EntityMob
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate() throws Exception {
+    public void onLivingUpdate()
+    {
         if (this.worldObj.isRemote)
         {
             for (int i = 0; i < 2; ++i)
@@ -144,7 +146,8 @@ public class EntityEnderman extends EntityMob
         super.onLivingUpdate();
     }
 
-    protected void updateAITasks() throws Exception {
+    protected void updateAITasks()
+    {
         if (this.isWet())
         {
             this.attackEntityFrom(DamageSource.drown, 1.0F);
@@ -482,7 +485,8 @@ public class EntityEnderman extends EntityMob
             }
         }
 
-        public void updateTask() throws Exception {
+        public void updateTask()
+        {
             if (this.player != null)
             {
                 if (--this.field_179450_h <= 0)

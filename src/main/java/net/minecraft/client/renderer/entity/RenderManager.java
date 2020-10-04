@@ -179,12 +179,7 @@ public class RenderManager
 
         if (livingPlayerIn instanceof EntityLivingBase && ((EntityLivingBase)livingPlayerIn).isPlayerSleeping())
         {
-            IBlockState iblockstate = null;
-            try {
-                iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            IBlockState iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
             Block block = iblockstate.getBlock();
 
             if (block == Blocks.bed)

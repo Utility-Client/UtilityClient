@@ -41,7 +41,8 @@ public class C18PacketSpectate implements Packet<INetHandlerPlayServer>
     /**
      * Passes this Packet on to the NetHandler for processing.
      */
-    public void processPacket(INetHandlerPlayServer handler) throws Exception {
+    public void processPacket(INetHandlerPlayServer handler)
+    {
         handler.handleSpectate(this);
     }
 

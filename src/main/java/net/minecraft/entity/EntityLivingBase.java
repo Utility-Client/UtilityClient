@@ -242,7 +242,8 @@ public abstract class EntityLivingBase extends Entity
     /**
      * Gets called every tick from main Entity class
      */
-    public void onEntityUpdate() throws Exception {
+    public void onEntityUpdate()
+    {
         this.prevSwingProgress = this.swingProgress;
         super.onEntityUpdate();
         this.worldObj.theProfiler.startSection("livingEntityBaseTick");
@@ -375,7 +376,8 @@ public abstract class EntityLivingBase extends Entity
     /**
      * handles entity death timer, experience orb and particle creation
      */
-    protected void onDeathUpdate() throws Exception {
+    protected void onDeathUpdate()
+    {
         ++this.deathTime;
 
         if (this.deathTime == 20)
@@ -533,7 +535,8 @@ public abstract class EntityLivingBase extends Entity
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
         this.setAbsorptionAmount(tagCompund.getFloat("AbsorptionAmount"));
 
         if (tagCompund.hasKey("Attributes", 9) && this.worldObj != null && !this.worldObj.isRemote)
@@ -584,7 +587,8 @@ public abstract class EntityLivingBase extends Entity
         this.revengeTimer = tagCompund.getInteger("HurtByTimestamp");
     }
 
-    protected void updatePotionEffects() throws Exception {
+    protected void updatePotionEffects()
+    {
         Iterator<Integer> iterator = this.activePotionsMap.keySet().iterator();
 
         while (iterator.hasNext())
@@ -651,7 +655,8 @@ public abstract class EntityLivingBase extends Entity
      * Clears potion metadata values if the entity has no potion effects. Otherwise, updates potion effect color,
      * ambience, and invisibility metadata values
      */
-    protected void updatePotionMetadata() throws Exception {
+    protected void updatePotionMetadata()
+    {
         if (this.activePotionsMap.isEmpty())
         {
             this.resetPotionEffectMetadata();
@@ -1746,7 +1751,8 @@ public abstract class EntityLivingBase extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         super.onUpdate();
 
         if (!this.worldObj.isRemote)
@@ -1909,7 +1915,8 @@ public abstract class EntityLivingBase extends Entity
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate() throws Exception {
+    public void onLivingUpdate()
+    {
         if (this.jumpTicks > 0)
         {
             --this.jumpTicks;
@@ -2006,7 +2013,8 @@ public abstract class EntityLivingBase extends Entity
         this.worldObj.theProfiler.endSection();
     }
 
-    protected void updateEntityActionState() throws Exception {
+    protected void updateEntityActionState()
+    {
     }
 
     protected void collideWithNearbyEntities()
@@ -2062,7 +2070,8 @@ public abstract class EntityLivingBase extends Entity
     /**
      * Handles updating while being ridden by an entity
      */
-    public void updateRidden() throws Exception {
+    public void updateRidden()
+    {
         super.updateRidden();
         this.prevOnGroundSpeedFactor = this.onGroundSpeedFactor;
         this.onGroundSpeedFactor = 0.0F;

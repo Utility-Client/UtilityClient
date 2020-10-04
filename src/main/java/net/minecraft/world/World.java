@@ -1823,7 +1823,8 @@ public abstract class World implements IBlockAccess
     /**
      * Will update the entity in the world if the chunk the entity is in is currently loaded. Args: entity
      */
-    public void updateEntity(Entity ent) throws Exception {
+    public void updateEntity(Entity ent)
+    {
         this.updateEntityWithOptionalForce(ent, true);
     }
 
@@ -1831,7 +1832,8 @@ public abstract class World implements IBlockAccess
      * Will update the entity in the world if the chunk the entity is in is currently loaded or its forced to update.
      * Args: entity, forceUpdate
      */
-    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate) throws Exception {
+    public void updateEntityWithOptionalForce(Entity entityIn, boolean forceUpdate)
+    {
         int i = MathHelper.floor_double(entityIn.posX);
         int j = MathHelper.floor_double(entityIn.posZ);
         int k = 32;
@@ -2451,7 +2453,8 @@ public abstract class World implements IBlockAccess
     /**
      * Runs a single tick for the world
      */
-    public void tick() throws Exception {
+    public void tick()
+    {
         this.updateWeather();
     }
 
@@ -2643,7 +2646,8 @@ public abstract class World implements IBlockAccess
         chunkIn.enqueueRelightChecks();
     }
 
-    protected void updateBlocks() throws Exception {
+    protected void updateBlocks()
+    {
         this.setActivePlayerChunksAndCheckLight();
     }
 

@@ -138,12 +138,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     {
         if (--this.randomTickDivider <= 0)
         {
-            BlockPos blockpos = null;
-            try {
-                blockpos = new BlockPos(this);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            BlockPos blockpos = new BlockPos(this);
             this.worldObj.getVillageCollection().addToVillagerPositionList(blockpos);
             this.randomTickDivider = 70 + this.rand.nextInt(50);
             this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(blockpos, 32);
@@ -195,11 +190,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
             }
         }
 
-        try {
-            super.updateAITasks();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.updateAITasks();
     }
 
     /**
@@ -270,11 +261,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        try {
-            super.readEntityFromNBT(tagCompund);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.readEntityFromNBT(tagCompund);
         this.setProfession(tagCompund.getInteger("Profession"));
         this.wealth = tagCompund.getInteger("Riches");
         this.careerId = tagCompund.getInteger("Career");
@@ -747,11 +734,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     public EntityVillager createChild(EntityAgeable ageable)
     {
         EntityVillager entityvillager = new EntityVillager(this.worldObj);
-        try {
-            entityvillager.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entityvillager.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
         return entityvillager;
     }
 
@@ -769,11 +752,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         {
             EntityWitch entitywitch = new EntityWitch(this.worldObj);
             entitywitch.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            try {
-                entitywitch.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entitywitch)), (IEntityLivingData)null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            entitywitch.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entitywitch)), (IEntityLivingData)null);
             entitywitch.setNoAI(this.isAIDisabled());
 
             if (this.hasCustomName())

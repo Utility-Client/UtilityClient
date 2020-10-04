@@ -140,11 +140,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         this.lastTickPosX = this.posX;
         this.lastTickPosY = this.posY;
         this.lastTickPosZ = this.posZ;
-        try {
-            super.onUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onUpdate();
 
         if (this.throwableShake > 0)
         {

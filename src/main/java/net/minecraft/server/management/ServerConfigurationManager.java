@@ -100,7 +100,8 @@ public abstract class ServerConfigurationManager
         this.maxPlayers = 8;
     }
 
-    public void initializeConnectionToPlayer(NetworkManager netManager, EntityPlayerMP playerIn) throws Exception {
+    public void initializeConnectionToPlayer(NetworkManager netManager, EntityPlayerMP playerIn)
+    {
         GameProfile gameprofile = playerIn.getGameProfile();
         PlayerProfileCache playerprofilecache = this.mcServer.getPlayerProfileCache();
         GameProfile gameprofile1 = playerprofilecache.getProfileByUUID(gameprofile.getId());
@@ -434,7 +435,8 @@ public abstract class ServerConfigurationManager
     /**
      * Called on respawn
      */
-    public EntityPlayerMP recreatePlayerEntity(EntityPlayerMP playerIn, int dimension, boolean conqueredEnd) throws Exception {
+    public EntityPlayerMP recreatePlayerEntity(EntityPlayerMP playerIn, int dimension, boolean conqueredEnd)
+    {
         playerIn.getServerForPlayer().getEntityTracker().removePlayerFromTrackers(playerIn);
         playerIn.getServerForPlayer().getEntityTracker().untrackEntity(playerIn);
         playerIn.getServerForPlayer().getPlayerManager().removePlayer(playerIn);
@@ -502,7 +504,8 @@ public abstract class ServerConfigurationManager
     /**
      * moves provided player from overworld to nether or vice versa
      */
-    public void transferPlayerToDimension(EntityPlayerMP playerIn, int dimension) throws Exception {
+    public void transferPlayerToDimension(EntityPlayerMP playerIn, int dimension)
+    {
         int i = playerIn.dimension;
         WorldServer worldserver = this.mcServer.worldServerForDimension(playerIn.dimension);
         playerIn.dimension = dimension;
@@ -526,7 +529,8 @@ public abstract class ServerConfigurationManager
     /**
      * Transfers an entity from a world to another world.
      */
-    public void transferEntityToWorld(Entity entityIn, int p_82448_2_, WorldServer p_82448_3_, WorldServer p_82448_4_) throws Exception {
+    public void transferEntityToWorld(Entity entityIn, int p_82448_2_, WorldServer p_82448_3_, WorldServer p_82448_4_)
+    {
         double d0 = entityIn.posX;
         double d1 = entityIn.posZ;
         double d2 = 8.0D;
@@ -944,7 +948,8 @@ public abstract class ServerConfigurationManager
         this.gameType = p_152604_1_;
     }
 
-    private void setPlayerGameTypeBasedOnOther(EntityPlayerMP p_72381_1_, EntityPlayerMP p_72381_2_, World worldIn) throws Exception {
+    private void setPlayerGameTypeBasedOnOther(EntityPlayerMP p_72381_1_, EntityPlayerMP p_72381_2_, World worldIn)
+    {
         if (p_72381_2_ != null)
         {
             p_72381_1_.theItemInWorldManager.setGameType(p_72381_2_.theItemInWorldManager.getGameType());

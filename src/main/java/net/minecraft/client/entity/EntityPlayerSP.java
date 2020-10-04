@@ -142,11 +142,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
-            try {
-                super.onUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super.onUpdate();
 
             if (this.isRiding())
             {
@@ -666,11 +662,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
     public void updateEntityActionState()
     {
-        try {
-            super.updateEntityActionState();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.updateEntityActionState();
 
         if (this.isCurrentViewEntity())
         {
@@ -880,11 +872,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
             this.horseJumpPower = 0.0F;
         }
 
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
 
         if (this.onGround && this.capabilities.isFlying && !this.mc.playerController.isSpectatorMode())
         {

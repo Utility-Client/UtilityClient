@@ -80,7 +80,8 @@ public class EntityItem extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() throws Exception {
+    public void onUpdate()
+    {
         if (this.getEntityItem() == null)
         {
             this.setDead();
@@ -437,7 +438,8 @@ public class EntityItem extends Entity
     /**
      * Teleports the entity to another dimension. Params: Dimension number to teleport to
      */
-    public void travelToDimension(int dimensionId) throws Exception {
+    public void travelToDimension(int dimensionId)
+    {
         super.travelToDimension(dimensionId);
 
         if (!this.worldObj.isRemote)
