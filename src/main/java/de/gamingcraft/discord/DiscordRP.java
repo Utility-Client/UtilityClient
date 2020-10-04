@@ -13,13 +13,13 @@ public class DiscordRP extends Thread {
 
     @Override
     public void run() {
-        super.run();
 
+        super.run();
 
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
             System.out.println("[--:--:--] [DiscordWebhook/INFO]: Welcome " + user.username + "#" + user.discriminator + "!");
         }).build();
-        DiscordRPC.discordInitialize("742760119984455701", handlers, true);
+        DiscordRPC.discordInitialize(UtilityClient.getDiscordApplicationId(), handlers, true);
         shouldRun = true;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -32,30 +32,34 @@ public class DiscordRP extends Thread {
 
         if(!shouldRun) return;
 
-        if(Minecraft.getMinecraft().isSingleplayer()) {
-            setRichPresence("Playing Singleplayer", "");
-        }
+        String topText = "Idle";
+        String bottomText = "";
 
-        if((!Minecraft.getMinecraft().isSingleplayer())) {
-            if(Minecraft.getMinecraft().theWorld != null) {
-                if(Minecraft.getMinecraft().theWorld.playerEntities.size() > 1) {
-                    setRichPresence("Playing Multiplayer", Minecraft.getMinecraft().getCurrentServerData().serverIP);
-                }
+        if(Minecraft.getMinecraft().isSingleplayer()) {
+            topText = "Playing Singleplayer";
+        } else if(Minecraft.getMinecraft().theWorld != null) {
+            if(Minecraft.getMinecraft().theWorld.playerEntities.size() > 1) {
+                topText = "Playing Multiplayer";
+                bottomText = Minecraft.getMinecraft().getCurrentServerData().serverIP;
             }
         }
 
         if(Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu) {
-            setRichPresence("In Menus", "Main Menu");
+            topText = "In Menus";
+            bottomText = "Main Menu";
         }
 
         if(Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer) {
-            setRichPresence("In Menus", "Server List");
+            topText = "In Menus";
+            bottomText = "Server List";
         }
 
         if(Minecraft.getMinecraft().currentScreen instanceof GuiSelectWorld) {
-            setRichPresence("In Menus", "World List");
+            topText = "In Menus";
+            bottomText = "World List";
         }
 
+        setRichPresence(topText, bottomText);
         DiscordRPC.discordRunCallbacks();
     }
 
