@@ -1,0 +1,259 @@
+[33mcommit 7a12a6ccaafb409026f87821ead4e31a3c9660b1[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Oct 3 21:00:03 2020 +0200
+
+    Bugfix #2
+
+[33mcommit de120b36d1312d58de0f125fd38bf2d64f51b928[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Oct 3 20:22:16 2020 +0200
+
+    Bugfix #1
+
+[33mcommit 5b5b098eae574fb862cf8acf91a3fbe7e8f39096[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Oct 3 19:34:08 2020 +0200
+
+    Some weird crash ist happening
+
+[33mcommit a660fff95a8da58daab6c9c2858b3f4d65b82173[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Oct 3 12:48:46 2020 +0200
+
+    Issue #6 fixed.
+
+[33mcommit ee35c336bd0060e384723e96f56de9ce90ff34ab[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Oct 3 12:36:51 2020 +0200
+
+    Remade Options and addded Custom Crosshairs
+
+[33mcommit 63a3d48576b7b16e698a0b5f829b77bc2d37ffac[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Fri Oct 2 22:44:14 2020 +0200
+
+    Custom Crosshair
+
+[33mcommit 8c410fa9f146c3f49682e9bfbc37b317b7158266[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Fri Oct 2 20:54:10 2020 +0200
+
+    Renewed Readme
+    
+    :)
+
+[33mcommit ff3f3795245a34d0b0ee1b34885ffa442f71c34c[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Fri Oct 2 20:39:50 2020 +0200
+
+    Added Discord-Link!
+    
+    Added Discord-Link to promote our discord server.
+
+[33mcommit 8a5d8cd1174bbe0ef94918efbbb2c5d143ad31dc[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Fri Oct 2 17:42:55 2020 +0200
+
+    Changelogs :O
+
+[33mcommit 010502d38d2da285b547bc3886dff319842d5647[m
+Merge: 92a46594 46a8495c
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 30 14:30:39 2020 +0200
+
+    Merge branch 'master' of https://github.com/Utility-Client/UtilityClient2
+    
+    # Conflicts:
+    #       src/main/java/de/gamingcraft/UtilityClient.java
+    
+    Signed-off-by: GamingCrafthd <kvvmischl@gmail.com>
+
+[33mcommit 92a46594108b2fdd1a246df73a2fa45a07c067da[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 30 14:25:59 2020 +0200
+
+    Removed Twitch-API fully and made the main class threaded
+
+[33mcommit 46a8495cc0b058f861a12f6a633e12b9b8344fad[m[33m ([m[1;33mtag: 2.3[m[33m)[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 18:25:09 2020 +0200
+
+    Update README.md
+
+[33mcommit 903f16ff32c4690012033c50daac7831080fc1ec[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 18:03:16 2020 +0200
+
+    Update README.md
+
+[33mcommit e0850ec343725b8ca843f367f3409e4188916aaa[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 18:02:21 2020 +0200
+
+    Update README.md
+
+[33mcommit 32dfa83fe21b60442a479dfd5b0a61d96eb09240[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 17:50:15 2020 +0200
+
+    Add files via upload
+
+[33mcommit ad8b57c50f02429c558754dc3c46e5f42b1fe0be[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 17:49:50 2020 +0200
+
+    :)
+
+[33mcommit 66bc38f13dfa2291bbb57501583a4c160932c44b[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 17:48:23 2020 +0200
+
+    Revert
+
+[33mcommit 564209af3c38cfd11f7b65d269d7f66727a1535b[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 17:48:11 2020 +0200
+
+    Update README.md
+
+[33mcommit 45842d4459ab938aec842f8f47ce8b84bd6b30f3[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 23 17:46:29 2020 +0200
+
+    Update README.md
+
+[33mcommit e6d648a6a839115e3e3b73db90ad8a08ea7c3c7d[m
+Merge: a8f31798 73049c67
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Wed Sep 16 22:21:14 2020 +0200
+
+    Merge pull request #4 from Utility-Client/dcrp
+    
+    Dcrp
+
+[33mcommit 73049c67cb3895de99ccbd262dbf191069e42d8e[m[33m ([m[1;31morigin/dcrp[m[33m)[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 16 22:17:59 2020 +0200
+
+    tz
+
+[33mcommit 50c1b61fc52b2ee3c7d7b854d587857ed136e909[m
+Merge: 25536816 a8f31798
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 16 22:09:01 2020 +0200
+
+    Merge branch 'master' of https://github.com/Utility-Client/UtilityClient2 into dcrp
+
+[33mcommit 25536816d859865068418006f95ebe66bce5430d[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 16 22:08:37 2020 +0200
+
+    Added Translations
+
+[33mcommit a8f317985e83ce5d9d248b84855a318dbb3925ad[m[33m ([m[1;33mtag: 2.2[m[33m)[m
+Merge: 824902f1 b02a254a
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Sun Sep 13 15:08:18 2020 +0200
+
+    Merge pull request #3 from Utility-Client/dcrp
+    
+    Final Commit for 2.2
+
+[33mcommit b02a254a89953e37fc66a3eff3524f76e4fba591[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sun Sep 13 15:07:25 2020 +0200
+
+    Final Commit for 2.2
+
+[33mcommit 824902f1321bdb19f6473c900838129ed8ad223b[m
+Merge: 1f2ef29f 71f9b86f
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sun Sep 13 12:50:18 2020 +0200
+
+    Merge branch 'master' of https://github.com/Utility-Client/UtilityClient2
+
+[33mcommit 1f2ef29fff0017dc438a9111afe040715f809574[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sun Sep 13 12:50:07 2020 +0200
+
+    Just an Commit
+
+[33mcommit 71f9b86f80b1060c8febde8ddb1eab02f3de1f5c[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Mon Sep 7 20:43:55 2020 +0200
+
+    You can now request capes.
+    
+    I won't accept any requests, of someone spams or makes any other bulls##t.
+
+[33mcommit 5da899a00fc731062147a2b96e21557d973699e6[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Mon Sep 7 20:32:27 2020 +0200
+
+    Added GitHub Workflow
+
+[33mcommit b1e532c4ec7b7c97873abfc8b4ddc62d1e948f80[m[33m ([m[1;33mtag: 2.1b[m[33m)[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 2 12:12:38 2020 +0200
+
+    Now using own fork of strezz central, because this repo often got removed in the past :(
+
+[33mcommit 3735fd57662db4e0bb9b2be398a4318827a34196[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 2 12:10:17 2020 +0200
+
+    Fixed another .gitigore 'bug'
+
+[33mcommit 7e0976257295320aa7466a50b9293dd6b41cbdb6[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 2 12:09:06 2020 +0200
+
+    Fixed .gitignore
+
+[33mcommit 08a7e720449564499ed1523be360b5f8371118b0[m[33m ([m[1;33mtag: 2.1[m[33m)[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Wed Sep 2 11:46:34 2020 +0200
+
+    Utility Client 2.1 Release
+
+[33mcommit 6dedb258478f4b19a2007055918d982e011d08e9[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Tue Aug 18 13:12:56 2020 +0200
+
+    Update issue templates
+
+[33mcommit 4c67b3b3dbd9d8d526b4c0980ef1c75f8be7cb3f[m[33m ([m[1;33mtag: 2.0[m[33m)[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Mon Aug 17 23:05:45 2020 +0200
+
+    2.0?
+
+[33mcommit 77d16ce958e977fcbeadc7ab88cfb31e088c1e92[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Mon Aug 17 13:37:40 2020 +0200
+
+    Added Settings
+
+[33mcommit 96d172a020642370af1492075460ce97c7f8fbe2[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Aug 15 21:56:05 2020 +0200
+
+    Zoom and Fulbright added. (Working on Discord RPC ._.)
+
+[33mcommit 845de846a6f955c659913c348b9fcbc02f48e703[m
+Author: GamingCrafthd <kvvmischl@gmail.com>
+Date:   Sat Aug 15 20:44:35 2020 +0200
+
+    Commit: Initial - Now in your cinema.
+
+[33mcommit 6e1d7124672281295a2dadc8951e8ce23f2c166a[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Sat Aug 15 20:38:34 2020 +0200
+
+    Delete README.md
+
+[33mcommit a64f04bbad75d20a4806106f982f203adf1dbd2f[m
+Author: GamingCraft_hd ☕ <49761607+GamingCrafthd@users.noreply.github.com>
+Date:   Sat Aug 15 18:00:27 2020 +0200
+
+    Initial commit
