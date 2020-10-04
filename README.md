@@ -7,7 +7,7 @@
 <img src="readme_content/profile_pictures/GamingCraft_hd.png" width="100">
 
 [GamingCraft_hd](http://gamingcraft.de)<br>
-Developer of the Utility-Client
+Developer
 
 <img src="https://avatars1.githubusercontent.com/u/63241406?v=4" width="100">
 
