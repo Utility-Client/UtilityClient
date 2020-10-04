@@ -24,8 +24,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() throws Exception {
         this.updateArmSwingProgress();
         float f = this.getBrightness(1.0F);
 
@@ -40,8 +39,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() {
         super.onUpdate();
 
         if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL)

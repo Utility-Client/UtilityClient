@@ -66,14 +66,12 @@ public abstract class MobSpawnerBaseLogic
     /**
      * Returns true if there's a player close enough to this mob spawner to activate it.
      */
-    private boolean isActivated()
-    {
+    private boolean isActivated() throws Exception {
         BlockPos blockpos = this.getSpawnerPosition();
         return this.getSpawnerWorld().isAnyPlayerWithinRangeAt((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D, (double)this.activatingRangeFromPlayer);
     }
 
-    public void updateSpawner()
-    {
+    public void updateSpawner() throws Exception {
         if (this.isActivated())
         {
             BlockPos blockpos = this.getSpawnerPosition();
@@ -154,8 +152,7 @@ public abstract class MobSpawnerBaseLogic
         }
     }
 
-    private Entity spawnNewEntity(Entity entityIn, boolean spawn)
-    {
+    private Entity spawnNewEntity(Entity entityIn, boolean spawn) throws Exception {
         if (this.getRandomEntity() != null)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
@@ -329,8 +326,7 @@ public abstract class MobSpawnerBaseLogic
         }
     }
 
-    public Entity func_180612_a(World worldIn)
-    {
+    public Entity func_180612_a(World worldIn) throws Exception {
         if (this.cachedEntity == null)
         {
             Entity entity = EntityList.createEntityByName(this.getEntityNameToSpawn(), worldIn);
@@ -375,7 +371,7 @@ public abstract class MobSpawnerBaseLogic
 
     public abstract World getSpawnerWorld();
 
-    public abstract BlockPos getSpawnerPosition();
+    public abstract BlockPos getSpawnerPosition() throws Exception;
 
     public double getMobRotation()
     {

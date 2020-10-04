@@ -120,8 +120,7 @@ public class EntitySilverfish extends EntityMob
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() {
         this.renderYawOffset = this.rotationYaw;
         super.onUpdate();
     }
@@ -210,11 +209,10 @@ public class EntitySilverfish extends EntityMob
 
         public boolean continueExecuting()
         {
-            return this.field_179484_c ? false : super.continueExecuting();
+            return !this.field_179484_c && super.continueExecuting();
         }
 
-        public void startExecuting()
-        {
+        public void startExecuting() throws Exception {
             if (!this.field_179484_c)
             {
                 super.startExecuting();
@@ -258,8 +256,7 @@ public class EntitySilverfish extends EntityMob
             return this.field_179463_b > 0;
         }
 
-        public void updateTask()
-        {
+        public void updateTask() throws Exception {
             --this.field_179463_b;
 
             if (this.field_179463_b <= 0)

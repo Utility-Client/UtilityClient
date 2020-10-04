@@ -47,8 +47,7 @@ public abstract class EntityCreature extends EntityLiving
         return !this.navigator.noPath();
     }
 
-    public boolean isWithinHomeDistanceCurrentPosition()
-    {
+    public boolean isWithinHomeDistanceCurrentPosition() throws Exception {
         return this.isWithinHomeDistanceFromPosition(new BlockPos(this));
     }
 
@@ -92,8 +91,7 @@ public abstract class EntityCreature extends EntityLiving
     /**
      * Applies logic related to leashes, for example dragging the entity or breaking the leash.
      */
-    protected void updateLeashedState()
-    {
+    protected void updateLeashedState() throws Exception {
         super.updateLeashedState();
 
         if (this.getLeashed() && this.getLeashedToEntity() != null && this.getLeashedToEntity().worldObj == this.worldObj)

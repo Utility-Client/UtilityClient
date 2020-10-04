@@ -107,7 +107,11 @@ public class EntityAIPlay extends EntityAIBase
         {
             if (this.villagerObj.getDistanceSqToEntity(this.targetVillager) > 4.0D)
             {
-                this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
+                try {
+                    this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.speed);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         else if (this.villagerObj.getNavigator().noPath())
@@ -119,7 +123,11 @@ public class EntityAIPlay extends EntityAIBase
                 return;
             }
 
-            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.speed);
+            try {
+                this.villagerObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.speed);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

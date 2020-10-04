@@ -21,8 +21,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
         {
             return EntityMinecartMobSpawner.this.worldObj;
         }
-        public BlockPos getSpawnerPosition()
-        {
+        public BlockPos getSpawnerPosition() throws Exception {
             return new BlockPos(EntityMinecartMobSpawner.this);
         }
     };
@@ -73,10 +72,13 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() {
         super.onUpdate();
-        this.mobSpawnerLogic.updateSpawner();
+        try {
+            this.mobSpawnerLogic.updateSpawner();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public MobSpawnerBaseLogic func_98039_d()

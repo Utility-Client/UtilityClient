@@ -80,7 +80,11 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
             }
             else
             {
-                this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+                try {
+                    this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return this.entityPathEntity == null ? false : this.entityPathEntity.isDestinationSame(vec3);
             }
         }

@@ -91,7 +91,11 @@ public class EntityAIFollowGolem extends EntityAIBase
 
         if (this.theGolem.getHoldRoseTick() == this.takeGolemRoseTick)
         {
-            this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
+            try {
+                this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.tookGolemRose = true;
         }
 

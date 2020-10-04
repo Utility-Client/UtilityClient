@@ -198,7 +198,11 @@ public class EntityArmorStand extends EntityLivingBase
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        super.readEntityFromNBT(tagCompund);
+        try {
+            super.readEntityFromNBT(tagCompund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (tagCompund.hasKey("Equipment", 9))
         {
@@ -641,7 +645,11 @@ public class EntityArmorStand extends EntityLivingBase
 
     private void dropBlock()
     {
-        Block.spawnAsEntity(this.worldObj, new BlockPos(this), new ItemStack(Items.armor_stand));
+        try {
+            Block.spawnAsEntity(this.worldObj, new BlockPos(this), new ItemStack(Items.armor_stand));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.dropContents();
     }
 
@@ -653,7 +661,11 @@ public class EntityArmorStand extends EntityLivingBase
             {
                 if (this.contents[i] != null)
                 {
-                    Block.spawnAsEntity(this.worldObj, (new BlockPos(this)).up(), this.contents[i]);
+                    try {
+                        Block.spawnAsEntity(this.worldObj, (new BlockPos(this)).up(), this.contents[i]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 this.contents[i] = null;
@@ -689,7 +701,11 @@ public class EntityArmorStand extends EntityLivingBase
      */
     public void onUpdate()
     {
-        super.onUpdate();
+        try {
+            super.onUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Rotations rotations = this.dataWatcher.getWatchableObjectRotations(11);
 
         if (!this.headRotation.equals(rotations))

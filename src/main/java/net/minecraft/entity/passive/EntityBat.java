@@ -116,7 +116,11 @@ public class EntityBat extends EntityAmbientCreature
      */
     public void onUpdate()
     {
-        super.onUpdate();
+        try {
+            super.onUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (this.getIsBatHanging())
         {
@@ -131,8 +135,17 @@ public class EntityBat extends EntityAmbientCreature
 
     protected void updateAITasks()
     {
-        super.updateAITasks();
-        BlockPos blockpos = new BlockPos(this);
+        try {
+            super.updateAITasks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BlockPos blockpos = null;
+        try {
+            blockpos = new BlockPos(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         BlockPos blockpos1 = blockpos.up();
 
         if (this.getIsBatHanging())

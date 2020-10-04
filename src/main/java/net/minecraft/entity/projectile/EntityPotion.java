@@ -143,7 +143,11 @@ public class EntityPotion extends EntityThrowable
                 }
             }
 
-            this.worldObj.playAuxSFX(2002, new BlockPos(this), this.getPotionDamage());
+            try {
+                this.worldObj.playAuxSFX(2002, new BlockPos(this), this.getPotionDamage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             this.setDead();
         }
     }

@@ -49,7 +49,11 @@ public class CommandDefaultGameMode extends CommandGameMode
         {
             for (EntityPlayerMP entityplayermp : MinecraftServer.getServer().getConfigurationManager().func_181057_v())
             {
-                entityplayermp.setGameType(p_71541_1_);
+                try {
+                    entityplayermp.setGameType(p_71541_1_);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 entityplayermp.fallDistance = 0.0F;
             }
         }

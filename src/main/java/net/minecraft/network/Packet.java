@@ -17,5 +17,5 @@ public interface Packet<T extends INetHandler>
     /**
      * Passes this Packet on to the NetHandler for processing.
      */
-    void processPacket(T handler);
+    void processPacket(T handler) throws Exception;
 }

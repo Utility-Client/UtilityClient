@@ -133,7 +133,11 @@ public class EntitySquid extends EntityWaterMob
      */
     public void onLivingUpdate()
     {
-        super.onLivingUpdate();
+        try {
+            super.onLivingUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.prevSquidPitch = this.squidPitch;
         this.prevSquidYaw = this.squidYaw;
         this.prevSquidRotation = this.squidRotation;

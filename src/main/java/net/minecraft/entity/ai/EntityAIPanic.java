@@ -50,7 +50,11 @@ public class EntityAIPanic extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+        try {
+            this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

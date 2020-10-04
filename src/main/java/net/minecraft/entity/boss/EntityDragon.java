@@ -120,8 +120,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() throws Exception {
         if (this.worldObj.isRemote)
         {
             float f = MathHelper.cos(this.animTime * (float)Math.PI * 2.0F);
@@ -604,8 +603,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
     /**
      * handles entity death timer, experience orb and particle creation
      */
-    protected void onDeathUpdate()
-    {
+    protected void onDeathUpdate() throws Exception {
         ++this.deathTicks;
 
         if (this.deathTicks >= 180 && this.deathTicks <= 200)

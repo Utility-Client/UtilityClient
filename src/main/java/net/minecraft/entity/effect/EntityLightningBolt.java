@@ -28,8 +28,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
      */
     private int boltLivingTime;
 
-    public EntityLightningBolt(World worldIn, double posX, double posY, double posZ)
-    {
+    public EntityLightningBolt(World worldIn, double posX, double posY, double posZ) throws Exception {
         super(worldIn);
         this.setLocationAndAngles(posX, posY, posZ, 0.0F, 0.0F);
         this.lightningState = 2;
@@ -59,8 +58,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() {
         super.onUpdate();
 
         if (this.lightningState == 2)
@@ -82,7 +80,12 @@ public class EntityLightningBolt extends EntityWeatherEffect
                 --this.boltLivingTime;
                 this.lightningState = 1;
                 this.boltVertex = this.rand.nextLong();
-                BlockPos blockpos = new BlockPos(this);
+                BlockPos blockpos = null;
+                try {
+                    blockpos = new BlockPos(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (!this.worldObj.isRemote && this.worldObj.getGameRules().getBoolean("doFireTick") && this.worldObj.isAreaLoaded(blockpos, 10) && this.worldObj.getBlockState(blockpos).getBlock().getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(this.worldObj, blockpos))
                 {

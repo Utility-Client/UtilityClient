@@ -26,7 +26,12 @@ public class EntityAIHurtByTarget extends EntityAITarget
     public boolean shouldExecute()
     {
         int i = this.taskOwner.getRevengeTimer();
-        return i != this.revengeTimerOld && this.isSuitableTarget(this.taskOwner.getAITarget(), false);
+        try {
+            return i != this.revengeTimerOld && this.isSuitableTarget(this.taskOwner.getAITarget(), false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**

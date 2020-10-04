@@ -69,7 +69,11 @@ public class EntityGuardian extends EntityMob
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        super.readEntityFromNBT(tagCompund);
+        try {
+            super.readEntityFromNBT(tagCompund);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.setElder(tagCompund.getBoolean("Elder"));
     }
 
@@ -297,7 +301,11 @@ public class EntityGuardian extends EntityMob
                     this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.guardian.flop", 1.0F, 1.0F, false);
                 }
 
-                this.field_175480_bp = this.motionY < 0.0D && this.worldObj.isBlockNormalCube((new BlockPos(this)).down(), false);
+                try {
+                    this.field_175480_bp = this.motionY < 0.0D && this.worldObj.isBlockNormalCube((new BlockPos(this)).down(), false);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             else if (this.func_175472_n())
             {
@@ -392,7 +400,11 @@ public class EntityGuardian extends EntityMob
             this.rotationYaw = this.rotationYawHead;
         }
 
-        super.onLivingUpdate();
+        try {
+            super.onLivingUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public float func_175471_a(float p_175471_1_)
@@ -412,7 +424,11 @@ public class EntityGuardian extends EntityMob
 
     protected void updateAITasks()
     {
-        super.updateAITasks();
+        try {
+            super.updateAITasks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (this.isElder())
         {
@@ -443,7 +459,11 @@ public class EntityGuardian extends EntityMob
 
             if (!this.hasHome())
             {
-                this.setHomePosAndDistance(new BlockPos(this), 16);
+                try {
+                    this.setHomePosAndDistance(new BlockPos(this), 16);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -505,7 +525,13 @@ public class EntityGuardian extends EntityMob
      */
     public boolean getCanSpawnHere()
     {
-        return (this.rand.nextInt(20) == 0 || !this.worldObj.canBlockSeeSky(new BlockPos(this))) && super.getCanSpawnHere();
+        try {
+            return (this.rand.nextInt(20) == 0 || !this.worldObj.canBlockSeeSky(new BlockPos(this))) && super.getCanSpawnHere();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     /**
@@ -647,7 +673,11 @@ public class EntityGuardian extends EntityMob
                     ;
                 }
 
-                super.updateTask();
+                try {
+                    super.updateTask();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

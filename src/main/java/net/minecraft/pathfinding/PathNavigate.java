@@ -71,16 +71,14 @@ public abstract class PathNavigate
     /**
      * Returns the path to the given coordinates. Args : x, y, z
      */
-    public final PathEntity getPathToXYZ(double x, double y, double z)
-    {
+    public final PathEntity getPathToXYZ(double x, double y, double z) throws Exception {
         return this.getPathToPos(new BlockPos(MathHelper.floor_double(x), (int)y, MathHelper.floor_double(z)));
     }
 
     /**
      * Returns path to given BlockPos
      */
-    public PathEntity getPathToPos(BlockPos pos)
-    {
+    public PathEntity getPathToPos(BlockPos pos) throws Exception {
         if (!this.canNavigate())
         {
             return null;
@@ -101,8 +99,7 @@ public abstract class PathNavigate
     /**
      * Try to find and set a path to XYZ. Returns true if successful. Args : x, y, z, speed
      */
-    public boolean tryMoveToXYZ(double x, double y, double z, double speedIn)
-    {
+    public boolean tryMoveToXYZ(double x, double y, double z, double speedIn) throws Exception {
         PathEntity pathentity = this.getPathToXYZ((double)MathHelper.floor_double(x), (double)((int)y), (double)MathHelper.floor_double(z));
         return this.setPath(pathentity, speedIn);
     }
@@ -118,8 +115,7 @@ public abstract class PathNavigate
     /**
      * Returns the path to the given EntityLiving. Args : entity
      */
-    public PathEntity getPathToEntityLiving(Entity entityIn)
-    {
+    public PathEntity getPathToEntityLiving(Entity entityIn) throws Exception {
         if (!this.canNavigate())
         {
             return null;
@@ -140,8 +136,7 @@ public abstract class PathNavigate
     /**
      * Try to find and set a path to EntityLiving. Returns true if successful. Args : entity, speed
      */
-    public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn)
-    {
+    public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn) throws Exception {
         PathEntity pathentity = this.getPathToEntityLiving(entityIn);
         return pathentity != null ? this.setPath(pathentity, speedIn) : false;
     }

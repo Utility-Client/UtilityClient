@@ -74,8 +74,7 @@ public class EntityFallingBlock extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate()
-    {
+    public void onUpdate() {
         Block block = this.fallTile.getBlock();
 
         if (block.getMaterial() == Material.air)
@@ -90,7 +89,12 @@ public class EntityFallingBlock extends Entity
 
             if (this.fallTime++ == 0)
             {
-                BlockPos blockpos = new BlockPos(this);
+                BlockPos blockpos = null;
+                try {
+                    blockpos = new BlockPos(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (this.worldObj.getBlockState(blockpos).getBlock() == block)
                 {
@@ -111,7 +115,12 @@ public class EntityFallingBlock extends Entity
 
             if (!this.worldObj.isRemote)
             {
-                BlockPos blockpos1 = new BlockPos(this);
+                BlockPos blockpos1 = null;
+                try {
+                    blockpos1 = new BlockPos(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (this.onGround)
                 {

@@ -62,7 +62,11 @@ public class EntitySpider extends EntityMob
      */
     public void onUpdate()
     {
-        super.onUpdate();
+        try {
+            super.onUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (!this.worldObj.isRemote)
         {

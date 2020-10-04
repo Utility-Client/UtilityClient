@@ -52,7 +52,11 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.horseHost.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.speed);
+        try {
+            this.horseHost.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.speed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

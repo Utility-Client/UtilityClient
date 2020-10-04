@@ -57,7 +57,11 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ((double)((float)this.destinationBlock.getX()) + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)((float)this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+        try {
+            this.theEntity.getNavigator().tryMoveToXYZ((double)((float)this.destinationBlock.getX()) + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)((float)this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.timeoutCounter = 0;
         this.field_179490_f = this.theEntity.getRNG().nextInt(this.theEntity.getRNG().nextInt(1200) + 1200) + 1200;
     }
@@ -81,7 +85,11 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 
             if (this.timeoutCounter % 40 == 0)
             {
-                this.theEntity.getNavigator().tryMoveToXYZ((double)((float)this.destinationBlock.getX()) + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)((float)this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+                try {
+                    this.theEntity.getNavigator().tryMoveToXYZ((double)((float)this.destinationBlock.getX()) + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)((float)this.destinationBlock.getZ()) + 0.5D, this.movementSpeed);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         else
@@ -105,7 +113,12 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
     {
         int i = this.searchLength;
         int j = 1;
-        BlockPos blockpos = new BlockPos(this.theEntity);
+        BlockPos blockpos = null;
+        try {
+            blockpos = new BlockPos(this.theEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         for (int k = 0; k <= 1; k = k > 0 ? -k : 1 - k)
         {

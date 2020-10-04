@@ -152,7 +152,12 @@ public class ItemEnderEye extends Item
         {
             if (!worldIn.isRemote)
             {
-                BlockPos blockpos = worldIn.getStrongholdPos("Stronghold", new BlockPos(playerIn));
+                BlockPos blockpos = null;
+                try {
+                    blockpos = worldIn.getStrongholdPos("Stronghold", new BlockPos(playerIn));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (blockpos != null)
                 {
@@ -160,7 +165,11 @@ public class ItemEnderEye extends Item
                     entityendereye.moveTowards(blockpos);
                     worldIn.spawnEntityInWorld(entityendereye);
                     worldIn.playSoundAtEntity(playerIn, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-                    worldIn.playAuxSFXAtEntity((EntityPlayer)null, 1002, new BlockPos(playerIn), 0);
+                    try {
+                        worldIn.playAuxSFXAtEntity((EntityPlayer)null, 1002, new BlockPos(playerIn), 0);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                     if (!playerIn.capabilities.isCreativeMode)
                     {

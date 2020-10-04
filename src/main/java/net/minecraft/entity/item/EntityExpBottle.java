@@ -48,7 +48,11 @@ public class EntityExpBottle extends EntityThrowable
     {
         if (!this.worldObj.isRemote)
         {
-            this.worldObj.playAuxSFX(2002, new BlockPos(this), 0);
+            try {
+                this.worldObj.playAuxSFX(2002, new BlockPos(this), 0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             int i = 3 + this.worldObj.rand.nextInt(5) + this.worldObj.rand.nextInt(5);
 
             while (i > 0)

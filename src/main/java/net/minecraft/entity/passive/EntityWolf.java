@@ -213,7 +213,11 @@ public class EntityWolf extends EntityTameable
      */
     public void onUpdate()
     {
-        super.onUpdate();
+        try {
+            super.onUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.headRotationCourseOld = this.headRotationCourse;
 
         if (this.isBegging())

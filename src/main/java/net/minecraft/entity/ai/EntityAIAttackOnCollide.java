@@ -69,7 +69,11 @@ public class EntityAIAttackOnCollide extends EntityAIBase
         }
         else
         {
-            this.entityPathEntity = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
+            try {
+                this.entityPathEntity = this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return this.entityPathEntity != null;
         }
     }
@@ -80,7 +84,12 @@ public class EntityAIAttackOnCollide extends EntityAIBase
     public boolean continueExecuting()
     {
         EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
-        return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!this.longMemory ? !this.attacker.getNavigator().noPath() : this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(entitylivingbase))));
+        try {
+            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!this.longMemory ? !this.attacker.getNavigator().noPath() : this.attacker.isWithinHomeDistanceFromPosition(new BlockPos(entitylivingbase))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -127,9 +136,13 @@ public class EntityAIAttackOnCollide extends EntityAIBase
                 this.delayCounter += 5;
             }
 
-            if (!this.attacker.getNavigator().tryMoveToEntityLiving(entitylivingbase, this.speedTowardsTarget))
-            {
-                this.delayCounter += 15;
+            try {
+                if (!this.attacker.getNavigator().tryMoveToEntityLiving(entitylivingbase, this.speedTowardsTarget))
+                {
+                    this.delayCounter += 15;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

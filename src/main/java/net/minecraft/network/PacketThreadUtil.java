@@ -12,7 +12,11 @@ public class PacketThreadUtil
             {
                 public void run()
                 {
-                    p_180031_0_.processPacket(p_180031_1_);
+                    try {
+                        p_180031_0_.processPacket(p_180031_1_);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             throw ThreadQuickExitException.field_179886_a;

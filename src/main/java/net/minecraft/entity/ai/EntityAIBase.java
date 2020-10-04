@@ -33,8 +33,7 @@ public abstract class EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting()
-    {
+    public void startExecuting() throws Exception {
     }
 
     /**
@@ -47,8 +46,7 @@ public abstract class EntityAIBase
     /**
      * Updates the task
      */
-    public void updateTask()
-    {
+    public void updateTask() throws Exception {
     }
 
     /**

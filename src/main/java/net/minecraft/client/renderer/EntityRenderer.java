@@ -349,7 +349,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.mc.setRenderViewEntity(this.mc.thePlayer);
         }
 
-        float f3 = this.mc.theWorld.getLightBrightness(new BlockPos(this.mc.getRenderViewEntity()));
+        float f3 = 0;
+        try {
+            f3 = this.mc.theWorld.getLightBrightness(new BlockPos(this.mc.getRenderViewEntity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         float f4 = (float)this.mc.gameSettings.renderDistanceChunks / 32.0F;
         float f2 = f3 * (1.0F - f4) + f4;
         this.fogColor1 += (f2 - this.fogColor1) * 0.1F;
@@ -634,7 +639,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
             if (!this.mc.gameSettings.debugCamEnable)
             {
-                BlockPos blockpos = new BlockPos(entity);
+                BlockPos blockpos = null;
+                try {
+                    blockpos = new BlockPos(entity);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 IBlockState iblockstate = this.mc.theWorld.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
 
@@ -1509,7 +1519,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.random.setSeed((long)this.rendererUpdateCount * 312987231L);
             Entity entity = this.mc.getRenderViewEntity();
             World world = this.mc.theWorld;
-            BlockPos blockpos = new BlockPos(entity);
+            BlockPos blockpos = null;
+            try {
+                blockpos = new BlockPos(entity);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             int i = 10;
             double d0 = 0.0D;
             double d1 = 0.0D;

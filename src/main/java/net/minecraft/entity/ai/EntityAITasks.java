@@ -57,8 +57,7 @@ public class EntityAITasks
         }
     }
 
-    public void onUpdateTasks()
-    {
+    public void onUpdateTasks() throws Exception {
         this.theProfiler.startSection("goalSetup");
 
         if (this.tickCount++ % this.tickRate == 0)

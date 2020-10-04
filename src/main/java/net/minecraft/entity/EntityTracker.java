@@ -38,8 +38,7 @@ public class EntityTracker
         this.maxTrackingDistanceThreshold = theWorldIn.getMinecraftServer().getConfigurationManager().getEntityViewDistance();
     }
 
-    public void trackEntity(Entity p_72786_1_)
-    {
+    public void trackEntity(Entity p_72786_1_) throws Exception {
         if (p_72786_1_ instanceof EntityPlayerMP)
         {
             this.trackEntity(p_72786_1_, 512, 2);
@@ -237,8 +236,7 @@ public class EntityTracker
         }
     }
 
-    public void updateTrackedEntities()
-    {
+    public void updateTrackedEntities() throws Exception {
         List<EntityPlayerMP> list = Lists.<EntityPlayerMP>newArrayList();
 
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
@@ -265,8 +263,7 @@ public class EntityTracker
         }
     }
 
-    public void func_180245_a(EntityPlayerMP p_180245_1_)
-    {
+    public void func_180245_a(EntityPlayerMP p_180245_1_) throws Exception {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
             if (entitytrackerentry.trackedEntity == p_180245_1_)
@@ -308,8 +305,7 @@ public class EntityTracker
         }
     }
 
-    public void func_85172_a(EntityPlayerMP p_85172_1_, Chunk p_85172_2_)
-    {
+    public void func_85172_a(EntityPlayerMP p_85172_1_, Chunk p_85172_2_) throws Exception {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
             if (entitytrackerentry.trackedEntity != p_85172_1_ && entitytrackerentry.trackedEntity.chunkCoordX == p_85172_2_.xPosition && entitytrackerentry.trackedEntity.chunkCoordZ == p_85172_2_.zPosition)

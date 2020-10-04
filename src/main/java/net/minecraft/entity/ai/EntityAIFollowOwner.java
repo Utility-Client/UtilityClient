@@ -118,30 +118,34 @@ public class EntityAIFollowOwner extends EntityAIBase
             {
                 this.field_75343_h = 10;
 
-                if (!this.petPathfinder.tryMoveToEntityLiving(this.theOwner, this.followSpeed))
-                {
-                    if (!this.thePet.getLeashed())
+                try {
+                    if (!this.petPathfinder.tryMoveToEntityLiving(this.theOwner, this.followSpeed))
                     {
-                        if (this.thePet.getDistanceSqToEntity(this.theOwner) >= 144.0D)
+                        if (!this.thePet.getLeashed())
                         {
-                            int i = MathHelper.floor_double(this.theOwner.posX) - 2;
-                            int j = MathHelper.floor_double(this.theOwner.posZ) - 2;
-                            int k = MathHelper.floor_double(this.theOwner.getEntityBoundingBox().minY);
-
-                            for (int l = 0; l <= 4; ++l)
+                            if (this.thePet.getDistanceSqToEntity(this.theOwner) >= 144.0D)
                             {
-                                for (int i1 = 0; i1 <= 4; ++i1)
+                                int i = MathHelper.floor_double(this.theOwner.posX) - 2;
+                                int j = MathHelper.floor_double(this.theOwner.posZ) - 2;
+                                int k = MathHelper.floor_double(this.theOwner.getEntityBoundingBox().minY);
+
+                                for (int l = 0; l <= 4; ++l)
                                 {
-                                    if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, new BlockPos(i + l, k - 1, j + i1)) && this.func_181065_a(new BlockPos(i + l, k, j + i1)) && this.func_181065_a(new BlockPos(i + l, k + 1, j + i1)))
+                                    for (int i1 = 0; i1 <= 4; ++i1)
                                     {
-                                        this.thePet.setLocationAndAngles((double)((float)(i + l) + 0.5F), (double)k, (double)((float)(j + i1) + 0.5F), this.thePet.rotationYaw, this.thePet.rotationPitch);
-                                        this.petPathfinder.clearPathEntity();
-                                        return;
+                                        if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, new BlockPos(i + l, k - 1, j + i1)) && this.func_181065_a(new BlockPos(i + l, k, j + i1)) && this.func_181065_a(new BlockPos(i + l, k + 1, j + i1)))
+                                        {
+                                            this.thePet.setLocationAndAngles((double)((float)(i + l) + 0.5F), (double)k, (double)((float)(j + i1) + 0.5F), this.thePet.rotationYaw, this.thePet.rotationPitch);
+                                            this.petPathfinder.clearPathEntity();
+                                            return;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }

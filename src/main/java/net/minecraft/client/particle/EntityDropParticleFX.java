@@ -118,7 +118,12 @@ public class EntityDropParticleFX extends EntityFX
             this.motionZ *= 0.699999988079071D;
         }
 
-        BlockPos blockpos = new BlockPos(this);
+        BlockPos blockpos = null;
+        try {
+            blockpos = new BlockPos(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
         Material material = iblockstate.getBlock().getMaterial();
 
