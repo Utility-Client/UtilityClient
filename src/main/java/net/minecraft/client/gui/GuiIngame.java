@@ -814,6 +814,29 @@ public class GuiIngame extends Gui
                     j9 -= 10;
                 }
             }
+
+            this.mc.mcProfiler.endStartSection("air");
+
+            if (entityplayer.isInsideOfMaterial(Material.water))
+            {
+                int l6 = this.mc.thePlayer.getAir();
+                int k7 = MathHelper.ceiling_double_int((double)(l6 - 2) * 10.0D / 300.0D);
+                int i8 = MathHelper.ceiling_double_int((double)l6 * 10.0D / 300.0D) - k7;
+
+                for (int l8 = 0; l8 < k7 + i8; ++l8)
+                {
+                    if (l8 < k7)
+                    {
+                        this.drawTexturedModalRect(j1 - l8 * 8 - 9, j2, 16, 18, 9, 9);
+                    }
+                    else
+                    {
+                        this.drawTexturedModalRect(j1 - l8 * 8 - 9, j2, 25, 18, 9, 9);
+                    }
+                }
+            }
+
+            this.mc.mcProfiler.endSection();
         }
     }
 
@@ -844,6 +867,8 @@ public class GuiIngame extends Gui
             this.getFontRenderer().drawStringWithShadow(s, (float)(i / 2 - this.getFontRenderer().getStringWidth(s) / 2), (float)(i1 - 10), 16777215);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.getTextureManager().bindTexture(icons);
+
+
         }
     }
 
