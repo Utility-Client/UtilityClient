@@ -86,7 +86,7 @@ public class CapeUtils extends Thread {
                 }
             }
             
-            String ofCapeUrl = "http://api.gamingcraft.de/capes/" + filename + ".png";
+            String ofCapeUrl = "http://api.gamingcraft.de/capes/" + filename;
 
             MinecraftProfileTexture mpt = new MinecraftProfileTexture(ofCapeUrl, new HashMap());
             final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());

@@ -331,7 +331,7 @@ public class GuiIngame extends Gui
         if(UtilityClient.shouldRenderOverlay()) {
             ModuleHandler.loop(this.getFontRenderer());
         }
-
+        GlStateManager.disableAlpha();
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks)

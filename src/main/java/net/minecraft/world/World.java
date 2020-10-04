@@ -1414,9 +1414,17 @@ public abstract class World implements IBlockAccess
         float f = this.getCelestialAngle(partialTicks);
         float f1 = MathHelper.cos(f * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
         f1 = MathHelper.clamp_float(f1, 0.0F, 1.0F);
-        int i = MathHelper.floor_double(entityIn.posX);
-        int j = MathHelper.floor_double(entityIn.posY);
-        int k = MathHelper.floor_double(entityIn.posZ);
+
+        int i = 0, j = 0, k = 0;
+
+        try {
+            i = MathHelper.floor_double(entityIn.posX);
+            j = MathHelper.floor_double(entityIn.posY);
+            k = MathHelper.floor_double(entityIn.posZ);
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         BlockPos blockpos = new BlockPos(i, j, k);
         BiomeGenBase biomegenbase = this.getBiomeGenForCoords(blockpos);
         float f2 = biomegenbase.getFloatTemperature(blockpos);
