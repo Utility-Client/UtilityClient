@@ -42,6 +42,10 @@ public class UtilityClient extends Thread {
         return CLIENT_INSTANCE;
     }
 
+    public static String getDiscordApplicationId() {
+        return "742760119984455701";
+    }
+
     public void run() {
 
         ModuleHandler.start();
