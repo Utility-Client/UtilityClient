@@ -23,20 +23,6 @@ public class CrosshairManager extends Thread {
         int centerX = sr.getScaledWidth() / 2;
         int centerY = sr.getScaledHeight() / 2 + offsetY;
 
-        int scaleFactor = 1;
-
-        switch (sr.getScaleFactor()) {
-            case 1:
-                scaleFactor = 3;
-                break;
-            case 2:
-                scaleFactor = 2;
-                break;
-            case 3:
-                scaleFactor = 1;
-                break;
-        }
-
-        crosshairs.get(ConfigManager.config.getCrosshair()).updateRender(sr, centerX, centerY, scaleFactor);
+        crosshairs.get(ConfigManager.config.getCrosshair()).updateRender(sr, centerX, centerY, sr.getScaleFactor());
     }
 }
