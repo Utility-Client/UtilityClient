@@ -7,9 +7,8 @@ import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
-import de.gamingcraft.utils.CapeUtils;
-import de.gamingcraft.utils.JSONUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -32,8 +31,6 @@ public class UtilityClient extends Thread {
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
 
     public static final CrosshairManager CROSSHAIR_MANAGER_INSTANCE = new CrosshairManager();
-
-    public static CapeUtils capeUtilsInstance = new CapeUtils();
 
     public static Theme CURRENT_THEME = Theme.RED;
 
@@ -58,12 +55,11 @@ public class UtilityClient extends Thread {
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
 
-        //capeUtilsInstance.start();
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         CROSSHAIR_MANAGER_INSTANCE.start();
 
-        JSONUtils.parseJson();
+        AbstractClientPlayer.entry();
     }
 
     public void loop() {

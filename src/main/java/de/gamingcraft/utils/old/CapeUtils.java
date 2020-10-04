@@ -1,4 +1,4 @@
-package de.gamingcraft.utils;
+package de.gamingcraft.utils.old;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,7 +29,7 @@ public class CapeUtils {
 
     public ResourceLocation ofLocationCape = null;
     public String rawCapesJson = "";
-    public ArrayList<CapeOwner> rootJson = null;
+    //public ArrayList<CapeOwner> rootJson = null;
 
     public void run() {
         //rawCapesJson = downloadJson();
