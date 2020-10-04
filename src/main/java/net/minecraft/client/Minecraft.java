@@ -1,12 +1,14 @@
 package net.minecraft.client;
 
-import com.google.common.collect.*;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Queues;
+import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import de.gamingcraft.UtilityClient;
@@ -18,7 +20,6 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.gui.stream.GuiStreamUnavailable;
 import net.minecraft.client.main.GameConfiguration;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
@@ -31,7 +32,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -41,9 +41,6 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.shader.Framebuffer;
-import net.minecraft.client.stream.IStream;
-import net.minecraft.client.stream.NullStream;
-import net.minecraft.client.stream.TwitchStream;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
@@ -72,7 +69,6 @@ import net.minecraft.profiler.Profiler;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.stats.AchievementList;
-import net.minecraft.stats.IStatStringFormat;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Timer;
@@ -121,7 +117,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     /** A 10MiB preallocation to ensure the heap is reasonably sized. */
     public static byte[] memoryReserve = new byte[10485760];
-    private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode[] {new DisplayMode(2560, 1600), new DisplayMode(2880, 1800)});
+    private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
     private final File fileResourcepacks;
     private final PropertyMap twitchDetails;
     private final PropertyMap field_181038_N;
@@ -235,7 +231,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     /**
      * Keeps track of how long the debug crash keycombo (F3+C) has been pressed for, in order to crash after 10 seconds.
      */
-    private long debugCrashKeyPressTime = -1L;
     private IReloadableResourceManager mcResourceManager;
     private final IMetadataSerializer metadataSerializer_ = new IMetadataSerializer();
     private final List<IResourcePack> defaultResourcePacks = Lists.<IResourcePack>newArrayList();
@@ -1765,23 +1760,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 if (Keyboard.getEventKeyState())
                 {
                     KeyBinding.onTick(k);
-                }
-
-                if (this.debugCrashKeyPressTime > 0L)
-                {
-                    if (getSystemTime() - this.debugCrashKeyPressTime >= 6000L)
-                    {
-                        throw new ReportedException(new CrashReport("Manually triggered debug crash", new Throwable()));
-                    }
-
-                    if (!Keyboard.isKeyDown(46) || !Keyboard.isKeyDown(61))
-                    {
-                        this.debugCrashKeyPressTime = -1L;
-                    }
-                }
-                else if (Keyboard.isKeyDown(46) && Keyboard.isKeyDown(61))
-                {
-                    this.debugCrashKeyPressTime = getSystemTime();
                 }
 
                 this.dispatchKeypresses();

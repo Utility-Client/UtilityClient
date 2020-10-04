@@ -13,6 +13,6 @@ public class PointCrosshair implements Crosshair {
 
     @Override
     public void updateRender(ScaledResolution sr, int centerX, int centerY, int scaleFactor) {
-        drawRect(centerX-1, centerY-1, centerX+1, centerY+1, -1);
+        drawRect(centerX-0.5f, centerY-0.5f, centerX+0.5f, centerY+0.5f, -1);
     }
 }
