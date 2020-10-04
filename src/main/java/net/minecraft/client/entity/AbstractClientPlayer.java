@@ -1,12 +1,14 @@
 package net.minecraft.client.entity;
 
+import com.google.gson.reflect.TypeToken;
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.utils.CapeUtils;
+import de.gamingcraft.utils.json.CapeUtils;
+import de.gamingcraft.utils.json.JSONUtils;
+import de.gamingcraft.utils.json.objects.CapeIndex;
+import de.gamingcraft.utils.json.objects.CapeOwner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
@@ -20,24 +22,36 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
-import java.util.HashMap;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
 
 public abstract class AbstractClientPlayer extends EntityPlayer
 {
     private NetworkPlayerInfo playerInfo;
+    private static String rawCapesIndex;
+    private static List<CapeOwner> capesIndex;
+    private CapeUtils capeUtils = new CapeUtils();
 
 
     public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
     {
         super(worldIn, playerProfile);
-        //if(!UtilityClient.capesEnabled) return;
-        //String username = playerProfile.getName();
-        UtilityClient.capeUtilsInstance.downloadCape("");
+        for (CapeOwner cOwner: capesIndex) {
+            if (cOwner.username.equalsIgnoreCase(playerProfile.getName())) {
+                capeUtils.downloadCape("https://api.gamingcraft.de/capes/", cOwner.filename);
+            }
+        }
+    }
+
+    public static void entry() {
+        try {
+            rawCapesIndex = JSONUtils.downloadJson(new URL("https://api.gamingcraft.de/capes/index.json"));
+            capesIndex = (List<CapeOwner>) JSONUtils.parseToJson(rawCapesIndex, new TypeToken<List<CapeOwner>>(){}.getType());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,8 +100,8 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     }
 
     public ResourceLocation getLocationCape() {
-        if (UtilityClient.capeUtilsInstance.ofLocationCape != null) {
-            return UtilityClient.capeUtilsInstance.ofLocationCape;
+        if (capeUtils.ucLocationCape != null) {
+            return capeUtils.ucLocationCape;
         } else {
             NetworkPlayerInfo var1 = this.getPlayerInfo();
             return var1 == null ? null : var1.getLocationCape();

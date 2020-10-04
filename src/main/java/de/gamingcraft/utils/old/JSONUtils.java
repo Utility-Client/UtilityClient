@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Collection;
 
 public class JSONUtils {
-    public static String str = downloadJson();
+    /*public static String str = downloadJson();
     public static Repo repo;
     public static String[] changes;
 
@@ -56,5 +56,5 @@ public class JSONUtils {
     public static void parseOutput() {
         String raw = repo.body;
         changes = raw.split("-");
-    }
+    }*/
 }
