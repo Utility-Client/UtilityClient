@@ -9,6 +9,11 @@
 [GamingCraft_hd](http://gamingcraft.de)<br>
 Developer of the Utility-Client
 
+<img src="https://avatars1.githubusercontent.com/u/63241406?v=4" width="100">
+
+[Niklas-Dev](https://github.com/Niklas-Dev)<br>
+Contributer
+
 ## Applications used
 - BOM Remover by [whlk](https://github.com/whlk)
 - Maven by Apache
