@@ -120,7 +120,7 @@ public class EntitySilverfish extends EntityMob
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         this.renderYawOffset = this.rotationYaw;
         super.onUpdate();
     }

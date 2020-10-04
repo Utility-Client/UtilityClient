@@ -117,11 +117,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
         this.squishFactor += (this.squishAmount - this.squishFactor) * 0.5F;
         this.prevSquishFactor = this.squishFactor;
-        try {
-            super.onUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onUpdate();
 
         if (this.onGround && !this.wasOnGround)
         {
@@ -323,13 +319,9 @@ public class EntitySlime extends EntityLiving implements IMob
             {
                 BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(blockpos);
 
-                try {
-                    if (biomegenbase == BiomeGenBase.swampland && this.posY > 50.0D && this.posY < 70.0D && this.rand.nextFloat() < 0.5F && this.rand.nextFloat() < this.worldObj.getCurrentMoonPhaseFactor() && this.worldObj.getLightFromNeighbors(new BlockPos(this)) <= this.rand.nextInt(8))
-                    {
-                        return super.getCanSpawnHere();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (biomegenbase == BiomeGenBase.swampland && this.posY > 50.0D && this.posY < 70.0D && this.rand.nextFloat() < 0.5F && this.rand.nextFloat() < this.worldObj.getCurrentMoonPhaseFactor() && this.worldObj.getLightFromNeighbors(new BlockPos(this)) <= this.rand.nextInt(8))
+                {
+                    return super.getCanSpawnHere();
                 }
 
                 if (this.rand.nextInt(10) == 0 && chunk.getRandomWithSeed(987234911L).nextInt(10) == 0 && this.posY < 40.0D)
@@ -422,11 +414,7 @@ public class EntitySlime extends EntityLiving implements IMob
         public void startExecuting()
         {
             this.field_179465_b = 300;
-            try {
-                super.startExecuting();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super.startExecuting();
         }
 
         public boolean continueExecuting()

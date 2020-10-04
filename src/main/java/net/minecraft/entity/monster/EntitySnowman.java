@@ -44,11 +44,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
      */
     public void onLivingUpdate()
     {
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
 
         if (!this.worldObj.isRemote)
         {

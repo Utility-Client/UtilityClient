@@ -134,11 +134,7 @@ public class EntityEndermite extends EntityMob
      */
     public void onLivingUpdate()
     {
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
 
         if (this.worldObj.isRemote)
         {

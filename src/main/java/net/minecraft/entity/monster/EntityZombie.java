@@ -236,11 +236,7 @@ public class EntityZombie extends EntityMob
             ((EntityLiving)this.ridingEntity).getNavigator().setPath(this.getNavigator().getPath(), 1.5D);
         }
 
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
     }
 
     /**
@@ -278,11 +274,7 @@ public class EntityZombie extends EntityMob
                         {
                             this.worldObj.spawnEntityInWorld(entityzombie);
                             entityzombie.setAttackTarget(entitylivingbase);
-                            try {
-                                entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                            entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
                             this.getEntityAttribute(reinforcementChance).applyModifier(new AttributeModifier("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
                             entityzombie.getEntityAttribute(reinforcementChance).applyModifier(new AttributeModifier("Zombie reinforcement callee charge", -0.05000000074505806D, 0));
                             break;
@@ -483,11 +475,7 @@ public class EntityZombie extends EntityMob
             EntityZombie entityzombie = new EntityZombie(this.worldObj);
             entityzombie.copyLocationAndAnglesFrom(entityLivingIn);
             this.worldObj.removeEntity(entityLivingIn);
-            try {
-                entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            entityzombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null);
             entityzombie.setVillager(true);
 
             if (entityLivingIn.isChild())
@@ -692,11 +680,7 @@ public class EntityZombie extends EntityMob
     {
         EntityVillager entityvillager = new EntityVillager(this.worldObj);
         entityvillager.copyLocationAndAnglesFrom(this);
-        try {
-            entityvillager.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        entityvillager.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
         entityvillager.setLookingForHome();
 
         if (this.isChild())

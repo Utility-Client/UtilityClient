@@ -72,11 +72,7 @@ public class EntityAIOcelotAttack extends EntityAIBase
             d2 = 0.6D;
         }
 
-        try {
-            this.theEntity.getNavigator().tryMoveToEntityLiving(this.theVictim, d2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.theEntity.getNavigator().tryMoveToEntityLiving(this.theVictim, d2);
         this.attackCountdown = Math.max(this.attackCountdown - 1, 0);
 
         if (d1 <= d0)

@@ -117,11 +117,7 @@ public class EntityAIArrowAttack extends EntityAIBase
         }
         else
         {
-            try {
-                this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
         }
 
         this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
@@ -135,11 +131,7 @@ public class EntityAIArrowAttack extends EntityAIBase
 
             float f = MathHelper.sqrt_double(d0) / this.field_96562_i;
             float lvt_5_1_ = MathHelper.clamp_float(f, 0.1F, 1.0F);
-            try {
-                this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, lvt_5_1_);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, lvt_5_1_);
             this.rangedAttackTime = MathHelper.floor_float(f * (float)(this.maxRangedAttackTime - this.field_96561_g) + (float)this.field_96561_g);
         }
         else if (this.rangedAttackTime < 0)

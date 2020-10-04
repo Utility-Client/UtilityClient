@@ -176,11 +176,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
             }
         }
 
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
     }
 
     public void handleStatusUpdate(byte id)

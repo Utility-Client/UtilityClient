@@ -1746,7 +1746,7 @@ public abstract class EntityLivingBase extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (!this.worldObj.isRemote)
@@ -1797,11 +1797,7 @@ public abstract class EntityLivingBase extends Entity
             }
         }
 
-        try {
-            this.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.onLivingUpdate();
         double d0 = this.posX - this.prevPosX;
         double d1 = this.posZ - this.prevPosZ;
         float f = (float)(d0 * d0 + d1 * d1);

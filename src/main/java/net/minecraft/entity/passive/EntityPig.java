@@ -75,11 +75,7 @@ public class EntityPig extends EntityAnimal
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        try {
-            super.readEntityFromNBT(tagCompund);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.readEntityFromNBT(tagCompund);
         this.setSaddled(tagCompund.getBoolean("Saddle"));
     }
 

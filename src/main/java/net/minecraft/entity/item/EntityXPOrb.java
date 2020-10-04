@@ -83,7 +83,7 @@ public class EntityXPOrb extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (this.delayBeforeCanPickup > 0)
@@ -96,16 +96,12 @@ public class EntityXPOrb extends Entity
         this.prevPosZ = this.posZ;
         this.motionY -= 0.029999999329447746D;
 
-        try {
-            if (this.worldObj.getBlockState(new BlockPos(this)).getBlock().getMaterial() == Material.lava)
-            {
-                this.motionY = 0.20000000298023224D;
-                this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-                this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-                this.playSound("random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (this.worldObj.getBlockState(new BlockPos(this)).getBlock().getMaterial() == Material.lava)
+        {
+            this.motionY = 0.20000000298023224D;
+            this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.playSound("random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
         }
 
         this.pushOutOfBlocks(this.posX, (this.getEntityBoundingBox().minY + this.getEntityBoundingBox().maxY) / 2.0D, this.posZ);

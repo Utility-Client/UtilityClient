@@ -74,11 +74,7 @@ public class EntityAIMate extends EntityAIBase
     public void updateTask()
     {
         this.theAnimal.getLookHelper().setLookPositionWithEntity(this.targetMate, 10.0F, (float)this.theAnimal.getVerticalFaceSpeed());
-        try {
-            this.theAnimal.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.theAnimal.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);
         ++this.spawnBabyDelay;
 
         if (this.spawnBabyDelay >= 60 && this.theAnimal.getDistanceSqToEntity(this.targetMate) < 9.0D)

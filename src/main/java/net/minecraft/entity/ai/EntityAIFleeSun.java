@@ -72,11 +72,7 @@ public class EntityAIFleeSun extends EntityAIBase
      */
     public void startExecuting()
     {
-        try {
-            this.theCreature.getNavigator().tryMoveToXYZ(this.shelterX, this.shelterY, this.shelterZ, this.movementSpeed);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.theCreature.getNavigator().tryMoveToXYZ(this.shelterX, this.shelterY, this.shelterZ, this.movementSpeed);
     }
 
     private Vec3 findPossibleShelter()

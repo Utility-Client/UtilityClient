@@ -72,13 +72,9 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         super.onUpdate();
-        try {
-            this.mobSpawnerLogic.updateSpawner();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.mobSpawnerLogic.updateSpawner();
     }
 
     public MobSpawnerBaseLogic func_98039_d()

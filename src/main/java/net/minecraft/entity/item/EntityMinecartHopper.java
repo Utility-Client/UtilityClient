@@ -140,12 +140,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
         if (!this.worldObj.isRemote && this.isEntityAlive() && this.getBlocked())
         {
-            BlockPos blockpos = null;
-            try {
-                blockpos = new BlockPos(this);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            BlockPos blockpos = new BlockPos(this);
 
             if (blockpos.equals(this.field_174900_c))
             {

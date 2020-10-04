@@ -159,11 +159,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob
             this.setSize(0.72F, 2.535F);
         }
 
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
     }
 
     /**
@@ -171,11 +167,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob
      */
     public void updateRidden()
     {
-        try {
-            super.updateRidden();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.updateRidden();
 
         if (this.ridingEntity instanceof EntityCreature)
         {

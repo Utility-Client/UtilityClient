@@ -194,11 +194,7 @@ public class EntityEnderEye extends Entity
                 }
                 else
                 {
-                    try {
-                        this.worldObj.playAuxSFX(2003, new BlockPos(this), 0);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    this.worldObj.playAuxSFX(2003, new BlockPos(this), 0);
                 }
             }
         }

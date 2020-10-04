@@ -157,11 +157,7 @@ public class EntityAITempt extends EntityAIBase
         }
         else
         {
-            try {
-                this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.speed);
         }
     }
 

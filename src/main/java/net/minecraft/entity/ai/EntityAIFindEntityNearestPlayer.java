@@ -131,11 +131,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
     public void startExecuting()
     {
         this.field_179434_b.setAttackTarget(this.field_179433_e);
-        try {
-            super.startExecuting();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.startExecuting();
     }
 
     /**
@@ -144,11 +140,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
     public void resetTask()
     {
         this.field_179434_b.setAttackTarget((EntityLivingBase)null);
-        try {
-            super.startExecuting();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.startExecuting();
     }
 
     protected double func_179431_f()

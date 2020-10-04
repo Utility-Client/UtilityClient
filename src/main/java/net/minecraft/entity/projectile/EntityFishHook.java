@@ -164,7 +164,7 @@ public class EntityFishHook extends Entity
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (this.fishPosRotationIncrements > 0)
@@ -352,12 +352,7 @@ public class EntityFishHook extends Entity
                 {
                     WorldServer worldserver = (WorldServer)this.worldObj;
                     int l = 1;
-                    BlockPos blockpos = null;
-                    try {
-                        blockpos = (new BlockPos(this)).up();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    BlockPos blockpos = (new BlockPos(this)).up();
 
                     if (this.rand.nextFloat() < 0.25F && this.worldObj.canLightningStrike(blockpos))
                     {

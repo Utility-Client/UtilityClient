@@ -110,11 +110,7 @@ public class EntityBlaze extends EntityMob
             }
         }
 
-        try {
-            super.onLivingUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onLivingUpdate();
     }
 
     protected void updateAITasks()
@@ -140,11 +136,7 @@ public class EntityBlaze extends EntityMob
             this.isAirBorne = true;
         }
 
-        try {
-            super.updateAITasks();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.updateAITasks();
     }
 
     public void fall(float distance, float damageMultiplier)
@@ -301,11 +293,7 @@ public class EntityBlaze extends EntityMob
                 this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }
 
-            try {
-                super.updateTask();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            super.updateTask();
         }
     }
 }

@@ -164,11 +164,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     public void travelToDimension(int dimensionId)
     {
         this.dropContentsWhenDead = false;
-        try {
-            super.travelToDimension(dimensionId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.travelToDimension(dimensionId);
     }
 
     /**

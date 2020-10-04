@@ -63,11 +63,7 @@ public abstract class EntityWaterMob extends EntityLiving implements IAnimals
     public void onEntityUpdate()
     {
         int i = this.getAir();
-        try {
-            super.onEntityUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.onEntityUpdate();
 
         if (this.isEntityAlive() && !this.isInWater())
         {

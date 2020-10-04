@@ -39,7 +39,7 @@ public abstract class EntityMob extends EntityCreature implements IMob
     /**
      * Called to update the entity's position/logic.
      */
-    public void onUpdate() {
+    public void onUpdate() throws Exception {
         super.onUpdate();
 
         if (!this.worldObj.isRemote && this.worldObj.getDifficulty() == EnumDifficulty.PEACEFUL)

@@ -36,11 +36,7 @@ public class EntityAIVillagerMate extends EntityAIBase
         }
         else
         {
-            try {
-                this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.villagerObj), 0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.villageObj = this.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.villagerObj), 0);
 
             if (this.villageObj == null)
             {
@@ -104,11 +100,7 @@ public class EntityAIVillagerMate extends EntityAIBase
 
         if (this.villagerObj.getDistanceSqToEntity(this.mate) > 2.25D)
         {
-            try {
-                this.villagerObj.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.villagerObj.getNavigator().tryMoveToEntityLiving(this.mate, 0.25D);
         }
         else if (this.matingTimeout == 0 && this.mate.isMating())
         {

@@ -84,7 +84,7 @@ public class EntityEnderman extends EntityMob
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readEntityFromNBT(NBTTagCompound tagCompund) {
+    public void readEntityFromNBT(NBTTagCompound tagCompund) throws Exception {
         super.readEntityFromNBT(tagCompund);
         IBlockState iblockstate;
 

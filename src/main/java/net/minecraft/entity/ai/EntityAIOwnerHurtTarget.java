@@ -37,14 +37,9 @@ public class EntityAIOwnerHurtTarget extends EntityAITarget
             {
                 this.theTarget = entitylivingbase.getLastAttacker();
                 int i = entitylivingbase.getLastAttackerTime();
-                try {
-                    return i != this.field_142050_e && this.isSuitableTarget(this.theTarget, false) && this.theEntityTameable.shouldAttackEntity(this.theTarget, entitylivingbase);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                return i != this.field_142050_e && this.isSuitableTarget(this.theTarget, false) && this.theEntityTameable.shouldAttackEntity(this.theTarget, entitylivingbase);
             }
         }
-        return false;
     }
 
     /**

@@ -209,11 +209,7 @@ public class EntitySheep extends EntityAnimal
      */
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        try {
-            super.readEntityFromNBT(tagCompund);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        super.readEntityFromNBT(tagCompund);
         this.setSheared(tagCompund.getBoolean("Sheared"));
         this.setFleeceColor(EnumDyeColor.byMetadata(tagCompund.getByte("Color")));
     }

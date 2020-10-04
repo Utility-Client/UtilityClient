@@ -48,11 +48,7 @@ public class CommandGameMode extends CommandBase
         {
             WorldSettings.GameType worldsettings$gametype = this.getGameModeFromCommand(sender, args[0]);
             EntityPlayer entityplayer = args.length >= 2 ? getPlayer(sender, args[1]) : getCommandSenderAsPlayer(sender);
-            try {
-                entityplayer.setGameType(worldsettings$gametype);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            entityplayer.setGameType(worldsettings$gametype);
             entityplayer.fallDistance = 0.0F;
 
             if (sender.getEntityWorld().getGameRules().getBoolean("sendCommandFeedback"))
