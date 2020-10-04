@@ -143,7 +143,6 @@ public class GuiIngame extends Gui
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(icons);
         GlStateManager.enableBlend();
-        GlStateManager.enableAlpha();
 
         if (this.showCrosshair())
         {
