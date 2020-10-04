@@ -1,6 +1,6 @@
 # Utility Client
 
-[Discord Guild](http://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases)
+[Discord Guild](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
 
 ## Creators
 
