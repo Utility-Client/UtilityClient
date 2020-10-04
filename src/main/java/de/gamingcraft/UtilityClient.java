@@ -58,7 +58,7 @@ public class UtilityClient extends Thread {
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
 
-        capeUtilsInstance.start();
+        //capeUtilsInstance.start();
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         CROSSHAIR_MANAGER_INSTANCE.start();

@@ -37,7 +37,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
         super(worldIn, playerProfile);
         //if(!UtilityClient.capesEnabled) return;
         //String username = playerProfile.getName();
-        //UtilityClient.capeUtilsInstance.downloadCape(username);
+        UtilityClient.capeUtilsInstance.downloadCape("");
     }
 
     /**

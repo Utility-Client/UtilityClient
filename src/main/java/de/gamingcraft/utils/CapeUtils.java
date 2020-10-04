@@ -25,19 +25,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class CapeUtils extends Thread {
+public class CapeUtils {
 
     public ResourceLocation ofLocationCape = null;
     public String rawCapesJson = "";
     public ArrayList<CapeOwner> rootJson = null;
 
-    @Override
     public void run() {
-        rawCapesJson = downloadJson();
-        parseJson();
-
-        super.run();
-
+        //rawCapesJson = downloadJson();
+        //parseJson();
     }
 
     public String downloadJson() {
@@ -69,24 +65,24 @@ public class CapeUtils extends Thread {
         return urlString;
     }
 
-    public void parseJson() {
+    /*public void parseJson() {
         Gson gson = new GsonBuilder().generateNonExecutableJson().disableInnerClassSerialization().create();
         Type collectionType = new TypeToken<Collection<CapeOwner>>(){}.getType();
         rootJson = gson.fromJson(rawCapesJson, collectionType);
-    }
+    }*/
 
     public void downloadCape(String username) {
         if (username != null && !username.isEmpty()) {
-            username = StringUtils.stripControlCodes(username);
+            /*username = StringUtils.stripControlCodes(username);
             String filename = "";
 
             for (CapeOwner cOwner : rootJson) {
                 if(cOwner.username.equalsIgnoreCase(username)) {
                     filename = cOwner.filename;
                 }
-            }
+            }*/
             
-            String ofCapeUrl = "http://api.gamingcraft.de/capes/" + filename;
+            String ofCapeUrl = "http://api.gamingcraft.de/capes/GamingCraft_hd.png";
 
             MinecraftProfileTexture mpt = new MinecraftProfileTexture(ofCapeUrl, new HashMap());
             final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());

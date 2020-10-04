@@ -331,7 +331,7 @@ public class GuiIngame extends Gui
         if(UtilityClient.shouldRenderOverlay()) {
             ModuleHandler.loop(this.getFontRenderer());
         }
-        GlStateManager.disableAlpha();
+        //http://undertale.com/GlStateManager.disableAlpha();
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks)
@@ -553,6 +553,8 @@ public class GuiIngame extends Gui
 
     private void renderPlayerStats(ScaledResolution p_180477_1_)
     {
+        GlStateManager.enableAlpha();
+
         if (this.mc.getRenderViewEntity() instanceof EntityPlayer)
         {
             EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
