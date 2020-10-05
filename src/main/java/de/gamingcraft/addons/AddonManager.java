@@ -1,30 +1,54 @@
 package de.gamingcraft.addons;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+
 import java.io.File;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 
 public class AddonManager {
+
+    private static ArrayList<Class> classes = new ArrayList<Class>();
+
     public static void start() {
-        // Create a File object on the root of the directory containing the class file
         File file = new File("_uc-addons\\");
         file.mkdir();
 
         try {
-            // Convert File to a URL
-            URL url = file.toURI().toURL();          // file:/c:/myclasses/
+            URL url = file.toURI().toURL();
             URL[] urls = new URL[]{url};
-            // Create a new class loader with the directory
             ClassLoader cl = new URLClassLoader(urls);
-            // Load in the class; MyClass.class should be located in
-            // the directory file + addon\Class.class
-            Class cls = cl.loadClass("Class");
+
+
+            for (File f : file.listFiles()) {
+                if(!f.isDirectory()) {
+                    classes.add(cl.loadClass(f.getName().replace(".class", "")));
+                }
+            }
+
             ((URLClassLoader)cl).close();
 
-            cls.getDeclaredMethod("init").invoke(cls.newInstance());
+
+            runAddonEvent("init");
+
+            //runAddonEvent("loop", Minecraft.getMinecraft(), Minecraft.getMinecraft().fontRendererObj, new ScaledResolution(Minecraft.getMinecraft()));
+
+            //runAddonEvent("drawOverlay", Minecraft.getMinecraft(), Minecraft.getMinecraft().fontRendererObj, new ScaledResolution(Minecraft.getMinecraft()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void runAddonEvent(String event, Object... args) {
+        for (Class c : classes) {
+            try {
+                c.getDeclaredMethod("init").invoke(c.newInstance(), args);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
