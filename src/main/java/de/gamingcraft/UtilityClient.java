@@ -1,5 +1,6 @@
 package de.gamingcraft;
 
+import de.gamingcraft.addons.AddonManager;
 import de.gamingcraft.config.ConfigManager;
 import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
@@ -9,6 +10,7 @@ import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -48,6 +50,8 @@ public class UtilityClient extends Thread {
 
     public void run() {
 
+        AddonManager.start();
+
         ModuleHandler.start();
         try {
             ConfigManager.start();
@@ -64,6 +68,8 @@ public class UtilityClient extends Thread {
         CROSSHAIR_MANAGER_INSTANCE.start();
 
         AbstractClientPlayer.entry();
+
+
     }
 
     public void loop() {
@@ -71,6 +77,7 @@ public class UtilityClient extends Thread {
         if(keyBinds.get(0).isKeyDown()) fovModifier = 0.15f; else fovModifier = 1.0f;
         if(keyBinds.get(1).isPressed()) if(Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) Minecraft.getMinecraft().gameSettings.gammaSetting = 999999; else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
         MacroManager.loop();
+        AddonManager.runAddonEvent("loop");
     }
 
     public static String getClientName() {
