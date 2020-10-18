@@ -1,7 +1,6 @@
 package de.gamingcraft.utils.json;
 
 import com.mojang.authlib.minecraft.*;
-import com.sun.istack.internal.NotNull;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +14,7 @@ public class CapeUtils {
 
     public ResourceLocation ucLocationCape;
 
-    public void downloadCape(@NotNull String url, @NotNull String filename) {
+    public void downloadCape(String url, String filename) {
         String ucCapeUrl = url + filename;
 
         MinecraftProfileTexture mpt = new MinecraftProfileTexture(ucCapeUrl, new HashMap());

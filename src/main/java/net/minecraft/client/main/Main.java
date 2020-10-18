@@ -22,7 +22,7 @@ public class Main
 {
     private static String playername;
 
-    public static void main(String[] p_main_0_)
+    public static void main(String[] args)
     {
         System.setProperty("java.net.preferIPv4Stack", "true");
         OptionParser optionparser = new OptionParser();
@@ -39,7 +39,7 @@ public class Main
         OptionSpec<Integer> optionspec6 = optionparser.accepts("proxyPort").withRequiredArg().defaultsTo("8080").ofType(Integer.class);
         OptionSpec<String> optionspec7 = optionparser.accepts("proxyUser").withRequiredArg();
         OptionSpec<String> optionspec8 = optionparser.accepts("proxyPass").withRequiredArg();
-        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo("SteveTheDev");
+        OptionSpec<String> optionspec9 = optionparser.accepts("username").withRequiredArg().defaultsTo("GamingCraft_hd");
 
         OptionSpec<String> optionspec10 = optionparser.accepts("uuid").withRequiredArg();
         OptionSpec<String> optionspec11 = optionparser.accepts("accessToken").withRequiredArg().required();
@@ -51,7 +51,7 @@ public class Main
         OptionSpec<String> optionspec17 = optionparser.accepts("assetIndex").withRequiredArg();
         OptionSpec<String> optionspec18 = optionparser.accepts("userType").withRequiredArg().defaultsTo("legacy");
         OptionSpec<String> optionspec19 = optionparser.nonOptions();
-        OptionSet optionset = optionparser.parse(p_main_0_);
+        OptionSet optionset = optionparser.parse(args);
         playername = optionspec9.value(optionset);
         List<String> list = optionset.valuesOf(optionspec19);
 

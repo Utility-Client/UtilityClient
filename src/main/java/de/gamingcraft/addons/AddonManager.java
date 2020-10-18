@@ -44,7 +44,7 @@ public class AddonManager {
     public static void runAddonEvent(String event, Object... args) {
         for (Class c : classes) {
             try {
-                c.getDeclaredMethod("init").invoke(c.newInstance(), args);
+                c.getDeclaredMethod(event).invoke(c.newInstance(), args);
             } catch (Exception e) {
                 e.printStackTrace();
             }
