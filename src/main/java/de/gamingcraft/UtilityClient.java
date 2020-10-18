@@ -10,7 +10,6 @@ import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class UtilityClient extends Thread {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.4-dev";
+    private static String CLIENT_VERSION = "2.4";
 
     private static UtilityClient CLIENT_INSTANCE = new UtilityClient();
     // https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest
