@@ -1,6 +1,6 @@
 # Utility Client
 
-[Discord Guild](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
+![https://uc.gamingcraft.de/discord](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client) [click here to join](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
 
 ## Contributer
 
