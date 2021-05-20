@@ -1,6 +1,10 @@
 # Utility Client
 
-[Discord Guild](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
+![https://uc.gamingcraft.de/discord](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client) [click here to join our discord](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
+
+## Archived
+This repo got archived on the 1st December of 2020.<br>
+The [v3](https://github.com/Utility-Client/UtilityClient3) can be found [here](https://github.com/Utility-Client/UtilityClient3).
 
 ## Contributer
 
