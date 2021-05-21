@@ -63,7 +63,11 @@ public class GuiScreenResourcePacks extends GuiScreen
                 this.selectedResourcePacks.add(new ResourcePackListEntryFound(this, resourcepackrepository$entry1));
             }
 
-            this.selectedResourcePacks.add(new ResourcePackListEntryDefault(this));
+            try {
+                this.selectedResourcePacks.add(new ResourcePackListEntryDefault(this));
+            } catch (Exception e) {
+                // I know, ugly fix
+            }
         }
 
         this.availableResourcePacksList = new GuiResourcePackAvailable(this.mc, 200, this.height, this.availableResourcePacks);

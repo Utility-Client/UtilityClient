@@ -33,10 +33,10 @@ public class GuiThemeOptions extends GuiScreen
 
         //buttons here
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2, 98, 20, "Previous Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2, 98, 20, "Next Theme"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2 - 40, 98, 20, "Previous Theme"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2 - 40, 98, 20, "Next Theme"));
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height/2, I18n.format("gui.done", new Object[0])));
     }
 
     /**
@@ -75,7 +75,7 @@ public class GuiThemeOptions extends GuiScreen
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
 
         // Strings go here
-        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + "Prefix§7: " + UtilityClient.CURRENT_THEME.getSuffix() + "Suffix", this.width / 2, this.height/2-30, 16777215);
+        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + "Prefix§7: " + UtilityClient.CURRENT_THEME.getSuffix() + "Suffix", this.width / 2, this.height/2-70, 16777215);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
