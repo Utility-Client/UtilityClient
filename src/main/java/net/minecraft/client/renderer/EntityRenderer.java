@@ -1277,7 +1277,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
     public void renderWorld(float partialTicks, long finishTimeNano)
     {
-        this.updateLightmap(partialTicks);
+        try {
+            this.updateLightmap(partialTicks);
+        } catch (Exception e) {
+
+        }
 
         if (this.mc.getRenderViewEntity() == null)
         {

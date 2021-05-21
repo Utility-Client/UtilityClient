@@ -1,5 +1,2 @@
-mvn clean package
-
+call mvn clean package
 call bundle.cmd
-
-pause
