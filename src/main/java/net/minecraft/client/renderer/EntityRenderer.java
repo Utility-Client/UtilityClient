@@ -3,6 +3,7 @@ package net.minecraft.client.renderer;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
+import de.gamingcraft.UtilityClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -1315,7 +1316,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.enableCull();
         this.mc.mcProfiler.endStartSection("clear");
         GlStateManager.viewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
-        this.updateFogColor(partialTicks);
+        try {
+            this.updateFogColor(partialTicks);
+        } catch (Exception e) {
+            // sorry, not sorry
+        }
         GlStateManager.clear(16640);
         this.mc.mcProfiler.endStartSection("camera");
         this.setupCameraTransform(partialTicks, pass);
@@ -1468,9 +1473,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.renderHand)
         {
-            GlStateManager.clear(256);
-            this.renderHand(partialTicks, pass);
-            this.renderWorldDirections(partialTicks);
+            if(UtilityClient.fovModifier == 1.0F) {
+                GlStateManager.clear(256);
+                this.renderHand(partialTicks, pass);
+                this.renderWorldDirections(partialTicks);
+            }
         }
     }
 
