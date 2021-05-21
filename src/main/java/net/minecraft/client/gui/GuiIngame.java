@@ -114,7 +114,11 @@ public class GuiIngame extends Gui
 
         if (Minecraft.isFancyGraphicsEnabled())
         {
-            this.renderVignette(this.mc.thePlayer.getBrightness(partialTicks), scaledresolution);
+            try {
+                this.renderVignette(this.mc.thePlayer.getBrightness(partialTicks), scaledresolution);
+            }catch (Exception e) {
+                // fuck
+            }
         }
         else
         {
@@ -147,7 +151,7 @@ public class GuiIngame extends Gui
         if (this.showCrosshair())
         {
 
-            UtilityClient.getInstance().CROSSHAIR_MANAGER_INSTANCE.loop(0);
+            UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(0);
         }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

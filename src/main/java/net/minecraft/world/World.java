@@ -1422,7 +1422,6 @@ public abstract class World implements IBlockAccess
             j = MathHelper.floor_double(entityIn.posY);
             k = MathHelper.floor_double(entityIn.posZ);
         }catch (NullPointerException e) {
-            e.printStackTrace();
         }
 
         BlockPos blockpos = new BlockPos(i, j, k);
