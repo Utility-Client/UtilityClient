@@ -1302,7 +1302,11 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
         else
         {
-            this.renderWorldPass(2, partialTicks, finishTimeNano);
+            try {
+                this.renderWorldPass(2, partialTicks, finishTimeNano);
+            } catch (Exception e) {
+                // dude, just work already ._.
+            }
         }
 
         this.mc.mcProfiler.endSection();
