@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class UtilityClient extends Thread {
     private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.4";
+    private static String CLIENT_VERSION = "2.5";
 
     private static UtilityClient CLIENT_INSTANCE = new UtilityClient();
     // https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest
