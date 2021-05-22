@@ -113,7 +113,7 @@ public class GuiIngame extends Gui {
     }
 
     public void renderGameOverlay(float partialTicks) {
-        try {
+        //try {
             ScaledResolution scaledresolution = new ScaledResolution(this.mc);
             int i = scaledresolution.getScaledWidth();
             int j = scaledresolution.getScaledHeight();
@@ -303,7 +303,7 @@ public class GuiIngame extends Gui {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.disableLighting();
             GlStateManager.enableAlpha();
-
+try {
             if (UtilityClient.shouldRenderOverlay()) {
                 ModuleHandler.loop(this.getFontRenderer());
             }

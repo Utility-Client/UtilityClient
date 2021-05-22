@@ -5,7 +5,6 @@ import com.mojang.authlib.GameProfile;
 import de.gamingcraft.UtilityClient;
 import de.gamingcraft.utils.json.CapeUtils;
 import de.gamingcraft.utils.json.JSONUtils;
-import de.gamingcraft.utils.json.objects.CapeIndex;
 import de.gamingcraft.utils.json.objects.CapeOwner;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -22,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,15 +34,23 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     private static List<CapeOwner> capesIndex;
     private CapeUtils capeUtils = new CapeUtils();
 
+    public AbstractClientPlayer(World worldIn) {
+        super(worldIn, null);
+    }
 
     public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
     {
         super(worldIn, playerProfile);
-        for (CapeOwner cOwner: capesIndex) {
-            if (cOwner.username.equalsIgnoreCase(playerProfile.getName())) {
-                capeUtils.downloadCape("https://api.gamingcraft.de/capes/", cOwner.filename);
+        try {
+            for (CapeOwner cOwner: capesIndex) {
+                if (cOwner.username.equalsIgnoreCase(playerProfile.getName())) {
+                    capeUtils.downloadCape("https://api.gamingcraft.de/capes/", cOwner.filename);
+                }
             }
+        } catch (Exception e) {
+            System.out.println(e);
         }
+
     }
 
     public static void entry() {
