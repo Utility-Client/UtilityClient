@@ -1,6 +1,6 @@
 # Utility Client
 
-![https://uc.gamingcraft.de/discord](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client) [click here to join our discord](https://uc.gamingcraft.de/discord) - [Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
+![](https://img.shields.io/github/workflow/status/Utility-Client/UtilityClient2/Java%20CI%20with%20Maven?style=for-the-badge) [![](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client&style=for-the-badge)](https://uc.gamingcraft.de/discord) ![](https://img.shields.io/github/downloads/Utility-Client/UtilityClient2/total?style=for-the-badge)<br>[Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases) - [License](https://uc.gamingcraft.de/License/)
 
 ## Contributer
 
@@ -32,5 +32,5 @@
 
 ## Applications used
 - BOM Remover by [whlk](https://github.com/whlk)
-- Maven by Apache
+- [Maven](https://maven.apache.org/) by [Apache](https://www.apache.org/)
 - [MavenMCP](https://github.com/Hexeption/MavenMCP) by [Hexeption](https://github.com/Hexeption)
