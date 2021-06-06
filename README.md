@@ -30,11 +30,6 @@ The [v3](https://github.com/Utility-Client/UtilityClient3) can be found [here](h
 <img src="https://avatars1.githubusercontent.com/u/63241406?v=4" width="100">
 
 [Niklas-Dev](https://github.com/Niklas-Dev)
-
-<img src="https://avatars0.githubusercontent.com/u/32410361?v=4" width="100">
-
-[byquanton](https://github.com/byquanton)
-    
 </td>
 </tr>
 </table>
