@@ -221,7 +221,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public final FrameTimer field_181542_y = new FrameTimer();
     long field_181543_z = System.nanoTime();
     private final boolean jvm64bit;
-    private NetworkManager myNetworkManager;
+    private NetworkManager networkManager;
     private boolean integratedServerIsRunning;
 
     /** The profiler instance */
@@ -1882,13 +1882,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 {
                     this.clickMouse();
                     UtilityClient.CPS_THREAD_INSTANCE.addClick(true);
-                    // TODO: CPS
                 }
 
                 while (this.gameSettings.keyBindUseItem.isPressed())
                 {
                     this.rightClickMouse();
-                    // TODO: CPS
                     UtilityClient.CPS_THREAD_INSTANCE.addClick(false);
                 }
 
@@ -1998,10 +1996,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 this.effectRenderer.updateEffects();
             }
         }
-        else if (this.myNetworkManager != null)
+        else if (this.networkManager != null)
         {
             this.mcProfiler.endStartSection("pendingConnection");
-            this.myNetworkManager.processReceivedPackets();
+            this.networkManager.processReceivedPackets();
         }
 
         this.mcProfiler.endSection();
@@ -2052,35 +2050,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         this.loadingScreen.displaySavingString(I18n.format("menu.loadingLevel"));
 
-        while (!this.theIntegratedServer.serverIsInRunLoop())
-        {
-            String s = this.theIntegratedServer.getUserMessage();
-
-            if (s != null)
-            {
-                this.loadingScreen.displayLoadingString(I18n.format(s));
-            }
-            else
-            {
-                this.loadingScreen.displayLoadingString("");
-            }
-
-            try
-            {
-                Thread.sleep(200L);
-            }
-            catch (InterruptedException var9) {
-                var9.printStackTrace();
-            }
-        }
-
         this.displayGuiScreen(null);
         SocketAddress socketaddress = this.theIntegratedServer.getNetworkSystem().addLocalEndpoint();
         NetworkManager networkmanager = NetworkManager.provideLocalClient(socketaddress);
         networkmanager.setNetHandler(new NetHandlerLoginClient(networkmanager, this, null));
         networkmanager.sendPacket(new C00Handshake(47, socketaddress.toString(), 0, EnumConnectionState.LOGIN));
         networkmanager.sendPacket(new C00PacketLoginStart(this.getSession().getProfile()));
-        this.myNetworkManager = networkmanager;
+        this.networkManager = networkmanager;
     }
 
     /**
@@ -2117,7 +2093,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         this.renderViewEntity = null;
-        this.myNetworkManager = null;
+        this.networkManager = null;
 
         if (this.loadingScreen != null)
         {
