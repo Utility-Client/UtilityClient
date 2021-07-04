@@ -353,6 +353,7 @@ public class GuiIngame extends Gui {
 
     public void renderExpBar(ScaledResolution p_175176_1_, int p_175176_2_) {
         this.mc.mcProfiler.startSection("expBar");
+        GlStateManager.enableAlpha();
         this.mc.getTextureManager().bindTexture(Gui.icons);
         int i = this.mc.thePlayer.xpBarCap();
 
