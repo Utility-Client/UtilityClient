@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class UtilityClient extends Thread {
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.5.1";
+    private static final String CLIENT_VERSION = "2.6-DEV";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
 
     public static float fovModifier = 1.0f;
