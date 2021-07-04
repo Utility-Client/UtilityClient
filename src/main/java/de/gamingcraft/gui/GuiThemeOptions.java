@@ -31,12 +31,10 @@ public class GuiThemeOptions extends GuiScreen
         int i = 0;
         this.title = UtilityClient.getClientName() + " Theme Options";
 
-        //buttons here
-
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2 - 40, 98, 20, "Previous Theme"));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2 - 40, 98, 20, "Next Theme"));
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height/2, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height/2, I18n.format("gui.done")));
     }
 
     /**
