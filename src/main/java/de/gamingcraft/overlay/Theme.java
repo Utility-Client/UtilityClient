@@ -9,8 +9,12 @@ public enum Theme {
     BLUE(3, EnumChatFormatting.DARK_BLUE, EnumChatFormatting.BLUE),
     WHITE(4, EnumChatFormatting.WHITE, EnumChatFormatting.WHITE),
     BLACK(5, EnumChatFormatting.BLACK, EnumChatFormatting.DARK_GRAY),
-    CONTRAST(6, EnumChatFormatting.BLACK, EnumChatFormatting.WHITE);
-
+    CONTRAST(6, EnumChatFormatting.BLACK, EnumChatFormatting.WHITE),
+    PURPLE(7, EnumChatFormatting.DARK_PURPLE, EnumChatFormatting.LIGHT_PURPLE),
+    GRAY(8, EnumChatFormatting.DARK_GRAY, EnumChatFormatting.GRAY),
+    AQUA(9, EnumChatFormatting.DARK_AQUA, EnumChatFormatting.DARK_AQUA),
+    STANDARD_GALACTIC(10, EnumChatFormatting.DARK_RED, EnumChatFormatting.RED);
+    
     private final int id;
     private final EnumChatFormatting prefix;
     private final EnumChatFormatting suffix;
