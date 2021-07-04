@@ -40,7 +40,6 @@ public class DiscordRP extends Thread {
         } else if(Minecraft.getMinecraft().theWorld != null) {
             if(Minecraft.getMinecraft().theWorld.playerEntities.size() > 1) {
                 topText = "Playing Multiplayer";
-                bottomText = Minecraft.getMinecraft().getCurrentServerData().serverIP;
             }
         }
 
