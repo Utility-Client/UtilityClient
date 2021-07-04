@@ -11,8 +11,8 @@ public class PingModule implements IModule {
 
     @Override
     public String getValue() {
-        if(Minecraft.getMinecraft().isIntegratedServerRunning()) return "0ms";
-        return Minecraft.getMinecraft().getNetHandler().getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        // TODO
+        return "null";
     }
 
     @Override
