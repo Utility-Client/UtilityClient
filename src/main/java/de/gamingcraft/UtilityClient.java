@@ -17,40 +17,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UtilityClient extends Thread {
-    private static String CLIENT_NAME = "Utility Client";
-    private static String CLIENT_VERSION = "2.5";
-
-    private static UtilityClient CLIENT_INSTANCE = new UtilityClient();
-    // https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest
+    private static final String CLIENT_NAME = "Utility Client";
+    private static final String CLIENT_VERSION = "2.5.1-DEV";
+    private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
 
     public static float fovModifier = 1.0f;
-
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
-
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
-
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
-
     public static final CrosshairManager CROSSHAIR_MANAGER_INSTANCE = new CrosshairManager();
-
     public static Theme CURRENT_THEME = Theme.RED;
-
     public static boolean renderOverlay = true;
-
     public static boolean capesEnabled = true;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
     }
-
     public static String getDiscordApplicationId() {
         return "742760119984455701";
     }
+    public static String getClientName() {
+        return CLIENT_NAME;
+    }
+    public static String getVersion() {
+        return CLIENT_VERSION;
+    }
+    public static boolean shouldRenderOverlay() {
+        return renderOverlay;
+    }
 
     public void run() {
-
         AddonManager.start();
-
         ModuleHandler.start();
         try {
             ConfigManager.start();
@@ -61,14 +58,10 @@ public class UtilityClient extends Thread {
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
-
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         CROSSHAIR_MANAGER_INSTANCE.start();
-
         AbstractClientPlayer.entry();
-
-
     }
 
     public void loop() {
@@ -79,14 +72,6 @@ public class UtilityClient extends Thread {
         AddonManager.runAddonEvent("loop");
     }
 
-    public static String getClientName() {
-        return CLIENT_NAME;
-    }
-
-    public static String getVersion() {
-        return CLIENT_VERSION;
-    }
-
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
         String cat = CLIENT_NAME;
         if (isMacro) cat = "Auto-Commands";
@@ -94,9 +79,5 @@ public class UtilityClient extends Thread {
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
         if (!isMacro) keyBinds.add(kb);
         return kb;
-    }
-
-    public static boolean shouldRenderOverlay() {
-        return renderOverlay;
     }
 }
