@@ -281,6 +281,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.field_181038_N = gameConfig.userInfo.field_181172_c;
         this.mcDefaultResourcePack = new DefaultResourcePack((new ResourceIndex(gameConfig.folderInfo.assetsDir, gameConfig.folderInfo.assetIndex)).getResourceMap());
         this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
+        assert gameConfig.userInfo.proxy != null;
         this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo.proxy, UUID.randomUUID().toString())).createMinecraftSessionService();
         this.session = gameConfig.userInfo.session;
         this.displayWidth = gameConfig.displayInfo.width > 0 ? gameConfig.displayInfo.width : 1;
@@ -624,8 +625,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     {
                         Thread.sleep(2147483647L);
                     }
-                    catch (InterruptedException var2)
-                    {
+                    catch (InterruptedException var2) {
+                        var2.printStackTrace();
                     }
                 }
             }
@@ -866,18 +867,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     private void checkGLError(String message)
     {
-        boolean enableGLErrorChecking = true;
-        if (enableGLErrorChecking)
-        {
-            int i = GL11.glGetError();
+        int i = GL11.glGetError();
 
-            if (i != 0)
-            {
-                String s = GLU.gluErrorString(i);
-                logger.error("########## GL ERROR ##########");
-                logger.error("@ " + message);
-                logger.error(i + ": " + s);
-            }
+        if (i != 0)
+        {
+            String s = GLU.gluErrorString(i);
+            logger.error("########## GL ERROR ##########");
+            logger.error("@ " + message);
+            logger.error(i + ": " + s);
         }
     }
 
@@ -895,8 +892,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             {
                 this.loadWorld(null);
             }
-            catch (Throwable var5)
-            {
+            catch (Throwable var5) {
+                var5.printStackTrace();
             }
 
             this.mcSoundHandler.unloadSounds();
@@ -944,7 +941,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             while (!this.scheduledTasks.isEmpty())
             {
-                Util.func_181617_a((FutureTask)this.scheduledTasks.poll(), logger);
+                Util.func_181617_a(this.scheduledTasks.poll(), logger);
             }
         }
 
@@ -1476,15 +1473,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 this.displayWidth = Display.getDisplayMode().getWidth();
                 this.displayHeight = Display.getDisplayMode().getHeight();
 
-                if (this.displayWidth <= 0)
-                {
-                    this.displayWidth = 1;
-                }
-
-                if (this.displayHeight <= 0)
-                {
-                    this.displayHeight = 1;
-                }
             }
             else
             {
@@ -1492,15 +1480,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 this.displayWidth = this.tempDisplayWidth;
                 this.displayHeight = this.tempDisplayHeight;
 
-                if (this.displayWidth <= 0)
-                {
-                    this.displayWidth = 1;
-                }
-
-                if (this.displayHeight <= 0)
-                {
-                    this.displayHeight = 1;
-                }
+            }
+            if (this.displayWidth <= 0)
+            {
+                this.displayWidth = 1;
+            }
+            if (this.displayHeight <= 0)
+            {
+                this.displayHeight = 1;
             }
 
             if (this.currentScreen != null)
@@ -1888,39 +1875,24 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                 {
                     this.playerController.onStoppedUsingItem(this.thePlayer);
                 }
-
-                /*while (this.gameSettings.keyBindAttack.isPressed())
-                {
-                    ;
-                }
-
-                while (this.gameSettings.keyBindUseItem.isPressed())
-                {
-                    ;
-                }
-
-                while (this.gameSettings.keyBindPickBlock.isPressed())
-                {
-                    ;
-                }*/
             }
             else
             {
-                if (this.gameSettings.keyBindAttack.isPressed())
+                while (this.gameSettings.keyBindAttack.isPressed())
                 {
                     this.clickMouse();
                     UtilityClient.CPS_THREAD_INSTANCE.addClick(true);
                     // TODO: CPS
                 }
 
-                if (this.gameSettings.keyBindUseItem.isPressed())
+                while (this.gameSettings.keyBindUseItem.isPressed())
                 {
                     this.rightClickMouse();
                     // TODO: CPS
                     UtilityClient.CPS_THREAD_INSTANCE.addClick(false);
                 }
 
-                if (this.gameSettings.keyBindPickBlock.isPressed())
+                while (this.gameSettings.keyBindPickBlock.isPressed())
                 {
                     this.middleClickMouse();
                 }
