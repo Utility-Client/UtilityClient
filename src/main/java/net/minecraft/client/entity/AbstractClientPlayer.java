@@ -1,6 +1,8 @@
 package net.minecraft.client.entity;
 
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
 import de.gamingcraft.UtilityClient;
 import de.gamingcraft.utils.json.CapeUtils;
@@ -21,8 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
-
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 
@@ -40,25 +40,16 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     {
         super(worldIn, playerProfile);
         try {
-            for (CapeOwner cOwner: capesIndex) {
-                if (cOwner.username.equalsIgnoreCase(playerProfile.getName())) {
-                    System.out.println(playerProfile.getName());
-                    capeUtils.downloadCape("https://api.gamingcraft.de/capes/", cOwner.filename);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+            String name = playerProfile.getName();
+            if(org.apache.commons.lang3.StringUtils.isBlank(name)) name = JSONUtils.gson.fromJson(JSONUtils.downloadJson(new URL("https://sessionserver.mojang.com/session/minecraft/profile/" + playerProfile.getId())), JsonObject.class).get("name").getAsString();
 
-    }
-
-    public static void entry() {
-        try {
             String rawCapesIndex = JSONUtils.downloadJson(new URL("https://api.gamingcraft.de/capes/index.json"));
-            capesIndex = (List<CapeOwner>) JSONUtils.parseToJson(rawCapesIndex, new TypeToken<List<CapeOwner>>(){}.getType());
+            System.out.println(rawCapesIndex);
+            for (JsonElement capeOwners : JSONUtils.gson.fromJson(rawCapesIndex, JsonArray.class)) if(capeOwners.getAsJsonObject().get("username").getAsString().equalsIgnoreCase(name)) capeUtils.downloadCape("https://api.gamingcraft.de/capes/", capeOwners.getAsJsonObject().get("filename").getAsString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     /**
@@ -108,6 +99,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 
     public ResourceLocation getLocationCape() {
         if (capeUtils.ucLocationCape != null) {
+            System.out.println("CAPE!");
             return capeUtils.ucLocationCape;
         } else {
             NetworkPlayerInfo var1 = this.getPlayerInfo();
@@ -122,7 +114,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 
         if (itextureobject == null)
         {
-            itextureobject = new ThreadDownloadImageData((File)null, String.format("https://skins.minecraft.net/MinecraftSkins/%s.png", StringUtils.stripControlCodes(username)), DefaultPlayerSkin.getDefaultSkin(getOfflineUUID(username)), new ImageBufferDownload());
+            itextureobject = new ThreadDownloadImageData(null, String.format("https://skins.minecraft.net/MinecraftSkins/%s.png", StringUtils.stripControlCodes(username)), DefaultPlayerSkin.getDefaultSkin(getOfflineUUID(username)), new ImageBufferDownload());
             texturemanager.loadTexture(resourceLocationIn, itextureobject);
         }
 
@@ -146,11 +138,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
     public float getFovModifier()
     {
         float f = 1.0F;
-
-        if (this.capabilities.isFlying)
-        {
-            f *= 1.1F;
-        }
+        if (this.capabilities.isFlying) f *= 1.1F;
 
         IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
         f = (float)((double)f * ((iattributeinstance.getAttributeValue() / (double)this.capabilities.getWalkSpeed() + 1.0D) / 2.0D));

@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class JSONUtils {
+    public static Gson gson = new GsonBuilder().generateNonExecutableJson().disableInnerClassSerialization().create();
+
     public static String downloadJson(java.net.URL url) {
         BufferedReader reader = null;
         try
         {
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             int read;
             char[] chars = new char[1024];
             while ((read = reader.read(chars)) != -1)
@@ -36,14 +38,13 @@ public class JSONUtils {
                 catch (IOException e)
                 {
                     e.printStackTrace();
-                    return null;
                 }
             }
         }
     }
 
+    @Deprecated
     public static Object parseToJson(String input, java.lang.reflect.Type type) {
-        Gson gson = new GsonBuilder().generateNonExecutableJson().disableInnerClassSerialization().create();
         return gson.fromJson(input, type);
     }
 }
