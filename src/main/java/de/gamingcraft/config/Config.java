@@ -1,13 +1,14 @@
 package de.gamingcraft.config;
 
 public class Config {
-    private int selectedTheme, hotkeyZoom, hotkeyFulbright, crosshair;
+    private int selectedTheme, hotkeyZoom, hotkeyFulbright, crosshair, overlay;
 
-    public Config(int _selectedTheme, int _hotkeyZoom, int _hotkeyFulbright, int _crosshair) {
-        this.selectedTheme = _selectedTheme;
-        this.hotkeyZoom = _hotkeyZoom;
-        this.hotkeyFulbright = _hotkeyFulbright;
-        this.crosshair = _crosshair;
+    public Config(int _selectedTheme, int _hotkeyZoom, int _hotkeyFulbright, int _crosshair, int _overlay) {
+        selectedTheme = _selectedTheme;
+        hotkeyZoom = _hotkeyZoom;
+        hotkeyFulbright = _hotkeyFulbright;
+        crosshair = _crosshair;
+        overlay = _overlay;
     }
 
     public int getSelectedTheme() {
@@ -40,5 +41,13 @@ public class Config {
 
     public void setSelectedTheme(int selectedTheme) {
         this.selectedTheme = selectedTheme;
+    }
+
+    public int getOverlay() {
+        return overlay;
+    }
+
+    public void setOverlay(int overlay) {
+        this.overlay = overlay;
     }
 }

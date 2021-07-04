@@ -30,19 +30,15 @@ public class UtilityClient extends Thread {
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
     }
-
     public static String getDiscordApplicationId() {
         return "742760119984455701";
     }
-
     public static String getClientName() {
         return CLIENT_NAME;
     }
-
     public static String getVersion() {
         return CLIENT_VERSION;
     }
-
     public static boolean shouldRenderOverlay() {
         return renderOverlay;
     }
@@ -67,6 +63,7 @@ public class UtilityClient extends Thread {
         CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
         addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
         addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
+        addKeyBind("Toggle Overlay", ConfigManager.config.getOverlay(), false);
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
         CROSSHAIR_MANAGER_INSTANCE.start();
@@ -79,6 +76,7 @@ public class UtilityClient extends Thread {
         if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
             Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
         else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
+        if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
         MacroManager.loop();
         AddonManager.runAddonEvent("loop");
     }
