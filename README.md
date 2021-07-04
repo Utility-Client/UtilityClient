@@ -14,20 +14,18 @@
 - JetBrains Intellij IDEA
 
 ### How to Contribute
+
+#### Setup Workspace
 - Make a fork.
 - Clone your fork using GitHub Desktop or the Git Bash.
-- Modify Code.
 - Create a `Application` Configuration inside IntelliJ.
   - VM Options: `-Djava.library.path=versions/1.8.8/1.8.8-natives/`
   - Main Class: `net.minecraft.Start`
   - Working directory: `C:\Users\airbu\AppData\Roaming\.minecraft`
-- Click Apply, OK and press `SHIFT` + `F10`.<br>
-  Minecraft should start now.
-- Debug your Contribution.
-- Commit to your fork using GitHub Desktop or the Git Bash.<br>
-  All Commits will be automatically added to your pull-request.
-- Create Pull-Request
+- Click `Apply` and `OK and press`.
 
+#### Start client from workspace
+Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
 
 ## Contributer
 
