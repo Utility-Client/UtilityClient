@@ -21,7 +21,7 @@
 - Create a `Application` Configuration inside IntelliJ.
   - VM Options: `-Djava.library.path=versions/1.8.8/1.8.8-natives/`
   - Main Class: `net.minecraft.Start`
-  - Working directory: `C:\Users\airbu\AppData\Roaming\.minecraft`
+  - Working directory: `C:\Users\<windows_username>\AppData\Roaming\.minecraft`
 - Click `Apply` and `OK and press`.
 
 #### Start client from workspace
