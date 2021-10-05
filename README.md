@@ -56,6 +56,6 @@ Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
 </table>
 
 ## Applications used
-- BOM Remover by [whlk](https://github.com/whlk)
+- [BOM Remover](https://www.mannaz.at/codebase/utf-byte-order-mark-bom-remover) by [whlk](https://github.com/whlk)
 - [Maven](https://maven.apache.org/) by [Apache](https://www.apache.org/)
 - [MavenMCP](https://github.com/Hexeption/MavenMCP) by [Hexeption](https://github.com/Hexeption)
