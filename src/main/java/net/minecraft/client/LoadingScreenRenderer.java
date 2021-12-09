@@ -25,7 +25,6 @@ public class LoadingScreenRenderer implements IProgressUpdate
 
     /** The system's time represented in milliseconds. */
     private long systemTime = Minecraft.getSystemTime();
-    private boolean field_73724_e;
     private final ScaledResolution scaledResolution;
     private final Framebuffer framebuffer;
 
@@ -60,14 +59,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
     {
         this.currentlyDisplayedText = message;
 
-        if (!this.mc.running)
-        {
-            if (!this.field_73724_e)
-            {
-                throw new MinecraftError();
-            }
-        }
-        else
+        if (this.mc.running)
         {
             GlStateManager.clear(256);
             GlStateManager.matrixMode(5889);
@@ -95,14 +87,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
      */
     public void displayLoadingString(String message)
     {
-        if (!this.mc.running)
-        {
-            if (!this.field_73724_e)
-            {
-                throw new MinecraftError();
-            }
-        }
-        else
+        if (this.mc.running)
         {
             this.systemTime = 0L;
             this.message = message;
@@ -116,14 +101,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
      */
     public void setLoadingProgress(int progress)
     {
-        if (!this.mc.running)
-        {
-            if (!this.field_73724_e)
-            {
-                throw new MinecraftError();
-            }
-        }
-        else
+        if (this.mc.running)
         {
             long i = Minecraft.getSystemTime();
 
@@ -134,16 +112,8 @@ public class LoadingScreenRenderer implements IProgressUpdate
                 int j = scaledresolution.getScaleFactor();
                 int k = scaledresolution.getScaledWidth();
                 int l = scaledresolution.getScaledHeight();
-
-                if (OpenGlHelper.isFramebufferEnabled())
-                {
-                    this.framebuffer.framebufferClear();
-                }
-                else
-                {
-                    GlStateManager.clear(256);
-                }
-
+                if (OpenGlHelper.isFramebufferEnabled()) this.framebuffer.framebufferClear();
+                else GlStateManager.clear(256);
                 this.framebuffer.bindFramebuffer(false);
                 GlStateManager.matrixMode(5889);
                 GlStateManager.loadIdentity();
@@ -151,12 +121,7 @@ public class LoadingScreenRenderer implements IProgressUpdate
                 GlStateManager.matrixMode(5888);
                 GlStateManager.loadIdentity();
                 GlStateManager.translate(0.0F, 0.0F, -200.0F);
-
-                if (!OpenGlHelper.isFramebufferEnabled())
-                {
-                    GlStateManager.clear(16640);
-                }
-
+                if (!OpenGlHelper.isFramebufferEnabled()) GlStateManager.clear(16640);
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                 this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
