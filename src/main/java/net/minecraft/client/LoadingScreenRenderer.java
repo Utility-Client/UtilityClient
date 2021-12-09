@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.IProgressUpdate;
-import net.minecraft.util.MinecraftError;
 
 public class LoadingScreenRenderer implements IProgressUpdate
 {
