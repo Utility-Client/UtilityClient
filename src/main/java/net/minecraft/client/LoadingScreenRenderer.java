@@ -42,7 +42,6 @@ public class LoadingScreenRenderer implements IProgressUpdate
      */
     public void resetProgressAndMessage(String message)
     {
-        this.field_73724_e = false;
         this.displayString(message);
     }
 
@@ -51,7 +50,6 @@ public class LoadingScreenRenderer implements IProgressUpdate
      */
     public void displaySavingString(String message)
     {
-        this.field_73724_e = true;
         this.displayString(message);
     }
 
