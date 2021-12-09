@@ -100,8 +100,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Proxy;
 import java.net.SocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import java.nio.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -112,7 +111,6 @@ import java.util.concurrent.FutureTask;
 public class Minecraft implements IThreadListener, IPlayerUsage
 {
     private static final Logger logger = LogManager.getLogger();
-    //private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
 
     /** A 10MiB preallocation to ensure the heap is reasonably sized. */
@@ -721,7 +719,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             bytebuffer.putInt(i << 8 | i >> 24 & 255);
         }
 
-        bytebuffer.flip();
+        //bytebuffer.flip();
         return bytebuffer;
     }
 
