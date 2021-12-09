@@ -63,16 +63,7 @@ public class Main
         String s = optionset.valueOf(optionspec5);
         Proxy proxy = Proxy.NO_PROXY;
 
-        if (s != null)
-        {
-            try
-            {
-                proxy = new Proxy(Type.SOCKS, new InetSocketAddress(s, optionset.valueOf(optionspec6)));
-            }
-            catch (Exception var46)
-            {
-            }
-        }
+        if (s != null) proxy = new Proxy(Type.SOCKS, new InetSocketAddress(s, optionset.valueOf(optionspec6)));
 
         final String s1 = optionset.valueOf(optionspec7);
         final String s2 = optionset.valueOf(optionspec8);
