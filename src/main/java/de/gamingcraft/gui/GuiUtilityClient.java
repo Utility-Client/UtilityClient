@@ -26,16 +26,13 @@ public class GuiUtilityClient extends GuiScreen
      */
     public void initGui()
     {
-        int i = 0;
         this.title = UtilityClient.getClientName();
 
-        //buttons here
-
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-44, "Disable Capes"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-44, UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes"));
         this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-22, "Select Crosshair"));
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done")));
     }
 
     /**
@@ -52,7 +49,7 @@ public class GuiUtilityClient extends GuiScreen
 
             if(button.id == 2) {
                 UtilityClient.capesEnabled = !UtilityClient.capesEnabled;
-                if(UtilityClient.capesEnabled) this.buttonList.get(1).displayString = "Disable Capes"; else this.buttonList.get(1).displayString = "Enable Capes";
+                this.buttonList.get(1).displayString = UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes";
 
             }
 
@@ -66,8 +63,6 @@ public class GuiUtilityClient extends GuiScreen
                 this.mc.gameSettings.saveOptions();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
-
-            // Button Ifs here
         }
     }
 
@@ -78,9 +73,6 @@ public class GuiUtilityClient extends GuiScreen
     {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
-
-        // Strings go here
-
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

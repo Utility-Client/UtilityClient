@@ -25,7 +25,7 @@ public class GuiCustomizeSkin extends GuiScreen
     public void initGui()
     {
         int i = 0;
-        this.title = I18n.format("options.skinCustomisation.title", new Object[0]);
+        this.title = I18n.format("options.skinCustomisation.title");
 
         for (EnumPlayerModelParts enumplayermodelparts : EnumPlayerModelParts.values())
         {
@@ -33,12 +33,9 @@ public class GuiCustomizeSkin extends GuiScreen
             ++i;
         }
 
-        if (i % 2 == 1)
-        {
-            ++i;
-        }
+        if (i % 2 == 1) ++i;
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 24 * (i >> 1), I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 24 * (i >> 1), I18n.format("gui.done")));
     }
 
     /**
@@ -75,16 +72,8 @@ public class GuiCustomizeSkin extends GuiScreen
     private String func_175358_a(EnumPlayerModelParts playerModelParts)
     {
         String s;
-
-        if (this.mc.gameSettings.getModelParts().contains(playerModelParts))
-        {
-            s = I18n.format("options.on", new Object[0]);
-        }
-        else
-        {
-            s = I18n.format("options.off", new Object[0]);
-        }
-
+        if (this.mc.gameSettings.getModelParts().contains(playerModelParts)) s = I18n.format("options.on");
+        else s = I18n.format("options.off");
         return playerModelParts.func_179326_d().getFormattedText() + ": " + s;
     }
 
