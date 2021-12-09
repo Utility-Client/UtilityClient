@@ -15,7 +15,7 @@ public class CapeUtils {
     public ResourceLocation ucLocationCape;
 
     public void downloadCape(String url, String filename) {
-        String ucCapeUrl = url + filename;
+        String ucCapeUrl = url + filename + ".png";
 
         MinecraftProfileTexture mpt = new MinecraftProfileTexture(ucCapeUrl, new HashMap<>());
         final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());
