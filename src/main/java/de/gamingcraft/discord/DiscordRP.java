@@ -16,14 +16,12 @@ public class DiscordRP extends Thread {
 
         super.run();
 
-        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler((user) -> {
-            System.out.println("[--:--:--] [DiscordWebhook/INFO]: Welcome " + user.username + "#" + user.discriminator + "!");
-        }).build();
+        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(user -> System.out.println("Discord Hook: Welcome " + user.username + "#" + user.discriminator + "!")).build();
         DiscordRPC.discordInitialize(UtilityClient.getDiscordApplicationId(), handlers, true);
         shouldRun = true;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Closing Discord hook.");
+            System.out.println("Discord Hook: Closing Discord hook.");
             DiscordRPC.discordShutdown();
         }));
     }
