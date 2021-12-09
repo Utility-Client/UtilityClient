@@ -23,15 +23,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
-import org.lwjgl.Sys;
 
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 public abstract class AbstractClientPlayer extends EntityPlayer {
-    private static List<CapeOwner> capesIndex;
     private final CapeUtils capeUtils = new CapeUtils();
     private NetworkPlayerInfo playerInfo;
+    private final JsonArray capeIndex = JSONUtils.gson.fromJson(JSONUtils.downloadJson("http://cdn.gamingcraft.de/uclient/index.json"), JsonArray.class);
 
     public AbstractClientPlayer(World worldIn) {
         super(worldIn, null);
@@ -44,21 +43,20 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
             if (org.apache.commons.lang3.StringUtils.isBlank(name))
                 name = JSONUtils.gson.fromJson(JSONUtils.downloadJson(new URL("https://sessionserver.mojang.com/session/minecraft/profile/" + playerProfile.getId())), JsonObject.class).get("name").getAsString();
 
-            String rawCapesIndex = JSONUtils.downloadJson(new URL("http://cdn.gamingcraft.de/uclient/index.json"));
-            System.out.println(rawCapesIndex);
-            for (JsonElement capeOwners : JSONUtils.gson.fromJson(rawCapesIndex, JsonArray.class)) {
+            if(!UtilityClient.capesEnabled) return;
+            for (JsonElement capeOwners : JSONUtils.gson.fromJson(capeIndex, JsonArray.class)) {
                 String finalName = name;
-                System.out.println(finalName);
-                capeOwners.getAsJsonObject().get("usernames").getAsJsonArray().forEach(str -> {
-                    if(str.getAsString().equalsIgnoreCase(finalName)) {
+                capeOwners.getAsJsonObject().get("usernames").getAsJsonArray().forEach(username -> {
+                    if(username.getAsString().equalsIgnoreCase(finalName))
                         capeUtils.downloadCape("http://cdn.gamingcraft.de/uclient/", capeOwners.getAsJsonObject().get("file").getAsString());
-                    }
                 });
             }
         } catch (Exception e) {
+            System.err.println("Please send this error to the UtilityClient developers:");
+            System.err.println("--- START OF ERROR ---");
             System.err.println(e);
+            System.err.println("--- END OF ERROR ---");
         }
-
     }
 
     public static ThreadDownloadImageData getDownloadImageSkin(ResourceLocation resourceLocationIn, String username) {

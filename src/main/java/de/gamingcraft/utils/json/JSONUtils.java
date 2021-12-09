@@ -6,11 +6,21 @@ import com.google.gson.GsonBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class JSONUtils {
     public static Gson gson = new GsonBuilder().generateNonExecutableJson().disableInnerClassSerialization().create();
 
-    public static String downloadJson(java.net.URL url) {
+    public static String downloadJson(String url) {
+        try {
+            return downloadJson(new URL(url));
+        } catch (MalformedURLException e) {
+            return "{}";
+        }
+    }
+
+    public static String downloadJson(URL url) {
         BufferedReader reader = null;
         try
         {

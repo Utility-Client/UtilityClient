@@ -1,6 +1,7 @@
 package de.gamingcraft.utils.json;
 
 import com.mojang.authlib.minecraft.*;
+import de.gamingcraft.UtilityClient;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.ResourceLocation;
@@ -11,16 +12,13 @@ import java.io.File;
 import java.util.HashMap;
 
 public class CapeUtils {
-
     public ResourceLocation ucLocationCape;
 
     public void downloadCape(String url, String filename) {
         String ucCapeUrl = url + filename + ".png";
-
         MinecraftProfileTexture mpt = new MinecraftProfileTexture(ucCapeUrl, new HashMap<>());
         final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());
         IImageBuffer iib = new IImageBuffer() {
-            final ImageBufferDownload ibd = new ImageBufferDownload();
             public BufferedImage parseUserSkin(BufferedImage var1) {
                 return parseCape(var1);
             }
