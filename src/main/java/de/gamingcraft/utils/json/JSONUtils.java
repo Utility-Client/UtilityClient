@@ -43,7 +43,6 @@ public class JSONUtils {
         }
     }
 
-    @Deprecated
     public static Object parseToJson(String input, java.lang.reflect.Type type) {
         return gson.fromJson(input, type);
     }
