@@ -23,7 +23,6 @@ public class CrosshairManager {
                 int x = sr.getScaledWidth() / 2 + i * 2 - size;
                 int y = sr.getScaledHeight() / 2 + e * 2 - size;
                 if(!pixels.getOrDefault(f, true)) Gui.drawRect(x, y, x + 2, y + 2, 2164260863L);
-                //Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x + " - " + y, 2, (sr.getScaledHeight() / 2f) + (f * 10) - (size*size*5), 16777215);
                 f++;
             }
         }
