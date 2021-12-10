@@ -2,85 +2,86 @@ package de.gamingcraft.gui;
 
 import de.gamingcraft.UtilityClient;
 import de.gamingcraft.config.ConfigManager;
-import de.gamingcraft.overlay.Theme;
+import de.gamingcraft.utils.SerializationUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class GuiCrosshairOptions extends GuiScreen
 {
-    /** The parent GUI for this GUI */
     private final GuiScreen parentScreen;
-
-    /** The title of the GUI. */
     private String title;
-
+    private int size = 9;
+    HashMap<Integer, Boolean> pixels = new HashMap<>();
     public GuiCrosshairOptions(GuiScreen parentScreenIn)
     {
         this.parentScreen = parentScreenIn;
     }
 
-    /**
-     * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
-     * window resizes, the buttonList is cleared beforehand.
-     */
     public void initGui()
     {
-        int i = 0;
-        this.title = UtilityClient.getClientName() + " Crosshair Options";
-
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2 - 40, 98, 20, "Previous Crosshair"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height/2 - 40, 98, 20, "Next Crosshair"));
-
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height/2, I18n.format("gui.done")));
+        this.title = "Crosshair Editor";
+        try {
+            // Please ignore the dirty code, it should just work.
+            size = ConfigManager.config.getCrosshairSize();
+            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(ConfigManager.config.getCrosshair());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Called by the controls from the buttonList when activated. (Mouse pressed for buttons)
-     */
     protected void actionPerformed(GuiButton button) throws IOException
     {
+        if(button.id < 200) pixels.put(button.id, !pixels.getOrDefault(button.id, true));
+
         if (button.enabled)
         {
+            if (button.id == 200) {
+                ConfigManager.config.setCrosshair(SerializationUtils.serialize(pixels));
 
-            if(button.id == 1) {
-                if(ConfigManager.config.getCrosshair()-1 < 0) {
-                    ConfigManager.config.setCrosshair(UtilityClient.CROSSHAIR_MANAGER_INSTANCE.crosshairs.size()-1);
-                } else  {
-                    ConfigManager.config.setCrosshair(ConfigManager.config.getCrosshair() - 1);
-                }
-            }
-
-            if(button.id == 2) {
-                if((ConfigManager.config.getCrosshair()+1) > (UtilityClient.CROSSHAIR_MANAGER_INSTANCE.crosshairs.size()-1)) {
-                    ConfigManager.config.setCrosshair(0);
-                } else {
-                    ConfigManager.config.setCrosshair(ConfigManager.config.getCrosshair() + 1);
-                }
-            }
-
-            if (button.id == 200)
-            {
-                ConfigManager.overrideConfig(UtilityClient.CURRENT_THEME.getId(), ConfigManager.config.getHotkeyZoom(), ConfigManager.config.getHotkeyFulbright(), ConfigManager.config.getCrosshair(), ConfigManager.config.getOverlay());
+                ConfigManager.overrideConfig(UtilityClient.CURRENT_THEME.getId(), ConfigManager.config.getHotkeyZoom(), ConfigManager.config.getHotkeyFulbright(), ConfigManager.config.getCrosshair(), size, ConfigManager.config.getOverlay());
                 this.mc.gameSettings.saveOptions();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
 
-            // Button Ifs here
+            if (button.id == 201) if(size > 1) {
+                size--;
+                pixels.clear();
+            }
+
+            if (button.id == 202) if(size < 12) {
+                size++;
+                pixels.clear();
+            }
         }
     }
 
-    /**
-     * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
-     */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
+        this.drawCenteredString(this.fontRendererObj, size + "x" + size, this.width / 2, this.height / 4 * 3 + 5, 16777215);
 
-        UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(-70);
+        buttonList.clear();
+        int f = 0;
+        for (int i = 0; i < size; i++) {
+            for (int e = 0; e < size; e++) {
+                buttonList.add(new GuiButton(f,
+                        this.width / 2 + i * 20 - size * 10,
+                        this.height / 2 + e * 20 - size * 10,
+                        20, 20,
+                        "", !pixels.getOrDefault(f, true)));
+                //System.out.println(f);
+                f++;
+            }
+        }
+
+        this.buttonList.add(new GuiButton(201, this.width / 2 - 100, this.height / 4 * 3, 20, 20, "-"));
+        this.buttonList.add(new GuiButton(202, this.width / 2 + 80, this.height / 4 * 3, 20, 20, "+"));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 8 * 7, I18n.format("gui.done")));
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

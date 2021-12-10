@@ -1,14 +1,16 @@
 package de.gamingcraft.config;
 
 public class Config {
-    private int selectedTheme, hotkeyZoom, hotkeyFulbright, crosshair, overlay;
+    private int selectedTheme, hotkeyZoom, hotkeyFulbright, overlay, crosshairSize;
+    private String crosshair;
 
-    public Config(int _selectedTheme, int _hotkeyZoom, int _hotkeyFulbright, int _crosshair, int _overlay) {
+    public Config(int _selectedTheme, int _hotkeyZoom, int _hotkeyFulbright, String _crosshair, int _crosshairSize, int _overlay) {
         selectedTheme = _selectedTheme;
         hotkeyZoom = _hotkeyZoom;
         hotkeyFulbright = _hotkeyFulbright;
         crosshair = _crosshair;
         overlay = _overlay;
+        crosshairSize = _crosshairSize;
     }
 
     public int getSelectedTheme() {
@@ -23,11 +25,19 @@ public class Config {
         return hotkeyFulbright;
     }
 
-    public int getCrosshair() {
+    public String getCrosshair() {
         return crosshair;
     }
 
-    public void setCrosshair(int crosshair) {
+    public int getCrosshairSize() {
+        return crosshairSize;
+    }
+
+    public void setCrosshairSize(int crosshairSize) {
+        this.crosshairSize = crosshairSize;
+    }
+
+    public void setCrosshair(String crosshair) {
         this.crosshair = crosshair;
     }
 

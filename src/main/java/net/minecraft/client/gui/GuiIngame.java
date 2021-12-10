@@ -138,10 +138,8 @@ public class GuiIngame extends Gui {
         mc.getTextureManager().bindTexture(icons);
         GlStateManager.enableBlend();
 
-        if (showCrosshair()) {
-
-            UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(0);
-        }
+        // Crosshair Code by UC
+        if (showCrosshair()) try { UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(); } catch (Exception ignored) { }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         mc.mcProfiler.startSection("bossHealth");
