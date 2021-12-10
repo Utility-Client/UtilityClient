@@ -74,7 +74,6 @@ public class GuiCrosshairOptions extends GuiScreen
                         this.height / 2 + e * 20 - size * 10,
                         20, 20,
                         "", !pixels.getOrDefault(f, true)));
-                //System.out.println(f);
                 f++;
             }
         }

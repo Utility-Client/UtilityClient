@@ -30,6 +30,7 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.*;
+import org.lwjgl.Sys;
 
 import java.util.Collection;
 import java.util.List;
@@ -139,7 +140,13 @@ public class GuiIngame extends Gui {
         GlStateManager.enableBlend();
 
         // Crosshair Code by UC
-        if (showCrosshair()) try { UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(); } catch (Exception ignored) { }
+        if (showCrosshair()) {
+            try {
+                UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop();
+            } catch (Exception exception) {
+                System.err.println(exception);
+            }
+        }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         mc.mcProfiler.startSection("bossHealth");

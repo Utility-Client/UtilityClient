@@ -3,11 +3,10 @@ package de.gamingcraft.crosshair;
 import de.gamingcraft.config.ConfigManager;
 import de.gamingcraft.utils.SerializationUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
-
-import java.io.IOException;
 import java.util.HashMap;
+
+import static net.minecraft.client.gui.Gui.drawRect;
 
 public class CrosshairManager extends Thread {
 
@@ -16,21 +15,23 @@ public class CrosshairManager extends Thread {
         super.run();
     }
 
-    public void loop() throws IOException, ClassNotFoundException {
+    public void loop() throws Exception {
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
         int centerX = sr.getScaledWidth() / 2;
         int centerY = sr.getScaledHeight() / 2;
-        int scale = 1;
         HashMap<Integer, Boolean> pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(ConfigManager.config.getCrosshair());
         int size = ConfigManager.config.getCrosshairSize();
+
+
 
         int f = 0;
         for (int i = 0; i < size; i++) {
             for (int e = 0; e < size; e++) {
-                if(pixels.get(f)) {
-                    int x = centerX + i * scale;
-                    int y = centerY + e * scale;
-                }
+                int x = centerX + i * 20 - size * 10;
+                int y = centerY + e * 20 - size * 10;
+                drawRect(x, y, x+20, y+20, 0);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(pixels.getOrDefault(f, true) ? "" : "X", x, y, 0);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(x + " - " + y, 2, centerY + (f * 10) - (f * 5), 0);
                 f++;
             }
         }
