@@ -17,9 +17,8 @@ import java.util.ArrayList;
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
-    public static final CrosshairManager CROSSHAIR_MANAGER_INSTANCE = new CrosshairManager();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.7";
+    private static final String CLIENT_VERSION = "2.8";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
@@ -66,7 +65,6 @@ public class UtilityClient extends Thread {
         addKeyBind("Toggle Overlay", ConfigManager.config.getOverlay(), false);
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
-        CROSSHAIR_MANAGER_INSTANCE.start();
     }
 
     public void loop() {

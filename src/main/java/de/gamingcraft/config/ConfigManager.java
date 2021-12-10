@@ -17,29 +17,35 @@ public class ConfigManager {
         setup();
         if (!configFile.exists()) save();
         load();
-        overrideConfig(config.getSelectedTheme(), config.getHotkeyZoom(), config.getHotkeyFulbright(), config.getCrosshair(), config.getOverlay());
+        overrideConfig(config.getSelectedTheme(), config.getHotkeyZoom(), config.getHotkeyFulbright(), config.getCrosshair(), config.getCrosshairSize(), config.getOverlay());
     }
 
     public static void setup() {
         conf.setProperty("selectedTheme", "0");
         conf.setProperty("hotkeyZoom", "46");
         conf.setProperty("hotkeyFulbright", "50");
-        conf.setProperty("selectedCrosshair", "0");
+        conf.setProperty("crosshairData", "0");
+        conf.setProperty("crosshairSize", "9");
         conf.setProperty("hotkeyToggleOverlay", "22");
     }
 
-    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright, int crosshair, int overlay) throws IOException {
+    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright, String crosshair, int crosshairSize, int overlay) throws IOException {
         setEntry("selectedTheme", selTheme);
         setEntry("hotkeyZoom", hotKeyZoom);
         setEntry("hotkeyFulbright", hotkeyFulbright);
-        setEntry("selectedCrosshair", crosshair);
+        setEntry("crosshairData", crosshair);
+        setEntry("crosshairSize", crosshairSize);
         setEntry("hotkeyToggleOverlay", overlay);
         save();
         load();
     }
 
     public static void setEntry(String key, int value) throws IOException {
-        conf.setProperty(key, value + "");
+        setEntry(key, value + "");
+    }
+
+    public static void setEntry(String key, String value) throws IOException {
+        conf.setProperty(key, value);
         save();
         load();
     }
@@ -51,7 +57,8 @@ public class ConfigManager {
                 Integer.parseInt(conf.getProperty("selectedTheme")),
                 Integer.parseInt(conf.getProperty("hotkeyZoom")),
                 Integer.parseInt(conf.getProperty("hotkeyFulbright")),
-                Integer.parseInt(conf.getProperty("selectedCrosshair")),
+                conf.getProperty("crosshairData"),
+                Integer.parseInt(conf.getProperty("crosshairSize")),
                 Integer.parseInt(conf.getProperty("hotkeyToggleOverlay"))
         );
     }

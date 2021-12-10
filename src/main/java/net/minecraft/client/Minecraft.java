@@ -386,7 +386,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         logger.info("LWJGL Version: " + Sys.getVersion());
-        this.setWindowIcon();
+        //this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();
         OpenGlHelper.initializeTextures();
@@ -553,7 +553,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
     }
 
-    private void setWindowIcon()
+    public void setWindowIcon()
     {
         Util.EnumOS util$enumos = Util.getOSType();
 
@@ -564,12 +564,12 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             try
             {
-                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
-                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
+                inputstream = getResourceManager().getResource(new ResourceLocation("icons/icon_16x16.png")).getInputStream();
+                inputstream1 = getResourceManager().getResource(new ResourceLocation("icons/icon_32x32.png")).getInputStream();
 
                 if (inputstream != null && inputstream1 != null)
                 {
-                    Display.setIcon(new ByteBuffer[] {this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
+                    Display.setIcon(new ByteBuffer[] {readImageToBuffer(inputstream), readImageToBuffer(inputstream1)});
                 }
             }
             catch (IOException ioexception)
@@ -708,7 +708,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
     }
 
-    private ByteBuffer readImageToBuffer(InputStream imageStream) throws IOException
+    public static ByteBuffer readImageToBuffer(InputStream imageStream) throws IOException
     {
         BufferedImage bufferedimage = ImageIO.read(imageStream);
         int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), null, 0, bufferedimage.getWidth());

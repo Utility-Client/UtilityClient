@@ -3,6 +3,7 @@ package net.minecraft.client.gui;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import de.gamingcraft.UtilityClient;
+import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -30,6 +31,7 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.*;
+import org.lwjgl.Sys;
 
 import java.util.Collection;
 import java.util.List;
@@ -138,9 +140,13 @@ public class GuiIngame extends Gui {
         mc.getTextureManager().bindTexture(icons);
         GlStateManager.enableBlend();
 
+        // Crosshair Code by UC
         if (showCrosshair()) {
-
-            UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop(0);
+            try {
+                CrosshairManager.loop(scaledresolution);
+            } catch (Exception exception) {
+                System.err.println(exception);
+            }
         }
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);

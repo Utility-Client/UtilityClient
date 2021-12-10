@@ -60,16 +60,7 @@ public class GuiButton extends Gui
 
     public GuiButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText, boolean _enabled)
     {
-        this.width = 200;
-        this.height = 20;
-        this.enabled = true;
-        this.visible = true;
-        this.id = buttonId;
-        this.xPosition = x;
-        this.yPosition = y;
-        this.width = widthIn;
-        this.height = heightIn;
-        this.displayString = buttonText;
+        this(buttonId, x, y, widthIn, heightIn, buttonText);
         this.enabled = _enabled;
     }
 
@@ -111,13 +102,13 @@ public class GuiButton extends Gui
             this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, 46 + i * 20, this.width / 2, this.height);
             this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
             this.mouseDragged(mc, mouseX, mouseY);
-            int j = 14737632;
+            int j = 14737632; // Enabled
 
-            if (!this.enabled)
+            if (!this.enabled) // Disabled
             {
                 j = 10526880;
             }
-            else if (this.hovered)
+            else if (this.hovered) // Hovered
             {
                 j = 16777120;
             }
@@ -146,7 +137,7 @@ public class GuiButton extends Gui
      */
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
     {
-        return this.enabled && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
+        return (this.displayString.isEmpty() || this.enabled) && this.visible && mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
     }
 
     /**
