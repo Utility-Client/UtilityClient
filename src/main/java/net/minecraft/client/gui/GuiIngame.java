@@ -3,6 +3,7 @@ package net.minecraft.client.gui;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import de.gamingcraft.UtilityClient;
+import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.overlay.ModuleHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -142,7 +143,7 @@ public class GuiIngame extends Gui {
         // Crosshair Code by UC
         if (showCrosshair()) {
             try {
-                UtilityClient.CROSSHAIR_MANAGER_INSTANCE.loop();
+                CrosshairManager.loop(scaledresolution);
             } catch (Exception exception) {
                 System.err.println(exception);
             }
