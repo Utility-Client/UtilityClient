@@ -1,33 +1,29 @@
-package net.minecraft.client.gui;
+package de.gamingcraft.utils.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
 
-public class GuiOptionSlider extends GuiButton
+import java.text.DecimalFormat;
+
+public class GuiCustomSlider extends GuiButton
 {
     private float sliderValue;
     public boolean dragging;
-    private GameSettings.Options options;
+    private final ValueUpdateEvent event;
     private final float min_value;
     private final float max_value;
 
-    public GuiOptionSlider(int buttonId, int x, int y, GameSettings.Options options)
+    public GuiCustomSlider(int buttonId, int x, int y, ValueUpdateEvent event, float min_value, float max_value, float default_value)
     {
-        this(buttonId, x, y, options, 0.0F, 1.0F);
-    }
-
-    public GuiOptionSlider(int buttonId, int x, int y, GameSettings.Options options, float min_value, float max_value)
-    {
-        super(buttonId, x, y, 150, 20, "");
+        super(buttonId, x, y, 200, 20, "");
         this.sliderValue = 1.0F;
-        this.options = options;
+        this.event = event;
         this.min_value = min_value;
         this.max_value = max_value;
-        Minecraft minecraft = Minecraft.getMinecraft();
-        this.sliderValue = options.normalizeValue(minecraft.gameSettings.getOptionFloatValue(options));
-        this.displayString = minecraft.gameSettings.getKeyBinding(options);
+        this.sliderValue = default_value;
+        this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
     }
 
     /**
@@ -50,10 +46,8 @@ public class GuiOptionSlider extends GuiButton
             {
                 this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
                 this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
-                float f = this.options.denormalizeValue(this.sliderValue);
-                mc.gameSettings.setOptionFloatValue(this.options, f);
-                this.sliderValue = this.options.normalizeValue(f);
-                this.displayString = mc.gameSettings.getKeyBinding(this.options);
+                event.onUpdate(sliderValue);
+                this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
             }
 
             mc.getTextureManager().bindTexture(buttonTextures);
@@ -73,8 +67,8 @@ public class GuiOptionSlider extends GuiButton
         {
             this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
             this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
-            mc.gameSettings.setOptionFloatValue(this.options, this.options.denormalizeValue(this.sliderValue));
-            this.displayString = mc.gameSettings.getKeyBinding(this.options);
+            event.onUpdate(sliderValue);
+            this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
             this.dragging = true;
             return true;
         }

@@ -1,7 +1,10 @@
 package de.gamingcraft.gui;
 
 import de.gamingcraft.UtilityClient;
+import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.utils.gui.GuiCustomSlider;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiOptionSlider;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 
@@ -26,11 +29,14 @@ public class GuiUtilityClient extends GuiScreen
      */
     public void initGui()
     {
+
         this.title = UtilityClient.getClientName();
 
+        this.buttonList.add(new GuiCustomSlider(4, this.width / 2 - 100, this.height/2-88, f -> ConfigManager.config.setZoomFactor(f), 0f, 1f, ConfigManager.config.getZoomFactor()));
+
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-44, UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes"));
-        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-22, "Select Crosshair"));
+        this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-44, "Select Crosshair"));
+        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-22, UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes"));
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done")));
     }

@@ -17,7 +17,7 @@ public class ConfigManager {
         setup();
         if (!configFile.exists()) save();
         load();
-        overrideConfig(config.getSelectedTheme(), config.getHotkeyZoom(), config.getHotkeyFulbright(), config.getCrosshair(), config.getCrosshairSize(), config.getOverlay());
+        overrideConfig(config.getSelectedTheme(), config.getHotkeyZoom(), config.getHotkeyFulbright(), config.getCrosshair(), config.getCrosshairSize(), config.getOverlay(), config.getZoomFactor());
     }
 
     public static void setup() {
@@ -27,15 +27,17 @@ public class ConfigManager {
         conf.setProperty("crosshairData", "0");
         conf.setProperty("crosshairSize", "9");
         conf.setProperty("hotkeyToggleOverlay", "22");
+        conf.setProperty("zoomFactor", String.valueOf(0.15f));
     }
 
-    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright, String crosshair, int crosshairSize, int overlay) throws IOException {
+    public static void overrideConfig(int selTheme, int hotKeyZoom, int hotkeyFulbright, String crosshair, int crosshairSize, int overlay, float zoomFactor) throws IOException {
         setEntry("selectedTheme", selTheme);
         setEntry("hotkeyZoom", hotKeyZoom);
         setEntry("hotkeyFulbright", hotkeyFulbright);
         setEntry("crosshairData", crosshair);
         setEntry("crosshairSize", crosshairSize);
         setEntry("hotkeyToggleOverlay", overlay);
+        setEntry("zoomFactor", String.valueOf(zoomFactor));
         save();
         load();
     }
@@ -59,7 +61,8 @@ public class ConfigManager {
                 Integer.parseInt(conf.getProperty("hotkeyFulbright")),
                 conf.getProperty("crosshairData"),
                 Integer.parseInt(conf.getProperty("crosshairSize")),
-                Integer.parseInt(conf.getProperty("hotkeyToggleOverlay"))
+                Integer.parseInt(conf.getProperty("hotkeyToggleOverlay")),
+                Float.parseFloat(conf.getProperty("zoomFactor"))
         );
     }
 

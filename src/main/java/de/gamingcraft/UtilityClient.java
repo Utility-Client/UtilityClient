@@ -2,7 +2,6 @@ package de.gamingcraft;
 
 import de.gamingcraft.addons.AddonManager;
 import de.gamingcraft.config.ConfigManager;
-import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.Theme;
@@ -18,7 +17,7 @@ public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.8";
+    private static final String CLIENT_VERSION = "2.9-DEV";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
@@ -69,7 +68,7 @@ public class UtilityClient extends Thread {
 
     public void loop() {
         DISCORD_INSTANCE.loop();
-        if (keyBinds.get(0).isKeyDown()) fovModifier = 0.15f;
+        if (keyBinds.get(0).isKeyDown()) fovModifier = ConfigManager.config.getZoomFactor();
         else fovModifier = 1.0f;
         if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
             Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;

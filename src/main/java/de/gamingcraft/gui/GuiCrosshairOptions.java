@@ -42,7 +42,13 @@ public class GuiCrosshairOptions extends GuiScreen
             if (button.id == 200) {
                 ConfigManager.config.setCrosshair(SerializationUtils.serialize(pixels));
 
-                ConfigManager.overrideConfig(UtilityClient.CURRENT_THEME.getId(), ConfigManager.config.getHotkeyZoom(), ConfigManager.config.getHotkeyFulbright(), ConfigManager.config.getCrosshair(), size, ConfigManager.config.getOverlay());
+                ConfigManager.overrideConfig(UtilityClient.CURRENT_THEME.getId(),
+                        ConfigManager.config.getHotkeyZoom(),
+                        ConfigManager.config.getHotkeyFulbright(),
+                        ConfigManager.config.getCrosshair(),
+                        size,
+                        ConfigManager.config.getOverlay(),
+                        ConfigManager.config.getZoomFactor());
                 this.mc.gameSettings.saveOptions();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
