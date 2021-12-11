@@ -18,19 +18,26 @@ public class CrosshairManager {
     public static void run() throws IOException, ClassNotFoundException {
         if(GuiCrosshairOptions.crosshairFile.createNewFile()) {
             FileWriter fw = new FileWriter(GuiCrosshairOptions.crosshairFile, false);
-            fw.write(SerializationUtils.serialize(new HashMap<Integer, Boolean>()));
+            fw.write("rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAABh3CAAAACAAAAANc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAANzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVleHAAc3EAfgACAAAAJnEAfgAGc3EAfgACAAAACnEAfgAGc3EAfgACAAAALXEAfgAGc3EAfgACAAAAEXEAfgAGc3EAfgACAAAAFXEAfgAGc3EAfgACAAAAFnEAfgAGc3EAfgACAAAAF3EAfgAGc3EAfgACAAAAGHEAfgAGc3EAfgACAAAAGXEAfgAGc3EAfgACAAAAGnEAfgAGc3EAfgACAAAAG3EAfgAGc3EAfgACAAAAH3EAfgAGeA==");
             fw.close();
+            Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, 7); // Override to prevent unwanted behavior.
         }
 
-        Scanner scanner = new Scanner(GuiCrosshairOptions.crosshairFile);
-        pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
-        scanner.close();
+        try {
+            Scanner scanner = new Scanner(GuiCrosshairOptions.crosshairFile);
+            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
+            scanner.close();
+        } catch (Exception e) {
+            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize("rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAABh3CAAAACAAAAANc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAANzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVleHAAc3EAfgACAAAAJnEAfgAGc3EAfgACAAAACnEAfgAGc3EAfgACAAAALXEAfgAGc3EAfgACAAAAEXEAfgAGc3EAfgACAAAAFXEAfgAGc3EAfgACAAAAFnEAfgAGc3EAfgACAAAAF3EAfgAGc3EAfgACAAAAGHEAfgAGc3EAfgACAAAAGXEAfgAGc3EAfgACAAAAGnEAfgAGc3EAfgACAAAAG3EAfgAGc3EAfgACAAAAH3EAfgAGeA==");
+            Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, 7); // Override to prevent unwanted behavior.
+        }
+
     }
 
     public static void loop(ScaledResolution sr) throws Exception {
         GlStateManager.disableDepth();
         GlStateManager.disableAlpha();
-        int size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE, 9);
+        int size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 
         int f = 0;
         for (int i = 0; i < size; i++) {

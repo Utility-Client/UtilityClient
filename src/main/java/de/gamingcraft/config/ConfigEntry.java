@@ -1,22 +1,28 @@
 package de.gamingcraft.config;
 
 public enum ConfigEntry {
-    SELECTED_THEME("selectedTheme"),
-    HOTKEY_ZOOM("hotkeyZoom"),
-    HOTKEY_FULBRIGHT("hotkeyFulbright"),
-    HOTKEY_OVERLAY("hotkeyOverlay"),
-    CROSSHAIR_SIZE("crosshairSize"),
-    CROSSHAIR_DATA("crosshairData"),
-    ZOOM_FACTOR("zoomFactor");
+    SELECTED_THEME("selectedTheme", "0"),
+    HOTKEY_ZOOM("hotkeyZoom", "46"),
+    HOTKEY_FULBRIGHT("hotkeyFulbright", "50"),
+    HOTKEY_OVERLAY("hotkeyOverlay", "22"),
+    CROSSHAIR_SIZE("crosshairSize", "7"),
+    ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
+    KEYSTROKES("keystrokesEnabled", "true"),
+    TOGGLE_SPRINT("toggleSprintEnabled", "false");
 
-    String key;
+    private String key, defaultValue;
 
-    ConfigEntry(String key) {
+    ConfigEntry(String key, String defaultValue) {
         this.key = key;
+        this.defaultValue = defaultValue;
     }
 
     public String getKey() {
         return key;
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
     }
 
     @Override

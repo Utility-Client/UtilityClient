@@ -30,7 +30,7 @@ public class GuiCrosshairOptions extends GuiScreen
     {
         this.title = "Crosshair Editor";
         try {
-            size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE, 9);
+            size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
             Scanner scanner = new Scanner(crosshairFile);
             pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
             CrosshairManager.pixels = pixels;

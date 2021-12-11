@@ -5,6 +5,7 @@ import de.gamingcraft.config.Config;
 import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
+import de.gamingcraft.macro.Macro;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
@@ -62,12 +63,6 @@ public class UtilityClient extends Thread {
         try {
             Config.run();
             isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false);
-            Config.getBoolean("keystrokesEnabled", true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            MacroManager.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,12 +72,17 @@ public class UtilityClient extends Thread {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME, 0));
-        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM, 46), false);
-        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT, 50), false);
-        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY, 22), false);
+        CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME));
+        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
+        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
+        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
+        try {
+            MacroManager.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loop() {
@@ -93,11 +93,7 @@ public class UtilityClient extends Thread {
             Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
         else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
         if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
-        MacroManager.loop();
         AddonManager.runAddonEvent("loop");
-        if(isToggleSprintEnabled) {
-            if(Minecraft.getMinecraft().gameSettings.keyBindSprint.isPressed()) isSprinting = !isSprinting;
-            if(isSprinting) Minecraft.getMinecraft().thePlayer.setSprinting(true);
-        }
+        MacroManager.loop();
     }
 }

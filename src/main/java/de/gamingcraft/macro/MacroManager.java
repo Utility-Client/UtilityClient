@@ -1,47 +1,65 @@
 package de.gamingcraft.macro;
 
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.utils.FileUtils;
 import net.minecraft.client.Minecraft;
-import org.apache.commons.lang3.ArrayUtils;
+import net.minecraft.client.settings.KeyBinding;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class MacroManager {
+    public static File macrosFolder = new File("uc2/macros");
+    public static ArrayList<Macro> macros = new ArrayList<>();
 
-    private static File macroFile = new File("uc2/macros.txt");
-    private static String macroFileTemplate = "Example:Hello World!:0";
-    private static String macroFileContent = "";
-    private static Macro[] macros;
-
-
-    public static void start() throws IOException {
-        macroFile.createNewFile();
-        if(macroFile.exists()) {
-            macroFileContent = FileUtils.loadFile(macroFile);
-        }else {
-            FileUtils.saveFile(macroFile, macroFileTemplate);
-            macroFileContent = macroFileTemplate;
+    public static void run() throws IOException {
+        // Create folder + example macro if none exists already.
+        if (macrosFolder.mkdirs()) {
+            File exampleMacro = new File("uc2/macros/example.txt");
+            if (exampleMacro.createNewFile()) {
+                FileWriter fw = new FileWriter(exampleMacro, false);
+                fw.write("Example Macro\nHello World!\n34");
+                fw.close();
+            }
         }
-        macros = convertToMacros(macroFileContent);
-        for (Macro macro : macros) macro.setKeyBinding(UtilityClient.addKeyBind(macro.getName(), macro.getKeyCode(), true));
+
+        // Load all macros
+        for (File macro : Objects.requireNonNull(macrosFolder.listFiles())) load(macro);
     }
 
-    
+    public static void load(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        String name, message;
+        int keyCode;
+
+        if(scanner.hasNextLine()) name = scanner.nextLine();
+        else name = "No name specified";
+
+        if(scanner.hasNextLine()) message = scanner.nextLine();
+        else message = "No name specified";
+
+        if(scanner.hasNextInt()) keyCode = scanner.nextInt();
+        else keyCode = 0;
+
+        macros.add(new Macro(name, message, keyCode,
+                UtilityClient.addKeyBind(name, keyCode, true)
+        ));
+    }
+
+    public static void save(String filename, Macro macro) throws IOException {
+        File macroFile = new File("uc2/macros/" + filename + ".txt");
+        if(!macroFile.createNewFile()) System.out.println("Macro " + filename + " already exists. Overwriting...");
+        FileWriter fw = new FileWriter(macroFile, false);
+        fw.write(macro.name + "\n" + macro.name + "\n" + macro.keyCode);
+        fw.close();
+        load(macroFile);
+    }
+
     public static void loop() {
-        for (Macro macro : macros) if(macro.getKeyBinding().isPressed()) Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.getCommand());
-    }
-
-    private static Macro[] convertToMacros(String raw) {
-        String[] cutted = raw.split("#");
-        Macro[] _macros = new Macro[] {};
-
-        for (String c: cutted) {
-            String[] c1 = c.split(":");
-            if(c1.length == 2) _macros = ArrayUtils.add(_macros, new Macro(c1[0], c1[1], 0)); else _macros = ArrayUtils.add(_macros, new Macro(c1[0], c1[1], Integer.parseInt(c1[2])));
-        }
-
-        return _macros;
+        for (Macro macro : macros) if(macro.keyBinding.isPressed()) Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.message);
     }
 }

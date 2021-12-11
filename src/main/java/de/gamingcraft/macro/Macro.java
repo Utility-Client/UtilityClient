@@ -3,34 +3,18 @@ package de.gamingcraft.macro;
 import net.minecraft.client.settings.KeyBinding;
 
 public class Macro {
+    public final String name, message;
+    public final int keyCode;
+    public KeyBinding keyBinding;
 
-    private String name, command;
-    private int keyCode;
-    private KeyBinding kb;
-
-    public Macro(String _name, String _command, int _keyCode) {
-        this.name = _name;
-        this.command = _command;
-        this.keyCode = _keyCode;
+    public Macro(String name, String message, int keyCode) {
+        this.name = name;
+        this.message = message;
+        this.keyCode = keyCode;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public int getKeyCode() {
-        return keyCode;
-    }
-
-    public void setKeyBinding(KeyBinding _kb) {
-        this.kb = _kb;
-    }
-
-    public KeyBinding getKeyBinding() {
-        return this.kb;
+    public Macro(String name, String message, int keyCode, KeyBinding keyBinding) {
+        this(name, message, keyCode);
+        this.keyBinding = keyBinding;
     }
 }

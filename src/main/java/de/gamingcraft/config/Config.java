@@ -15,6 +15,10 @@ public class Config {
     public static void run() throws IOException {
         config.clear();
         if(!configFile.createNewFile()) load();
+        else {
+            for (ConfigEntry entry : ConfigEntry.values()) config.put(entry.getKey(), entry.getDefaultValue());
+            save();
+        }
     }
 
     private static void load() throws FileNotFoundException {
@@ -47,16 +51,16 @@ public class Config {
         return Integer.parseInt(getConfig().getOrDefault(key, String.valueOf(defaultValue)));
     }
 
-    public static int getInteger(ConfigEntry key, int defaultValue) {
-        return Integer.parseInt(getConfig().getOrDefault(key.getKey(), String.valueOf(defaultValue)));
+    public static int getInteger(ConfigEntry key) {
+        return Integer.parseInt(getConfig().getOrDefault(key.getKey(), String.valueOf(key.getDefaultValue())));
     }
 
     public static String getString(String key, String defaultValue) {
         return getConfig().getOrDefault(key, defaultValue);
     }
 
-    public static String getString(ConfigEntry key, String defaultValue) {
-        return getConfig().getOrDefault(key.getKey(), defaultValue);
+    public static String getString(ConfigEntry key) {
+        return getConfig().getOrDefault(key.getKey(), key.getDefaultValue());
     }
 
     public static float getFloat(String key, float defaultValue) {
