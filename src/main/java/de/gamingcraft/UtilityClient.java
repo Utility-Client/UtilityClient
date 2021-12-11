@@ -27,7 +27,7 @@ public class UtilityClient extends Thread {
     public static boolean renderOverlay = true;
     public static boolean capesEnabled = true;
     public static boolean isSprinting = false;
-    private static final boolean isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false);
+    private static boolean isToggleSprintEnabled = false;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
@@ -60,6 +60,7 @@ public class UtilityClient extends Thread {
         AddonManager.start();
         try {
             Config.run();
+            isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false)
         } catch (IOException e) {
             e.printStackTrace();
         }
