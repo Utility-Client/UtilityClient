@@ -1,21 +1,25 @@
 package de.gamingcraft.gui;
 
-import de.gamingcraft.UtilityClient;
 import de.gamingcraft.config.Config;
 import de.gamingcraft.config.ConfigEntry;
+import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.utils.SerializationUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class GuiCrosshairOptions extends GuiScreen
 {
     private final GuiScreen parentScreen;
     private String title;
     private int size = 9;
+    public static final File crosshairFile = new File("uc2/crosshair.txt");
     HashMap<Integer, Boolean> pixels = new HashMap<>();
     public GuiCrosshairOptions(GuiScreen parentScreenIn)
     {
@@ -26,9 +30,11 @@ public class GuiCrosshairOptions extends GuiScreen
     {
         this.title = "Crosshair Editor";
         try {
-            // Please ignore the dirty code, it should just work.
             size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE, 9);
-            //pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(Config.getString(ConfigEntry.CROSSHAIR_DATA, "rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAADB3CAAAAEAAAAAdc3IAEWphdmEubGFuZy5JbnRlZ2VyEuKgpPeBhzgCAAFJAAV2YWx1ZXhyABBqYXZhLmxhbmcuTnVtYmVyhqyVHQuU4IsCAAB4cAAAAAFzcgARamF2YS5sYW5nLkJvb2xlYW7NIHKA1Zz67gIAAVoABXZhbHVleHAAc3EAfgACAAAAAnEAfgAGc3EAfgACAAAAQ3EAfgAGc3EAfgACAAAABHEAfgAGc3EAfgACAAAABnEAfgAGc3EAfgACAAAAR3EAfgAGc3EAfgACAAAAB3EAfgAGc3EAfgACAAAASXEAfgAGc3EAfgACAAAACXEAfgAGc3EAfgACAAAASnEAfgAGc3EAfgACAAAATHEAfgAGc3EAfgACAAAADXEAfgAGc3EAfgACAAAATnEAfgAGc3EAfgACAAAAT3EAfgAGc3EAfgACAAAAEXEAfgAGc3EAfgACAAAAEnEAfgAGc3EAfgACAAAAFnEAfgAGc3EAfgACAAAAGnEAfgAGc3EAfgACAAAAJHEAfgAGc3EAfgACAAAAJXEAfgAGc3EAfgACAAAAJnEAfgAGc3EAfgACAAAAKHEAfgAGc3EAfgACAAAAKnEAfgAGc3EAfgACAAAAK3EAfgAGc3EAfgACAAAALHEAfgAGc3EAfgACAAAANnEAfgAGc3EAfgACAAAAOnEAfgAGc3EAfgACAAAAPnEAfgAGc3EAfgACAAAAP3EAfgAGeA\\=\\="));
+            Scanner scanner = new Scanner(crosshairFile);
+            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
+            CrosshairManager.pixels = pixels;
+            scanner.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +47,10 @@ public class GuiCrosshairOptions extends GuiScreen
         if (button.enabled)
         {
             if (button.id == 200) {
-                //Config.setString(ConfigEntry.CROSSHAIR_DATA, SerializationUtils.serialize(pixels));
+                FileWriter fw = new FileWriter(crosshairFile, false);
+                fw.write(SerializationUtils.serialize(pixels));
+                CrosshairManager.pixels = pixels;
+                fw.close();
                 Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
                 Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);

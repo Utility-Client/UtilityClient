@@ -24,6 +24,9 @@ public class GuiCustomSlider extends GuiButton
         this.max_value = max_value;
         this.sliderValue = default_value;
         this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
+        if(sliderValue == 1f) displayString = "Zoom factor: Disabled";
+        if(sliderValue > 1f) displayString = "Zoom factor: Quake Pro+";
+        if(sliderValue >= 2f) displayString = "Zoom factor: Quake Pro++";
     }
 
     /**
@@ -48,6 +51,9 @@ public class GuiCustomSlider extends GuiButton
                 this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
                 event.onUpdate(sliderValue);
                 this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
+                if(sliderValue == 1f) displayString = "Zoom factor: Disabled";
+                if(sliderValue > 1f) displayString = "Zoom factor: Quake Pro+";
+                if(sliderValue >= 2f) displayString = "Zoom factor: Quake Pro++";
             }
 
             mc.getTextureManager().bindTexture(buttonTextures);
@@ -69,6 +75,9 @@ public class GuiCustomSlider extends GuiButton
             this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
             event.onUpdate(sliderValue);
             this.displayString = "Zoom factor: " + new DecimalFormat("0.00").format(sliderValue);
+            if(sliderValue == 1f) displayString = "Zoom factor: Disabled";
+            if(sliderValue > 1f) displayString = "Zoom factor: Quake Pro+";
+            if(sliderValue >= 2f) displayString = "Zoom factor: Quake Pro++";
             this.dragging = true;
             return true;
         }

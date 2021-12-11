@@ -3,6 +3,7 @@ package de.gamingcraft;
 import de.gamingcraft.addons.AddonManager;
 import de.gamingcraft.config.Config;
 import de.gamingcraft.config.ConfigEntry;
+import de.gamingcraft.crosshair.CrosshairManager;
 import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
 import de.gamingcraft.overlay.Theme;
@@ -68,6 +69,12 @@ public class UtilityClient extends Thread {
         try {
             MacroManager.start();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            CrosshairManager.run();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME, 0));

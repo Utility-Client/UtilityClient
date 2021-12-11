@@ -11,7 +11,10 @@ public class CPSModule implements IModule {
 
     @Override
     public String getValue() {
-        return UtilityClient.CPS_THREAD_INSTANCE.getClicks(true) + " | " + UtilityClient.CPS_THREAD_INSTANCE.getClicks(false);
+        int left = UtilityClient.CPS_THREAD_INSTANCE.getClicks(true);
+        int right = UtilityClient.CPS_THREAD_INSTANCE.getClicks(false);
+
+        return ((left < 3) ? "§c" : ((left < 6) ? "§e" : "§a")) + left + " §7| " + ((right < 3) ? "§c" : ((right < 6) ? "§e" : "§a")) + UtilityClient.CPS_THREAD_INSTANCE.getClicks(false);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class FPSModule implements IModule {
 
     @Override
     public String getValue() {
-        return Minecraft.getDebugFPS() + "";
+        return ((Minecraft.getDebugFPS() < 60) ? "§c" : ((Minecraft.getDebugFPS() < 120) ? "§e" : "§a")) + Minecraft.getDebugFPS() + "";
     }
 
     @Override
