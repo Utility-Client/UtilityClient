@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.properties.PropertyMap.Serializer;
+import de.gamingcraft.config.Config;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
@@ -11,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.Authenticator;
 import java.net.InetSocketAddress;
 import java.net.PasswordAuthentication;
@@ -102,6 +104,11 @@ public class Main
             public void run()
             {
                 Minecraft.stopIntegratedServer();
+                try {
+                    Config.save();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         Thread.currentThread().setName("Client thread");

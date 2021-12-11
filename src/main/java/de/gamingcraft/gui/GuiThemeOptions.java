@@ -1,7 +1,8 @@
 package de.gamingcraft.gui;
 
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.config.Config;
+import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.overlay.Theme;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -47,7 +48,7 @@ public class GuiThemeOptions extends GuiScreen {
                 UtilityClient.CURRENT_THEME = Theme.getThemeById(UtilityClient.CURRENT_THEME.getId() + 1);
 
             if (button.id == 200) {
-                ConfigManager.setEntry("selectedTheme", UtilityClient.CURRENT_THEME.getId());
+                Config.setInteger(ConfigEntry.SELECTED_THEME, UtilityClient.CURRENT_THEME.getId());
                 this.mc.gameSettings.saveOptions();
                 this.mc.displayGuiScreen(this.parentScreen);
             }

@@ -1,16 +1,17 @@
 package de.gamingcraft;
 
 import de.gamingcraft.addons.AddonManager;
-import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.config.Config;
+import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
-import de.gamingcraft.overlay.Keystrokes;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -54,24 +55,30 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
+        new File("uc2").mkdirs();
+
         AddonManager.start();
         try {
-            ConfigManager.start();
+            Config.run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             MacroManager.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        CURRENT_THEME = Theme.getThemeById(ConfigManager.config.getSelectedTheme());
-        addKeyBind("Zoom", ConfigManager.config.getHotkeyZoom(), false);
-        addKeyBind("Fulbright", ConfigManager.config.getHotkeyFulbright(), false);
-        addKeyBind("Toggle Overlay", ConfigManager.config.getOverlay(), false);
+        CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME, 0));
+        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM, 46), false);
+        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT, 50), false);
+        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY, 22), false);
         DISCORD_INSTANCE.start();
         CPS_THREAD_INSTANCE.start();
     }
 
     public void loop() {
         DISCORD_INSTANCE.loop();
-        if (keyBinds.get(0).isKeyDown()) fovModifier = ConfigManager.config.getZoomFactor();
+        if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
         else fovModifier = 1.0f;
         if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
             Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;

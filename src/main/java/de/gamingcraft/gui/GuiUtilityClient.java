@@ -1,10 +1,10 @@
 package de.gamingcraft.gui;
 
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.config.Config;
+import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.utils.gui.GuiCustomSlider;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiOptionSlider;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 
@@ -32,7 +32,7 @@ public class GuiUtilityClient extends GuiScreen
 
         this.title = UtilityClient.getClientName();
 
-        this.buttonList.add(new GuiCustomSlider(4, this.width / 2 - 100, this.height/2-88, f -> ConfigManager.config.setZoomFactor(f), 0f, 1f, ConfigManager.config.getZoomFactor()));
+        this.buttonList.add(new GuiCustomSlider(4, this.width / 2 - 100, this.height/2-88, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), 0f, 1f, Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
 
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));
         this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-44, "Select Crosshair"));
@@ -49,7 +49,7 @@ public class GuiUtilityClient extends GuiScreen
         if (button.enabled)
         {
             if(button.id == 1) {
-                this.mc.gameSettings.saveOptions();
+                Config.save();
                 this.mc.displayGuiScreen(new GuiThemeOptions(this));
             }
 
@@ -60,13 +60,13 @@ public class GuiUtilityClient extends GuiScreen
             }
 
             if(button.id == 3) {
-                this.mc.gameSettings.saveOptions();
+                Config.save();
                 this.mc.displayGuiScreen(new GuiCrosshairOptions(this));
             }
 
             if (button.id == 200)
             {
-                this.mc.gameSettings.saveOptions();
+                Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
         }

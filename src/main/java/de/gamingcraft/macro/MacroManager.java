@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class MacroManager {
 
-    private static File macroFile = new File("_macros.txt");
+    private static File macroFile = new File("uc2/macros.txt");
     private static String macroFileTemplate = "Example:Hello World!:0";
     private static String macroFileContent = "";
     private static Macro[] macros;

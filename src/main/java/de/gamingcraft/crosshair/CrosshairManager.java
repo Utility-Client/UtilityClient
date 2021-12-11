@@ -1,8 +1,8 @@
 package de.gamingcraft.crosshair;
 
-import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.config.Config;
+import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.utils.SerializationUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,8 +14,8 @@ public class CrosshairManager {
     public static void loop(ScaledResolution sr) throws Exception {
         GlStateManager.disableDepth();
         GlStateManager.disableAlpha();
-        HashMap<Integer, Boolean> pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(ConfigManager.config.getCrosshair());
-        int size = ConfigManager.config.getCrosshairSize();
+        HashMap<Integer, Boolean> pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(Config.getString(ConfigEntry.CROSSHAIR_DATA, ""));
+        int size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE, 9);
 
         int f = 0;
         for (int i = 0; i < size; i++) {

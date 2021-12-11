@@ -10,8 +10,8 @@ public class AddonManager {
     private static final ArrayList<Class<?>> classes = new ArrayList<>();
 
     public static void start() {
-        File file = new File("_uc-addons\\");
-        if(file.mkdir()) System.out.println("Created _uc-addons directory.");
+        File file = new File("uc2/addons/");
+        if(file.mkdir()) System.out.println("Created uc2/addons directory.");
         try {
             URL url = file.toURI().toURL();
             URL[] urls = new URL[]{url};

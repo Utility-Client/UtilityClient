@@ -1,7 +1,8 @@
 package de.gamingcraft.gui;
 
 import de.gamingcraft.UtilityClient;
-import de.gamingcraft.config.ConfigManager;
+import de.gamingcraft.config.Config;
+import de.gamingcraft.config.ConfigEntry;
 import de.gamingcraft.utils.SerializationUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -26,8 +27,8 @@ public class GuiCrosshairOptions extends GuiScreen
         this.title = "Crosshair Editor";
         try {
             // Please ignore the dirty code, it should just work.
-            size = ConfigManager.config.getCrosshairSize();
-            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(ConfigManager.config.getCrosshair());
+            size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE, 9);
+            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(Config.getString(ConfigEntry.CROSSHAIR_DATA, "0"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,16 +41,9 @@ public class GuiCrosshairOptions extends GuiScreen
         if (button.enabled)
         {
             if (button.id == 200) {
-                ConfigManager.config.setCrosshair(SerializationUtils.serialize(pixels));
-
-                ConfigManager.overrideConfig(UtilityClient.CURRENT_THEME.getId(),
-                        ConfigManager.config.getHotkeyZoom(),
-                        ConfigManager.config.getHotkeyFulbright(),
-                        ConfigManager.config.getCrosshair(),
-                        size,
-                        ConfigManager.config.getOverlay(),
-                        ConfigManager.config.getZoomFactor());
-                this.mc.gameSettings.saveOptions();
+                Config.getString(ConfigEntry.CROSSHAIR_DATA, SerializationUtils.serialize(pixels));
+                Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
+                Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
 
