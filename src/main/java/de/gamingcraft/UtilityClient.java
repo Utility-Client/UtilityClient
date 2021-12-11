@@ -4,6 +4,7 @@ import de.gamingcraft.addons.AddonManager;
 import de.gamingcraft.config.ConfigManager;
 import de.gamingcraft.discord.DiscordRP;
 import de.gamingcraft.macro.MacroManager;
+import de.gamingcraft.overlay.Keystrokes;
 import de.gamingcraft.overlay.Theme;
 import de.gamingcraft.overlay.modules.CPSThread;
 import net.minecraft.client.Minecraft;
@@ -24,6 +25,8 @@ public class UtilityClient extends Thread {
     public static Theme CURRENT_THEME = Theme.RED;
     public static boolean renderOverlay = true;
     public static boolean capesEnabled = true;
+    public static boolean isSprinting = false;
+    private static final boolean isToggleSprintEnabled = false;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
@@ -76,5 +79,9 @@ public class UtilityClient extends Thread {
         if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
         MacroManager.loop();
         AddonManager.runAddonEvent("loop");
+        if(isToggleSprintEnabled) {
+            if(Minecraft.getMinecraft().gameSettings.keyBindSprint.isPressed()) isSprinting = !isSprinting;
+            if(isSprinting) Minecraft.getMinecraft().thePlayer.setSprinting(true);
+        }
     }
 }

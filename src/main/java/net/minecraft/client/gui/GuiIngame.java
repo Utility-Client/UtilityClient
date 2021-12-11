@@ -4,6 +4,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import de.gamingcraft.UtilityClient;
 import de.gamingcraft.crosshair.CrosshairManager;
+import de.gamingcraft.overlay.Keystrokes;
 import de.gamingcraft.overlay.ModuleHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -302,8 +303,10 @@ public class GuiIngame extends Gui {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
-        if (UtilityClient.shouldRenderOverlay())
+        if (UtilityClient.shouldRenderOverlay()){
             ModuleHandler.loop(UtilityClient.CURRENT_THEME.getId() == 10 ? Minecraft.getMinecraft().standardGalacticFontRenderer : getFontRenderer());
+            Keystrokes.loop();
+        }
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
