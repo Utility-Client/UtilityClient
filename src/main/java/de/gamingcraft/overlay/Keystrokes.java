@@ -1,11 +1,14 @@
 package de.gamingcraft.overlay;
 
 import static net.minecraft.client.Minecraft.getMinecraft;
+
+import de.gamingcraft.config.Config;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 
 public class Keystrokes {
     public static void loop() {
+        if(!Config.getBoolean("keystrokesEnabled", true)) return;
         ScaledResolution sr = new ScaledResolution(getMinecraft());
         new GuiButton(0, sr.getScaledWidth()-48, sr.getScaledHeight()-72, 20, 20,
                 "W", getMinecraft().gameSettings.keyBindForward.isKeyDown()).drawButton(getMinecraft(), 0, 0);
