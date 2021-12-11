@@ -27,7 +27,7 @@ public class UtilityClient extends Thread {
     public static boolean renderOverlay = true;
     public static boolean capesEnabled = true;
     public static boolean isSprinting = false;
-    private static final boolean isToggleSprintEnabled = false;
+    private static final boolean isToggleSprintEnabled;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;

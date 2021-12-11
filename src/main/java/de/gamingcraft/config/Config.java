@@ -67,6 +67,14 @@ public class Config {
         return Float.parseFloat(getConfig().getOrDefault(key.getKey(), String.valueOf(defaultValue)));
     }
 
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        return Boolean.parseBoolean(getConfig().getOrDefault(key, String.valueOf(defaultValue)));
+    }
+
+    public static boolean getBoolean(ConfigEntry key, boolean defaultValue) {
+        return Boolean.parseBoolean(getConfig().getOrDefault(key.getKey(), String.valueOf(defaultValue)));
+    }
+
     public static void setInteger(String key, int value) {
         getConfig().put(key, String.valueOf(value));
     }
@@ -88,6 +96,14 @@ public class Config {
     }
 
     public static void setFloat(ConfigEntry key, float value) {
+        getConfig().put(key.getKey(), String.valueOf(value));
+    }
+
+    public static void setBoolean(String key, boolean value) {
+        getConfig().put(key, String.valueOf(value));
+    }
+
+    public static void setBoolean(ConfigEntry key, boolean value) {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
 
