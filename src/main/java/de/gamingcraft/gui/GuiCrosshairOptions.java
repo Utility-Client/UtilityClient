@@ -21,6 +21,7 @@ public class GuiCrosshairOptions extends GuiScreen
     private int size = 9;
     public static final File crosshairFile = new File("uc2/crosshair.txt");
     HashMap<Integer, Boolean> pixels = new HashMap<>();
+
     public GuiCrosshairOptions(GuiScreen parentScreenIn)
     {
         this.parentScreen = parentScreenIn;
