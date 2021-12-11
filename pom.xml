@@ -41,8 +41,6 @@
     </repositories>
 
     <dependencies>
-
-
         <dependency>
             <groupId>net.minecraft</groupId>
             <artifactId>minecraft</artifactId>
@@ -229,6 +227,4 @@
             <version>1.6.2</version>
         </dependency>
     </dependencies>
-
-
 </project>
