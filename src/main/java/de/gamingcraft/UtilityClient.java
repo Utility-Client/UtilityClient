@@ -60,7 +60,7 @@ public class UtilityClient extends Thread {
         AddonManager.start();
         try {
             Config.run();
-            isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false)
+            isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false);
         } catch (IOException e) {
             e.printStackTrace();
         }
