@@ -23,22 +23,13 @@ public class MacroManager {
             FileUtils.saveFile(macroFile, macroFileTemplate);
             macroFileContent = macroFileTemplate;
         }
-
         macros = convertToMacros(macroFileContent);
-
-        for (Macro macro : macros) {
-            macro.setKeyBinding(UtilityClient.addKeyBind(macro.getName(), macro.getKeyCode(), true));
-        }
-
+        for (Macro macro : macros) macro.setKeyBinding(UtilityClient.addKeyBind(macro.getName(), macro.getKeyCode(), true));
     }
 
     
     public static void loop() {
-        for (Macro macro : macros) {
-            if(macro.getKeyBinding().isPressed()) {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.getCommand());
-            }
-        }
+        for (Macro macro : macros) if(macro.getKeyBinding().isPressed()) Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.getCommand());
     }
 
     private static Macro[] convertToMacros(String raw) {
