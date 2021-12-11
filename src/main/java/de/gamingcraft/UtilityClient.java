@@ -61,6 +61,7 @@ public class UtilityClient extends Thread {
         try {
             Config.run();
             isToggleSprintEnabled = Config.getBoolean("toggleSprintEnabled", false);
+            Config.getBoolean("keystrokesEnabled", true);
         } catch (IOException e) {
             e.printStackTrace();
         }

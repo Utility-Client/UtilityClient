@@ -17,6 +17,7 @@ public class MacroManager {
 
 
     public static void start() throws IOException {
+        macroFile.createNewFile();
         if(macroFile.exists()) {
             macroFileContent = FileUtils.loadFile(macroFile);
         }else {

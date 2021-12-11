@@ -19,9 +19,11 @@ public class Config {
 
     private static void load() throws FileNotFoundException {
         Scanner scanner = new Scanner(configFile);
-        while(scanner.hasNextLine()) {
-            String[] split = scanner.nextLine().split("=");
+        while(scanner.hasNext()) {
+            String raw = scanner.next();
+            String[] split = raw.split("=");
             if(split.length == 2) config.put(split[0], split[1]);
+            System.out.println(raw);
         }
         // Proper disposal 🚽
         scanner.close();
@@ -34,8 +36,6 @@ public class Config {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, String> ce : config.entrySet()) sb.append(ce.getKey()).append("=").append(ce.getValue()).append("\n");
         fw.write(sb.toString());
-        // Proper disposal 🚽
-        fw.flush();
         fw.close();
     }
 

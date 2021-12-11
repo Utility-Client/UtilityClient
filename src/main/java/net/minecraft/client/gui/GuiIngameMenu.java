@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import de.gamingcraft.config.Config;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -70,6 +71,7 @@ public class GuiIngameMenu extends GuiScreen
                 {
                     this.mc.displayGuiScreen(new GuiMultiplayer(new GuiMainMenu()));
                 }
+                Config.save();
 
             case 2:
             case 3:
