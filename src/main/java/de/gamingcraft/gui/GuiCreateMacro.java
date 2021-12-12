@@ -1,9 +1,10 @@
 package de.gamingcraft.gui;
 
+import de.gamingcraft.macro.Macro;
+import de.gamingcraft.macro.MacroManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
@@ -34,13 +35,15 @@ public class GuiCreateMacro extends GuiScreen {
         messageInput.setFocused(false);
         messageInput.setText("Insert a message or command here");
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2 + 22, I18n.format("gui.done")));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2 + 22, 100, 20, "Cancel"));
+        this.buttonList.add(new GuiButton(201, this.width / 2, this.height / 2 + 22, 100, 20, "Save"));
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
+
 
         nameInput.drawTextBox();
         messageInput.drawTextBox();
@@ -56,7 +59,14 @@ public class GuiCreateMacro extends GuiScreen {
 
     protected void actionPerformed(GuiButton button)
     {
-        if (button.id == 200) {
+        if (button.id == 200) this.mc.displayGuiScreen(this.parentScreen);
+
+        if (button.id == 201) {
+            try {
+                MacroManager.save(nameInput.getText(), new Macro(nameInput.getText(), messageInput.getText(), 0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             this.mc.displayGuiScreen(this.parentScreen);
         }
     }
