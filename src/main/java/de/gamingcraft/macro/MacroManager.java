@@ -54,7 +54,7 @@ public class MacroManager {
         File macroFile = new File("uc2/macros/" + filename + ".txt");
         if(!macroFile.createNewFile()) System.out.println("Macro " + filename + " already exists. Overwriting...");
         FileWriter fw = new FileWriter(macroFile, false);
-        fw.write(macro.name + "\n" + macro.name + "\n" + macro.keyCode);
+        fw.write(macro.name + "\n" + macro.message + "\n" + macro.keyCode);
         fw.close();
         load(macroFile);
     }

@@ -44,7 +44,8 @@ public class GuiCreateMacro extends GuiScreen {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
 
-
+        fontRendererObj.drawStringWithShadow("Name", this.width / 2f - 100, height / 2f - 77, 16777215);
+        fontRendererObj.drawStringWithShadow("Message or command", this.width / 2f - 100, height / 2f - 33, 16777215);
         nameInput.drawTextBox();
         messageInput.drawTextBox();
 

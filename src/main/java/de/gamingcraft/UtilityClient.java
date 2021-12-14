@@ -47,7 +47,7 @@ public class UtilityClient extends Thread {
 
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
         String cat = CLIENT_NAME;
-        if (isMacro) cat = "Auto-Commands";
+        if (isMacro) cat = "Macros";
         KeyBinding kb = new KeyBinding(name, keyCode, cat);
         Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
         if (!isMacro) keyBinds.add(kb);
