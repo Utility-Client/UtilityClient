@@ -8,9 +8,11 @@ public enum ConfigEntry {
     CROSSHAIR_SIZE("crosshairSize", "7"),
     ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
     KEYSTROKES("keystrokesEnabled", "true"),
-    TOGGLE_SPRINT("toggleSprintEnabled", "false");
+    TOGGLE_SPRINT("toggleSprintEnabled", "false"),
+    OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true");
 
-    private String key, defaultValue;
+    private final String key;
+    private final String defaultValue;
 
     ConfigEntry(String key, String defaultValue) {
         this.key = key;

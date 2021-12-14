@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Config {
@@ -48,35 +49,35 @@ public class Config {
     }
 
     public static int getInteger(String key, int defaultValue) {
-        return Integer.parseInt(getConfig().getOrDefault(key, String.valueOf(defaultValue)));
+        return Integer.parseInt(Objects.requireNonNull(getConfig().putIfAbsent(key, String.valueOf(defaultValue))));
     }
 
     public static int getInteger(ConfigEntry key) {
-        return Integer.parseInt(getConfig().getOrDefault(key.getKey(), String.valueOf(key.getDefaultValue())));
+        return Integer.parseInt(Objects.requireNonNull(getConfig().putIfAbsent(key.getKey(), String.valueOf(key.getDefaultValue()))));
     }
 
     public static String getString(String key, String defaultValue) {
-        return getConfig().getOrDefault(key, defaultValue);
+        return getConfig().putIfAbsent(key, defaultValue);
     }
 
     public static String getString(ConfigEntry key) {
-        return getConfig().getOrDefault(key.getKey(), key.getDefaultValue());
+        return getConfig().putIfAbsent(key.getKey(), key.getDefaultValue());
     }
 
     public static float getFloat(String key, float defaultValue) {
-        return Float.parseFloat(getConfig().getOrDefault(key, String.valueOf(defaultValue)));
+        return Float.parseFloat(Objects.requireNonNull(getConfig().putIfAbsent(key, String.valueOf(defaultValue))));
     }
 
     public static float getFloat(ConfigEntry key, float defaultValue) {
-        return Float.parseFloat(getConfig().getOrDefault(key.getKey(), String.valueOf(defaultValue)));
+        return Float.parseFloat(Objects.requireNonNull(getConfig().putIfAbsent(key.getKey(), String.valueOf(defaultValue))));
     }
 
     public static boolean getBoolean(String key, boolean defaultValue) {
-        return Boolean.parseBoolean(getConfig().getOrDefault(key, String.valueOf(defaultValue)));
+        return Boolean.parseBoolean(getConfig().putIfAbsent(key, String.valueOf(defaultValue)));
     }
 
     public static boolean getBoolean(ConfigEntry key, boolean defaultValue) {
-        return Boolean.parseBoolean(getConfig().getOrDefault(key.getKey(), String.valueOf(defaultValue)));
+        return Boolean.parseBoolean(getConfig().putIfAbsent(key.getKey(), String.valueOf(defaultValue)));
     }
 
     public static void setInteger(String key, int value) {
