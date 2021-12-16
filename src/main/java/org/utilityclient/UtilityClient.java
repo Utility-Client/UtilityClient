@@ -5,8 +5,10 @@ import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.macro.MacroManager;
+import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.Theme;
 import org.utilityclient.overlay.modules.CPSThread;
+import org.utilityclient.overlay.modules.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
@@ -71,6 +73,12 @@ public class UtilityClient extends Thread {
         addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         DISCORD_INSTANCE.start();
+
+        ModuleHandler.modules.add(new FPSModule());
+        ModuleHandler.modules.add(new CoordsModule());
+        ModuleHandler.modules.add(new ClockModule());
+        ModuleHandler.modules.add(new DateModule());
+
         CPS_THREAD_INSTANCE.start();
         try {
             MacroManager.run();

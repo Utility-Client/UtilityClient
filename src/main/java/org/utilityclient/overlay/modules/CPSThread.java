@@ -1,13 +1,22 @@
 package org.utilityclient.overlay.modules;
 
+import net.minecraft.client.Minecraft;
+import org.utilityclient.overlay.ModuleHandler;
+
 public class CPSThread extends Thread {
 
     private static int clicks;
     private static int clicks2;
+    public static boolean shouldRun = true;
 
     @Override
     public void run() {
-        while (true) {
+        ModuleHandler.modules.add(new CPSModule());
+        loop();
+    }
+
+    public void loop() {
+        while (shouldRun) {
             clicks = 0;
             clicks2 = 0;
             try {
