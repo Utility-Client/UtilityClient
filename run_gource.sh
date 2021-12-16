@@ -1,1 +1,0 @@
-gource --camera-mode overview --title "Utility Client" --hide dirnames,files,filenames,mouse --fullscreen
