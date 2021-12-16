@@ -1,6 +1,5 @@
 package org.utilityclient;
 
-import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
