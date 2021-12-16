@@ -38,7 +38,7 @@ Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
 <tr>
 <td>
     
-<img src="readme_content/profile_pictures/GamingCraft_hd.png" width="100">
+<img src="https://avatars.githubusercontent.com/u/49761607?v=4" width="100">
 
 [GamingCraft_hd](http://gamingcraft.de)
 
