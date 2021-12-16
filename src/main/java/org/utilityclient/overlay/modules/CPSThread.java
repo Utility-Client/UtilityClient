@@ -1,6 +1,5 @@
 package org.utilityclient.overlay.modules;
 
-import net.minecraft.client.Minecraft;
 import org.utilityclient.overlay.ModuleHandler;
 
 public class CPSThread extends Thread {
