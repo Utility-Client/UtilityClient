@@ -1,7 +1,7 @@
 package net.minecraft.client.gui;
 
-import de.gamingcraft.*;
-import de.gamingcraft.gui.*;
+import org.utilityclient.*;
+import org.utilityclient.gui.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ChatComponentText;
