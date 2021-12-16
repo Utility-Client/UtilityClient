@@ -56,7 +56,6 @@ public class UtilityClient extends Thread {
 
     public void run() {
         new File("uc2").mkdirs();
-        AddonManager.start();
         try {
             Config.run();
         } catch (IOException e) {
@@ -89,7 +88,6 @@ public class UtilityClient extends Thread {
             Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
         else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
         if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
-        AddonManager.runAddonEvent("loop");
         MacroManager.loop();
     }
 }
