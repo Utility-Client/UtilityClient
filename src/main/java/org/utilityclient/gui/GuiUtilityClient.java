@@ -32,7 +32,7 @@ public class GuiUtilityClient extends GuiScreen
 
         this.title = UtilityClient.getClientName();
 
-        this.buttonList.add(new GuiCustomSlider(4, this.width / 2 - 100, this.height/2-110, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), 0f, 1f, Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
+        this.buttonList.add(new GuiCustomSlider(-1, this.width / 2 - 100, this.height/2-110, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), 0f, 1f, Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
 
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height/2-88, "Create a macro"));
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));

@@ -63,15 +63,17 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
+        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
+        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
+        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
+
         try {
             CrosshairManager.run();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME));
-        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
-        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
-        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         DISCORD_INSTANCE.start();
 
         ModuleHandler.modules.add(new FPSModule());
@@ -89,12 +91,14 @@ public class UtilityClient extends Thread {
 
     public void loop() {
         DISCORD_INSTANCE.loop();
-        if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
-        else fovModifier = 1.0f;
-        if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
-            Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
-        else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
-        if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
+        if (keyBinds.size() >= 3) {
+            if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
+            else fovModifier = 1.0f;
+            if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
+                Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
+            else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
+            if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
+        }
         MacroManager.loop();
     }
 }
