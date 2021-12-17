@@ -386,7 +386,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         logger.info("LWJGL Version: " + Sys.getVersion());
-        //this.setWindowIcon();
         this.setInitialDisplayMode();
         this.createDisplay();
         OpenGlHelper.initializeTextures();
@@ -512,6 +511,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         Display.setResizable(true);
         Display.setTitle(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
 
+        this.setWindowIcon();
+
         try
         {
             Display.create((new PixelFormat()).withDepthBits(24));
@@ -553,7 +554,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
     }
 
-    public void setWindowIcon()
+    private void setWindowIcon()
     {
         Util.EnumOS util$enumos = Util.getOSType();
 
@@ -564,12 +565,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             try
             {
-                inputstream = getResourceManager().getResource(new ResourceLocation("icons/icon_16x16.png")).getInputStream();
-                inputstream1 = getResourceManager().getResource(new ResourceLocation("icons/icon_32x32.png")).getInputStream();
+                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
+                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
 
                 if (inputstream != null && inputstream1 != null)
                 {
-                    Display.setIcon(new ByteBuffer[] {readImageToBuffer(inputstream), readImageToBuffer(inputstream1)});
+                    Display.setIcon(new ByteBuffer[] {this.readImageToBuffer(inputstream), this.readImageToBuffer(inputstream1)});
+
                 }
             }
             catch (IOException ioexception)
@@ -578,8 +580,14 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             }
             finally
             {
-                IOUtils.closeQuietly(inputstream);
-                IOUtils.closeQuietly(inputstream1);
+                try {
+                    assert inputstream != null;
+                    assert inputstream1 != null;
+                    inputstream.close();
+                    inputstream1.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -708,7 +716,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
     }
 
-    public static ByteBuffer readImageToBuffer(InputStream imageStream) throws IOException
+    private ByteBuffer readImageToBuffer(InputStream imageStream) throws IOException
     {
         BufferedImage bufferedimage = ImageIO.read(imageStream);
         int[] aint = bufferedimage.getRGB(0, 0, bufferedimage.getWidth(), bufferedimage.getHeight(), null, 0, bufferedimage.getWidth());
@@ -719,7 +727,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             bytebuffer.putInt(i << 8 | i >> 24 & 255);
         }
 
-        //bytebuffer.flip();
+        bytebuffer.flip();
         return bytebuffer;
     }
 
