@@ -21,13 +21,12 @@ public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.10";
+    private static final String CLIENT_VERSION = "2.10.1-DEV";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
     public static Theme CURRENT_THEME = Theme.RED;
     public static boolean renderOverlay = true;
-    public static boolean capesEnabled = true;
     public static boolean isSprinting = false;
 
     public static UtilityClient getInstance() {

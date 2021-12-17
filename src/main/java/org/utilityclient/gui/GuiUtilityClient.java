@@ -37,7 +37,6 @@ public class GuiUtilityClient extends GuiScreen
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height/2-88, "Create a macro"));
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height/2-66, "Select Theme"));
         this.buttonList.add(new GuiButton(3, this.width / 2 - 100, this.height/2-44, "Select Crosshair"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - 100, this.height/2-22, UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes"));
 
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done")));
     }
@@ -52,12 +51,6 @@ public class GuiUtilityClient extends GuiScreen
             if(button.id == 1) {
                 Config.save();
                 this.mc.displayGuiScreen(new GuiThemeOptions(this));
-            }
-
-            if(button.id == 2) {
-                UtilityClient.capesEnabled = !UtilityClient.capesEnabled;
-                this.buttonList.get(1).displayString = UtilityClient.capesEnabled ? "§cDisable Capes" : "§aEnable Capes";
-
             }
 
             if(button.id == 3) {

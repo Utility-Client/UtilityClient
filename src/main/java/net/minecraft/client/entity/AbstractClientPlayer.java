@@ -40,7 +40,6 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
             if (org.apache.commons.lang3.StringUtils.isBlank(name))
                 name = JSONUtils.gson.fromJson(JSONUtils.downloadJson(new URL("https://sessionserver.mojang.com/session/minecraft/profile/" + playerProfile.getId())), JsonObject.class).get("name").getAsString();
 
-            if(!UtilityClient.capesEnabled) return;
             for (JsonElement capeOwners : JSONUtils.gson.fromJson(capeIndex, JsonArray.class)) {
                 String finalName = name;
                 capeOwners.getAsJsonObject().get("usernames").getAsJsonArray().forEach(username -> {
