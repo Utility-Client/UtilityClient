@@ -87,7 +87,7 @@ public class SaveFormatOld implements ISaveFormat
                 }
                 catch (Exception exception1)
                 {
-                    logger.error((String)("Exception reading " + file2), (Throwable)exception1);
+                    //logger.error((String)("Exception reading " + file2), (Throwable)exception1);
                 }
             }
 
@@ -103,7 +103,7 @@ public class SaveFormatOld implements ISaveFormat
                 }
                 catch (Exception exception)
                 {
-                    logger.error((String)("Exception reading " + file2), (Throwable)exception);
+                    //logger.error((String)("Exception reading " + file2), (Throwable)exception);
                 }
             }
 
@@ -134,7 +134,7 @@ public class SaveFormatOld implements ISaveFormat
                 }
                 catch (Exception exception)
                 {
-                    exception.printStackTrace();
+                    //exception.printStackTrace();
                 }
             }
         }
