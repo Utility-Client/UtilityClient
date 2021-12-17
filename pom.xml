@@ -6,7 +6,7 @@
 
     <groupId>de.gamingcraft</groupId>
     <artifactId>UtilityClient</artifactId>
-    <version>2.4-1.8.8</version>
+    <version>2.10</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -14,7 +14,7 @@
     </properties>
 
     <build>
-        <finalName>UtilityClient</finalName>
+        <finalName>1.8.8-UtilityClient</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
