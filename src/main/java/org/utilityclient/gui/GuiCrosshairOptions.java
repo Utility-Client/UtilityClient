@@ -32,6 +32,7 @@ public class GuiCrosshairOptions extends GuiScreen
         this.title = "Crosshair Editor";
         try {
             size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
+
             Scanner scanner = new Scanner(crosshairFile);
             pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
             CrosshairManager.pixels = pixels;
@@ -52,6 +53,7 @@ public class GuiCrosshairOptions extends GuiScreen
                 fw.write(SerializationUtils.serialize(pixels));
                 CrosshairManager.pixels = pixels;
                 fw.close();
+
                 Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
                 Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);
@@ -59,11 +61,13 @@ public class GuiCrosshairOptions extends GuiScreen
 
             if (button.id == 201) if(size > 1) {
                 size--;
+                Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
                 pixels.clear();
             }
 
             if (button.id == 202) if(size < 12) {
                 size++;
+                Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
                 pixels.clear();
             }
         }

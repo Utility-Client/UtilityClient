@@ -5,7 +5,7 @@ public enum ConfigEntry {
     HOTKEY_ZOOM("hotkeyZoom", "46"),
     HOTKEY_FULBRIGHT("hotkeyFulbright", "50"),
     HOTKEY_OVERLAY("hotkeyOverlay", "22"),
-    CROSSHAIR_SIZE("crosshairSize", "7"),
+    CROSSHAIR_SIZE("crosshairSize", "11"),
     ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
     KEYSTROKES("keystrokesEnabled", "true"),
     TOGGLE_SPRINT("toggleSprintEnabled", "false"),

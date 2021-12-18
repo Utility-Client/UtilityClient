@@ -30,7 +30,7 @@ public class GuiThemeOptions extends GuiScreen {
      * window resizes, the buttonList is cleared beforehand.
      */
     public void initGui() {
-        this.title = UtilityClient.getClientName() + " Theme Options";
+        this.title = "Select Theme";
 
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 98, 20, "Previous Theme"));
         this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height / 2 - 40, 98, 20, "Next Theme"));
@@ -49,7 +49,7 @@ public class GuiThemeOptions extends GuiScreen {
 
             if (button.id == 200) {
                 Config.setInteger(ConfigEntry.SELECTED_THEME, UtilityClient.CURRENT_THEME.getId());
-                this.mc.gameSettings.saveOptions();
+                Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
         }

@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Config {
@@ -15,11 +14,8 @@ public class Config {
 
     public static void run() throws IOException {
         config.clear();
-        if(!configFile.createNewFile()) load();
-        else {
-            for (ConfigEntry entry : ConfigEntry.values()) config.put(entry.getKey(), entry.getDefaultValue());
-            save();
-        }
+        configFile.createNewFile();
+        load();
     }
 
     private static void load() throws FileNotFoundException {
