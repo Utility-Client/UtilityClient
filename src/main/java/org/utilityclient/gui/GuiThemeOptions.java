@@ -32,8 +32,8 @@ public class GuiThemeOptions extends GuiScreen {
     public void initGui() {
         this.title = "Select Theme";
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 98, 20, "Previous Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2 + 2, this.height / 2 - 40, 98, 20, "Next Theme"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 100, 20, "Previous Theme"));
+        this.buttonList.add(new GuiButton(2, this.width / 2, this.height / 2 - 40, 100, 20, "Next Theme"));
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2, I18n.format("gui.done")));
     }
 
