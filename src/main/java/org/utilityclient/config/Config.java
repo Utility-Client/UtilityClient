@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Config {
-    private static HashMap<String, String> config = new HashMap<>();
-    private static File configFile = new File("uc2/config.cfg");
+    private static final HashMap<String, String> config = new HashMap<>();
+    private static final File configFile = new File("uc2/config.cfg");
 
     public static void run() throws IOException {
         config.clear();
@@ -108,13 +108,4 @@ public class Config {
     public static void setBoolean(ConfigEntry key, boolean value) {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
-
-    // TODO Needed config entries
-    // - selectedTheme: int
-    // - hotkeyZoom: int
-    // - hotkeyFulbright: int
-    // - overlay: int
-    // - crosshairSize: int
-    // - crosshairData: string
-    // - zoomFactor: float
 }
