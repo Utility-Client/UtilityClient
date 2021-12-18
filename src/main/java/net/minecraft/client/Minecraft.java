@@ -406,6 +406,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.mcResourceManager.registerReloadListener(this.mcSoundHandler);
         this.mcMusicTicker = new MusicTicker(this);
         this.fontRendererObj = new FontRenderer(this.gameSettings, new ResourceLocation("textures/font/ascii.png"), this.renderEngine, false);
+        this.setWindowIcon();
 
         if (this.gameSettings.language != null)
         {
@@ -511,8 +512,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         Display.setResizable(true);
         Display.setTitle(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
 
-        this.setWindowIcon();
-
         try
         {
             Display.create((new PixelFormat()).withDepthBits(24));
@@ -565,8 +564,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             try
             {
-                inputstream = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_16x16.png"));
-                inputstream1 = this.mcDefaultResourcePack.getInputStreamAssets(new ResourceLocation("icons/icon_32x32.png"));
+                inputstream = this.defaultResourcePacks.get(0).getInputStream(new ResourceLocation("icons/icon_16x16.png"));
+                inputstream1 = this.defaultResourcePacks.get(0).getInputStream(new ResourceLocation("icons/icon_32x32.png"));
 
                 if (inputstream != null && inputstream1 != null)
                 {
