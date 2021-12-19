@@ -1,0 +1,3 @@
+[submodule "src/main/resources/assets/minecraft/lang"]
+	path = src/main/resources/assets/minecraft/lang
+	url = https://github.com/Utility-Client/uc2-i18n
