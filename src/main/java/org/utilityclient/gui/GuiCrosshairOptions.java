@@ -29,7 +29,7 @@ public class GuiCrosshairOptions extends GuiScreen
 
     public void initGui()
     {
-        this.title = "Crosshair Editor";
+        this.title = I18n.format("uc.options.crosshair.title");
         try {
             size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 

@@ -30,10 +30,10 @@ public class GuiThemeOptions extends GuiScreen {
      * window resizes, the buttonList is cleared beforehand.
      */
     public void initGui() {
-        this.title = "Select Theme";
+        this.title = I18n.format("uc.options.theme.title");
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 100, 20, "Previous Theme"));
-        this.buttonList.add(new GuiButton(2, this.width / 2, this.height / 2 - 40, 100, 20, "Next Theme"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 100, 20, I18n.format("uc.options.theme.previous")));
+        this.buttonList.add(new GuiButton(2, this.width / 2, this.height / 2 - 40, 100, 20, I18n.format("uc.options.theme.next")));
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2, I18n.format("gui.done")));
     }
 
@@ -61,7 +61,7 @@ public class GuiThemeOptions extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
-        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + "Prefix§7: " + UtilityClient.CURRENT_THEME.getSuffix() + "Suffix", this.width / 2, this.height / 2 - 70, 16777215);
+        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + I18n.format("uc.options.theme.prefix") + "§7: " + UtilityClient.CURRENT_THEME.getSuffix() +  I18n.format("uc.options.theme.suffix") , this.width / 2, this.height / 2 - 70, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

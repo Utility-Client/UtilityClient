@@ -1,5 +1,6 @@
 package org.utilityclient;
 
+import net.minecraft.client.resources.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
@@ -62,9 +63,9 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        addKeyBind("Zoom", Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
-        addKeyBind("Fulbright", Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
-        addKeyBind("Toggle Overlay", Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
+        addKeyBind(I18n.format("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
+        addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
+        addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
 
         try {
             CrosshairManager.run();

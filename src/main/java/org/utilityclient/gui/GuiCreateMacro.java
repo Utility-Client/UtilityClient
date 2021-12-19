@@ -1,5 +1,6 @@
 package org.utilityclient.gui;
 
+import net.minecraft.client.resources.I18n;
 import org.utilityclient.macro.Macro;
 import org.utilityclient.macro.MacroManager;
 import net.minecraft.client.gui.GuiButton;
@@ -23,20 +24,20 @@ public class GuiCreateMacro extends GuiScreen {
     public void initGui()
     {
         Keyboard.enableRepeatEvents(true);
-        title = "Create Macro";
+        title = I18n.format("uc.options.macro.title");
 
         nameInput = new GuiTextField(1, fontRendererObj, width / 2 - 100, height / 2 - 66, 200, 20);
         nameInput.setMaxStringLength(255);
         nameInput.setFocused(true);
-        nameInput.setText("New Macro");
+        nameInput.setText(I18n.format("uc.options.macro.default.name"));
 
         messageInput = new GuiTextField(2, fontRendererObj, width / 2 - 100, height / 2 - 22, 200, 20);
         messageInput.setMaxStringLength(100);
         messageInput.setFocused(false);
-        messageInput.setText("Insert a message or command here");
+        messageInput.setText(I18n.format("uc.options.macro.default.message"));
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2 + 22, 100, 20, "Cancel"));
-        this.buttonList.add(new GuiButton(201, this.width / 2, this.height / 2 + 22, 100, 20, "Save"));
+        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.cancel")));
+        this.buttonList.add(new GuiButton(201, this.width / 2, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.save")));
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -44,8 +45,8 @@ public class GuiCreateMacro extends GuiScreen {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
 
-        fontRendererObj.drawStringWithShadow("Name", this.width / 2f - 100, height / 2f - 77, 16777215);
-        fontRendererObj.drawStringWithShadow("Message or command", this.width / 2f - 100, height / 2f - 33, 16777215);
+        fontRendererObj.drawStringWithShadow(I18n.format("uc.options.macro.name"), this.width / 2f - 100, height / 2f - 77, 16777215);
+        fontRendererObj.drawStringWithShadow(I18n.format("uc.options.macro.message"), this.width / 2f - 100, height / 2f - 33, 16777215);
         nameInput.drawTextBox();
         messageInput.drawTextBox();
 
