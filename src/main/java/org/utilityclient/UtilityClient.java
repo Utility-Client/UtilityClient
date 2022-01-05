@@ -14,6 +14,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,6 +70,7 @@ public class UtilityClient extends Thread {
         addKeyBind(I18n.format("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
         addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
+        addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
 
         try {
             CrosshairManager.run();
@@ -81,6 +85,7 @@ public class UtilityClient extends Thread {
         ModuleHandler.modules.add(new CoordsModule());
         ModuleHandler.modules.add(new ClockModule());
         ModuleHandler.modules.add(new DateModule());
+        ModuleHandler.modules.add(new FacingModule());
 
         CPS_THREAD_INSTANCE.start();
         try {
@@ -104,6 +109,13 @@ public class UtilityClient extends Thread {
                 isFulbrightEnabled = false;
             }
             if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
+
+            if(keyBinds.get(3).isPressed()) {
+                String myString = Math.round(Minecraft.getMinecraft().thePlayer.posX) + " " + Math.round(Minecraft.getMinecraft().thePlayer.posY) + " " + Math.round(Minecraft.getMinecraft().thePlayer.posZ);
+                StringSelection stringSelection = new StringSelection(myString);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+            }
         }
         MacroManager.loop();
     }
