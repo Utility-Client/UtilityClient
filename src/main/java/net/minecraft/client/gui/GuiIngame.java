@@ -304,6 +304,7 @@ public class GuiIngame extends Gui {
         GlStateManager.enableAlpha();
         if (UtilityClient.shouldRenderOverlay()){
             ModuleHandler.loop(UtilityClient.CURRENT_THEME.getId() == 10 ? Minecraft.getMinecraft().standardGalacticFontRenderer : getFontRenderer());
+            if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
             Keystrokes.loop();
         }
     }

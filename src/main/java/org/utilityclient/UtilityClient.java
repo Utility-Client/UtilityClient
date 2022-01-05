@@ -29,6 +29,7 @@ public class UtilityClient extends Thread {
     public static Theme CURRENT_THEME = Theme.RED;
     public static boolean renderOverlay = true;
     public static boolean isSprinting = false;
+    public static boolean isFulbrightEnabled = false;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
@@ -94,9 +95,14 @@ public class UtilityClient extends Thread {
         if (keyBinds.size() >= 3) {
             if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
             else fovModifier = 1.0f;
-            if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f)
+            if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) {
                 Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
-            else Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
+                isFulbrightEnabled = true;
+            }
+            else {
+                Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
+                isFulbrightEnabled = false;
+            }
             if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
         }
         MacroManager.loop();
