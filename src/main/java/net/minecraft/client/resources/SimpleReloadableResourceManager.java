@@ -1,6 +1,5 @@
 package net.minecraft.client.resources;
 
-import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -17,8 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SimpleReloadableResourceManager implements IReloadableResourceManager
-{
+public class SimpleReloadableResourceManager implements IReloadableResourceManager {
     private static final Logger logger = LogManager.getLogger();
     private static final Joiner joinerResourcePacks = Joiner.on(", ");
     private final Map<String, FallbackResourceManager> domainResourceManagers = Maps.<String, FallbackResourceManager>newHashMap();
@@ -26,20 +24,16 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
     private final Set<String> setResourceDomains = Sets.<String>newLinkedHashSet();
     private final IMetadataSerializer rmMetadataSerializer;
 
-    public SimpleReloadableResourceManager(IMetadataSerializer rmMetadataSerializerIn)
-    {
+    public SimpleReloadableResourceManager(IMetadataSerializer rmMetadataSerializerIn) {
         this.rmMetadataSerializer = rmMetadataSerializerIn;
     }
 
-    public void reloadResourcePack(IResourcePack resourcePack)
-    {
-        for (String s : resourcePack.getResourceDomains())
-        {
+    public void reloadResourcePack(IResourcePack resourcePack) {
+        for (String s : resourcePack.getResourceDomains()) {
             this.setResourceDomains.add(s);
-            FallbackResourceManager fallbackresourcemanager = (FallbackResourceManager)this.domainResourceManagers.get(s);
+            FallbackResourceManager fallbackresourcemanager = (FallbackResourceManager) this.domainResourceManagers.get(s);
 
-            if (fallbackresourcemanager == null)
-            {
+            if (fallbackresourcemanager == null) {
                 fallbackresourcemanager = new FallbackResourceManager(this.rmMetadataSerializer);
                 this.domainResourceManagers.put(s, fallbackresourcemanager);
             }
@@ -48,74 +42,53 @@ public class SimpleReloadableResourceManager implements IReloadableResourceManag
         }
     }
 
-    public Set<String> getResourceDomains()
-    {
+    public Set<String> getResourceDomains() {
         return this.setResourceDomains;
     }
 
-    public IResource getResource(ResourceLocation location) throws IOException
-    {
-        IResourceManager iresourcemanager = (IResourceManager)this.domainResourceManagers.get(location.getResourceDomain());
+    public IResource getResource(ResourceLocation location) throws IOException {
+        IResourceManager iresourcemanager = (IResourceManager) this.domainResourceManagers.get(location.getResourceDomain());
 
-        if (iresourcemanager != null)
-        {
+        if (iresourcemanager != null) {
             return iresourcemanager.getResource(location);
-        }
-        else
-        {
+        } else {
             throw new FileNotFoundException(location.toString());
         }
     }
 
-    public List<IResource> getAllResources(ResourceLocation location) throws IOException
-    {
-        IResourceManager iresourcemanager = (IResourceManager)this.domainResourceManagers.get(location.getResourceDomain());
+    public List<IResource> getAllResources(ResourceLocation location) throws IOException {
+        IResourceManager iresourcemanager = this.domainResourceManagers.get(location.getResourceDomain());
 
-        if (iresourcemanager != null)
-        {
+        if (iresourcemanager != null) {
             return iresourcemanager.getAllResources(location);
-        }
-        else
-        {
+        } else {
             throw new FileNotFoundException(location.toString());
         }
     }
 
-    private void clearResources()
-    {
+    private void clearResources() {
         this.domainResourceManagers.clear();
         this.setResourceDomains.clear();
     }
 
-    public void reloadResources(List<IResourcePack> p_110541_1_)
-    {
+    public void reloadResources(List<IResourcePack> p_110541_1_) {
         this.clearResources();
-        logger.info("Reloading ResourceManager: " + joinerResourcePacks.join(Iterables.transform(p_110541_1_, new Function<IResourcePack, String>()
-        {
-            public String apply(IResourcePack p_apply_1_)
-            {
-                return p_apply_1_.getPackName();
-            }
-        })));
+        logger.info("Reloading ResourceManager: " + joinerResourcePacks.join(Iterables.transform(p_110541_1_, IResourcePack::getPackName)));
 
-        for (IResourcePack iresourcepack : p_110541_1_)
-        {
+        for (IResourcePack iresourcepack : p_110541_1_) {
             this.reloadResourcePack(iresourcepack);
         }
 
         this.notifyReloadListeners();
     }
 
-    public void registerReloadListener(IResourceManagerReloadListener reloadListener)
-    {
+    public void registerReloadListener(IResourceManagerReloadListener reloadListener) {
         this.reloadListeners.add(reloadListener);
         reloadListener.onResourceManagerReload(this);
     }
 
-    private void notifyReloadListeners()
-    {
-        for (IResourceManagerReloadListener iresourcemanagerreloadlistener : this.reloadListeners)
-        {
+    private void notifyReloadListeners() {
+        for (IResourceManagerReloadListener iresourcemanagerreloadlistener : this.reloadListeners) {
             iresourcemanagerreloadlistener.onResourceManagerReload(this);
         }
     }
