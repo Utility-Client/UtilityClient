@@ -1,5 +1,6 @@
 package org.utilityclient.gui;
 
+import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -61,7 +62,7 @@ public class GuiThemeOptions extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
-        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + I18n.format("uc.options.theme.prefix") + "§7: " + UtilityClient.CURRENT_THEME.getSuffix() +  I18n.format("uc.options.theme.suffix") , this.width / 2, this.height / 2 - 70, 16777215);
+        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + I18n.format("uc.options.theme.prefix") + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() +  I18n.format("uc.options.theme.suffix") , this.width / 2, this.height / 2 - 70, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

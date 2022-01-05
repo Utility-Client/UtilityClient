@@ -1,5 +1,6 @@
 package org.utilityclient.overlay.modules;
 
+import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.overlay.IModule;
 import net.minecraft.client.Minecraft;
 
@@ -11,7 +12,11 @@ public class FPSModule implements IModule {
 
     @Override
     public String getValue() {
-        return ((Minecraft.getDebugFPS() < 60) ? "§c" : ((Minecraft.getDebugFPS() < 120) ? "§e" : "§a")) + Minecraft.getDebugFPS() + "";
+        String red = EnumChatFormatting.RED + "";
+        String yellow = EnumChatFormatting.YELLOW + "";
+        String green = EnumChatFormatting.GREEN + "";
+
+        return ((Minecraft.getDebugFPS() < 60) ? red : ((Minecraft.getDebugFPS() < 120) ? yellow : green)) + Minecraft.getDebugFPS() + "";
     }
 
     @Override
