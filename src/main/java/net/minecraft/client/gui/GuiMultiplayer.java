@@ -2,6 +2,7 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
@@ -382,6 +383,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
 
     public void connectToSelected()
     {
+        // UC
+        Minecraft.getMinecraft().ingameGUI.getChatGUI().clearChatMessages();
+
         GuiListExtended.IGuiListEntry guilistextended$iguilistentry = this.serverListSelector.func_148193_k() < 0 ? null : this.serverListSelector.getListEntry(this.serverListSelector.func_148193_k());
 
         if (guilistextended$iguilistentry instanceof ServerListEntryNormal)
