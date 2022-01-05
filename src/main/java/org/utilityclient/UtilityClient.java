@@ -18,8 +18,11 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
@@ -33,6 +36,8 @@ public class UtilityClient extends Thread {
     public static boolean renderOverlay = true;
     public static boolean isSprinting = false;
     public static boolean isFulbrightEnabled = false;
+
+    public static Properties config, keybindings;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
@@ -62,7 +67,10 @@ public class UtilityClient extends Thread {
     public void run() {
         new File("uc2").mkdirs();
         try {
-            Config.run();
+            File configFile = new File("uc2/config.txt");
+            configFile.createNewFile();
+            config = new Properties();
+            config.load(new FileReader(configFile));
         } catch (IOException e) {
             e.printStackTrace();
         }
