@@ -40,6 +40,8 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     private LanServerDetector.ThreadLanServerFind lanServerDetector;
     private boolean initialized;
 
+    private GuiTextField directConnectTextField;
+
     public GuiMultiplayer(GuiScreen parentScreen)
     {
         this.parentScreen = parentScreen;
@@ -71,12 +73,12 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
                 logger.warn("Unable to start LAN server detection: " + exception.getMessage());
             }
 
-            this.serverListSelector = new ServerSelectionList(this, this.mc, this.width, this.height, 32, this.height - 64, 36);
+            this.serverListSelector = new ServerSelectionList(this, this.mc, this.width, this.height, 32, this.height - 64-20, 36);
             this.serverListSelector.func_148195_a(this.savedServerList);
         }
         else
         {
-            this.serverListSelector.setDimensions(this.width, this.height, 32, this.height - 64);
+            this.serverListSelector.setDimensions(this.width, this.height, 32, this.height - 64-20);
         }
 
         this.createButtons();
@@ -92,14 +94,22 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     }
 
     public void createButtons()
-    {
-        this.buttonList.add(this.btnEditServer = new GuiButton(7, this.width / 2 - 154, this.height - 28, 70, 20, I18n.format("selectServer.edit")));
-        this.buttonList.add(this.btnDeleteServer = new GuiButton(2, this.width / 2 - 74, this.height - 28, 70, 20, I18n.format("selectServer.delete")));
+    {   // widthIn: 75
+        this.buttonList.add(this.btnEditServer = new GuiButton(7, this.width / 2 - 154, this.height - 28, 100, 20, I18n.format("selectServer.edit")));
+        this.buttonList.add(this.btnDeleteServer = new GuiButton(2, this.width / 2 - 50, this.height - 28, 100, 20, I18n.format("selectServer.delete")));
         this.buttonList.add(this.btnSelectServer = new GuiButton(1, this.width / 2 - 154, this.height - 52, 100, 20, I18n.format("selectServer.select")));
-        this.buttonList.add(new GuiButton(4, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("selectServer.direct")));
+        //this.buttonList.add(new GuiButton(4, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("selectServer.direct")));
         this.buttonList.add(new GuiButton(3, this.width / 2 + 4 + 50, this.height - 52, 100, 20, I18n.format("selectServer.add")));
-        this.buttonList.add(new GuiButton(8, this.width / 2 + 4, this.height - 28, 70, 20, I18n.format("selectServer.refresh")));
-        this.buttonList.add(new GuiButton(0, this.width / 2 + 4 + 76, this.height - 28, 75, 20, I18n.format("gui.cancel")));
+        this.buttonList.add(new GuiButton(8, this.width / 2 - 154, this.height - 52, 204, 20, I18n.format("selectServer.refresh")));
+        this.buttonList.add(new GuiButton(0, this.width / 2 + 4 + 50, this.height - 28, 100, 20, I18n.format("gui.cancel")));
+
+        directConnectTextField = new GuiTextField(11, fontRendererObj, this.width / 2 - 154, this.height - 76, 202, 20);
+        directConnectTextField.setMaxStringLength(128);
+        directConnectTextField.setFocused(true);
+        directConnectTextField.setText(this.mc.gameSettings.lastServer);
+
+        this.buttonList.add(new GuiButton(10, this.width / 2 + 4 + 50, this.height - 76, 100, 20, I18n.format("selectServer.select")));
+
         this.selectServer(this.serverListSelector.func_148193_k());
     }
 
@@ -118,6 +128,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         }
 
         this.oldServerPinger.pingPendingNetworks();
+        directConnectTextField.updateCursorCounter();
     }
 
     /**
@@ -144,6 +155,10 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         if (button.enabled)
         {
             GuiListExtended.IGuiListEntry guilistextended$iguilistentry = this.serverListSelector.func_148193_k() < 0 ? null : this.serverListSelector.getListEntry(this.serverListSelector.func_148193_k());
+
+            if (button.id == 10) {
+                this.mc.displayGuiScreen(new GuiConnecting(this, this.mc, new ServerData("Direct Connect", directConnectTextField.getText(), false)));
+            }
 
             if (button.id == 2 && guilistextended$iguilistentry instanceof ServerListEntryNormal)
             {
@@ -270,6 +285,8 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         int i = this.serverListSelector.func_148193_k();
         GuiListExtended.IGuiListEntry guilistextended$iguilistentry = i < 0 ? null : this.serverListSelector.getListEntry(i);
 
+        directConnectTextField.textboxKeyTyped(typedChar, keyCode);
+
         if (keyCode == 63)
         {
             this.refreshServerList();
@@ -374,6 +391,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         this.serverListSelector.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.title"), this.width / 2, 20, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
+        directConnectTextField.drawTextBox();
 
         if (this.hoveringText != null)
         {
@@ -441,6 +459,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
         this.serverListSelector.mouseClicked(mouseX, mouseY, mouseButton);
+        directConnectTextField.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
     /**
