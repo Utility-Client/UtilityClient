@@ -15,6 +15,8 @@ public class GuiCreateMacro extends GuiScreen {
     private String title;
     private GuiTextField nameInput;
     private GuiTextField messageInput;
+    private int currentKeyCode = 0;
+    private boolean listeningForInput;
 
     public GuiCreateMacro(GuiScreen parentScreenIn)
     {
@@ -26,18 +28,20 @@ public class GuiCreateMacro extends GuiScreen {
         Keyboard.enableRepeatEvents(true);
         title = I18n.format("uc.options.macro.title");
 
-        nameInput = new GuiTextField(1, fontRendererObj, width / 2 - 100, height / 2 - 66, 200, 20);
+        nameInput = new GuiTextField(1, fontRendererObj, width / 2 - 100, height / 2 - 66 +1, 124, 18);
         nameInput.setMaxStringLength(255);
         nameInput.setFocused(true);
         nameInput.setText(I18n.format("uc.options.macro.default.name"));
 
-        messageInput = new GuiTextField(2, fontRendererObj, width / 2 - 100, height / 2 - 22, 200, 20);
+        messageInput = new GuiTextField(2, fontRendererObj, width / 2 - 100, height / 2 - 22 +1, 200, 18);
         messageInput.setMaxStringLength(100);
         messageInput.setFocused(false);
         messageInput.setText(I18n.format("uc.options.macro.default.message"));
 
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.cancel")));
-        this.buttonList.add(new GuiButton(201, this.width / 2, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.save")));
+        buttonList.add(new GuiButton(200, width / 2 - 100, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.cancel")));
+        buttonList.add(new GuiButton(201, width / 2, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.save"), false));
+        buttonList.add(new GuiButton(202, width / 2 + 25, height / 2 - 66, 75, 20, "None"));
+
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -64,12 +68,23 @@ public class GuiCreateMacro extends GuiScreen {
         if (button.id == 200) this.mc.displayGuiScreen(this.parentScreen);
 
         if (button.id == 201) {
-            try {
-                MacroManager.save(nameInput.getText(), new Macro(nameInput.getText(), messageInput.getText(), 0));
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (currentKeyCode != 0) {
+                buttonList.get(1).enabled = true;
+                try {
+                    MacroManager.save(nameInput.getText(), new Macro(nameInput.getText(), messageInput.getText(), currentKeyCode));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                this.mc.displayGuiScreen(this.parentScreen);
+            }else {
+                buttonList.get(1).enabled = false;
             }
-            this.mc.displayGuiScreen(this.parentScreen);
+        }
+
+        if(button.id == 202) {
+            listeningForInput = !listeningForInput;
+            if (listeningForInput) button.displayString = "Press a key...";
+            else button.displayString = Keyboard.getKeyName(currentKeyCode);
         }
     }
 
@@ -82,7 +97,19 @@ public class GuiCreateMacro extends GuiScreen {
 
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        nameInput.textboxKeyTyped(typedChar, keyCode);
-        messageInput.textboxKeyTyped(typedChar, keyCode);
+        if(listeningForInput) {
+            onInput(buttonList.get(2), keyCode);
+        }else {
+            nameInput.textboxKeyTyped(typedChar, keyCode);
+            messageInput.textboxKeyTyped(typedChar, keyCode);
+        }
+
+    }
+
+    public void onInput(GuiButton btn, int keyCode) {
+        if (keyCode != 1) currentKeyCode = keyCode;
+        listeningForInput = false;
+        btn.displayString = Keyboard.getKeyName(currentKeyCode);
+
     }
 }
