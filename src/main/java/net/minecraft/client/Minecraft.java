@@ -96,7 +96,6 @@ import org.lwjgl.util.glu.GLU;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Proxy;
@@ -1269,11 +1268,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public void shutdown()
     {
         //UtilityClient.DISCORD_INSTANCE.shutdown();
-        try {
-            UtilityClient.config.store(new FileWriter("uc2/config.txt"), "UtilityClient 2.12+ Config");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         this.running = false;
     }
 
