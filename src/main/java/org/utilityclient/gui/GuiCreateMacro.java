@@ -98,7 +98,7 @@ public class GuiCreateMacro extends GuiScreen {
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
         if(listeningForInput) {
-            onInput(buttonList.get(2), keyCode);
+            onInput(keyCode);
         }else {
             nameInput.textboxKeyTyped(typedChar, keyCode);
             messageInput.textboxKeyTyped(typedChar, keyCode);
@@ -106,10 +106,10 @@ public class GuiCreateMacro extends GuiScreen {
 
     }
 
-    public void onInput(GuiButton btn, int keyCode) {
+    public void onInput(int keyCode) {
         if (keyCode != 1) currentKeyCode = keyCode;
         listeningForInput = false;
-        btn.displayString = Keyboard.getKeyName(currentKeyCode);
-
+        buttonList.get(2).displayString = Keyboard.getKeyName(currentKeyCode);
+        buttonList.get(1).enabled = true;
     }
 }
