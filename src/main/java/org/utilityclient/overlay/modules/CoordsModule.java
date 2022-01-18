@@ -1,5 +1,6 @@
 package org.utilityclient.overlay.modules;
 
+import org.utilityclient.UtilityClient;
 import org.utilityclient.overlay.IModule;
 import net.minecraft.client.Minecraft;
 
@@ -11,6 +12,8 @@ public class CoordsModule implements IModule {
 
     @Override
     public String getValue() {
+        if(UtilityClient.streamerMode) return "<disabled>";
+
         return    Minecraft.getMinecraft().thePlayer.getPosition().getX() + ", "
                 + Minecraft.getMinecraft().thePlayer.getPosition().getY() + ", "
                 + Minecraft.getMinecraft().thePlayer.getPosition().getZ();

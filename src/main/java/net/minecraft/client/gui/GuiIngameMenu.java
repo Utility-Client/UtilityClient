@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
@@ -22,21 +23,11 @@ public class GuiIngameMenu extends GuiScreen
         this.field_146445_a = 0;
         this.buttonList.clear();
         int i = -16;
-        int j = 98;
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + i, I18n.format("menu.returnToMenu")));
-                                                                                                    // 120 / 96
-        if (!this.mc.isIntegratedServerRunning())
-        {
-            ((GuiButton)this.buttonList.get(0)).displayString = I18n.format("menu.disconnect");
-        }
-
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + i, this.mc.isIntegratedServerRunning() ? I18n.format("menu.returnToMenu") : I18n.format("menu.disconnect")));
         this.buttonList.add(new GuiButton(4, this.width / 2 - 100, this.height / 4 + 24 + i, I18n.format("menu.returnToGame")));
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 72 + i + 11,  I18n.format("menu.options")));
-        //GuiButton guibutton;
-        //this.buttonList.add(guibutton = new GuiButton(7, this.width / 2 + 2, this.height / 4 + 96 + i, 98, 20, I18n.format("menu.shareToLan", new Object[0])));
         this.buttonList.add(new GuiButton(5, this.width / 2 - 100, this.height / 4 + 48 + i + 11,  I18n.format("gui.achievements")));
-        //this.buttonList.add(new GuiButton(6, this.width / 2 + 2, this.height / 4 + 48 + i, 98, 20, I18n.format("gui.stats", new Object[0])));
-        //guibutton.enabled = this.mc.isSingleplayer() && !this.mc.getIntegratedServer().getPublic();
+        buttonList.add(new GuiButton(99, this.width - 210, 10, "Toggle Streamer Mode"));
     }
 
     /**
@@ -92,6 +83,10 @@ public class GuiIngameMenu extends GuiScreen
 
             case 7:
                 this.mc.displayGuiScreen(new GuiShareToLan(this));
+
+            case 99:
+                UtilityClient.streamerMode = !UtilityClient.streamerMode;
+                break;
         }
     }
 
