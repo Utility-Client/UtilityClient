@@ -37,8 +37,8 @@ public class UtilityClient extends Thread {
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
     }
-    public static String getDiscordApplicationId() {
-        return "742760119984455701";
+    public static long getDiscordApplicationId() {
+        return 742760119984455701L;
     }
     public static String getClientName() {
         return CLIENT_NAME;

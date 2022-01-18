@@ -246,10 +246,16 @@
             <version>6.5</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.github.Vatuu</groupId>
             <artifactId>discord-rpc</artifactId>
             <version>1.6.2</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.github.JnCrMx</groupId>
+            <artifactId>discord-game-sdk4j</artifactId>
+            <version>v0.5.4</version>
         </dependency>
     </dependencies>
 </project>
