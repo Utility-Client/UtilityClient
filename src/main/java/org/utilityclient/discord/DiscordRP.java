@@ -19,7 +19,7 @@ import java.util.zip.ZipInputStream;
 public class DiscordRP extends Thread {
 
     private static boolean shouldRun = false;
-    private static Core core;
+    public static Core core;
 
     @Override
     public void run() {

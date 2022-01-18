@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.utilityclient.discord.DiscordRP.core;
+
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
@@ -33,6 +35,7 @@ public class UtilityClient extends Thread {
     public static boolean renderOverlay = true;
     public static boolean isSprinting = false;
     public static boolean isFulbrightEnabled = false;
+    public static boolean streamerMode = false;
 
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
@@ -120,6 +123,7 @@ public class UtilityClient extends Thread {
 
             if(keyBinds.get(4).isPressed()) {
                 Minecraft.getMinecraft().ingameGUI.setRecordPlaying("marioboss56 started playing Minecraft", false);
+                core.overlayManager().openVoiceSettings();
             }
         }
         MacroManager.loop();
