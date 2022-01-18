@@ -71,6 +71,7 @@ public class UtilityClient extends Thread {
         addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
+        addKeyBind("Debug hotkey", 67, false);
 
         try {
             CrosshairManager.run();
@@ -115,6 +116,10 @@ public class UtilityClient extends Thread {
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
+            }
+
+            if(keyBinds.get(4).isPressed()) {
+                Minecraft.getMinecraft().ingameGUI.setRecordPlaying("marioboss56 started playing Minecraft", false);
             }
         }
         MacroManager.loop();

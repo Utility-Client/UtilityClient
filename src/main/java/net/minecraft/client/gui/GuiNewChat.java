@@ -46,7 +46,6 @@ public class GuiNewChat extends Gui
                 }
 
                 float f1 = this.getChatScale();
-                int l = MathHelper.ceiling_float_int((float)this.getChatWidth() / f1);
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
@@ -80,7 +79,7 @@ public class GuiNewChat extends Gui
                             {
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
-                                drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
+                                drawRect(i2, j2 - 9, i2 + Minecraft.getMinecraft().fontRendererObj.getStringWidth(chatline.getChatComponent().getUnformattedText()) + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
                                 this.mc.fontRendererObj.drawStringWithShadow(s, (float)i2, (float)(j2 - 8), 16777215 + (l1 << 24));

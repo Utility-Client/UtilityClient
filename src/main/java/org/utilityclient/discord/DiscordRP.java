@@ -34,6 +34,7 @@ public class DiscordRP extends Thread {
         CreateParams params = new CreateParams();
         params.setClientID(UtilityClient.getDiscordApplicationId());
         params.setFlags(CreateParams.Flags.DEFAULT);
+        params.registerEventHandler(new DCEventAdapter());
         core = new Core(params);
         shouldRun = true;
 
