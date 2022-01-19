@@ -10,7 +10,11 @@ public class PingModule extends IModule {
 
     @Override
     public String getValue() {
-        return mc().thePlayer.sendQueue.getPlayerInfo(mc().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        try {
+            return mc().thePlayer.sendQueue.getPlayerInfo(mc().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        } catch (Exception ignored) {
+            return "Error";
+        }
     }
 
     @Override
