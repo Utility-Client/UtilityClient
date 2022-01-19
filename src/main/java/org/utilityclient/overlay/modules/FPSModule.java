@@ -4,7 +4,7 @@ import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.overlay.IModule;
 import net.minecraft.client.Minecraft;
 
-public class FPSModule implements IModule {
+public class FPSModule extends IModule {
     @Override
     public String getName() {
         return "FPS";

@@ -4,7 +4,7 @@ import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.overlay.IModule;
 
-public class CPSModule implements IModule {
+public class CPSModule extends IModule {
     @Override
     public String getName() {
         return "CPS";

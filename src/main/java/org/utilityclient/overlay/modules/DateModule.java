@@ -8,7 +8,7 @@ import java.time.format.SignStyle;
 
 import static java.time.temporal.ChronoField.*;
 
-public class DateModule implements IModule {
+public class DateModule extends IModule {
     @Override
     public String getName() {
         return "Date";

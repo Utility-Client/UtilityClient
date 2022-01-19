@@ -1,9 +1,8 @@
 package org.utilityclient.overlay.modules;
 
 import org.utilityclient.overlay.IModule;
-import net.minecraft.client.Minecraft;
 
-public class BiomeModule implements IModule {
+public class BiomeModule extends IModule {
 
     @Override
     public String getName() {

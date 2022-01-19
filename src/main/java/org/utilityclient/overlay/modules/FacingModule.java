@@ -3,7 +3,7 @@ package org.utilityclient.overlay.modules;
 import net.minecraft.client.Minecraft;
 import org.utilityclient.overlay.IModule;
 
-public class FacingModule implements IModule {
+public class FacingModule extends IModule {
     @Override
     public String getName() {
         return "Facing";

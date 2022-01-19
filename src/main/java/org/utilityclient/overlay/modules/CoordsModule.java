@@ -4,7 +4,7 @@ import org.utilityclient.UtilityClient;
 import org.utilityclient.overlay.IModule;
 import net.minecraft.client.Minecraft;
 
-public class CoordsModule implements IModule {
+public class CoordsModule extends IModule {
     @Override
     public String getName() {
         return "Coords";

@@ -1,9 +1,8 @@
 package org.utilityclient.overlay.modules;
 
-import net.minecraft.client.Minecraft;
 import org.utilityclient.overlay.IModule;
 
-public class PingModule implements IModule {
+public class PingModule extends IModule {
     @Override
     public String getName() {
         return "Ping";

@@ -1,32 +1,22 @@
 package org.utilityclient.overlay;
 
-import net.minecraft.client.Minecraft;
+import org.utilityclient.Minecraftable;
 
-public interface IModule {
-    /**
-     * @return The name of the module, shown as prefix ingame.
-     */
-    String getName();
+public abstract class IModule extends Minecraftable {
+    public abstract String getName();
 
-    /**
-     * @return The current value of the module. Shown as suffix.
-     */
-    String getValue();
+    public abstract String getValue();
 
     /**
      * @return Your name, isn't shown anywhere yet.
      */
-    String getAuthor();
+    public abstract String getAuthor();
 
     /**
      * @return Should currently render?
      * @implNote Used for modules, that might be disabled. Examples might be a Multiplayer-only module.
      */
-    default boolean shouldRender() {
+    public boolean shouldRender() {
         return true;
-    }
-
-    default Minecraft mc() {
-        return Minecraft.getMinecraft();
     }
 }

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatterBuilder;
 
 import static java.time.temporal.ChronoField.*;
 
-public class ClockModule implements IModule {
+public class ClockModule extends IModule {
     @Override
     public String getName() {
         return "Clock";
