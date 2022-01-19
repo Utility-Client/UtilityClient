@@ -91,6 +91,7 @@ public class UtilityClient extends Thread {
         ModuleHandler.modules.add(new DateModule());
         ModuleHandler.modules.add(new FacingModule());
         ModuleHandler.modules.add(new PingModule());
+        ModuleHandler.modules.add(new BiomeModule());
 
         CPS_THREAD_INSTANCE.start();
         try {
