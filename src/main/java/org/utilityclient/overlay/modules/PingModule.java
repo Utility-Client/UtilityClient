@@ -1,5 +1,6 @@
 package org.utilityclient.overlay.modules;
 
+import net.minecraft.client.Minecraft;
 import org.utilityclient.overlay.IModule;
 
 public class PingModule implements IModule {
@@ -10,12 +11,16 @@ public class PingModule implements IModule {
 
     @Override
     public String getValue() {
-        // TODO
-        return "null";
+        return Minecraft.getMinecraft().thePlayer.sendQueue.getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms";
     }
 
     @Override
     public String getAuthor() {
-        return "GamingCraft_hd";
+        return "GamingCraft";
+    }
+
+    @Override
+    public boolean shouldRender() {
+        return !Minecraft.getMinecraft().isSingleplayer();
     }
 }

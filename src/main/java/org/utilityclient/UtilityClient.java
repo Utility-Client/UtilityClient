@@ -90,6 +90,7 @@ public class UtilityClient extends Thread {
         ModuleHandler.modules.add(new ClockModule());
         ModuleHandler.modules.add(new DateModule());
         ModuleHandler.modules.add(new FacingModule());
+        ModuleHandler.modules.add(new PingModule());
 
         CPS_THREAD_INSTANCE.start();
         try {
@@ -122,8 +123,7 @@ public class UtilityClient extends Thread {
             }
 
             if(keyBinds.get(4).isPressed()) {
-                Minecraft.getMinecraft().ingameGUI.setRecordPlaying("marioboss56 started playing Minecraft", false);
-                core.overlayManager().openVoiceSettings();
+                Minecraft.getMinecraft().ingameGUI.setRecordPlaying("Running temporary test code.", false);
             }
         }
         MacroManager.loop();
