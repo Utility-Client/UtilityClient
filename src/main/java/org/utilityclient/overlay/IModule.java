@@ -1,5 +1,7 @@
 package org.utilityclient.overlay;
 
+import net.minecraft.client.Minecraft;
+
 public interface IModule {
     /**
      * @return The name of the module, shown as prefix ingame.
@@ -22,5 +24,9 @@ public interface IModule {
      */
     default boolean shouldRender() {
         return true;
+    }
+
+    default Minecraft mc() {
+        return Minecraft.getMinecraft();
     }
 }

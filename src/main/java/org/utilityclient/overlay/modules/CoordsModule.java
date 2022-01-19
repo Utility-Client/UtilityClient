@@ -14,9 +14,9 @@ public class CoordsModule implements IModule {
     public String getValue() {
         if(UtilityClient.streamerMode) return "<disabled>";
 
-        return    Minecraft.getMinecraft().thePlayer.getPosition().getX() + ", "
-                + Minecraft.getMinecraft().thePlayer.getPosition().getY() + ", "
-                + Minecraft.getMinecraft().thePlayer.getPosition().getZ();
+        return    mc().thePlayer.getPosition().getX() + ", "
+                + mc().thePlayer.getPosition().getY() + ", "
+                + mc().thePlayer.getPosition().getZ();
     }
 
     @Override

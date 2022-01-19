@@ -11,7 +11,7 @@ public class PingModule implements IModule {
 
     @Override
     public String getValue() {
-        return Minecraft.getMinecraft().thePlayer.sendQueue.getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID()).getResponseTime() + "ms";
+        return mc().thePlayer.sendQueue.getPlayerInfo(mc().thePlayer.getUniqueID()).getResponseTime() + "ms";
     }
 
     @Override
@@ -21,6 +21,6 @@ public class PingModule implements IModule {
 
     @Override
     public boolean shouldRender() {
-        return !Minecraft.getMinecraft().isSingleplayer();
+        return !mc().isSingleplayer();
     }
 }

@@ -11,7 +11,7 @@ public class FacingModule implements IModule {
 
     @Override
     public String getValue() {
-        String str = Minecraft.getMinecraft().getRenderViewEntity().getHorizontalFacing().getName();
+        String str = mc().getRenderViewEntity().getHorizontalFacing().getName();
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
