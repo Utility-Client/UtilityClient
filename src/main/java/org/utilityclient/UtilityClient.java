@@ -27,13 +27,12 @@ public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.13-DEV";
+    private static final String CLIENT_VERSION = "2.13-PRE-1";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
     public static Theme CURRENT_THEME = Theme.RED;
     public static boolean renderOverlay = true;
-    public static boolean isSprinting = false;
     public static boolean isFulbrightEnabled = false;
     public static boolean streamerMode = false;
 
@@ -74,7 +73,7 @@ public class UtilityClient extends Thread {
         addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
-        addKeyBind("Debug hotkey", 67, false);
+        //addKeyBind("Debug hotkey", 67, false);
 
         try {
             CrosshairManager.run();
@@ -123,9 +122,9 @@ public class UtilityClient extends Thread {
                 clipboard.setContents(stringSelection, null);
             }
 
-            if(keyBinds.get(4).isPressed()) {
-                Minecraft.getMinecraft().ingameGUI.setRecordPlaying("Running temporary test code.", false);
-            }
+            //if(keyBinds.get(4).isPressed()) {
+            //    Minecraft.getMinecraft().ingameGUI.setRecordPlaying("Running temporary test code.", false);
+            //}
         }
         MacroManager.loop();
     }
