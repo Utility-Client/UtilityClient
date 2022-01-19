@@ -285,14 +285,22 @@ public class PacketBuffer extends ByteBuf
         }
         else
         {
-            String s = new String(this.readBytes(i).array(), Charsets.UTF_8);
+            String s;
+            ByteBuf x = this.readBytes(i);
+
+            byte[] bytes = new byte[x.readableBytes()];
+            x.duplicate().readBytes(bytes);
+
+            s = new String(bytes, Charsets.UTF_8);
 
             if (s.length() > maxLength)
             {
+                x.release();
                 throw new DecoderException("The received string length is longer than maximum allowed (" + i + " > " + maxLength + ")");
             }
             else
             {
+                x.release();
                 return s;
             }
         }

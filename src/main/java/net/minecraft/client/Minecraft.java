@@ -825,8 +825,6 @@ public class Minecraft implements IThreadListener
             this.mcSoundHandler.resumeSounds();
             this.setIngameFocus();
         }
-
-        new Thread(System::gc).start(); // UC2: Garbage collection on screen change
     }
 
     /**
