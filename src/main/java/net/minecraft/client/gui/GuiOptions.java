@@ -84,7 +84,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
         this.buttonList.add(new GuiButton(102,  this.width / 2 - 155,   this.height / 6 + 96 - 6, 150, 20, I18n.format("options.language")));
 
         this.buttonList.add(new GuiButton(110,  this.width / 2 + 5,     this.height / 6 + 120 - 6,150, 20, I18n.format("options.skinCustomisation")));
-        this.buttonList.add(new GuiButton(105,  this.width / 2 - 155,   this.height / 6 + 120 - 6,150, 20, I18n.format("options.resourcepack"), true)); // TODO
+        this.buttonList.add(new GuiButton(105,  this.width / 2 - 155,   this.height / 6 + 120 - 6,150, 20, I18n.format("options.resourcepack"), true));
 
         this.buttonList.add(new GuiButton(200,  this.width / 2 - 100,   this.height / 6 + 168,                            I18n.format("gui.done")));
     }

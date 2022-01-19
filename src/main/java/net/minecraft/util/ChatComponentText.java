@@ -10,7 +10,7 @@ public class ChatComponentText extends ChatComponentStyle
     }
 
     /**
-     * Gets the text value of this ChatComponentText.  TODO: what are getUnformattedText and getUnformattedTextForChat
+     * Gets the text value of this ChatComponentText.
      * missing that made someone decide to create a third equivalent method that only ChatComponentText can implement?
      */
     public String getChatComponentText_TextValue()
@@ -19,7 +19,7 @@ public class ChatComponentText extends ChatComponentStyle
     }
 
     /**
-     * Gets the text of this component, without any special formatting codes added, for chat.  TODO: why is this two
+     * Gets the text of this component, without any special formatting codes added, for chat.
      * different methods?
      */
     public String getUnformattedTextForChat()
