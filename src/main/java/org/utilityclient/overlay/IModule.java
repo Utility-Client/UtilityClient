@@ -1,8 +1,8 @@
 package org.utilityclient.overlay;
 
-import org.utilityclient.Minecraftable;
+import org.utilityclient.Instances;
 
-public abstract class IModule extends Minecraftable {
+public abstract class IModule extends Instances {
     public abstract String getName();
 
     public abstract String getValue();
