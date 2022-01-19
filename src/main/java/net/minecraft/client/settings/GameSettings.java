@@ -190,7 +190,7 @@ public class GameSettings
 
         if (mcIn.isJava64bit() && Runtime.getRuntime().maxMemory() >= 1000000000L)
         {
-            GameSettings.Options.RENDER_DISTANCE.setValueMax(32.0F);
+            GameSettings.Options.RENDER_DISTANCE.setValueMax(64.0F);
         }
         else
         {
@@ -424,7 +424,8 @@ public class GameSettings
 
         if (p_74306_1_ == GameSettings.Options.SNOOPER_ENABLED)
         {
-            this.snooperEnabled = !this.snooperEnabled;
+            // Privacy! (UC2)
+            this.snooperEnabled = false;
         }
 
         if (p_74306_1_ == GameSettings.Options.TOUCHSCREEN)
