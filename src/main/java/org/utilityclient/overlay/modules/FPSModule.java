@@ -21,6 +21,6 @@ public class FPSModule extends IModule {
 
     @Override
     public String getAuthor() {
-        return "GamingCraft_hd";
+        return "GamingCraft";
     }
 }

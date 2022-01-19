@@ -26,6 +26,6 @@ public class ClockModule extends IModule {
 
     @Override
     public String getAuthor() {
-        return "GamingCraft_hd";
+        return "GamingCraft";
     }
 }
