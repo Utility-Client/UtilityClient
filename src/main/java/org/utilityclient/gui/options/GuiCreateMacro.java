@@ -1,4 +1,4 @@
-package org.utilityclient.gui;
+package org.utilityclient.gui.options;
 
 import net.minecraft.client.resources.I18n;
 import org.utilityclient.macro.Macro;

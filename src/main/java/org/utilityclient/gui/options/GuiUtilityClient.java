@@ -1,4 +1,4 @@
-package org.utilityclient.gui;
+package org.utilityclient.gui.options;
 
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;

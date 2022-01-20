@@ -1,4 +1,4 @@
-package org.utilityclient.gui;
+package org.utilityclient.gui.options;
 
 import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.UtilityClient;
