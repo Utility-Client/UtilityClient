@@ -14,29 +14,44 @@ public class GuiUtilityClient extends GuiScreen
 {
     private final GuiScreen parentScreen;
     private String title;
-    public GuiUtilityClient(GuiScreen parentScreenIn)
-    {
+    public GuiUtilityClient(GuiScreen parentScreenIn) {
         parentScreen = parentScreenIn;
     }
 
-    public void initGui()
-    {
+    public void initGui() {
         title = UtilityClient.getClientName();
-        buttonList.add(new GuiButton(200, width / 2 - 100, height / 2+22, I18n.format("gui.done")));
+
+        buttonList.add(new GuiCustomSlider(0, this.width / 2 - 204, this.height/2 - 66, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), 0f, 1f, Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
+        buttonList.add(new GuiButton(1, width / 2 + 4, height / 2 - 66, Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes"));
+
+        buttonList.add(new GuiButton(2, width / 2 - 204, height / 2 - 44, "Edit Crosshair..."));
+        buttonList.add(new GuiButton(3, width / 2 + 4, height / 2 - 44, "Change Theme..."));
+
+        buttonList.add(new GuiButton(4, width / 2 - 204, height / 2 - 22, "Overlay Settings...")); // TODO
+        buttonList.add(new GuiButton(5, width / 2 + 4, height / 2 - 22, "Manage Macros...")); // TODO
+
+        buttonList.add(new GuiButton(6, width / 2 - 204, height / 2, "Discord Settings...")); // TODO
+        buttonList.add(new GuiButton(200, width / 2 + 4, height / 2, I18n.format("gui.done")));
     }
 
-    protected void actionPerformed(GuiButton button) throws IOException
+    public void actionPerformed(GuiButton button) throws IOException
     {
         if (button.enabled) {
-            if (button.id == 200) {
-                Config.save();
-                mc.displayGuiScreen(parentScreen);
+            if (button.id != 1) Config.save();
+            switch (button.id) {
+                case 200 -> mc.displayGuiScreen(parentScreen);
+                case 1 -> {
+                    Config.setBoolean("keystrokesEnabled", !Config.getBoolean("keystrokesEnabled", true));
+                    buttonList.get(1).displayString = Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes";
+                    Config.save();
+                }
+                case 2 -> mc.displayGuiScreen(new GuiCrosshairOptions(this));
+                case 3 -> mc.displayGuiScreen(new GuiThemeOptions(this));
             }
         }
     }
 
-    public void drawScreen(int mouseX, int mouseY, float partialTicks)
-    {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
         drawCenteredString(fontRendererObj, title, width / 2, 20, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
