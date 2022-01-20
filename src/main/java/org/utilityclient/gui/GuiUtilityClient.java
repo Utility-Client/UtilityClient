@@ -16,31 +16,29 @@ public class GuiUtilityClient extends GuiScreen
     private String title;
     public GuiUtilityClient(GuiScreen parentScreenIn)
     {
-        this.parentScreen = parentScreenIn;
+        parentScreen = parentScreenIn;
     }
 
     public void initGui()
     {
-        this.title = UtilityClient.getClientName();
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2+22, I18n.format("gui.done")));
+        title = UtilityClient.getClientName();
+        buttonList.add(new GuiButton(200, width / 2 - 100, height / 2+22, I18n.format("gui.done")));
     }
 
     protected void actionPerformed(GuiButton button) throws IOException
     {
-        if (button.enabled)
-        {
-            if (button.id == 200)
-            {
+        if (button.enabled) {
+            if (button.id == 200) {
                 Config.save();
-                this.mc.displayGuiScreen(this.parentScreen);
+                mc.displayGuiScreen(parentScreen);
             }
         }
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
+        drawDefaultBackground();
+        drawCenteredString(fontRendererObj, title, width / 2, 20, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }
