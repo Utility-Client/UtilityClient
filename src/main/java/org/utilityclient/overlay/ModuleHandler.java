@@ -45,6 +45,6 @@ public class ModuleHandler {
             }
         }
 
-        fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, 1428160512);
+        fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, 0);
     }
 }

@@ -3,6 +3,9 @@ package org.utilityclient.gui.options.overlay;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +22,8 @@ public class GuiOverlaySettings extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
-        buttonList.add(new GuiButton(200, width / 2 - 100, height / 12 * 10, I18n.format("gui.done")));
+        buttonList.add(new GuiButton(200, width / 2, height / 12 * 10, I18n.format("gui.done")));
+        buttonList.add(new GuiButton(1, width / 2 - 200, height / 12 * 10, Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true) ? "Disable Background" : "Enable Background"));
 
         int offset = 0;
         for (int i = 0; i < modules.size(); i++) {
@@ -47,10 +51,20 @@ public class GuiOverlaySettings extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         super.actionPerformed(button);
-        if (button.id == 200) {
-            mc.displayGuiScreen(parent);
-            saveStates();
+
+        switch (button.id) {
+            case 1 -> {
+                Config.setBoolean(ConfigEntry.OVERLAY_BACKGROUND, !Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true));
+                button.displayString = Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true) ? "Disable Background" : "Enable Background";
+                Config.save();
+            }
+
+            case 200 -> {
+                mc.displayGuiScreen(parent);
+                saveStates();
+            }
         }
+
         if (button.id >= 1000) {
             int modId = button.id - 1000;
             modules.get(modId).isEnabled = !modules.get(modId).isEnabled;
