@@ -18,13 +18,14 @@ public class ModuleHandler {
         int largest = fr.getStringWidth(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getClientName() + " " + UtilityClient.getVersion());
         int x = 1;
         for (IModule mod : modules) {
-            if (mod.shouldRender()) {
-                String str = UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue();
-                int y = fr.getStringWidth(str);
-                if(y > largest) largest = y;
-                x++;
+            if (mod.isEnabled) {
+                if (mod.shouldRender()) {
+                    String str = UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue();
+                    int y = fr.getStringWidth(str);
+                    if(y > largest) largest = y;
+                    x++;
+                }
             }
-
         }
 
         if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true)) {
@@ -35,10 +36,12 @@ public class ModuleHandler {
 
         int z = 1;
         for (IModule mod : modules) {
-            if (mod.shouldRender()) {
-                String str = UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue();
-                fr.drawStringWithShadow(str, op_x, op_y + (mod_height*z), 0);
-                z++;
+            if (mod.isEnabled) {
+                if (mod.shouldRender()) {
+                    String str = UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue();
+                    fr.drawStringWithShadow(str, op_x, op_y + (mod_height*z), 0);
+                    z++;
+                }
             }
         }
 
