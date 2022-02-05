@@ -7,7 +7,7 @@ public abstract class IModule extends Instances {
      * Controlled by GuiOverlaySettings.
      * Do not override.
      */
-    public boolean isEnabled;
+    public boolean isEnabled = true;
 
     /**
      * Used as prefix.

@@ -6,6 +6,7 @@ import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
+import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.macro.MacroManager;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.Theme;
@@ -63,6 +64,8 @@ public class UtilityClient extends Thread {
 
     public void run() {
         new File("uc2").mkdirs();
+        new File("uc2/modules").mkdirs();
+
         try {
             Config.run();
         } catch (IOException e) {
@@ -95,6 +98,7 @@ public class UtilityClient extends Thread {
         CPS_THREAD_INSTANCE.start();
         try {
             MacroManager.run();
+            GuiOverlaySettings.loadStates();
         } catch (IOException e) {
             e.printStackTrace();
         }
