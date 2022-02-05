@@ -68,7 +68,7 @@ public class GuiOverlaySettings extends GuiScreen {
     public static void saveStates() throws IOException {
         for (int i = 0; i < modules.size(); i++) {
             File f = new File("uc2/modules/" + i + ".txt");
-            System.out.println(f.createNewFile());
+            f.createNewFile();
             FileWriter fw = new FileWriter(f, false);
             fw.write(Boolean.toString(modules.get(i).isEnabled));
             fw.close();
