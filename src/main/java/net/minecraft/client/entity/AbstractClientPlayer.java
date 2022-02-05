@@ -50,7 +50,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
         } catch (Exception e) {
             System.err.println("Please send this error to the UtilityClient developers:");
             System.err.println("--- START OF ERROR ---");
-            System.err.println(e);
+            e.printStackTrace(System.out);
             System.err.println("--- END OF ERROR ---");
         }
     }

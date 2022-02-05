@@ -22,7 +22,7 @@ public class GuiUtilityClient extends GuiScreen
     public void initGui() {
         title = UtilityClient.getClientName();
 
-        buttonList.add(new GuiCustomSlider(0, this.width / 2 - 204, this.height/2 - 66, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), 0f, 1f, Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
+        buttonList.add(new GuiCustomSlider(0, this.width / 2 - 204, this.height/2 - 66, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
         buttonList.add(new GuiButton(1, width / 2 + 4, height / 2 - 66, Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes"));
 
         buttonList.add(new GuiButton(2, width / 2 - 204, height / 2 - 44, "Edit Crosshair..."));
