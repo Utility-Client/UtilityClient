@@ -3,13 +3,11 @@ package org.utilityclient.gui.options.overlay;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-
-import static org.utilityclient.overlay.ModuleHandler.modules;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import static org.utilityclient.overlay.ModuleHandler.modules;
 
 public class GuiOverlaySettings extends GuiScreen {
     private final GuiScreen parent;
