@@ -17,8 +17,7 @@ import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,6 +75,7 @@ public class UtilityClient extends Thread {
         addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
+        addKeyBind("Set compass coords", 68, false);
         if(debugMode) addKeyBind("GuiScreen editor", 67, false);
 
         try {
@@ -94,6 +94,7 @@ public class UtilityClient extends Thread {
         ModuleHandler.modules.add(new FacingModule());
         ModuleHandler.modules.add(new PingModule());
         ModuleHandler.modules.add(new BiomeModule());
+        ModuleHandler.modules.add(new DistanceModule());
 
         CPS_THREAD_INSTANCE.start();
         try {
@@ -127,7 +128,26 @@ public class UtilityClient extends Thread {
                 clipboard.setContents(stringSelection, null);
             }
 
-            if(debugMode) if(keyBinds.get(4).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
+            if(keyBinds.get(4).isPressed()) {
+                try {
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    Transferable t = clipboard.getContents(clipboard);
+                    if (t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                        String s = (String) t.getTransferData(DataFlavor.stringFlavor);
+                        String[] coords = s.split(" ");
+                        if(coords.length == 3) {
+                            DistanceModule.x = Integer.parseInt(coords[0]);
+                            DistanceModule.y = Integer.parseInt(coords[1]);
+                            DistanceModule.z = Integer.parseInt(coords[2]);
+                            DistanceModule.gotUpdated = true;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(debugMode) if(keyBinds.get(5).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
         }
         MacroManager.loop();
     }
