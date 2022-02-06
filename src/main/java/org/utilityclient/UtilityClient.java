@@ -1,6 +1,8 @@
 package org.utilityclient;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
@@ -140,9 +142,11 @@ public class UtilityClient extends Thread {
                             DistanceModule.y = Integer.parseInt(coords[1]);
                             DistanceModule.z = Integer.parseInt(coords[2]);
                             DistanceModule.gotUpdated = true;
+                            Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Destination updated."));
                         }
                     }
                 } catch (Exception e) {
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Error while updating destination."));
                     e.printStackTrace();
                 }
             }
