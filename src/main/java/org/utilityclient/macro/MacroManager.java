@@ -44,9 +44,7 @@ public class MacroManager {
         if(scanner.hasNextInt()) keyCode = scanner.nextInt();
         else keyCode = 0;
 
-        macros.add(new Macro(name, message, keyCode,
-                UtilityClient.addKeyBind(name, keyCode, true)
-        ));
+        macros.add(new Macro(name, message, keyCode, UtilityClient.addKeyBind(name, keyCode, true), file));
     }
 
     public static void save(String filename, Macro macro) throws IOException {

@@ -3,6 +3,7 @@ package org.utilityclient.gui.options;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.gui.options.macros.GuiMacroManager;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 import net.minecraft.client.gui.GuiButton;
@@ -29,7 +30,7 @@ public class GuiUtilityClient extends GuiScreen
         buttonList.add(new GuiButton(3, width / 2 + 4, height / 2 - 44, "Change Theme..."));
 
         buttonList.add(new GuiButton(4, width / 2 - 204, height / 2 - 22, "Overlay Settings..."));
-        buttonList.add(new GuiButton(5, width / 2 + 4, height / 2 - 22, "Manage Macros...")); // TODO
+        buttonList.add(new GuiButton(5, width / 2 + 4, height / 2 - 22, "Manage Macros..."));
 
         buttonList.add(new GuiButton(6, width / 2 - 204, height / 2, "Discord Settings...")); // TODO
         buttonList.add(new GuiButton(200, width / 2 + 4, height / 2, I18n.format("gui.done")));
@@ -49,6 +50,7 @@ public class GuiUtilityClient extends GuiScreen
                 case 2 -> mc.displayGuiScreen(new GuiCrosshairOptions(this));
                 case 3 -> mc.displayGuiScreen(new GuiThemeOptions(this));
                 case 4 -> mc.displayGuiScreen(new GuiOverlaySettings(this));
+                case 5 -> mc.displayGuiScreen(new GuiMacroManager(this));
             }
         }
     }
