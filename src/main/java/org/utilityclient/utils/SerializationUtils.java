@@ -5,7 +5,6 @@ import java.util.Base64;
 
 /**
  * Utilities for (De-)Serialization of Java Objects.
- * @author GamingCraft
  * @since 2.9.1
  */
 public class SerializationUtils {
