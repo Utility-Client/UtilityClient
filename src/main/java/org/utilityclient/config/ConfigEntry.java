@@ -9,7 +9,9 @@ public enum ConfigEntry {
     ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
     KEYSTROKES("keystrokesEnabled", "true"),
     TOGGLE_SPRINT("toggleSprintEnabled", "false"),
-    OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true");
+    OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true"),
+    DISCORD_RICH_PRESENCE("discordRichPresenceEnabled", "true"),
+    DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true");
 
     private final String key;
     private final String defaultValue;

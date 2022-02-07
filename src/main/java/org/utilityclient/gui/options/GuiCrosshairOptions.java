@@ -3,6 +3,7 @@ package org.utilityclient.gui.options;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
+import org.utilityclient.utils.Color;
 import org.utilityclient.utils.SerializationUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -34,7 +35,7 @@ public class GuiCrosshairOptions extends GuiScreen
             size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 
             Scanner scanner = new Scanner(crosshairFile);
-            pixels = (HashMap<Integer, Boolean>) SerializationUtils.deserialize(scanner.nextLine());
+            pixels = (HashMap) SerializationUtils.deserialize(scanner.nextLine());
             CrosshairManager.pixels = pixels;
             scanner.close();
         } catch (Exception e) {
@@ -76,8 +77,8 @@ public class GuiCrosshairOptions extends GuiScreen
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
-        this.drawCenteredString(this.fontRendererObj, size + "x" + size, this.width / 2, this.height / 4 * 3 + 5, 16777215);
+        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, Color.TEXT.color);
+        this.drawCenteredString(this.fontRendererObj, size + "x" + size, this.width / 2, this.height / 4 * 3 + 5, Color.TEXT.color);
 
         buttonList.clear();
         int f = 0;

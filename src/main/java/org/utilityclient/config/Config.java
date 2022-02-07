@@ -50,65 +50,59 @@ public class Config {
     public static int getInteger(String key, int defaultValue) {
         return Integer.parseInt(getOrSetDefault(key, String.valueOf(defaultValue)));
     }
-
     public static int getInteger(ConfigEntry key) {
         return Integer.parseInt(getOrSetDefault(key.getKey(), String.valueOf(key.getDefaultValue())));
+    }
+    public static void setInteger(String key, int value) {
+        getConfig().put(key, String.valueOf(value));
+    }
+    public static void setInteger(ConfigEntry key, int value) {
+        getConfig().put(key.getKey(), String.valueOf(value));
     }
 
     public static String getString(String key, String defaultValue) {
         return getOrSetDefault(key, defaultValue);
     }
-
     public static String getString(ConfigEntry key) {
         return getOrSetDefault(key.getKey(), key.getDefaultValue());
     }
-
-    public static float getFloat(String key, float defaultValue) {
-        return Float.parseFloat(getOrSetDefault(key, String.valueOf(defaultValue)));
+    public static void setString(String key, String value) {
+        getConfig().put(key, String.valueOf(value));
+    }
+    public static void setString(ConfigEntry key, String value) {
+        getConfig().put(key.getKey(), String.valueOf(value));
     }
 
     public static float getFloat(ConfigEntry key, float defaultValue) {
         return Float.parseFloat(getOrSetDefault(key.getKey(), String.valueOf(defaultValue)));
     }
-
-    public static boolean getBoolean(String key, boolean defaultValue) {
-        return Boolean.parseBoolean(getOrSetDefault(key, String.valueOf(defaultValue)));
+    public static float getFloat(String key, float defaultValue) {
+        return Float.parseFloat(getOrSetDefault(key, String.valueOf(defaultValue)));
     }
-
-    public static boolean getBoolean(ConfigEntry key, boolean defaultValue) {
-        return Boolean.parseBoolean(getOrSetDefault(key.getKey(), String.valueOf(defaultValue)));
-    }
-
-    public static void setInteger(String key, int value) {
-        getConfig().put(key, String.valueOf(value));
-    }
-
-    public static void setInteger(ConfigEntry key, int value) {
-        getConfig().put(key.getKey(), String.valueOf(value));
-    }
-
-    public static void setString(String key, String value) {
-        getConfig().put(key, String.valueOf(value));
-    }
-
-    public static void setString(ConfigEntry key, String value) {
-        getConfig().put(key.getKey(), String.valueOf(value));
-    }
-
     public static void setFloat(String key, float value) {
         getConfig().put(key, String.valueOf(value));
     }
-
     public static void setFloat(ConfigEntry key, float value) {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
 
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        return Boolean.parseBoolean(getOrSetDefault(key, String.valueOf(defaultValue)));
+    }
+    public static boolean getBoolean(ConfigEntry key, boolean defaultValue) {
+        return Boolean.parseBoolean(getOrSetDefault(key.getKey(), String.valueOf(defaultValue)));
+    }
     public static void setBoolean(String key, boolean value) {
         getConfig().put(key, String.valueOf(value));
     }
-
     public static void setBoolean(ConfigEntry key, boolean value) {
         getConfig().put(key.getKey(), String.valueOf(value));
+    }
+    public static void toggleBoolean(ConfigEntry key) {
+        toggleBoolean(key.getKey(), Boolean.parseBoolean(key.getDefaultValue()));
+    }
+    public static void toggleBoolean(String key, boolean defaultValue) {
+        setBoolean(key, getBoolean(key, defaultValue));
     }
 
     public static String getOrSetDefault(String key, String defaultValue) {
