@@ -29,7 +29,7 @@ public class ModuleHandler {
             }
         }
 
-        if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true)) {
+        if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND)) {
             GlStateManager.enableAlpha();
             Gui.drawRect(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Color.BACKGROUND.color);
             GlStateManager.disableAlpha();

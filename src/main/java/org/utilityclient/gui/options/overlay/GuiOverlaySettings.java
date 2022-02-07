@@ -24,7 +24,7 @@ public class GuiOverlaySettings extends GuiScreen {
     public void initGui() {
         super.initGui();
         buttonList.add(new GuiButton(200, width / 2, height / 12 * 10, I18n.format("gui.done")));
-        buttonList.add(new GuiButton(1, width / 2 - 200, height / 12 * 10, Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true) ? "Disable Background" : "Enable Background"));
+        buttonList.add(new GuiButton(1, width / 2 - 200, height / 12 * 10, Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND) ? "Disable Background" : "Enable Background"));
 
         int offset = 0;
         for (int i = 0; i < modules.size(); i++) {
@@ -55,8 +55,8 @@ public class GuiOverlaySettings extends GuiScreen {
 
         switch (button.id) {
             case 1 -> {
-                Config.setBoolean(ConfigEntry.OVERLAY_BACKGROUND, !Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true));
-                button.displayString = Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true) ? "Disable Background" : "Enable Background";
+                Config.setBoolean(ConfigEntry.OVERLAY_BACKGROUND, !Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND));
+                button.displayString = Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND) ? "Disable Background" : "Enable Background";
                 Config.save();
             }
 

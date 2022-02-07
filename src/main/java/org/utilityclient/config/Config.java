@@ -89,8 +89,8 @@ public class Config {
     public static boolean getBoolean(String key, boolean defaultValue) {
         return Boolean.parseBoolean(getOrSetDefault(key, String.valueOf(defaultValue)));
     }
-    public static boolean getBoolean(ConfigEntry key, boolean defaultValue) {
-        return Boolean.parseBoolean(getOrSetDefault(key.getKey(), String.valueOf(defaultValue)));
+    public static boolean getBoolean(ConfigEntry key) {
+        return Boolean.parseBoolean(getOrSetDefault(key.getKey(), String.valueOf(key.getDefaultValue())));
     }
     public static void setBoolean(String key, boolean value) {
         getConfig().put(key, String.valueOf(value));
@@ -99,10 +99,10 @@ public class Config {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
     public static void toggleBoolean(ConfigEntry key) {
-        toggleBoolean(key.getKey(), Boolean.parseBoolean(key.getDefaultValue()));
+        toggleBoolean(key.getKey(), !Boolean.parseBoolean(key.getDefaultValue()));
     }
     public static void toggleBoolean(String key, boolean defaultValue) {
-        setBoolean(key, getBoolean(key, defaultValue));
+        setBoolean(key, !getBoolean(key, defaultValue));
     }
 
     public static String getOrSetDefault(String key, String defaultValue) {

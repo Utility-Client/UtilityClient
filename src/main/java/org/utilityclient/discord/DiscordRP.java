@@ -6,6 +6,8 @@ import de.jcm.discordgamesdk.activity.Activity;
 import org.utilityclient.UtilityClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +47,7 @@ public class DiscordRP extends Thread {
     }
 
     public void loop() {
-
+        if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
         if(!shouldRun) return;
 
         String topText = "Idle";

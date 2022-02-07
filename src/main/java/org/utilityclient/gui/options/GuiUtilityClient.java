@@ -32,7 +32,7 @@ public class GuiUtilityClient extends GuiScreen
         buttonList.add(new GuiButton(4, width / 2 - 204, height / 2 - 22, "Overlay Settings..."));
         buttonList.add(new GuiButton(5, width / 2 + 4, height / 2 - 22, "Manage Macros..."));
 
-        buttonList.add(new GuiButton(6, width / 2 - 204, height / 2, "Discord Settings...")); // TODO
+        buttonList.add(new GuiButton(6, width / 2 - 204, height / 2, "Discord Settings..."));
         buttonList.add(new GuiButton(200, width / 2 + 4, height / 2, I18n.format("gui.done")));
     }
 
@@ -41,7 +41,10 @@ public class GuiUtilityClient extends GuiScreen
         if (button.enabled) {
             if (button.id != 1) Config.save();
             switch (button.id) {
-                case 200 -> mc.displayGuiScreen(parentScreen);
+                case 200 -> {
+                    mc.displayGuiScreen(parentScreen);
+                    Config.save();
+                }
                 case 1 -> {
                     Config.setBoolean("keystrokesEnabled", !Config.getBoolean("keystrokesEnabled", true));
                     buttonList.get(1).displayString = Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes";
@@ -51,6 +54,7 @@ public class GuiUtilityClient extends GuiScreen
                 case 3 -> mc.displayGuiScreen(new GuiThemeOptions(this));
                 case 4 -> mc.displayGuiScreen(new GuiOverlaySettings(this));
                 case 5 -> mc.displayGuiScreen(new GuiMacroManager(this));
+                case 6 -> mc.displayGuiScreen(new GuiDiscordOptions(this));
             }
         }
     }

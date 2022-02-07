@@ -16,9 +16,9 @@ public class GuiDiscordOptions extends GuiScreen {
 
     @Override
     public void initGui() {
-        buttonList.add(new GuiButton(200, width / 2, height - 30, I18n.format("gui.done")));
-        buttonList.add(new GuiButton(1, width / 2, height / 2 - 22, Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE, true) ? "Disable Rich Presence" : "Enable Rich Presence"));
-        buttonList.add(new GuiButton(2, width / 2, height / 2 + 2, Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS, true) ? "Disable Friend Notifications" : "Enable Friend Notifications"));
+        buttonList.add(new GuiButton(200, width / 2 - 100, height - 30, I18n.format("gui.done")));
+        buttonList.add(new GuiButton(1, width / 2 - 100, height / 2 - 22, Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE) ? "Disable Rich Presence" : "Enable Rich Presence"));
+        buttonList.add(new GuiButton(2, width / 2 - 100, height / 2, Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS) ? "Disable Friend Notifications" : "Enable Friend Notifications"));
     }
 
     @Override
@@ -34,11 +34,11 @@ public class GuiDiscordOptions extends GuiScreen {
             case 200 -> mc.displayGuiScreen(parent);
             case 1 -> {
                 Config.toggleBoolean(ConfigEntry.DISCORD_RICH_PRESENCE);
-                buttonList.get(1).displayString = Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE, true) ? "Disable Rich Presence" : "Enable Rich Presence";
+                buttonList.get(1).displayString = Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE) ? "Disable Rich Presence" : "Enable Rich Presence";
             }
             case 2 -> {
                 Config.toggleBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS);
-                buttonList.get(2).displayString = Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS, true) ? "Disable Friend Notifications" : "Enable Friend Notifications";
+                buttonList.get(2).displayString = Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS) ? "Disable Friend Notifications" : "Enable Friend Notifications";
             }
         }
     }
