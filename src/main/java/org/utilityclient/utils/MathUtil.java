@@ -1,5 +1,9 @@
 package org.utilityclient.utils;
 
+/**
+ * @author GamingCraft
+ * @since 2.14
+ */
 public class MathUtil {
     /**
      * @param numerator The numerator of your fraction

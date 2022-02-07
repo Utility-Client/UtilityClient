@@ -3,6 +3,11 @@ package org.utilityclient.utils;
 import java.io.*;
 import java.util.Base64;
 
+/**
+ * Utilities for (De-)Serialization of Java Objects.
+ * @author GamingCraft
+ * @since 2.9.1
+ */
 public class SerializationUtils {
     public static String serialize(Serializable o) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
