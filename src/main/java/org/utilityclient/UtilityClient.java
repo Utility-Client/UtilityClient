@@ -137,17 +137,15 @@ public class UtilityClient extends Thread {
                     if (t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
                         String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                         String[] coords = s.split(" ");
-                        if(coords.length == 3) {
-                            DistanceModule.x = Integer.parseInt(coords[0]);
-                            DistanceModule.y = Integer.parseInt(coords[1]);
-                            DistanceModule.z = Integer.parseInt(coords[2]);
-                            DistanceModule.gotUpdated = true;
-                            Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Destination updated."));
-                        }
+                        if(coords.length < 3) throw new IndexOutOfBoundsException();
+                        DistanceModule.x = Integer.parseInt(coords[0]);
+                        DistanceModule.y = Integer.parseInt(coords[1]);
+                        DistanceModule.z = Integer.parseInt(coords[2]);
+                        DistanceModule.gotUpdated = true;
+                        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Destination updated."));
                     }
                 } catch (Exception e) {
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Error while updating destination."));
-                    e.printStackTrace();
                 }
             }
 
