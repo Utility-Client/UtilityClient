@@ -39,7 +39,7 @@ public class MacroManager {
         else name = "No name specified";
 
         if(scanner.hasNextLine()) message = scanner.nextLine();
-        else message = "No name specified";
+        else message = "No message specified";
 
         if(scanner.hasNextInt()) keyCode = scanner.nextInt();
         else keyCode = 0;
@@ -58,5 +58,11 @@ public class MacroManager {
 
     public static void loop() {
         for (Macro macro : macros) if(macro.keyBinding.isPressed()) Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.message);
+    }
+
+    public static void reload() throws FileNotFoundException {
+        UtilityClient.keyBinds.removeIf(kb -> kb.getKeyCategory().equalsIgnoreCase("Macros"));
+        macros.clear();
+        for (File macro : Objects.requireNonNull(macrosFolder.listFiles())) load(macro);
     }
 }

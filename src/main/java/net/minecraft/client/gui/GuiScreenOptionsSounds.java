@@ -98,7 +98,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
             this.field_146156_o = GuiScreenOptionsSounds.this.game_settings_4.getSoundLevel(p_i45024_5_);
         }
 
-        protected int getHoverState(boolean mouseOver)
+        public int getHoverState(boolean mouseOver)
         {
             return 0;
         }

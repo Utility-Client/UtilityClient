@@ -28,7 +28,7 @@ public class GuiCustomSlider extends GuiButton
      * Returns 0 if the button is disabled, 1 if the mouse is NOT hovering over this button and 2 if it IS hovering over
      * this button.
      */
-    protected int getHoverState(boolean mouseOver)
+    public int getHoverState(boolean mouseOver)
     {
         return 0;
     }
