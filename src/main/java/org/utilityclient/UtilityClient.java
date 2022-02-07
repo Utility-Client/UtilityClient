@@ -17,6 +17,7 @@ import org.utilityclient.overlay.modules.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
+import org.utilityclient.utils.Utils;
 
 import java.awt.*;
 import java.awt.datatransfer.*;
@@ -64,8 +65,8 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
-        new File("uc2").mkdirs();
-        new File("uc2/modules").mkdirs();
+        Utils.ignore(new File("uc2").mkdirs());
+        Utils.ignore(new File("uc2/modules").mkdirs());
 
         try {
             Config.run();

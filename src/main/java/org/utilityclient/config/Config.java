@@ -1,5 +1,7 @@
 package org.utilityclient.config;
 
+import org.utilityclient.utils.Utils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,7 +16,7 @@ public class Config {
 
     public static void run() throws IOException {
         config.clear();
-        configFile.createNewFile();
+        Utils.ignore(configFile.createNewFile());
         load();
     }
 
