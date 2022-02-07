@@ -7,6 +7,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumChatFormatting;
+import org.utilityclient.utils.Color;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class ModuleHandler {
 
         if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND, true)) {
             GlStateManager.enableAlpha();
-            Gui.drawRect(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Integer.MIN_VALUE);
+            Gui.drawRect(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Color.BACKGROUND.color);
             GlStateManager.disableAlpha();
         }
 
@@ -39,12 +40,12 @@ public class ModuleHandler {
             if (mod.isEnabled) {
                 if (mod.shouldRender()) {
                     String str = UtilityClient.CURRENT_THEME.getPrefix() + mod.getName() + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() + mod.getValue();
-                    fr.drawStringWithShadow(str, op_x, op_y + (mod_height*z), 0);
+                    fr.drawStringWithShadow(str, op_x, op_y + (mod_height*z), Color.TEXT.color);
                     z++;
                 }
             }
         }
 
-        fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, 0);
+        fr.drawStringWithShadow(UtilityClient.CURRENT_THEME.getPrefix() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, Color.TEXT.color);
     }
 }
