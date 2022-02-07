@@ -17,4 +17,10 @@ public class MathUtil {
     public static int percent(int percent) {
         return fraction(percent, 100);
     }
+
+    /**
+     * @param degree The degree you want to use
+     * @return Your degree as integer
+     */
+    public static int degree(int degree) { return fraction(degree, 360); }
 }
