@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.utils.Color;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -36,12 +37,12 @@ public class GuiOverlaySettings extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
-        drawCenteredString(fontRendererObj, "Overlay Settings", width / 2, 20, 16777215);
+        drawCenteredString(fontRendererObj, "Overlay Settings", width / 2, 20, Color.TEXT.color);
 
         int offset = 0;
         for (int i = 0; i < modules.size(); i++) {
             if (modules.get(i).shouldRender())
-                drawString(fontRendererObj, modules.get(i).getName(), width / 3, (height / 10 * 2) + ((i + offset) * 21) + 10, 16777215);
+                drawString(fontRendererObj, modules.get(i).getName(), width / 3, (height / 10 * 2) + ((i + offset) * 21) + 10, Color.TEXT.color);
             else offset -= 1;
         }
 
