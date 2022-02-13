@@ -303,17 +303,16 @@ public class GuiIngame extends Gui {
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
         if (UtilityClient.shouldRenderOverlay()){
-            ModuleHandler.loop(UtilityClient.CURRENT_THEME.getId() == 10 ? Minecraft.getMinecraft().standardGalacticFontRenderer : getFontRenderer());
+            ModuleHandler.loop(getFontRenderer());
             if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
             Keystrokes.loop();
         }
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
-        if (mc.getRenderViewEntity() instanceof EntityPlayer) {
+        if (mc.getRenderViewEntity() instanceof EntityPlayer entityplayer) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             mc.getTextureManager().bindTexture(widgetsTexPath);
-            EntityPlayer entityplayer = (EntityPlayer) mc.getRenderViewEntity();
             int i = sr.getScaledWidth() / 2;
             float f = zLevel;
             zLevel = -90.0F;

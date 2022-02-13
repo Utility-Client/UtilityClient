@@ -12,7 +12,7 @@ import org.utilityclient.utils.Color;
 import java.util.ArrayList;
 
 public class ModuleHandler {
-    public final static ArrayList<IModule> modules = new ArrayList<IModule>();
+    public final static ArrayList<IModule> modules = new ArrayList<>();
     private final static int op_x = 4, op_y = 4, mod_height = 9;
 
     public static void loop(FontRenderer fr) {
