@@ -17,4 +17,15 @@ public abstract class Instances {
     public UtilityClient uc() {
         return uc;
     }
+
+    /**
+     * Interface version without caching.
+     * @since 2.15 LTS
+     * @author GamingCraft
+     * @see Instances
+     */
+    public interface Interface {
+        default Minecraft mc() {return Minecraft.getMinecraft();}
+        default UtilityClient uc() {return UtilityClient.getInstance();}
+    }
 }
