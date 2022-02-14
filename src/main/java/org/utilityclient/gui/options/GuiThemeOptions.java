@@ -1,13 +1,12 @@
 package org.utilityclient.gui.options;
 
-import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.overlay.Theme;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
+import org.utilityclient.utils.Color;
 
 import java.io.IOException;
 
@@ -29,13 +28,18 @@ public class GuiThemeOptions extends GuiScreen {
 
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
-            if (button.id == 1)
-                UtilityClient.CURRENT_THEME = Theme.getThemeById(UtilityClient.CURRENT_THEME.getId() - 1);
-            if (button.id == 2)
-                UtilityClient.CURRENT_THEME = Theme.getThemeById(UtilityClient.CURRENT_THEME.getId() + 1);
+            if (button.id == 1) {
+                UtilityClient.currentTheme--;
+                if(UtilityClient.currentTheme == -1) UtilityClient.currentTheme = UtilityClient.themes.size() - 1;
+            }
+
+            if (button.id == 2) {
+                UtilityClient.currentTheme++;
+                if(UtilityClient.currentTheme == UtilityClient.themes.size()) UtilityClient.currentTheme = 0;
+            }
 
             if (button.id == 200) {
-                Config.setInteger(ConfigEntry.SELECTED_THEME, UtilityClient.CURRENT_THEME.getId());
+                Config.setInteger(ConfigEntry.SELECTED_THEME, UtilityClient.currentTheme);
                 Config.save();
                 this.mc.displayGuiScreen(this.parentScreen);
             }
@@ -44,8 +48,12 @@ public class GuiThemeOptions extends GuiScreen {
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, 16777215);
-        this.drawCenteredString(this.fontRendererObj, UtilityClient.CURRENT_THEME.getPrefix() + I18n.format("uc.options.theme.prefix") + EnumChatFormatting.GRAY + ": " + UtilityClient.CURRENT_THEME.getSuffix() +  I18n.format("uc.options.theme.suffix") , this.width / 2, this.height / 2 - 70, 16777215);
+        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, Color.TEXT.color);
+        this.drawCenteredString(this.fontRendererObj,
+                UtilityClient.getCurrentTheme().getPrefixColor() + I18n.format("uc.options.theme.prefix")
+                        + UtilityClient.getCurrentTheme().getSeparator()
+                        + UtilityClient.getCurrentTheme().getSuffixColor() +  I18n.format("uc.options.theme.suffix"),
+                this.width / 2, this.height / 2 - 70, Color.TEXT.color);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

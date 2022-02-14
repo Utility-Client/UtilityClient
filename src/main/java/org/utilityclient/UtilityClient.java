@@ -10,13 +10,14 @@ import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.macro.MacroManager;
+import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
-import org.utilityclient.overlay.Theme;
 import org.utilityclient.overlay.modules.CPSThread;
 import org.utilityclient.overlay.modules.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
+import org.utilityclient.overlay.themes.*;
 import org.utilityclient.utils.Utils;
 
 import java.awt.*;
@@ -24,6 +25,7 @@ import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
@@ -33,7 +35,8 @@ public class UtilityClient extends Thread {
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
-    public static Theme CURRENT_THEME = Theme.RED;
+    public static ArrayList<ITheme> themes = new ArrayList<>();
+    public static int currentTheme = 0;
     public static boolean renderOverlay = true;
     public static boolean isFulbrightEnabled = false;
     public static boolean streamerMode = false;
@@ -53,6 +56,10 @@ public class UtilityClient extends Thread {
     }
     public static boolean shouldRenderOverlay() {
         return renderOverlay;
+    }
+
+    public static ITheme getCurrentTheme() {
+        return themes.get(currentTheme);
     }
 
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
@@ -87,17 +94,33 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME));
-        DISCORD_INSTANCE.start();
+        themes.addAll(List.of(
+                new RedTheme(),
+                new YellowTheme(),
+                new GreenTheme(),
+                new BlueTheme(),
+                new WhiteTheme(),
+                new BlackTheme(),
+                new ContrastTheme(),
+                new PurpleTheme(),
+                new GrayTheme(),
+                new AquaTheme()
+        ));
 
-        ModuleHandler.modules.add(new FPSModule());
-        ModuleHandler.modules.add(new CoordsModule());
-        ModuleHandler.modules.add(new ClockModule());
-        ModuleHandler.modules.add(new DateModule());
-        ModuleHandler.modules.add(new FacingModule());
-        ModuleHandler.modules.add(new PingModule());
-        ModuleHandler.modules.add(new BiomeModule());
-        ModuleHandler.modules.add(new DistanceModule());
+        // Run Addon Init here
+
+        currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
+        DISCORD_INSTANCE.start();
+        ModuleHandler.modules.addAll(List.of(
+                new FPSModule(),
+                new CoordsModule(),
+                new ClockModule(),
+                new DateModule(),
+                new FacingModule(),
+                new PingModule(),
+                new BiomeModule(),
+                new DistanceModule()
+        ));
 
         CPS_THREAD_INSTANCE.start();
         try {
