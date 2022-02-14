@@ -11,7 +11,8 @@ public enum ConfigEntry {
     TOGGLE_SPRINT("toggleSprintEnabled", "false"),
     OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true"),
     DISCORD_RICH_PRESENCE("discordRichPresenceEnabled", "true"),
-    DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true");
+    DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true"),
+    DISCORD_SHOW_SERVER("discordShowServerInPresence", "true");
 
     private final String key;
     private final String defaultValue;

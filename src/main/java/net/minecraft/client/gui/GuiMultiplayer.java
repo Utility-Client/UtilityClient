@@ -12,6 +12,8 @@ import net.minecraft.client.resources.I18n;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
+import org.utilityclient.utils.Color;
+import org.utilityclient.utils.Utils;
 
 import java.io.IOException;
 import java.util.List;
@@ -168,7 +170,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
                 {
                     this.deletingServer = true;
                     String s = I18n.format("selectServer.deleteQuestion");
-                    String s1 = "\'" + s4 + "\' " + I18n.format("selectServer.deleteWarning");
+                    String s1 = "'" + s4 + "' " + I18n.format("selectServer.deleteWarning");
                     String s2 = I18n.format("selectServer.deleteButton");
                     String s3 = I18n.format("gui.cancel");
                     GuiYesNo guiyesno = new GuiYesNo(this, s, s1, s2, s3, this.serverListSelector.func_148193_k());
@@ -287,6 +289,39 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
 
         directConnectTextField.textboxKeyTyped(typedChar, keyCode);
 
+        if(keyCode == 210) {
+            this.addingServer = true;
+            this.mc.displayGuiScreen(new GuiScreenAddServer(this, this.selectedServer = new ServerData("", "", false)));
+        }
+
+        if (keyCode == 211 && guilistextended$iguilistentry instanceof ServerListEntryNormal)
+        {
+            String s4 = ((ServerListEntryNormal)guilistextended$iguilistentry).getServerData().serverName;
+
+            if (s4 != null)
+            {
+                this.deletingServer = true;
+                String s = I18n.format("selectServer.deleteQuestion");
+                String s1 = "'" + s4 + "' " + I18n.format("selectServer.deleteWarning");
+                String s2 = I18n.format("selectServer.deleteButton");
+                String s3 = I18n.format("gui.cancel");
+                GuiYesNo guiyesno = new GuiYesNo(this, s, s1, s2, s3, this.serverListSelector.func_148193_k());
+                this.mc.displayGuiScreen(guiyesno);
+            }
+        }
+
+        if(Keyboard.isKeyDown(56) || Keyboard.isKeyDown(184)) {
+            if(keyCode >= 2 && keyCode <= 11) {
+                int serverEntry = keyCode - 2;
+                try {
+                    selectServer(serverEntry);
+                    connectToSelected();
+                } catch (Exception e) {
+                    Utils.ignore(e);
+                }
+            }
+        }
+
         if (keyCode == 63)
         {
             this.refreshServerList();
@@ -371,7 +406,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
                 }
                 else
                 {
-                    this.actionPerformed((GuiButton)this.buttonList.get(2));
+                    this.actionPerformed(this.buttonList.get(2));
                 }
             }
             else
@@ -389,7 +424,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         this.hoveringText = null;
         this.drawDefaultBackground();
         this.serverListSelector.drawScreen(mouseX, mouseY, partialTicks);
-        this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.title"), this.width / 2, 20, 16777215);
+        this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.title"), this.width / 2, 20, Color.TEXT.color);
         super.drawScreen(mouseX, mouseY, partialTicks);
         directConnectTextField.drawTextBox();
 
@@ -476,17 +511,17 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         return this.savedServerList;
     }
 
-    public boolean func_175392_a(ServerListEntryNormal p_175392_1_, int p_175392_2_)
+    public boolean func_175392_a(int p_175392_2_)
     {
         return p_175392_2_ > 0;
     }
 
-    public boolean func_175394_b(ServerListEntryNormal p_175394_1_, int p_175394_2_)
+    public boolean func_175394_b(int p_175394_2_)
     {
         return p_175394_2_ < this.savedServerList.countServers() - 1;
     }
 
-    public void func_175391_a(ServerListEntryNormal p_175391_1_, int p_175391_2_, boolean p_175391_3_)
+    public void func_175391_a(int p_175391_2_, boolean p_175391_3_)
     {
         int i = p_175391_3_ ? 0 : p_175391_2_ - 1;
         this.savedServerList.swapServers(p_175391_2_, i);
@@ -499,7 +534,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         this.serverListSelector.func_148195_a(this.savedServerList);
     }
 
-    public void func_175393_b(ServerListEntryNormal p_175393_1_, int p_175393_2_, boolean p_175393_3_)
+    public void func_175393_b(int p_175393_2_, boolean p_175393_3_)
     {
         int i = p_175393_3_ ? this.savedServerList.countServers() - 1 : p_175393_2_ + 1;
         this.savedServerList.swapServers(p_175393_2_, i);

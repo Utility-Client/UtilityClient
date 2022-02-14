@@ -3,11 +3,13 @@ package org.utilityclient.discord;
 import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
 import de.jcm.discordgamesdk.activity.Activity;
+import org.apache.logging.log4j.LogManager;
 import org.utilityclient.UtilityClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class DiscordRP extends Thread {
         shouldRun = true;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Discord Hook: Closing Discord hook.");
+            LogManager.getLogger().info("Discord Hook: Closing Discord hook.");
             core.close();
         }));
     }
@@ -50,15 +52,18 @@ public class DiscordRP extends Thread {
         if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
         if(!shouldRun) return;
 
-        String topText = "Idle";
+        String topText = "";
         String bottomText = "";
 
-        if(Minecraft.getMinecraft().isSingleplayer()) {
-            topText = "Playing Singleplayer";
-        } else if(Minecraft.getMinecraft().theWorld != null) {
-            if(Minecraft.getMinecraft().theWorld.playerEntities.size() > 1) {
+        try {
+            if(Minecraft.getMinecraft().isSingleplayer()) {
+                topText = "Playing Singleplayer";
+            } else if (Minecraft.getMinecraft().getCurrentServerData() != null) {
                 topText = "Playing Multiplayer";
+                if(Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER)) bottomText = "Current Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP;
             }
+        } catch (Exception e) {
+            Utils.ignore(e);
         }
 
         if(Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu) {
