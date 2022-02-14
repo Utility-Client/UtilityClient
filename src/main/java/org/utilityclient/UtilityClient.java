@@ -104,7 +104,8 @@ public class UtilityClient extends Thread {
                 new ContrastTheme(),
                 new PurpleTheme(),
                 new GrayTheme(),
-                new AquaTheme()
+                new AquaTheme(),
+                new DaylightCycleTheme()
         ));
 
         // Run Addon Init here
@@ -132,7 +133,6 @@ public class UtilityClient extends Thread {
     }
 
     public void loop() {
-        DISCORD_INSTANCE.loop();
         if (keyBinds.size() >= 3) {
             if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
             else fovModifier = 1.0f;
