@@ -22,14 +22,12 @@ public class ModuleHandler extends Instances {
         int x = 1;
 
         for (IModule mod : modules) {
-            if (mod.isEnabled) {
-                if (mod.shouldRender()) {
-                    String str = theme.getPrefixColor() + mod.getName() + theme.getSeparator() + theme.getSuffixColor() + mod.getValue();
-                    int y = theme.getFontRenderer().getStringWidth(str);
-                    if(y > largest) largest = y;
-                    x++;
-                }
-            }
+            if (!mod.isEnabled) continue;
+            if (!mod.shouldRender()) continue;
+            String str = theme.getPrefixColor() + mod.getName() + theme.getSeparator() + theme.getSuffixColor() + mod.getValue();
+            int y = theme.getFontRenderer().getStringWidth(str);
+            if(y > largest) largest = y;
+            x++;
         }
 
         if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND)) {
@@ -40,13 +38,11 @@ public class ModuleHandler extends Instances {
 
         int z = 1;
         for (IModule mod : modules) {
-            if (mod.isEnabled) {
-                if (mod.shouldRender()) {
-                    String str = theme.getPrefixColor() + mod.getName() + theme.getSeparator() + theme.getSuffixColor() + mod.getValue();
-                    theme.getFontRenderer().drawStringWithShadow(str, op_x, op_y + (mod_height*z), Color.TEXT.color);
-                    z++;
-                }
-            }
+            if (!mod.isEnabled) continue;
+            if (!mod.shouldRender()) continue;
+            String str = theme.getPrefixColor() + mod.getName() + theme.getSeparator() + theme.getSuffixColor() + mod.getValue();
+            theme.getFontRenderer().drawStringWithShadow(str, op_x, op_y + (mod_height*z), Color.TEXT.color);
+            z++;
         }
 
         theme.getFontRenderer().drawStringWithShadow(theme.getPrefixColor() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, Color.TEXT.color);
