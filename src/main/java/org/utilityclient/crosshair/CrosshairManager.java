@@ -2,7 +2,7 @@ package org.utilityclient.crosshair;
 
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.GuiCrosshairOptions;
+import org.utilityclient.gui.options.GuiCrosshairOptions;
 import org.utilityclient.utils.SerializationUtils;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;

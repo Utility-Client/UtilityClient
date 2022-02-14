@@ -7,6 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
 
 public class DCEventAdapter extends DiscordEventAdapter {
 
@@ -15,6 +17,7 @@ public class DCEventAdapter extends DiscordEventAdapter {
         super.onRelationshipUpdate(relationship);
         if(relationship.getType() != RelationshipType.FRIEND) return;
         if (UtilityClient.streamerMode) return;
+        if(!Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS)) return;
 
         switch (relationship.getPresence().getStatus()) {
             case OFFLINE -> Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.AQUA + "Discord » " + EnumChatFormatting.GRAY + relationship.getUser().getUsername() + " went offline."));

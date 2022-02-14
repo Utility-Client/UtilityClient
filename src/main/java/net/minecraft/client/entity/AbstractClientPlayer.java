@@ -43,14 +43,14 @@ public abstract class AbstractClientPlayer extends EntityPlayer {
             for (JsonElement capeOwners : JSONUtils.gson.fromJson(capeIndex, JsonArray.class)) {
                 String finalName = name;
                 capeOwners.getAsJsonObject().get("usernames").getAsJsonArray().forEach(username -> {
-                    if(username.getAsString().equalsIgnoreCase(finalName))
+                    if(username.getAsString().equalsIgnoreCase(finalName) || username.getAsString().equalsIgnoreCase(playerProfile.getId().toString()))
                         capeUtils.downloadCape("http://cdn.gamingcraft.de/uclient/", capeOwners.getAsJsonObject().get("file").getAsString());
                 });
             }
         } catch (Exception e) {
             System.err.println("Please send this error to the UtilityClient developers:");
             System.err.println("--- START OF ERROR ---");
-            System.err.println(e);
+            e.printStackTrace(System.out);
             System.err.println("--- END OF ERROR ---");
         }
     }

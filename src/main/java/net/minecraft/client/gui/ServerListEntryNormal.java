@@ -203,7 +203,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                 }
             }
 
-            if (this.field_148303_c.func_175392_a(this, slotIndex))
+            if (this.field_148303_c.func_175392_a(slotIndex))
             {
                 if (k1 < 16 && l1 < 16)
                 {
@@ -215,7 +215,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                 }
             }
 
-            if (this.field_148303_c.func_175394_b(this, slotIndex))
+            if (this.field_148303_c.func_175394_b(slotIndex))
             {
                 if (k1 < 16 && l1 > 16)
                 {
@@ -302,15 +302,15 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry
                 return true;
             }
 
-            if (p_148278_5_ < 16 && p_148278_6_ < 16 && this.field_148303_c.func_175392_a(this, slotIndex))
+            if (p_148278_5_ < 16 && p_148278_6_ < 16 && this.field_148303_c.func_175392_a(slotIndex))
             {
-                this.field_148303_c.func_175391_a(this, slotIndex, GuiScreen.isShiftKeyDown());
+                this.field_148303_c.func_175391_a(slotIndex, GuiScreen.isShiftKeyDown());
                 return true;
             }
 
-            if (p_148278_5_ < 16 && p_148278_6_ > 16 && this.field_148303_c.func_175394_b(this, slotIndex))
+            if (p_148278_5_ < 16 && p_148278_6_ > 16 && this.field_148303_c.func_175394_b(slotIndex))
             {
-                this.field_148303_c.func_175393_b(this, slotIndex, GuiScreen.isShiftKeyDown());
+                this.field_148303_c.func_175393_b(slotIndex, GuiScreen.isShiftKeyDown());
                 return true;
             }
         }

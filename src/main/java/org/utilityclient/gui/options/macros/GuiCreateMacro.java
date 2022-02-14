@@ -1,4 +1,4 @@
-package org.utilityclient.gui;
+package org.utilityclient.gui.options.macros;
 
 import net.minecraft.client.resources.I18n;
 import org.utilityclient.macro.Macro;
@@ -7,7 +7,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
-
 import java.io.IOException;
 
 public class GuiCreateMacro extends GuiScreen {
@@ -17,10 +16,28 @@ public class GuiCreateMacro extends GuiScreen {
     private GuiTextField messageInput;
     private int currentKeyCode = 0;
     private boolean listeningForInput;
+    private boolean editMode = false;
+    private Macro macro;
 
+    /**
+     * Create
+     * @param parentScreenIn The parent screen
+     */
     public GuiCreateMacro(GuiScreen parentScreenIn)
     {
         this.parentScreen = parentScreenIn;
+    }
+
+    /**
+     * Edit
+     * @param parentScreenIn The parent screen
+     * @param macroIn The macro, that should be edited.
+     */
+    public GuiCreateMacro(GuiScreen parentScreenIn, Macro macroIn) {
+        this.parentScreen = parentScreenIn;
+        editMode = true;
+        macro = macroIn;
+        currentKeyCode = macro.keyCode;
     }
 
     public void initGui()
@@ -31,17 +48,18 @@ public class GuiCreateMacro extends GuiScreen {
         nameInput = new GuiTextField(1, fontRendererObj, width / 2 - 100, height / 2 - 66 +1, 124, 18);
         nameInput.setMaxStringLength(255);
         nameInput.setFocused(true);
-        nameInput.setText(I18n.format("uc.options.macro.default.name"));
+        nameInput.setText(editMode ? macro.name : I18n.format("uc.options.macro.default.name"));
 
         messageInput = new GuiTextField(2, fontRendererObj, width / 2 - 100, height / 2 - 22 +1, 200, 18);
         messageInput.setMaxStringLength(100);
         messageInput.setFocused(false);
-        messageInput.setText(I18n.format("uc.options.macro.default.message"));
+        messageInput.setText(editMode ? macro.message : I18n.format("uc.options.macro.default.message"));
 
         buttonList.add(new GuiButton(200, width / 2 - 100, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.cancel")));
-        buttonList.add(new GuiButton(201, width / 2, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.save"), false));
+        buttonList.add(new GuiButton(201, width / 2, this.height / 2 + 22, 100, 20, I18n.format("uc.options.macro.save"), editMode));
         buttonList.add(new GuiButton(202, width / 2 + 25, height / 2 - 66, 75, 20, "None"));
 
+        if(editMode) buttonList.get(2).displayString = Keyboard.getKeyName(macro.keyCode);
     }
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
@@ -65,17 +83,29 @@ public class GuiCreateMacro extends GuiScreen {
 
     protected void actionPerformed(GuiButton button)
     {
-        if (button.id == 200) this.mc.displayGuiScreen(this.parentScreen);
+        if (button.id == 200) {
+            this.mc.displayGuiScreen(this.parentScreen);
+        }
 
         if (button.id == 201) {
             if (currentKeyCode != 0) {
                 buttonList.get(1).enabled = true;
                 try {
-                    MacroManager.save(nameInput.getText(), new Macro(nameInput.getText(), messageInput.getText(), currentKeyCode));
+                    MacroManager.save(editMode ? macro.name : nameInput.getText(), new Macro(nameInput.getText(), messageInput.getText(), currentKeyCode));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(System.out);
                 }
-                this.mc.displayGuiScreen(this.parentScreen);
+
+                if(editMode) {
+                    try {
+                        MacroManager.reload();
+                    } catch (Exception e) {
+                        e.printStackTrace(System.out);
+                    }
+                    this.mc.displayGuiScreen(new GuiMacroManager(((GuiMacroManager) parentScreen).parent));
+                } else {
+                    this.mc.displayGuiScreen(this.parentScreen);
+                }
             }else {
                 buttonList.get(1).enabled = false;
             }

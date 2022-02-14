@@ -3,8 +3,22 @@ package org.utilityclient.overlay;
 import org.utilityclient.Instances;
 
 public abstract class IModule extends Instances {
+    /**
+     * Controlled by GuiOverlaySettings.
+     * Do not override.
+     */
+    public boolean isEnabled = true;
+
+    /**
+     * Used as prefix.
+     * @return The name of the module.
+     */
     public abstract String getName();
 
+    /**
+     * Used as suffix.
+     * @return The value of the module.
+     */
     public abstract String getValue();
 
     /**

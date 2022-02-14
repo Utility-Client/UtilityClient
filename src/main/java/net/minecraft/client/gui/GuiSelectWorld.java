@@ -31,7 +31,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
     private GuiSelectWorld.List field_146638_t;
     private String field_146637_u;
     private String field_146636_v;
-    private String[] field_146635_w = new String[4];
+    private final String[] field_146635_w = new String[4];
     private boolean field_146643_x;
     private GuiButton deleteButton;
     private GuiButton selectButton;
@@ -57,7 +57,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
         }
         catch (AnvilConverterException anvilconverterexception)
         {
-            logger.error((String)"Couldn\'t load level list", (Throwable)anvilconverterexception);
+            logger.error("Couldn't load level list", anvilconverterexception);
             this.mc.displayGuiScreen(new GuiErrorScreen("Unable to load worlds", anvilconverterexception.getMessage()));
             return;
         }
@@ -92,12 +92,12 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
     protected String func_146621_a(int p_146621_1_)
     {
-        return ((SaveFormatComparator)this.field_146639_s.get(p_146621_1_)).getFileName();
+        return this.field_146639_s.get(p_146621_1_).getFileName();
     }
 
     protected String func_146614_d(int p_146614_1_)
     {
-        String s = ((SaveFormatComparator)this.field_146639_s.get(p_146614_1_)).getDisplayName();
+        String s = this.field_146639_s.get(p_146614_1_).getDisplayName();
 
         if (StringUtils.isEmpty(s))
         {
@@ -173,7 +173,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
     public void func_146615_e(int p_146615_1_)
     {
-        this.mc.displayGuiScreen((GuiScreen)null);
+        this.mc.displayGuiScreen(null);
 
         if (!this.field_146634_i)
         {
@@ -194,7 +194,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
             if (this.mc.getSaveLoader().canLoadWorld(s))
             {
-                this.mc.launchIntegratedServer(s, s1, (WorldSettings)null);
+                this.mc.launchIntegratedServer(s, s1, null);
             }
         }
 
@@ -218,7 +218,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
                 }
                 catch (AnvilConverterException anvilconverterexception)
                 {
-                    logger.error((String)"Couldn\'t load level list", (Throwable)anvilconverterexception);
+                    logger.error("Couldn't load level list", anvilconverterexception);
                 }
             }
 
@@ -239,11 +239,10 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
     public static GuiYesNo func_152129_a(GuiYesNoCallback p_152129_0_, String p_152129_1_, int p_152129_2_)
     {
         String s = I18n.format("selectWorld.deleteQuestion");
-        String s1 = "\'" + p_152129_1_ + "\' " + I18n.format("selectWorld.deleteWarning");
+        String s1 = "'" + p_152129_1_ + "' " + I18n.format("selectWorld.deleteWarning");
         String s2 = I18n.format("selectWorld.deleteButton");
         String s3 = I18n.format("gui.cancel");
-        GuiYesNo guiyesno = new GuiYesNo(p_152129_0_, s, s1, s2, s3, p_152129_2_);
-        return guiyesno;
+        return new GuiYesNo(p_152129_0_, s, s1, s2, s3, p_152129_2_);
     }
 
     class List extends GuiSlot
@@ -290,7 +289,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
-            SaveFormatComparator saveformatcomparator = (SaveFormatComparator)GuiSelectWorld.this.field_146639_s.get(entryID);
+            SaveFormatComparator saveformatcomparator = GuiSelectWorld.this.field_146639_s.get(entryID);
             String s = saveformatcomparator.getDisplayName();
 
             if (StringUtils.isEmpty(s))

@@ -1,11 +1,14 @@
 package org.utilityclient;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
+import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.macro.MacroManager;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.Theme;
@@ -14,10 +17,10 @@ import org.utilityclient.overlay.modules.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
+import org.utilityclient.utils.Utils;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +29,7 @@ public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.13";
+    private static final String CLIENT_VERSION = "2.14";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
@@ -62,7 +65,9 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
-        new File("uc2").mkdirs();
+        Utils.ignore(new File("uc2").mkdirs());
+        Utils.ignore(new File("uc2/modules").mkdirs());
+
         try {
             Config.run();
         } catch (IOException e) {
@@ -73,6 +78,7 @@ public class UtilityClient extends Thread {
         addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
         addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
         addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
+        addKeyBind("Set compass coords", 68, false);
         if(debugMode) addKeyBind("GuiScreen editor", 67, false);
 
         try {
@@ -91,10 +97,12 @@ public class UtilityClient extends Thread {
         ModuleHandler.modules.add(new FacingModule());
         ModuleHandler.modules.add(new PingModule());
         ModuleHandler.modules.add(new BiomeModule());
+        ModuleHandler.modules.add(new DistanceModule());
 
         CPS_THREAD_INSTANCE.start();
         try {
             MacroManager.run();
+            GuiOverlaySettings.loadStates();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -123,7 +131,26 @@ public class UtilityClient extends Thread {
                 clipboard.setContents(stringSelection, null);
             }
 
-            if(debugMode) if(keyBinds.get(4).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
+            if(keyBinds.get(4).isPressed()) {
+                try {
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    Transferable t = clipboard.getContents(clipboard);
+                    if (t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                        String s = (String) t.getTransferData(DataFlavor.stringFlavor);
+                        String[] coords = s.split(" ");
+                        if(coords.length < 3) throw new IndexOutOfBoundsException();
+                        DistanceModule.x = Integer.parseInt(coords[0]);
+                        DistanceModule.y = Integer.parseInt(coords[1]);
+                        DistanceModule.z = Integer.parseInt(coords[2]);
+                        DistanceModule.gotUpdated = true;
+                        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Destination updated."));
+                    }
+                } catch (Exception e) {
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Error while updating destination."));
+                }
+            }
+
+            if(debugMode) if(keyBinds.get(5).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
         }
         MacroManager.loop();
     }
