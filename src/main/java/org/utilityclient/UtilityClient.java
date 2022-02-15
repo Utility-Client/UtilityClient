@@ -27,6 +27,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Main Class of UtilityClient.
+ * Do not create new instances. Instead call {@link UtilityClient#getInstance()}
+ * @since 2.0 LTS
+ * @author GamingCraft
+ */
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
