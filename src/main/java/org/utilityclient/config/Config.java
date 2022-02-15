@@ -10,6 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * The Config of UtilityClient
+ * It gets written to uc2/config.cfg
+ * @author GamingCraft
+ * @since 2.12
+ */
 public class Config {
     private static final HashMap<String, String> config = new HashMap<>();
     private static final File configFile = new File("uc2/config.cfg");

@@ -1,5 +1,10 @@
 package org.utilityclient.config;
 
+/**
+ * Config Entries with default values in Enum-form
+ * @since 2.12
+ * @author GamingCraft
+ */
 public enum ConfigEntry {
     SELECTED_THEME("selectedTheme", "0"),
     HOTKEY_ZOOM("hotkeyZoom", "46"),
@@ -22,16 +27,26 @@ public enum ConfigEntry {
         this.defaultValue = defaultValue;
     }
 
+    /**
+     * @return The key, as which the entry got saved as.
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * @return The default value, if the key didn't exist yet.
+     */
     public String getDefaultValue() {
         return defaultValue;
     }
 
+    /**
+     * @return The value of {@link #getKey()}
+     * @see #getKey()
+     */
     @Override
     public String toString() {
-        return key;
+        return getKey();
     }
 }

@@ -23,6 +23,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+/**
+ * @since 2.0 LTS
+ * @author GamingCraft
+ * @author Niklas-Dev
+ */
 public class DiscordRP extends Thread {
 
     private static boolean shouldRun = false;
