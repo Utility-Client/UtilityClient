@@ -1,12 +1,14 @@
 package org.utilityclient.addons;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.utilityclient.Instances;
 
 /**
  * @author GamingCraft
  * @since 2.15 LTS
  * @see Instances.Interface
- * @implNote Use mc() to get the Minecraft client instance and uc() to get the UtilityClient instance.
+ * @implNote Use mc() to get the Minecraft client instance and uc() to get the UtilityClient instance. Directly calling UtilityClient for static methods is allowed too.
  */
 public interface UC2Addon extends Instances.Interface {
     /**
@@ -38,4 +40,13 @@ public interface UC2Addon extends Instances.Interface {
      * @since 2.15 LTS
      */
     default void onUpdateEvent() {}
+
+    /**
+     * Do not override.
+     * Use this as logger.
+     * @return A Log4J2 Logger object
+     */
+    default Logger getLogger() {
+        return LogManager.getLogger();
+    }
 }

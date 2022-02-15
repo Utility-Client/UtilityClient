@@ -62,6 +62,13 @@ public class UtilityClient extends Thread {
         return themes.get(currentTheme);
     }
 
+    /**
+     * Register a keybinding
+     * @param name Name of the keybinding. Use {@link I18n#format(String, Object...)} if needed.
+     * @param keyCode Currently saved or default keyCode. <a href="https://minecraft.fandom.com/index.php?title=Key_codes/Keyboard1&action=render">List with all key codes<a/>
+     * @param isMacro Should be false. This adds the keybinding as a macro.
+     * @return The KeyBinding object. Use this to check, if the key is currently pressed.
+     */
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
         String cat = CLIENT_NAME;
         if (isMacro) cat = "Macros";
