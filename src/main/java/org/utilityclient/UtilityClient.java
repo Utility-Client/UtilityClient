@@ -42,22 +42,45 @@ public class UtilityClient extends Thread {
     public static boolean streamerMode = false;
     public static boolean debugMode = getVersion().endsWith("DEV");
 
+    /**
+     * Use this instead of creating new instances.
+     * @return Instance of this class.
+     */
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
     }
+
+    /**
+     * @return The ID of the UtilityClient Discord Application
+     */
     public static long getDiscordApplicationId() {
         return 742760119984455701L;
     }
+
+    /**
+     * @return The name of UtilityClient
+     */
     public static String getClientName() {
         return CLIENT_NAME;
     }
+
+    /**
+     * @return Current UtilityClient Version
+     */
     public static String getVersion() {
         return CLIENT_VERSION;
     }
+
+    /**
+     * @return If the Overlay should be rendered
+     */
     public static boolean shouldRenderOverlay() {
         return renderOverlay;
     }
 
+    /**
+     * @return The currently selected theme
+     */
     public static ITheme getCurrentTheme() {
         return themes.get(currentTheme);
     }
