@@ -130,7 +130,7 @@ public class ItemMonsterPlacer extends Item
                 {
                     BlockPos blockpos = movingobjectposition.getBlockPos();
 
-                    if (!worldIn.isBlockModifiable(playerIn, blockpos))
+                    if (worldIn.isBlockModifiable(playerIn, blockpos))
                     {
                         return itemStackIn;
                     }

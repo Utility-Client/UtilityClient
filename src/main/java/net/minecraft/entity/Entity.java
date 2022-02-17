@@ -565,7 +565,7 @@ public abstract class Entity implements ICommandSender
      */
     private boolean isLiquidPresentInAABB(AxisAlignedBB bb)
     {
-        return this.worldObj.getCollidingBoundingBoxes(this, bb).isEmpty() && !this.worldObj.isAnyLiquid(bb);
+        return this.worldObj.getCollidingBoundingBoxes(this, bb).isEmpty() && this.worldObj.isAnyLiquid(bb);
     }
 
     /**

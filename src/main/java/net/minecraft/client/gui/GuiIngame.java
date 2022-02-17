@@ -149,6 +149,15 @@ public class GuiIngame extends Gui {
             }
         }
 
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.disableLighting();
+        GlStateManager.enableAlpha();
+        if (UtilityClient.shouldRenderOverlay()){
+            ModuleHandler.loop();
+            if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
+            Keystrokes.loop();
+        }
+
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         mc.mcProfiler.startSection("bossHealth");
         renderBossHealth();
@@ -297,15 +306,6 @@ public class GuiIngame extends Gui {
         } else {
             overlayPlayerList.updatePlayerList(true);
             overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
-        }
-
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.disableLighting();
-        GlStateManager.enableAlpha();
-        if (UtilityClient.shouldRenderOverlay()){
-            ModuleHandler.loop();
-            if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
-            Keystrokes.loop();
         }
     }
 

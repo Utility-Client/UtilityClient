@@ -197,7 +197,7 @@ public class BlockFire extends Block
                     }
                 }
 
-                boolean flag1 = worldIn.isBlockinHighHumidity(pos);
+                boolean flag1 = worldIn.isBlockInHighHumidity(pos);
                 int j = 0;
 
                 if (flag1)
