@@ -8,6 +8,7 @@ public class NBTTagString extends NBTBase
 {
     /** The string value for the tag (cannot be empty). */
     private String data;
+    private String dataCache;
 
     public NBTTagString()
     {
@@ -17,11 +18,7 @@ public class NBTTagString extends NBTBase
     public NBTTagString(String data)
     {
         this.data = data;
-
-        if (data == null)
-        {
-            throw new IllegalArgumentException("Empty string not allowed");
-        }
+        if (data == null) throw new IllegalArgumentException("Empty string not allowed");
     }
 
     /**
@@ -34,9 +31,10 @@ public class NBTTagString extends NBTBase
 
     void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException
     {
+        this.dataCache = null;
         sizeTracker.read(288L);
         this.data = input.readUTF();
-        sizeTracker.read((long)(16 * this.data.length()));
+        sizeTracker.read(16L * this.data.length());
     }
 
     /**
@@ -49,7 +47,8 @@ public class NBTTagString extends NBTBase
 
     public String toString()
     {
-        return "\"" + this.data.replace("\"", "\\\"") + "\"";
+        if (this.dataCache == null) this.dataCache = "\"" + this.data.replace("\"", "\\\"") + "\"";
+        return this.dataCache;
     }
 
     /**
@@ -70,15 +69,9 @@ public class NBTTagString extends NBTBase
 
     public boolean equals(Object p_equals_1_)
     {
-        if (!super.equals(p_equals_1_))
-        {
-            return false;
-        }
-        else
-        {
-            NBTTagString nbttagstring = (NBTTagString)p_equals_1_;
-            return this.data == null && nbttagstring.data == null || this.data != null && this.data.equals(nbttagstring.data);
-        }
+        if (!super.equals(p_equals_1_)) return false;
+        NBTTagString nbttagstring = (NBTTagString)p_equals_1_;
+        return this.data == null && nbttagstring.data == null || this.data != null && this.data.equals(nbttagstring.data);
     }
 
     public int hashCode()

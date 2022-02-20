@@ -1199,11 +1199,6 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    public void renderStreamIndicator(float partialTicks)
-    {
-        this.setupOverlayRendering();
-    }
-
     private boolean isDrawBlockOutline()
     {
         if (!this.drawBlockOutline)

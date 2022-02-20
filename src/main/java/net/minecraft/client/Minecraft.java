@@ -970,7 +970,6 @@ public class Minecraft implements IThreadListener
         this.framebufferMc.framebufferRender(this.displayWidth, this.displayHeight);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
-        this.entityRenderer.renderStreamIndicator(this.timer.renderPartialTicks);
         GlStateManager.popMatrix();
         this.updateDisplay();
         Thread.yield();
