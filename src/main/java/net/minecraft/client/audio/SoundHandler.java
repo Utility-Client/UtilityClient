@@ -43,7 +43,7 @@ public class SoundHandler implements IResourceManagerReloadListener, ITickable
     };
     public static final SoundPoolEntry missing_sound = new SoundPoolEntry(new ResourceLocation("meta:missing_sound"), 0.0D, 0.0D, false);
     private final SoundRegistry sndRegistry = new SoundRegistry();
-    private final SoundManager sndManager;
+    public final SoundManager sndManager;
     private final IResourceManager mcResourceManager;
 
     public SoundHandler(IResourceManager manager, GameSettings gameSettingsIn)
