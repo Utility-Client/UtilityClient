@@ -793,26 +793,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.debugView)
         {
-            switch (this.debugViewDirection)
-            {
-                case 0:
-                    GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 1:
-                    GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 2:
-                    GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 3:
-                    GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-                    break;
-
-                case 4:
-                    GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+            switch (this.debugViewDirection) {
+                case 0 -> GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+                case 1 -> GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                case 2 -> GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+                case 3 -> GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+                case 4 -> GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
             }
         }
     }
@@ -907,7 +893,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         this.torchFlickerDX = (float)((double)this.torchFlickerDX + (Math.random() - Math.random()) * Math.random() * Math.random());
         this.torchFlickerDX = (float)((double)this.torchFlickerDX * 0.9D);
-        this.torchFlickerX += (this.torchFlickerDX - this.torchFlickerX) * 1.0F;
+        this.torchFlickerX += this.torchFlickerDX - this.torchFlickerX;
         this.lightmapUpdateNeeded = true;
     }
 
