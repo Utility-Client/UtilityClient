@@ -88,6 +88,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.glu.GLU;
+import org.utilityclient.overlay.modules.DistanceModule;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -973,6 +974,7 @@ public class Minecraft implements IThreadListener
         GlStateManager.popMatrix();
         this.updateDisplay();
         Thread.yield();
+
         this.checkGLError("Post render");
         ++this.fpsCounter;
         this.isGamePaused = this.isSingleplayer() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame() && !this.theIntegratedServer.getPublic();

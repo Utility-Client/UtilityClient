@@ -1845,10 +1845,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             GlStateManager.color(0.0F, 0.0F, 0.0F, 0.4F);
-            GL11.glLineWidth(2.0F);
+            GL11.glLineWidth(2.5F);
             GlStateManager.disableTexture2D();
             GlStateManager.depthMask(false);
-            float f = 0.002F;
             BlockPos blockpos = movingObjectPositionIn.getBlockPos();
             Block block = this.theWorld.getBlockState(blockpos).getBlock();
 
@@ -1865,6 +1864,30 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             GlStateManager.enableTexture2D();
             GlStateManager.disableBlend();
         }
+    }
+
+    public void drawSelectionBox(EntityPlayer player, BlockPos blockpos, float partialTicks)
+    {
+        //GlStateManager.enableBlend();
+        //GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.color(0, 1, 0);
+        GL11.glLineWidth(3);
+        GlStateManager.disableTexture2D();
+        //GlStateManager.depthMask(false);
+        Block block = this.theWorld.getBlockState(blockpos).getBlock();
+
+        if (this.theWorld.getWorldBorder().contains(blockpos))
+        {
+            block.setBlockBoundsBasedOnState(this.theWorld, blockpos);
+            double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double)partialTicks;
+            double d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double)partialTicks;
+            double d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double)partialTicks;
+            func_181561_a(block.getSelectedBoundingBox(this.theWorld, blockpos).expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
+        }
+
+        //GlStateManager.depthMask(true);
+        GlStateManager.enableTexture2D();
+        //GlStateManager.disableBlend();
     }
 
     public static void func_181561_a(AxisAlignedBB p_181561_0_)

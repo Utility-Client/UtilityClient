@@ -50,6 +50,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.overlay.modules.DistanceModule;
 
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -1451,7 +1454,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.depthMask(false);
         GlStateManager.enableCull();
         this.mc.mcProfiler.endStartSection("weather");
-        this.renderRainSnow(partialTicks);
+        if(Config.getBoolean(ConfigEntry.RENDER_RAIN_SNOW)) this.renderRainSnow(partialTicks);
         GlStateManager.depthMask(true);
         renderglobal.renderWorldBorder(entity, partialTicks);
         GlStateManager.disableBlend();
@@ -1465,11 +1468,15 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.shadeModel(7425);
         this.mc.mcProfiler.endStartSection("translucent");
         renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, pass, entity);
+
+        mc.renderGlobal.drawSelectionBox((EntityPlayer) entity, new BlockPos(DistanceModule.x, DistanceModule.y, DistanceModule.z), partialTicks);
+
         GlStateManager.shadeModel(7424);
         GlStateManager.depthMask(true);
         GlStateManager.enableCull();
         GlStateManager.disableBlend();
         GlStateManager.disableFog();
+
 
         if (entity.posY + (double)entity.getEyeHeight() >= 128.0D)
         {
