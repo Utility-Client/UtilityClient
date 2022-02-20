@@ -109,7 +109,7 @@ public class DiscordRP extends Thread {
         Activity activity = new Activity();
         activity.setDetails(topText);
         activity.setState(bottomText);
-        activity.assets().setLargeImage("utilityclient");
+        activity.assets().setLargeImage("rebrand");
         activity.assets().setLargeText(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
         core.activityManager().updateActivity(activity);
     }

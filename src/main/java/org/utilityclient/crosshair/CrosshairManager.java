@@ -44,7 +44,7 @@ public class CrosshairManager {
             for (int e = 0; e < size; e++) {
                 int x = sr.getScaledWidth() / 2 + i * 2 - size;
                 int y = sr.getScaledHeight() / 2 + e * 2 - size;
-                if(!pixels.getOrDefault(f, true)) Gui.drawRect(x, y, x + 2, y + 2, 2164260863L);
+                if(!pixels.getOrDefault(f, true)) Gui.drawRect(x, y, x + 2, y + 2, Config.getLong(ConfigEntry.CROSSHAIR_COLOR));
                 f++;
             }
         }

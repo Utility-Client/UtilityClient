@@ -17,7 +17,8 @@ public enum ConfigEntry {
     OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true"),
     DISCORD_RICH_PRESENCE("discordRichPresenceEnabled", "true"),
     DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true"),
-    DISCORD_SHOW_SERVER("discordShowServerInPresence", "true");
+    DISCORD_SHOW_SERVER("discordShowServerInPresence", "true"),
+    CROSSHAIR_COLOR("crosshairColor", String.valueOf(2164260863L));
 
     private final String key;
     private final String defaultValue;

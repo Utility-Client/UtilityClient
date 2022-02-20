@@ -92,6 +92,13 @@ public class Config {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
 
+    /**
+     * @since 2.15 LTS
+     */
+    public static long getLong(ConfigEntry key) {
+        return Long.parseLong(getOrSetDefault(key.getKey(), String.valueOf(key.getDefaultValue())));
+    }
+
     public static boolean getBoolean(String key, boolean defaultValue) {
         return Boolean.parseBoolean(getOrSetDefault(key, String.valueOf(defaultValue)));
     }
