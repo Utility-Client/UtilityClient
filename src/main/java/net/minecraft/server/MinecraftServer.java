@@ -602,6 +602,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 ImageIO.write(bufferedimage, "PNG", (OutputStream)(new ByteBufOutputStream(bytebuf)));
                 ByteBuf bytebuf1 = Base64.encode(bytebuf);
                 response.setFavicon("data:image/png;base64," + bytebuf1.toString(Charsets.UTF_8));
+                bytebuf1.release();
             }
             catch (Exception exception)
             {
