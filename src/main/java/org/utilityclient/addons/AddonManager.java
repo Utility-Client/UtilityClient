@@ -37,8 +37,7 @@ public class AddonManager extends Thread {
         JarFile jar = new JarFile(file);
         JarEntry je = jar.getJarEntry("addon.uc");
         BufferedReader br = new BufferedReader(new InputStreamReader(jar.getInputStream(je)));
-        String className;
-        while ((className = br.readLine()) != null) Utils.ignore(className, false);
+        String className = br.readLine();
         br.close();
         return Class.forName(className, true, child);
     }
