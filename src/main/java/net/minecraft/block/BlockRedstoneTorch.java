@@ -15,10 +15,11 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.WeakHashMap;
 
 public class BlockRedstoneTorch extends BlockTorch
 {
-    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = Maps.<World, List<BlockRedstoneTorch.Toggle>>newHashMap();
+    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = new WeakHashMap<>();
     private final boolean isOn;
 
     private boolean isBurnedOut(World worldIn, BlockPos pos, boolean turnOff)

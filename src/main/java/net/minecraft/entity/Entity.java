@@ -2557,14 +2557,20 @@ public abstract class Entity implements ICommandSender
         return true;
     }
 
+    private long patcher$displayNameCachedAt;
+    private IChatComponent patcher$cachedDisplayName;
+
     /**
      * Get the formatted ChatComponent that will be used for the sender's username in chat
      */
     public IChatComponent getDisplayName()
     {
+        if (System.currentTimeMillis() - patcher$displayNameCachedAt < 50L) return patcher$cachedDisplayName;
         ChatComponentText chatcomponenttext = new ChatComponentText(this.getName());
         chatcomponenttext.getChatStyle().setChatHoverEvent(this.getHoverEvent());
         chatcomponenttext.getChatStyle().setInsertion(this.getUniqueID().toString());
+        patcher$displayNameCachedAt = System.currentTimeMillis();
+        patcher$cachedDisplayName = chatcomponenttext;
         return chatcomponenttext;
     }
 
