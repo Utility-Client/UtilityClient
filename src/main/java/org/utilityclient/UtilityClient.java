@@ -3,6 +3,7 @@ package org.utilityclient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
@@ -47,6 +48,7 @@ public class UtilityClient extends Thread {
     public static boolean isFulbrightEnabled = false;
     public static boolean streamerMode = false;
     public static boolean debugMode = getVersion().endsWith("DEV");
+    private static final AddonManager addonManager = new AddonManager();
 
     /**
      * Use this instead of creating new instances.
@@ -145,9 +147,10 @@ public class UtilityClient extends Thread {
         ));
 
         // Run Addon Init here
+        addonManager.start();
 
         currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
-        DISCORD_INSTANCE.start();
+
         ModuleHandler.modules.addAll(List.of(
                 new FPSModule(),
                 new CoordsModule(),
@@ -160,6 +163,7 @@ public class UtilityClient extends Thread {
         ));
 
         CPS_THREAD_INSTANCE.start();
+        DISCORD_INSTANCE.start();
         try {
             MacroManager.run();
             GuiOverlaySettings.loadStates();
@@ -212,5 +216,6 @@ public class UtilityClient extends Thread {
             if(debugMode) if(keyBinds.get(5).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
         }
         MacroManager.loop();
+        addonManager.loop();
     }
 }
