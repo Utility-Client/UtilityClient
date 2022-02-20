@@ -1868,12 +1868,12 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
 
     public void drawSelectionBox(EntityPlayer player, BlockPos blockpos, float partialTicks)
     {
-        //GlStateManager.enableBlend();
-        //GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.enableBlend();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.color(0, 1, 0);
         GL11.glLineWidth(3);
         GlStateManager.disableTexture2D();
-        //GlStateManager.depthMask(false);
+        GlStateManager.depthMask(false);
         Block block = this.theWorld.getBlockState(blockpos).getBlock();
 
         if (this.theWorld.getWorldBorder().contains(blockpos))
@@ -1885,9 +1885,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             func_181561_a(block.getSelectedBoundingBox(this.theWorld, blockpos).expand(0.0020000000949949026D, 0.0020000000949949026D, 0.0020000000949949026D).offset(-d0, -d1, -d2));
         }
 
-        //GlStateManager.depthMask(true);
+        GlStateManager.depthMask(true);
         GlStateManager.enableTexture2D();
-        //GlStateManager.disableBlend();
+        GlStateManager.disableBlend();
     }
 
     public static void func_181561_a(AxisAlignedBB p_181561_0_)

@@ -1468,15 +1468,13 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.shadeModel(7425);
         this.mc.mcProfiler.endStartSection("translucent");
         renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, pass, entity);
-
-        mc.renderGlobal.drawSelectionBox((EntityPlayer) entity, new BlockPos(DistanceModule.x, DistanceModule.y, DistanceModule.z), partialTicks);
+        if(DistanceModule.gotUpdated) renderglobal.drawSelectionBox((EntityPlayer) entity, new BlockPos(DistanceModule.x, DistanceModule.y, DistanceModule.z), partialTicks);
 
         GlStateManager.shadeModel(7424);
         GlStateManager.depthMask(true);
         GlStateManager.enableCull();
         GlStateManager.disableBlend();
         GlStateManager.disableFog();
-
 
         if (entity.posY + (double)entity.getEyeHeight() >= 128.0D)
         {
