@@ -49,6 +49,7 @@ public class GuiThemeOptions extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
         this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, Color.TEXT.color);
+        this.drawCenteredString(this.fontRendererObj, "Current theme: " + UtilityClient.getCurrentTheme().getName(), this.width / 2, this.height / 2 - 90, Color.TEXT.color);
         this.drawCenteredString(this.fontRendererObj,
                 UtilityClient.getCurrentTheme().getPrefixColor() + I18n.format("uc.options.theme.prefix")
                         + UtilityClient.getCurrentTheme().getSeparator()
