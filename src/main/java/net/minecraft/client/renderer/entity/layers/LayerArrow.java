@@ -29,7 +29,7 @@ public class LayerArrow implements LayerRenderer<EntityLivingBase>
         {
             Entity entity = new EntityArrow(entitylivingbaseIn.worldObj, entitylivingbaseIn.posX, entitylivingbaseIn.posY, entitylivingbaseIn.posZ);
             Random random = new Random((long)entitylivingbaseIn.getEntityId());
-            RenderHelper.disableStandardItemLighting();
+            //RenderHelper.disableStandardItemLighting();
 
             for (int j = 0; j < i; ++j)
             {
@@ -60,7 +60,7 @@ public class LayerArrow implements LayerRenderer<EntityLivingBase>
                 GlStateManager.popMatrix();
             }
 
-            RenderHelper.enableStandardItemLighting();
+            //RenderHelper.enableStandardItemLighting();
         }
     }
 
