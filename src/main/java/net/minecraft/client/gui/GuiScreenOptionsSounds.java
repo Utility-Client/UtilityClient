@@ -9,14 +9,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.Logger;
-import org.utilityclient.audio.ALCHelper;
-import org.utilityclient.config.Config;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class GuiScreenOptionsSounds extends GuiScreen
 {
@@ -26,8 +19,6 @@ public class GuiScreenOptionsSounds extends GuiScreen
     private final GameSettings game_settings_4;
     protected String field_146507_a = "Options";
     private String field_146508_h;
-    public List<String> devices = new ArrayList<>();
-    private final ALCHelper alcHelper = new ALCHelper();
 
     public GuiScreenOptionsSounds(GuiScreen p_i45025_1_, GameSettings p_i45025_2_)
     {
@@ -56,9 +47,7 @@ public class GuiScreenOptionsSounds extends GuiScreen
             }
         }
         this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done")));
-        devices = alcHelper.getAvailableDevices(true);
-        String soundDevice = Config.getString("currentAudioDevice", devices.get(0));
-        buttonList.add(new GuiButton(222, width / 2 - 100, this.height / 6 + 148, soundDevice));
+        buttonList.add(new GuiButton(222, width / 2 - 100, this.height / 6 + 148, "Reload Audio"));
     }
 
     /**
@@ -70,24 +59,11 @@ public class GuiScreenOptionsSounds extends GuiScreen
         {
             if (button.id == 200)
             {
-                Minecraft.getMinecraft().getSoundHandler().sndManager.reloadSoundSystem();
                 this.mc.gameSettings.saveOptions();
                 this.mc.displayGuiScreen(this.field_146505_f);
             }
 
-            if(button.id == 222) {
-                devices = alcHelper.getAvailableDevices(false);
-                if (devices.isEmpty()) return;
-                String soundDevice = Config.getString("currentAudioDevice", devices.get(0));
-                if (soundDevice != null && !soundDevice.isEmpty()) {
-                    int index = devices.indexOf(soundDevice);
-                    if (index + 1 >= devices.size()) soundDevice = devices.get(0); else soundDevice = devices.get(index + 1);
-                } else {
-                    soundDevice = devices.get(0);
-                }
-                button.displayString = soundDevice;
-                Config.setString("currentAudioDevice", soundDevice);
-            }
+            if(button.id == 222) Minecraft.getMinecraft().getSoundHandler().sndManager.reloadSoundSystem();
         }
     }
 
