@@ -3,6 +3,7 @@ package org.utilityclient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
@@ -10,13 +11,14 @@ import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.macro.MacroManager;
+import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
-import org.utilityclient.overlay.Theme;
 import org.utilityclient.overlay.modules.CPSThread;
 import org.utilityclient.overlay.modules.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
+import org.utilityclient.overlay.themes.*;
 import org.utilityclient.utils.Utils;
 
 import java.awt.*;
@@ -24,37 +26,80 @@ import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * The Main Class of UtilityClient.
+ * Do not create new instances. Instead call {@link UtilityClient#getInstance()}
+ * @since 2.0 LTS
+ * @author GamingCraft
+ */
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.14";
+    private static final String CLIENT_VERSION = "2.15-LTS";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
-    public static Theme CURRENT_THEME = Theme.RED;
+    public static ArrayList<ITheme> themes = new ArrayList<>();
+    public static int currentTheme = 0;
     public static boolean renderOverlay = true;
     public static boolean isFulbrightEnabled = false;
     public static boolean streamerMode = false;
     public static boolean debugMode = getVersion().endsWith("DEV");
+    private static final AddonManager addonManager = new AddonManager();
 
+    /**
+     * Use this instead of creating new instances.
+     * @return Instance of this class.
+     */
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
     }
+
+    /**
+     * @return The ID of the UtilityClient Discord Application
+     */
     public static long getDiscordApplicationId() {
         return 742760119984455701L;
     }
+
+    /**
+     * @return The name of UtilityClient
+     */
     public static String getClientName() {
         return CLIENT_NAME;
     }
+
+    /**
+     * @return Current UtilityClient Version
+     */
     public static String getVersion() {
         return CLIENT_VERSION;
     }
+
+    /**
+     * @return If the Overlay should be rendered
+     */
     public static boolean shouldRenderOverlay() {
         return renderOverlay;
     }
 
+    /**
+     * @return The currently selected theme
+     */
+    public static ITheme getCurrentTheme() {
+        return themes.get(currentTheme);
+    }
+
+    /**
+     * Register a keybinding
+     * @param name Name of the keybinding. Use {@link I18n#format(String, Object...)} if needed.
+     * @param keyCode Currently saved or default keyCode. <a href="https://minecraft.fandom.com/index.php?title=Key_codes/Keyboard1&action=render">List with all key codes<a/>
+     * @param isMacro Should be false. This adds the keybinding as a macro.
+     * @return The KeyBinding object. Use this to check, if the key is currently pressed.
+     */
     public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
         String cat = CLIENT_NAME;
         if (isMacro) cat = "Macros";
@@ -87,19 +132,38 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        CURRENT_THEME = Theme.getThemeById(Config.getInteger(ConfigEntry.SELECTED_THEME));
-        DISCORD_INSTANCE.start();
+        themes.addAll(List.of(
+                new RedTheme(),
+                new YellowTheme(),
+                new GreenTheme(),
+                new BlueTheme(),
+                new WhiteTheme(),
+                new BlackTheme(),
+                new ContrastTheme(),
+                new PurpleTheme(),
+                new GrayTheme(),
+                new AquaTheme(),
+                new DaylightCycleTheme()
+        ));
 
-        ModuleHandler.modules.add(new FPSModule());
-        ModuleHandler.modules.add(new CoordsModule());
-        ModuleHandler.modules.add(new ClockModule());
-        ModuleHandler.modules.add(new DateModule());
-        ModuleHandler.modules.add(new FacingModule());
-        ModuleHandler.modules.add(new PingModule());
-        ModuleHandler.modules.add(new BiomeModule());
-        ModuleHandler.modules.add(new DistanceModule());
+        // Run Addon Init here
+        addonManager.start();
+
+        currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
+
+        ModuleHandler.modules.addAll(List.of(
+                new FPSModule(),
+                new CoordsModule(),
+                new ClockModule(),
+                new DateModule(),
+                new FacingModule(),
+                new PingModule(),
+                new BiomeModule(),
+                new DistanceModule()
+        ));
 
         CPS_THREAD_INSTANCE.start();
+        DISCORD_INSTANCE.start();
         try {
             MacroManager.run();
             GuiOverlaySettings.loadStates();
@@ -109,7 +173,6 @@ public class UtilityClient extends Thread {
     }
 
     public void loop() {
-        DISCORD_INSTANCE.loop();
         if (keyBinds.size() >= 3) {
             if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
             else fovModifier = 1.0f;
@@ -153,5 +216,6 @@ public class UtilityClient extends Thread {
             if(debugMode) if(keyBinds.get(5).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
         }
         MacroManager.loop();
+        addonManager.loop();
     }
 }

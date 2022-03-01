@@ -17,13 +17,22 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+/**
+ * @since 2.0 LTS
+ * @author GamingCraft
+ * @author Niklas-Dev
+ */
 public class DiscordRP extends Thread {
 
     private static boolean shouldRun = false;
     public static Core core;
+    private String oldTopText, oldBottomText;
 
     @Override
     public void run() {
@@ -43,12 +52,15 @@ public class DiscordRP extends Thread {
         shouldRun = true;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            shouldRun = false;
             LogManager.getLogger().info("Discord Hook: Closing Discord hook.");
             core.close();
         }));
+
+        while (shouldRun) loop();
     }
 
-    public void loop() {
+    private void loop() {
         if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
         if(!shouldRun) return;
 
@@ -81,7 +93,15 @@ public class DiscordRP extends Thread {
             bottomText = "World List";
         }
 
-        setRichPresence(topText, bottomText);
+        // Prevent unneeded updates.
+        // This should improve performance and reduce bandwidth.
+        // Since 2.15 LTS.
+        if(!(topText.equalsIgnoreCase(oldTopText) && bottomText.equalsIgnoreCase(oldBottomText))) {
+            setRichPresence(topText, bottomText);
+            oldTopText = topText;
+            oldBottomText = bottomText;
+        }
+
         core.runCallbacks();
     }
 
@@ -89,7 +109,7 @@ public class DiscordRP extends Thread {
         Activity activity = new Activity();
         activity.setDetails(topText);
         activity.setState(bottomText);
-        activity.assets().setLargeImage("utilityclient");
+        activity.assets().setLargeImage("rebrand");
         activity.assets().setLargeText(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
         core.activityManager().updateActivity(activity);
     }

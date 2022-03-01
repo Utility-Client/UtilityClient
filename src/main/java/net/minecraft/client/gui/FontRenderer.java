@@ -604,7 +604,7 @@ public class FontRenderer implements IResourceManagerReloadListener
      */
     public int getStringWidth(String text)
     {
-        if (text == null)
+        if (text == null || text.isBlank())
         {
             return 0;
         }

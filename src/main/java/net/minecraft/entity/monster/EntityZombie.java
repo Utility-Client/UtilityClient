@@ -270,7 +270,7 @@ public class EntityZombie extends EntityMob
                     {
                         entityzombie.setPosition((double)i1, (double)j1, (double)k1);
 
-                        if (!this.worldObj.isAnyPlayerWithinRangeAt((double)i1, (double)j1, (double)k1, 7.0D) && this.worldObj.checkNoEntityCollision(entityzombie.getEntityBoundingBox(), entityzombie) && this.worldObj.getCollidingBoundingBoxes(entityzombie, entityzombie.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(entityzombie.getEntityBoundingBox()))
+                        if (!this.worldObj.isAnyPlayerWithinRangeAt((double)i1, (double)j1, (double)k1, 7.0D) && this.worldObj.checkNoEntityCollision(entityzombie.getEntityBoundingBox(), entityzombie) && this.worldObj.getCollidingBoundingBoxes(entityzombie, entityzombie.getEntityBoundingBox()).isEmpty() && this.worldObj.isAnyLiquid(entityzombie.getEntityBoundingBox()))
                         {
                             this.worldObj.spawnEntityInWorld(entityzombie);
                             entityzombie.setAttackTarget(entitylivingbase);

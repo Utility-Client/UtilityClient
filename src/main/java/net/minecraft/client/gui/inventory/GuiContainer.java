@@ -360,6 +360,12 @@ public abstract class GuiContainer extends GuiScreen
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
         super.mouseClicked(mouseX, mouseY, mouseButton);
+
+        if(mouseButton - 100 == mc.gameSettings.keyBindInventory.getKeyCode()) {
+            mc.thePlayer.closeScreen();
+            return;
+        }
+
         boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
         long i = Minecraft.getSystemTime();
@@ -458,6 +464,7 @@ public abstract class GuiContainer extends GuiScreen
         this.lastClickSlot = slot;
         this.lastClickTime = i;
         this.lastClickButton = mouseButton;
+        checkHotbarKeys(mouseButton - 100);
     }
 
     /**

@@ -9,7 +9,7 @@ import net.minecraft.world.IBlockAccess;
 public abstract class NodeProcessor
 {
     protected IBlockAccess blockaccess;
-    protected IntHashMap<PathPoint> pointMap = new IntHashMap();
+    protected IntHashMap<?> pointMap = new IntHashMap<>();
     protected int entitySizeX;
     protected int entitySizeY;
     protected int entitySizeZ;
@@ -26,10 +26,11 @@ public abstract class NodeProcessor
     /**
      * This method is called when all nodes have been processed and PathEntity is created.
      *  {@link net.minecraft.world.pathfinder.WalkNodeProcessor WalkNodeProcessor} uses this to change its field {@link
-     * net.minecraft.world.pathfinder.WalkNodeProcessor#avoidsWater avoidsWater}
+     * net.minecraft.world.pathfinder.WalkNodeProcessor avoidsWater}
      */
     public void postProcess()
     {
+        blockaccess = null;
     }
 
     /**
@@ -38,7 +39,7 @@ public abstract class NodeProcessor
     protected PathPoint openPoint(int x, int y, int z)
     {
         int i = PathPoint.makeHash(x, y, z);
-        PathPoint pathpoint = (PathPoint)this.pointMap.lookup(i);
+        PathPoint pathpoint = (PathPoint) this.pointMap.lookup(i);
 
         if (pathpoint == null)
         {

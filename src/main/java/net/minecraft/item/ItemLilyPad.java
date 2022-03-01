@@ -35,7 +35,7 @@ public class ItemLilyPad extends ItemColored
             {
                 BlockPos blockpos = movingobjectposition.getBlockPos();
 
-                if (!worldIn.isBlockModifiable(playerIn, blockpos))
+                if (worldIn.isBlockModifiable(playerIn, blockpos))
                 {
                     return itemStackIn;
                 }

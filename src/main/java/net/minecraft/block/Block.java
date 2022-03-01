@@ -209,7 +209,7 @@ public class Block
      */
     public boolean isTranslucent()
     {
-        return this.translucent;
+        return !isVisuallyOpaque() || getLightOpacity() == 0;
     }
 
     public int getLightValue()

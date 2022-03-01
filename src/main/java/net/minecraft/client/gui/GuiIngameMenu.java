@@ -6,13 +6,12 @@ import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.realms.RealmsBridge;
+import org.utilityclient.overlay.modules.DistanceModule;
 
 import java.io.IOException;
 
 public class GuiIngameMenu extends GuiScreen
 {
-    private int field_146445_a;
-    private int field_146444_f;
 
     /**
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
@@ -20,7 +19,6 @@ public class GuiIngameMenu extends GuiScreen
      */
     public void initGui()
     {
-        this.field_146445_a = 0;
         this.buttonList.clear();
         int i = -16;
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + i, this.mc.isIntegratedServerRunning() ? I18n.format("menu.returnToMenu") : I18n.format("menu.disconnect")));
@@ -28,6 +26,7 @@ public class GuiIngameMenu extends GuiScreen
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 72 + i + 11,  I18n.format("menu.options")));
         this.buttonList.add(new GuiButton(5, this.width / 2 - 100, this.height / 4 + 48 + i + 11,  I18n.format("gui.achievements")));
         buttonList.add(new GuiButton(99, this.width - 210, 10, "Toggle Streamer Mode"));
+        if(DistanceModule.gotUpdated) buttonList.add(new GuiButton(98, this.width - 210, 30, "Clear Destination"));
     }
 
     /**
@@ -87,6 +86,11 @@ public class GuiIngameMenu extends GuiScreen
             case 99:
                 UtilityClient.streamerMode = !UtilityClient.streamerMode;
                 break;
+
+            case 98:
+                DistanceModule.gotUpdated = false;
+                button.visible = false;
+                break;
         }
     }
 
@@ -96,7 +100,6 @@ public class GuiIngameMenu extends GuiScreen
     public void updateScreen()
     {
         super.updateScreen();
-        ++this.field_146444_f;
     }
 
     /**

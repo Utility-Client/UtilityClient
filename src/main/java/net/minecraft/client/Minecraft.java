@@ -11,7 +11,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
-import org.utilityclient.UtilityClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -79,6 +78,7 @@ import net.minecraft.world.chunk.storage.AnvilSaveConverter;
 import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
+import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -88,6 +88,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.glu.GLU;
+import org.utilityclient.UtilityClient;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -96,7 +97,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Proxy;
 import java.net.SocketAddress;
-import java.nio.*;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -109,11 +110,8 @@ public class Minecraft implements IThreadListener
     private static final Logger logger = LogManager.getLogger();
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
 
-    /** A 10MiB preallocation to ensure the heap is reasonably sized. */
-    public static byte[] memoryReserve = new byte[10485760];
     private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
     private final File fileResourcepacks;
-    private final PropertyMap twitchDetails;
     private final PropertyMap field_181038_N;
     private ServerData currentServerData;
 
@@ -269,7 +267,6 @@ public class Minecraft implements IThreadListener
         this.fileAssets = gameConfig.folderInfo.assetsDir;
         this.fileResourcepacks = gameConfig.folderInfo.resourcePacksDir;
         this.launchedVersion = gameConfig.gameInfo.version;
-        this.twitchDetails = gameConfig.userInfo.userProperties;
         this.field_181038_N = gameConfig.userInfo.field_181172_c;
         this.mcDefaultResourcePack = new DefaultResourcePack((new ResourceIndex(gameConfig.folderInfo.assetsDir, gameConfig.folderInfo.assetIndex)).getResourceMap());
         this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
@@ -751,20 +748,14 @@ public class Minecraft implements IThreadListener
                     Iterator<DisplayMode> iterator = set.iterator();
                     DisplayMode displaymode3;
 
-                    while (true)
-                    {
-                        if (!iterator.hasNext())
-                        {
+                    do {
+                        if (!iterator.hasNext()) {
                             continue label53;
                         }
 
                         displaymode3 = iterator.next();
 
-                        if (displaymode3.getBitsPerPixel() == 32 && displaymode3.getWidth() == displaymode1.getWidth() / 2 && displaymode3.getHeight() == displaymode1.getHeight() / 2)
-                        {
-                            break;
-                        }
-                    }
+                    } while (displaymode3.getBitsPerPixel() != 32 || displaymode3.getWidth() != displaymode1.getWidth() / 2 || displaymode3.getHeight() != displaymode1.getHeight() / 2);
 
                     displaymode = displaymode3;
                 }
@@ -879,8 +870,7 @@ public class Minecraft implements IThreadListener
     /**
      * Called repeatedly from run()
      */
-    private void runGameLoop() throws IOException
-    {
+    private void runGameLoop() {
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
 
@@ -969,10 +959,10 @@ public class Minecraft implements IThreadListener
         this.framebufferMc.framebufferRender(this.displayWidth, this.displayHeight);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
-        this.entityRenderer.renderStreamIndicator(this.timer.renderPartialTicks);
         GlStateManager.popMatrix();
         this.updateDisplay();
         Thread.yield();
+
         this.checkGLError("Post render");
         ++this.fpsCounter;
         this.isGamePaused = this.isSingleplayer() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame() && !this.theIntegratedServer.getPublic();
@@ -1047,7 +1037,6 @@ public class Minecraft implements IThreadListener
     {
         try
         {
-            memoryReserve = new byte[0];
             this.renderGlobal.deleteAllDisplayLists();
         }
         catch (Throwable var3) {
@@ -1459,6 +1448,10 @@ public class Minecraft implements IThreadListener
             }
 
             Display.setFullscreen(this.fullscreen);
+            if (!this.fullscreen && SystemUtils.IS_OS_WINDOWS) {
+                Display.setResizable(false);
+                Display.setResizable(true);
+            }
             Display.setVSyncEnabled(this.gameSettings.enableVsync);
             this.updateDisplay();
         }
@@ -1504,8 +1497,7 @@ public class Minecraft implements IThreadListener
     /**
      * Runs the current tick.
      */
-    public void runTick() throws IOException
-    {
+    public void runTick() {
         try {
         if (this.rightClickDelayTimer > 0)
         {
@@ -2031,6 +2023,7 @@ public class Minecraft implements IThreadListener
      */
     public void loadWorld(WorldClient worldClientIn, String loadingMessage)
     {
+        if (worldClientIn != this.theWorld) this.entityRenderer.getMapItemRenderer().clearLoadedMaps();
         if (worldClientIn == null)
         {
             NetHandlerPlayClient nethandlerplayclient = this.getNetHandler();
@@ -2214,9 +2207,8 @@ public class Minecraft implements IThreadListener
                 {
                     item = Items.lead;
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityItemFrame)
+                else if (this.objectMouseOver.entityHit instanceof EntityItemFrame entityitemframe)
                 {
-                    EntityItemFrame entityitemframe = (EntityItemFrame)this.objectMouseOver.entityHit;
                     ItemStack itemstack = entityitemframe.getDisplayedItem();
 
                     if (itemstack == null)
@@ -2230,35 +2222,17 @@ public class Minecraft implements IThreadListener
                         flag1 = true;
                     }
                 }
-                else if (this.objectMouseOver.entityHit instanceof EntityMinecart)
+                else if (this.objectMouseOver.entityHit instanceof EntityMinecart entityminecart)
                 {
-                    EntityMinecart entityminecart = (EntityMinecart)this.objectMouseOver.entityHit;
 
-                    switch (entityminecart.getMinecartType())
-                    {
-                        case FURNACE:
-                            item = Items.furnace_minecart;
-                            break;
-
-                        case CHEST:
-                            item = Items.chest_minecart;
-                            break;
-
-                        case TNT:
-                            item = Items.tnt_minecart;
-                            break;
-
-                        case HOPPER:
-                            item = Items.hopper_minecart;
-                            break;
-
-                        case COMMAND_BLOCK:
-                            item = Items.command_block_minecart;
-                            break;
-
-                        default:
-                            item = Items.minecart;
-                    }
+                    item = switch (entityminecart.getMinecartType()) {
+                        case FURNACE -> Items.furnace_minecart;
+                        case CHEST -> Items.chest_minecart;
+                        case TNT -> Items.tnt_minecart;
+                        case HOPPER -> Items.hopper_minecart;
+                        case COMMAND_BLOCK -> Items.command_block_minecart;
+                        default -> Items.minecart;
+                    };
                 }
                 else if (this.objectMouseOver.entityHit instanceof EntityBoat)
                 {
@@ -2313,7 +2287,6 @@ public class Minecraft implements IThreadListener
             NBTTagCompound nbttagcompound3 = new NBTTagCompound();
             nbttagcompound3.setTag("SkullOwner", nbttagcompound2);
             itemstack.setTagCompound(nbttagcompound3);
-            return itemstack;
         }
         else
         {
@@ -2323,8 +2296,8 @@ public class Minecraft implements IThreadListener
             nbttaglist.appendTag(new NBTTagString("(+NBT)"));
             nbttagcompound1.setTag("Lore", nbttaglist);
             itemstack.setTagInfo("display", nbttagcompound1);
-            return itemstack;
         }
+        return itemstack;
     }
 
     /**
@@ -2385,11 +2358,6 @@ public class Minecraft implements IThreadListener
     public ListenableFuture<Object> scheduleResourcesRefresh()
     {
         return this.addScheduledTask(Minecraft.this::refreshResources);
-    }
-
-    private String func_181538_aA()
-    {
-        return this.theIntegratedServer != null ? (this.theIntegratedServer.getPublic() ? "hosting_lan" : "singleplayer") : (this.currentServerData != null ? (this.currentServerData.func_181041_d() ? "playing_lan" : "multiplayer") : "out_of_game");
     }
 
     /**
@@ -2485,11 +2453,6 @@ public class Minecraft implements IThreadListener
     public Session getSession()
     {
         return this.session;
-    }
-
-    public PropertyMap getTwitchDetails()
-    {
-        return this.twitchDetails;
     }
 
     public PropertyMap func_181037_M()

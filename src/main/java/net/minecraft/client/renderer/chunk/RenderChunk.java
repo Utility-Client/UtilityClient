@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.nio.FloatBuffer;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -110,7 +111,6 @@ public class RenderChunk
     public void rebuildChunk(float x, float y, float z, ChunkCompileTaskGenerator generator)
     {
         CompiledChunk compiledchunk = new CompiledChunk();
-        int i = 1;
         BlockPos blockpos = this.position;
         BlockPos blockpos1 = blockpos.add(15, 15, 15);
         generator.getLock().lock();
@@ -118,11 +118,7 @@ public class RenderChunk
 
         try
         {
-            if (generator.getStatus() != ChunkCompileTaskGenerator.Status.COMPILING)
-            {
-                return;
-            }
-
+            if (generator.getStatus() != ChunkCompileTaskGenerator.Status.COMPILING) return;
             iblockaccess = new RegionRenderCache(this.world, blockpos.add(-1, -1, -1), blockpos1.add(1, 1, 1), 1);
             generator.setCompiledChunk(compiledchunk);
         }
@@ -202,7 +198,7 @@ public class RenderChunk
 
         try
         {
-            Set<TileEntity> set = Sets.newHashSet(lvt_11_1_);
+            HashSet set = Sets.newHashSet(lvt_11_1_);
             Set<TileEntity> set1 = Sets.newHashSet(this.field_181056_j);
             set.removeAll(this.field_181056_j);
             set1.removeAll(lvt_11_1_);

@@ -528,11 +528,10 @@ public class WorldServer extends World implements IThreadListener
     /**
      * Runs through the list of updates to run and ticks them
      */
-    public boolean tickUpdates(boolean p_72955_1_)
+    public void tickUpdates(boolean p_72955_1_)
     {
         if (this.worldInfo.getTerrainType() == WorldType.DEBUG_WORLD)
         {
-            return false;
         }
         else
         {
@@ -602,7 +601,6 @@ public class WorldServer extends World implements IThreadListener
 
                 this.theProfiler.endSection();
                 this.pendingTickListEntriesThisTick.clear();
-                return !this.pendingTickListEntriesTreeSet.isEmpty();
             }
         }
     }
@@ -719,7 +717,7 @@ public class WorldServer extends World implements IThreadListener
 
     public boolean isBlockModifiable(EntityPlayer player, BlockPos pos)
     {
-        return !this.mcServer.isBlockProtected(this, pos, player) && this.getWorldBorder().contains(pos);
+        return this.mcServer.isBlockProtected(this, pos, player) || !this.getWorldBorder().contains(pos);
     }
 
     public void initialize(WorldSettings settings)

@@ -136,6 +136,15 @@ public class GuiIngame extends Gui {
             renderTooltip(scaledresolution, partialTicks);
         }
 
+        try {
+            if (UtilityClient.shouldRenderOverlay()){
+                ModuleHandler.loop();
+                if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
+                Keystrokes.loop();
+            }
+        } catch (Exception ignored) {
+        }
+
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(icons);
         GlStateManager.enableBlend();
@@ -145,9 +154,13 @@ public class GuiIngame extends Gui {
             try {
                 CrosshairManager.loop(scaledresolution);
             } catch (Exception exception) {
-                System.err.println(exception);
+                exception.printStackTrace();
             }
         }
+
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.disableLighting();
+        GlStateManager.enableAlpha();
 
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         mc.mcProfiler.startSection("bossHealth");
@@ -297,15 +310,6 @@ public class GuiIngame extends Gui {
         } else {
             overlayPlayerList.updatePlayerList(true);
             overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
-        }
-
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        GlStateManager.disableLighting();
-        GlStateManager.enableAlpha();
-        if (UtilityClient.shouldRenderOverlay()){
-            ModuleHandler.loop(getFontRenderer());
-            if (UtilityClient.isFulbrightEnabled) getFontRenderer().drawStringWithShadow(EnumChatFormatting.GREEN + "Fulbright enabled", i - 4 - getFontRenderer().getStringWidth("Fulbright enabled"), 4, 0);
-            Keystrokes.loop();
         }
     }
 
@@ -668,7 +672,6 @@ public class GuiIngame extends Gui {
             getFontRenderer().drawStringWithShadow(s, (float) (i / 2 - getFontRenderer().getStringWidth(s) / 2), (float) (i1 - 10), 16777215);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             mc.getTextureManager().bindTexture(icons);
-
 
         }
     }

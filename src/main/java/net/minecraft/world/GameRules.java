@@ -2,6 +2,7 @@ package net.minecraft.world;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -138,6 +139,8 @@ public class GameRules
 
         public void setValue(String value)
         {
+            if(Objects.equals(valueString, value)) return;
+
             this.valueString = value;
             this.valueBoolean = Boolean.parseBoolean(value);
             this.valueInteger = this.valueBoolean ? 1 : 0;
@@ -146,18 +149,16 @@ public class GameRules
             {
                 this.valueInteger = Integer.parseInt(value);
             }
-            catch (NumberFormatException var4)
+            catch (NumberFormatException ignored)
             {
-                ;
             }
 
             try
             {
                 this.valueDouble = Double.parseDouble(value);
             }
-            catch (NumberFormatException var3)
+            catch (NumberFormatException ignored)
             {
-                ;
             }
         }
 

@@ -50,6 +50,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.overlay.modules.DistanceModule;
 
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -790,26 +793,12 @@ public class EntityRenderer implements IResourceManagerReloadListener
 
         if (this.debugView)
         {
-            switch (this.debugViewDirection)
-            {
-                case 0:
-                    GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 1:
-                    GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 2:
-                    GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
-                    break;
-
-                case 3:
-                    GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-                    break;
-
-                case 4:
-                    GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
+            switch (this.debugViewDirection) {
+                case 0 -> GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
+                case 1 -> GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                case 2 -> GlStateManager.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
+                case 3 -> GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
+                case 4 -> GlStateManager.rotate(-90.0F, 1.0F, 0.0F, 0.0F);
             }
         }
     }
@@ -904,7 +893,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
     {
         this.torchFlickerDX = (float)((double)this.torchFlickerDX + (Math.random() - Math.random()) * Math.random() * Math.random());
         this.torchFlickerDX = (float)((double)this.torchFlickerDX * 0.9D);
-        this.torchFlickerX += (this.torchFlickerDX - this.torchFlickerX) * 1.0F;
+        this.torchFlickerX += this.torchFlickerDX - this.torchFlickerX;
         this.lightmapUpdateNeeded = true;
     }
 
@@ -1210,11 +1199,6 @@ public class EntityRenderer implements IResourceManagerReloadListener
         }
     }
 
-    public void renderStreamIndicator(float partialTicks)
-    {
-        this.setupOverlayRendering();
-    }
-
     private boolean isDrawBlockOutline()
     {
         if (!this.drawBlockOutline)
@@ -1451,7 +1435,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.depthMask(false);
         GlStateManager.enableCull();
         this.mc.mcProfiler.endStartSection("weather");
-        this.renderRainSnow(partialTicks);
+        if(Config.getBoolean(ConfigEntry.RENDER_RAIN_SNOW)) this.renderRainSnow(partialTicks);
         GlStateManager.depthMask(true);
         renderglobal.renderWorldBorder(entity, partialTicks);
         GlStateManager.disableBlend();
@@ -1465,6 +1449,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
         GlStateManager.shadeModel(7425);
         this.mc.mcProfiler.endStartSection("translucent");
         renderglobal.renderBlockLayer(EnumWorldBlockLayer.TRANSLUCENT, (double)partialTicks, pass, entity);
+        if(DistanceModule.gotUpdated) renderglobal.drawSelectionBox((EntityPlayer) entity, new BlockPos(DistanceModule.x, DistanceModule.y, DistanceModule.z), partialTicks);
+
         GlStateManager.shadeModel(7424);
         GlStateManager.depthMask(true);
         GlStateManager.enableCull();
