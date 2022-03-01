@@ -10,7 +10,6 @@ import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
-import org.utilityclient.updater.Updater;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,11 +26,6 @@ public class Main
 
     public static void main(String[] args)
     {
-        try {
-            Updater.main(args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         System.setProperty("java.net.preferIPv4Stack", "true");
         OptionParser optionparser = new OptionParser();
         optionparser.allowsUnrecognizedOptions();
