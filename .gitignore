@@ -22,3 +22,4 @@ bundle_with_jar/
 logs/
 bomremover.exe
 workflow/
+src/main/resources/updater.jar
