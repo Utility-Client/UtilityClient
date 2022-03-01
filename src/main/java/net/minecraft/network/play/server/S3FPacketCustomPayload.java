@@ -1,5 +1,6 @@
 package net.minecraft.network.play.server;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
@@ -10,6 +11,10 @@ public class S3FPacketCustomPayload implements Packet<INetHandlerPlayClient>
 {
     private String channel;
     private PacketBuffer data;
+
+    public S3FPacketCustomPayload()
+    {
+    }
 
     public S3FPacketCustomPayload(String channelName, PacketBuffer dataIn)
     {
@@ -46,7 +51,7 @@ public class S3FPacketCustomPayload implements Packet<INetHandlerPlayClient>
     public void writePacketData(PacketBuffer buf) throws IOException
     {
         buf.writeString(this.channel);
-        buf.writeBytes(this.data);
+        buf.writeBytes((ByteBuf)this.data);
     }
 
     /**
@@ -55,7 +60,6 @@ public class S3FPacketCustomPayload implements Packet<INetHandlerPlayClient>
     public void processPacket(INetHandlerPlayClient handler)
     {
         handler.handleCustomPayload(this);
-        if(data != null) data.release();
     }
 
     public String getChannelName()
