@@ -1,7 +1,5 @@
 package net.minecraft.util;
 
-import net.minecraft.pathfinding.PathPoint;
-
 public class IntHashMap<V>
 {
     private transient IntHashMap.Entry<V>[] slots = new IntHashMap.Entry[16];
@@ -76,7 +74,7 @@ public class IntHashMap<V>
     /**
      * Adds a key and associated value to this map
      */
-    public void addKey(int p_76038_1_, PathPoint p_76038_2_)
+    public void addKey(int p_76038_1_, V p_76038_2_)
     {
         int i = computeHash(p_76038_1_);
         int j = getSlotIndex(i, this.slots.length);
