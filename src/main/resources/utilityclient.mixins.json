@@ -9,7 +9,8 @@
         "AbstractClientPlayerMixin",
         "TitleScreenMixin",
         "OptionsMixin",
-        "OptionsAccessor"
+        "OptionsAccessor",
+        "PauseMixin"
     ],
     "injectors": {
         "defaultRequire": 1
