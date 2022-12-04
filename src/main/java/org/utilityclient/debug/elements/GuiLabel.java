@@ -9,6 +9,6 @@ public class GuiLabel extends GuiElement {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        mc().fontRendererObj.drawString(getText(), getX(), getY(), 0);
+        mc().textRenderer.draw(getText(), getX(), getY(), 0);
     }
 }
