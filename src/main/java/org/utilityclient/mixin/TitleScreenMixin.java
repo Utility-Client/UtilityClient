@@ -10,8 +10,9 @@ import org.utilityclient.gui.overrides.GuiMainMenu;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin {
-    @Inject(at = @At("HEAD"), method = "init()V")
+    @Inject(at = @At("HEAD"), method = "init()V", cancellable = true)
     public void init(CallbackInfo ci) {
         MinecraftClient.getInstance().openScreen(new GuiMainMenu());
+        ci.cancel();
     }
 }
