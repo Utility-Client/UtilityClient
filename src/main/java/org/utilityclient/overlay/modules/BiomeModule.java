@@ -11,7 +11,7 @@ public class BiomeModule extends IModule {
 
     @Override
     public String getValue() {
-        return mc().theWorld.getChunkFromBlockCoords(mc().thePlayer.getPosition()).getBiome(mc().thePlayer.getPosition(), mc().theWorld.getWorldChunkManager()).biomeName;
+        return mc().world.getChunk(mc().player.getBlockPos()).getBiomeAt(mc().player.getBlockPos(), mc().world.getBiomeSource()).name;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class PingModule extends IModule {
     @Override
     public String getValue() {
         try {
-            return mc().thePlayer.sendQueue.getPlayerInfo(mc().thePlayer.getUniqueID()).getResponseTime() + "ms";
+            return mc().player.networkHandler.getPlayerListEntry(mc().player.getUuid()).getLatency() + "ms";
         } catch (Exception ignored) {
             return "Error";
         }
@@ -24,6 +24,6 @@ public class PingModule extends IModule {
 
     @Override
     public boolean shouldRender() {
-        return !mc().isSingleplayer();
+        return !mc().isInSingleplayer();
     }
 }

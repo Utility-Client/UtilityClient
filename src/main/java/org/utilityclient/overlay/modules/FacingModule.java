@@ -1,6 +1,5 @@
 package org.utilityclient.overlay.modules;
 
-import net.minecraft.client.Minecraft;
 import org.utilityclient.overlay.IModule;
 
 public class FacingModule extends IModule {
@@ -11,7 +10,7 @@ public class FacingModule extends IModule {
 
     @Override
     public String getValue() {
-        String str = mc().getRenderViewEntity().getHorizontalFacing().getName();
+        String str = mc().targetedEntity.getCustomName();;
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
