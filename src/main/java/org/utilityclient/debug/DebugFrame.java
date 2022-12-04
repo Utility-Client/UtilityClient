@@ -1,6 +1,7 @@
 package org.utilityclient.debug;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.MinecraftClient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -41,7 +42,7 @@ public class DebugFrame extends JFrame {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                Minecraft.getMinecraft().displayGuiScreen(null);
+                MinecraftClient.getInstance().openScreen(null);
                 setVisible(false);
             }
 

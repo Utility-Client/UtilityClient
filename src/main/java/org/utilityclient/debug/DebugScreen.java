@@ -1,8 +1,6 @@
 package org.utilityclient.debug;
 
 import net.minecraft.client.gui.screen.Screen;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.utilityclient.debug.GuiScreenParser.gsp;
@@ -17,20 +15,20 @@ public class DebugScreen extends Screen {
     }
 
     @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        super.drawScreen(mouseX, mouseY, partialTicks);
-        drawDefaultBackground();
+    public void render(int mouseX, int mouseY, float partialTicks) {
+        super.render(mouseX, mouseY, partialTicks);
+        renderBackground();
         elements.forEach(e -> e.drawScreen(mouseX, mouseY, partialTicks));
     }
 
     @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
-        super.keyTyped(typedChar, keyCode);
+    protected void keyPressed(char typedChar, int keyCode) {
+        super.keyPressed(typedChar, keyCode);
         elements.forEach(e -> e.keyTyped(typedChar, keyCode));
     }
 
     @Override
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         super.mouseClicked(mouseX, mouseY, mouseButton);
         elements.forEach(e -> e.mouseClicked(mouseX, mouseY, mouseButton));
     }
