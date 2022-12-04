@@ -55,7 +55,7 @@ public class GuiOverlaySettings extends Screen {
         super.buttonClicked(button);
 
         switch (button.id) {
-            case 1 -> {
+            case 1:
                 Config.setBoolean(ConfigEntry.OVERLAY_BACKGROUND, !Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND));
                 button.message = Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND) ? "Disable Background" : "Enable Background";
                 try {
@@ -63,16 +63,16 @@ public class GuiOverlaySettings extends Screen {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            break;
 
-            case 200 -> {
+            case 200:
                 client.openScreen(parent);
                 try {
                     saveStates();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            break;
         }
 
         if (button.id >= 1000) {

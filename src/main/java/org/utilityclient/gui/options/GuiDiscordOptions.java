@@ -32,19 +32,19 @@ public class GuiDiscordOptions extends Screen {
     @Override
     protected void buttonClicked(ButtonWidget button) {
         switch (button.id) {
-            case 200 -> client.openScreen(parent);
-            case 1 -> {
+            case 200: client.openScreen(parent);break;
+            case 1:
                 Config.toggleBoolean(ConfigEntry.DISCORD_RICH_PRESENCE);
                 buttons.get(1).message = Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE) ? "Disable Rich Presence" : "Enable Rich Presence";
-            }
-            case 2 -> {
+            break;
+            case 2:
                 Config.toggleBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS);
                 buttons.get(2).message = Config.getBoolean(ConfigEntry.DISCORD_FRIEND_NOTIFICATIONS) ? "Disable Friend Notifications" : "Enable Friend Notifications";
-            }
-            case 3 -> {
+            break;
+            case 3:
                 Config.toggleBoolean(ConfigEntry.DISCORD_SHOW_SERVER);
                 buttons.get(3).message = Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER) ? "Hide Server in Rich Presence" : "Show Server in Rich Presence";
-            }
+            break;
         }
     }
 }

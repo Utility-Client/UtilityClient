@@ -39,20 +39,20 @@ public class GuiUtilityClient extends Screen
         if (button.active) {
             if (button.id != 1) save();
             switch (button.id) {
-                case 200 -> {
+                case 200:
                     client.openScreen(parentScreen);
                     save();
-                }
-                case 1 -> {
+                break;
+                case 1:
                     Config.setBoolean("keystrokesEnabled", !Config.getBoolean("keystrokesEnabled", true));
                     buttons.get(1).message = Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes";
                     save();
-                }
-                case 2 -> client.openScreen(new GuiCrosshairOptions(this));
-                case 3 -> client.openScreen(new GuiThemeOptions(this));
-                case 4 -> client.openScreen(new GuiOverlaySettings(this));
-                case 5 -> client.openScreen(new GuiMacroManager(this));
-                case 6 -> client.openScreen(new GuiDiscordOptions(this));
+                break;
+                case 2: client.openScreen(new GuiCrosshairOptions(this)); break;
+                case 3: client.openScreen(new GuiThemeOptions(this)); break;
+                case 4: client.openScreen(new GuiOverlaySettings(this)); break;
+                case 5: client.openScreen(new GuiMacroManager(this)); break;
+                case 6: client.openScreen(new GuiDiscordOptions(this)); break;
             }
         }
     }
