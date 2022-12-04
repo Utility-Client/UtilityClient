@@ -61,7 +61,7 @@ public class MacroManager {
     }
 
     public static void reload() throws FileNotFoundException {
-        UtilityClient.keyBinds.removeIf(kb -> kb.getKeyCategory().equalsIgnoreCase("Macros"));
+        UtilityClient.keyBinds.removeIf(kb -> kb.getCategory().equalsIgnoreCase("Macros"));
         macros.clear();
         for (File macro : Objects.requireNonNull(macrosFolder.listFiles())) load(macro);
     }
