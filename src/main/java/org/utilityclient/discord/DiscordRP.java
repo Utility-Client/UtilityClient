@@ -1,16 +1,24 @@
 package org.utilityclient.discord;
 
-// import org.apache.logging.log4j.LogManager;
-// import org.utilityclient.UtilityClient;
-// import org.utilityclient.config.Config;
-// import org.utilityclient.config.ConfigEntry;
-// import org.utilityclient.utils.Utils;
+import de.jcm.discordgamesdk.Core;
+import de.jcm.discordgamesdk.CreateParams;
+import de.jcm.discordgamesdk.activity.Activity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
+import net.minecraft.client.gui.screen.world.SelectWorldScreen;
+import org.apache.logging.log4j.LogManager;
+import org.utilityclient.UtilityClient;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -21,15 +29,15 @@ import java.util.zip.ZipInputStream;
  */
 public class DiscordRP extends Thread {
 
-    //private static boolean shouldRun = false;
-    //public static Core core;
-    //private String oldTopText, oldBottomText;
+    private static boolean shouldRun = false;
+    public static Core core;
+    private String oldTopText, oldBottomText;
 
     @Override
     public void run() {
         super.run();
 
-        /*try {
+        try {
             Core.init(Objects.requireNonNull(downloadDiscordLibrary()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,38 +56,38 @@ public class DiscordRP extends Thread {
             core.close();
         }));
 
-        while (shouldRun) loop();*/
+        while (shouldRun) loop();
     }
 
     private void loop() {
-        /*if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
+        if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
         if(!shouldRun) return;
 
         String topText = "";
         String bottomText = "";
 
         try {
-            if(Minecraft.getMinecraft().isSingleplayer()) {
+            if(MinecraftClient.getInstance().isInSingleplayer()) {
                 topText = "Playing Singleplayer";
-            } else if (Minecraft.getMinecraft().getCurrentServerData() != null) {
+            } else if (MinecraftClient.getInstance().getCurrentServerEntry() != null) {
                 topText = "Playing Multiplayer";
-                if(Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER)) bottomText = "Current Server: " + Minecraft.getMinecraft().getCurrentServerData().serverIP;
+                if(Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER)) bottomText = "Current Server: " + MinecraftClient.getInstance().getCurrentServerEntry().address;
             }
         } catch (Exception e) {
             Utils.ignore(e);
         }
 
-        if(Minecraft.getMinecraft().currentScreen instanceof GuiMainMenu) {
+        if(MinecraftClient.getInstance().currentScreen instanceof TitleScreen) {
             topText = "In Menus";
             bottomText = "Main Menu";
         }
 
-        if(Minecraft.getMinecraft().currentScreen instanceof GuiMultiplayer) {
+        if(MinecraftClient.getInstance().currentScreen instanceof MultiplayerScreen) {
             topText = "In Menus";
             bottomText = "Server List";
         }
 
-        if(Minecraft.getMinecraft().currentScreen instanceof GuiSelectWorld) {
+        if(MinecraftClient.getInstance().currentScreen instanceof SelectWorldScreen) {
             topText = "In Menus";
             bottomText = "World List";
         }
@@ -93,16 +101,16 @@ public class DiscordRP extends Thread {
             oldBottomText = bottomText;
         }
 
-        core.runCallbacks();*/
+        core.runCallbacks();
     }
 
     public void setRichPresence(String topText, String bottomText) {
-        /*Activity activity = new Activity();
+        Activity activity = new Activity();
         activity.setDetails(topText);
         activity.setState(bottomText);
         activity.assets().setLargeImage("rebrand");
         activity.assets().setLargeText(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
-        core.activityManager().updateActivity(activity);*/
+        core.activityManager().updateActivity(activity);
     }
 
     /**

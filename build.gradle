@@ -20,6 +20,11 @@ repositories {
 		name = 'Babric'
 		url = 'https://maven.glass-launcher.net/babric'
 	}
+
+	maven {
+		name = 'jitpack.io'
+		url = 'https://jitpack.io'
+	}
 }
 
 loom {
@@ -61,6 +66,8 @@ dependencies {
 			implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.4-babric.1'
 		}
 	}
+
+	implementation 'com.github.JnCrMx:discord-game-sdk4j:v0.5.4'
 }
 
 if (lwjgl2) {
