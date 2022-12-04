@@ -45,7 +45,7 @@ public class GuiCustomSlider extends ButtonWidget
                 getSliderValue(mouseX);
             }
 
-            mc.getTextureManager().bindTexture(buttonTextures);
+            mc.getTextureManager().bindTexture(WIDGETS_LOCATION);
             GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.drawTexture(x + (int)(sliderValue * (float)(this.width - 8)), y, 0, 66, 4, 20);
             this.drawTexture(x + (int)(sliderValue * (float)(this.width - 8)) + 4, y, 196, 66, 4, 20);
