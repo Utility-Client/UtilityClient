@@ -40,7 +40,7 @@ Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
     
 <img src="https://avatars.githubusercontent.com/u/49761607?v=4" width="100">
 
-[GamingCraft_hd](http://gamingcraft.de)
+[Samuel302](http://gamingcraft.de)
 
 </td>
 <td>
