@@ -13,11 +13,11 @@ public class DistanceModule extends IModule {
 
     @Override
     public String getValue() {
-        int px, py, pz;
-        px = mc().thePlayer.getPosition().getX();
-        py = mc().thePlayer.getPosition().getY();
-        pz = mc().thePlayer.getPosition().getZ();
-        int dx = px - x, dy = py - y, dz = pz - z;
+        double px, py, pz;
+        px = mc().player.getPos().x;
+        py = mc().player.getPos().y;
+        pz = mc().player.getPos().z;
+        double dx = px - x, dy = py - y, dz = pz - z;
         return (dx + ", " + dy + ", " + dz).replaceAll("-", "");
     }
 

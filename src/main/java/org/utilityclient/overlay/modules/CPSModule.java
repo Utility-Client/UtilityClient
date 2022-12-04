@@ -1,6 +1,6 @@
 package org.utilityclient.overlay.modules;
 
-import net.minecraft.util.ChatFormatting;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.overlay.IModule;
 
