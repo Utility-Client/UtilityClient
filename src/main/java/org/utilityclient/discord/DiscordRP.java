@@ -1,12 +1,7 @@
 package org.utilityclient.discord;
 
-import de.jcm.discordgamesdk.Core;
-import de.jcm.discordgamesdk.CreateParams;
-import de.jcm.discordgamesdk.activity.Activity;
 import org.apache.logging.log4j.LogManager;
 import org.utilityclient.UtilityClient;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.utils.Utils;
@@ -17,9 +12,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
