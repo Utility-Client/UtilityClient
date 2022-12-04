@@ -1,7 +1,7 @@
 package org.utilityclient.macro;
 
+import net.minecraft.client.MinecraftClient;
 import org.utilityclient.UtilityClient;
-import net.minecraft.client.Minecraft;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,7 +57,7 @@ public class MacroManager {
     }
 
     public static void loop() {
-        for (Macro macro : macros) if(macro.keyBinding.isPressed()) Minecraft.getMinecraft().thePlayer.sendChatMessage(macro.message);
+        for (Macro macro : macros) if(macro.keyBinding.isPressed()) MinecraftClient.getInstance().player.sendChatMessage(macro.message);
     }
 
     public static void reload() throws FileNotFoundException {

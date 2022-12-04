@@ -1,6 +1,6 @@
 package org.utilityclient.overlay.themes;
 
-import net.minecraft.util.EnumChatFormatting;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.utils.Utils;
 
@@ -10,19 +10,19 @@ public class DaylightCycleTheme implements ITheme {
         return "Daylight Cycle Theme";
     }
 
-    private EnumChatFormatting getColorByTime(EnumChatFormatting day, EnumChatFormatting night) {
+    private ChatFormatting getColorByTime(ChatFormatting day, ChatFormatting night) {
         long secs = Utils.getSecondsOfDay();
         if(secs >= 21600 && secs <= 64800) return day;
         return night;
     }
 
     @Override
-    public EnumChatFormatting getPrefixColor() {
-        return getColorByTime(EnumChatFormatting.DARK_RED, EnumChatFormatting.DARK_BLUE);
+    public ChatFormatting getPrefixColor() {
+        return getColorByTime(ChatFormatting.DARK_RED, ChatFormatting.DARK_BLUE);
     }
 
     @Override
-    public EnumChatFormatting getSuffixColor() {
-        return getColorByTime(EnumChatFormatting.RED, EnumChatFormatting.BLUE);
+    public ChatFormatting getSuffixColor() {
+        return getColorByTime(ChatFormatting.RED, ChatFormatting.BLUE);
     }
 }

@@ -1,8 +1,8 @@
 package org.utilityclient;
 
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -15,8 +15,6 @@ import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.modules.CPSThread;
 import org.utilityclient.overlay.modules.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 import org.utilityclient.overlay.themes.*;
 import org.utilityclient.utils.Utils;
@@ -104,7 +102,7 @@ public class UtilityClient extends Thread {
         String cat = CLIENT_NAME;
         if (isMacro) cat = "Macros";
         KeyBinding kb = new KeyBinding(name, keyCode, cat);
-        Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, kb);
+        MinecraftClient.getInstance().options.keysAll = ArrayUtils.add(MinecraftClient.getInstance().options.keysAll, kb);
         if (!isMacro) keyBinds.add(kb);
         return kb;
     }
@@ -119,10 +117,10 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        addKeyBind(I18n.format("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
-        addKeyBind(I18n.format("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
-        addKeyBind(I18n.format("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
-        addKeyBind(I18n.format("uc.keybinding.copyCoords"), 66, false);
+        addKeyBind(I18n.translate("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
+        addKeyBind(I18n.translate("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
+        addKeyBind(I18n.translate("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
+        addKeyBind(I18n.translate("uc.keybinding.copyCoords"), 66, false);
         addKeyBind("Set compass coords", 68, false);
         if(debugMode) addKeyBind("GuiScreen editor", 67, false);
 
@@ -206,10 +204,10 @@ public class UtilityClient extends Thread {
                         DistanceModule.y = Integer.parseInt(coords[1]);
                         DistanceModule.z = Integer.parseInt(coords[2]);
                         DistanceModule.gotUpdated = true;
-                        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Destination updated."));
+                        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.GREEN + "Destination updated."));
                     }
                 } catch (Exception e) {
-                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Error while updating destination."));
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.RED + "Error while updating destination."));
                 }
             }
 

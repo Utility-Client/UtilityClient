@@ -1,6 +1,6 @@
 package org.utilityclient.macro;
 
-import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.client.options.KeyBinding;
 
 import java.io.File;
 

@@ -1,8 +1,8 @@
 package org.utilityclient.overlay;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.EnumChatFormatting;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 
 /**
  * @since 2.15 LTS
@@ -18,26 +18,26 @@ public interface ITheme {
     /**
      * @return The prefix color
      */
-    EnumChatFormatting getPrefixColor();
+    ChatFormatting getPrefixColor();
 
     /**
      * @return The suffix color
      */
-    EnumChatFormatting getSuffixColor();
+    ChatFormatting getSuffixColor();
 
     /**
      * @since 2.15 LTS
      * @return The separator between prefix and suffix.
      */
     default String getSeparator() {
-        return EnumChatFormatting.GRAY + ": ";
+        return ChatFormatting.GRAY + ": ";
     }
 
     /**
      * @since 2.15 LTS
      * @return The used font renderer. Override this to render using other font renderers.
      */
-    default FontRenderer getFontRenderer() {
-        return Minecraft.getMinecraft().fontRendererObj;
+    default TextRenderer getFontRenderer() {
+        return MinecraftClient.getInstance().textRenderer;
     }
 }
