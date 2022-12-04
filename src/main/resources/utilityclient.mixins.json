@@ -6,7 +6,8 @@
     "mixins": [],
     "client": [
         "ClientMixins",
-        "AbstractClientPlayerMixin"
+        "AbstractClientPlayerMixin",
+        "TitleScreenMixin"
     ],
     "injectors": {
         "defaultRequire": 1
