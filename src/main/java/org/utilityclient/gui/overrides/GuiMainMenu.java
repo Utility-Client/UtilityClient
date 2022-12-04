@@ -234,7 +234,7 @@ public class GuiMainMenu extends Screen
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(new Identifier("textures/background.png"));
+        client.getTextureManager().bindTexture(new Identifier("utilityclient", "background.png"));
         // NOTE: Gui => DrawableHelper
         DrawableHelper.drawTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height, this.width, this.height);
     }
