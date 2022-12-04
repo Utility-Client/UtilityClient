@@ -1,12 +1,13 @@
 package org.utilityclient.debug;
 
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.utilityclient.debug.GuiScreenParser.gsp;
 
-public class DebugScreen extends GuiScreen {
+public class DebugScreen extends Screen {
     private final DebugFrame debugFrame;
     private ArrayList<GuiElement> elements = new ArrayList<>();
 

@@ -1,8 +1,10 @@
 package org.utilityclient;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.text.LiteralText;
 import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -36,7 +38,7 @@ public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
-    private static final String CLIENT_VERSION = "2.15-LTS";
+    private static final String CLIENT_VERSION = "3.0-DEV";
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
@@ -93,7 +95,7 @@ public class UtilityClient extends Thread {
 
     /**
      * Register a keybinding
-     * @param name Name of the keybinding. Use {@link I18n#format(String, Object...)} if needed.
+     * @param name Name of the keybinding. Use {@link I18n#translate(String, Object...)} if needed.
      * @param keyCode Currently saved or default keyCode. <a href="https://minecraft.fandom.com/index.php?title=Key_codes/Keyboard1&action=render">List with all key codes<a/>
      * @param isMacro Should be false. This adds the keybinding as a macro.
      * @return The KeyBinding object. Use this to check, if the key is currently pressed.
@@ -172,21 +174,21 @@ public class UtilityClient extends Thread {
 
     public void loop() {
         if (keyBinds.size() >= 3) {
-            if (keyBinds.get(0).isKeyDown()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
+            if (keyBinds.get(0).isPressed()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
             else fovModifier = 1.0f;
 
-            if (keyBinds.get(1).isPressed()) if (Minecraft.getMinecraft().gameSettings.gammaSetting == 1.0f) {
-                Minecraft.getMinecraft().gameSettings.gammaSetting = 999999;
+            if (keyBinds.get(1).isPressed()) if (MinecraftClient.getInstance().options.gamma == 1.0f) {
+                MinecraftClient.getInstance().options.gamma = 999999;
                 isFulbrightEnabled = true;
             } else {
-                Minecraft.getMinecraft().gameSettings.gammaSetting = 1.0f;
+                MinecraftClient.getInstance().options.gamma = 1.0f;
                 isFulbrightEnabled = false;
             }
 
             if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
 
             if(keyBinds.get(3).isPressed()) {
-                String myString = Math.round(Minecraft.getMinecraft().thePlayer.posX) + " " + Math.round(Minecraft.getMinecraft().thePlayer.posY) + " " + Math.round(Minecraft.getMinecraft().thePlayer.posZ);
+                String myString = Math.round(MinecraftClient.getInstance().player.x) + " " + Math.round(MinecraftClient.getInstance().player.y) + " " + Math.round(MinecraftClient.getInstance().player.z);
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
@@ -204,14 +206,14 @@ public class UtilityClient extends Thread {
                         DistanceModule.y = Integer.parseInt(coords[1]);
                         DistanceModule.z = Integer.parseInt(coords[2]);
                         DistanceModule.gotUpdated = true;
-                        Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.GREEN + "Destination updated."));
+                        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.GREEN + "Destination updated."));
                     }
                 } catch (Exception e) {
-                    Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.RED + "Error while updating destination."));
+                    MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.RED + "Error while updating destination."));
                 }
             }
 
-            if(debugMode) if(keyBinds.get(5).isPressed()) Minecraft.getMinecraft().displayGuiScreen(new DebugScreen());
+            if(debugMode) if(keyBinds.get(5).isPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
         }
         MacroManager.loop();
         addonManager.loop();
