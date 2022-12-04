@@ -57,10 +57,10 @@ public class GuiMainMenu extends Screen
         }
 
         try {
-            String rawJsonRelease = JSONUtils.downloadJson(new URL("https://api.github.com/repos/Utility-Client/UtilityClient2/releases/latest"));
+            String rawJsonRelease = JSONUtils.downloadJson(new URL("https://api.github.com/repos/Utility-Client/UtilityClient/releases/latest"));
             release = (Release) JSONUtils.parseToJson(rawJsonRelease, new TypeToken<Release>(){}.getType());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("An error occured while getting changelog");
         }
     }
 
