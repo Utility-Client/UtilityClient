@@ -1,18 +1,18 @@
 package org.utilityclient.discord;
 
-import de.jcm.discordgamesdk.DiscordEventAdapter;
+/*import de.jcm.discordgamesdk.DiscordEventAdapter;
 import de.jcm.discordgamesdk.user.Relationship;
 import de.jcm.discordgamesdk.user.RelationshipType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatFormatting;
+import net.minecraft.util.ChatFormatting;*/
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 
-public class DCEventAdapter extends DiscordEventAdapter {
+public class DCEventAdapter /*extends DiscordEventAdapter*/ {
 
-    @Override
+    /*@Override
     public void onRelationshipUpdate(Relationship relationship) {
         super.onRelationshipUpdate(relationship);
         if(relationship.getType() != RelationshipType.FRIEND) return;
@@ -25,5 +25,5 @@ public class DCEventAdapter extends DiscordEventAdapter {
             case IDLE -> Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.AQUA + "Discord » " + ChatFormatting.YELLOW + relationship.getUser().getUsername() + " is idle now."));
             case DO_NO_DISTURB -> Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(ChatFormatting.AQUA + "Discord » " + ChatFormatting.RED + relationship.getUser().getUsername() + " is busy now."));
         }
-    }
+    }*/
 }
