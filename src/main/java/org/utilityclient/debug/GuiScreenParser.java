@@ -18,7 +18,7 @@ public class GuiScreenParser extends Instances {
         Scanner fr = new Scanner(new File("uc2/debugScreen.txt"));
         while (fr.hasNextLine()) {
             String line = fr.nextLine();
-            if(!line.startsWith("#")) lines.add(line);
+            if (!line.startsWith("#")) lines.add(line);
         }
         return lines;
     }
@@ -40,27 +40,41 @@ public class GuiScreenParser extends Instances {
             int pivotX = 0, pivotY = 0;
 
             switch (values[3]) {
-                case "center" -> pivotX = mc().width / 2;
-                case "right" -> pivotX = mc().width;
+                case "center":
+                    pivotX = mc().width / 2;
+                    break;
+                case "right":
+                    pivotX = mc().width;
+                    break;
             }
 
             switch (values[4]) {
-                case "middle" -> pivotY = mc().height / 2;
-                case "bottom" -> pivotY = mc().height;
+                case "middle":
+                    pivotY = mc().height / 2;
+                    break;
+                case "bottom":
+                    pivotY = mc().height;
+                    break;
             }
 
             switch (values[0]) {
-                case "btn" -> elements.add(new GuiButton(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
-                        Integer.parseInt(values[6]) + pivotY, Integer.parseInt(values[6])));
-                case "input" -> elements.add(new GuiInput(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
-                        Integer.parseInt(values[6]) + pivotY, Integer.parseInt(values[6])));
-                case "label" -> elements.add(new GuiLabel(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
-                        Integer.parseInt(values[6]) + pivotY, 0));
+                case "btn":
+                    elements.add(new GuiButton(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
+                            Integer.parseInt(values[6]) + pivotY, Integer.parseInt(values[6])));
+                    break;
+                case "input":
+                    elements.add(new GuiInput(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
+                            Integer.parseInt(values[6]) + pivotY, Integer.parseInt(values[6])));
+                    break;
+                case "label":
+                    elements.add(new GuiLabel(Integer.parseInt(values[1]), values[2], Integer.parseInt(values[5]) + pivotX,
+                            Integer.parseInt(values[6]) + pivotY, 0));
+                    break;
             }
 
         });
 
-         return elements;
+        return elements;
     }
 
     public static GuiScreenParser gsp() {

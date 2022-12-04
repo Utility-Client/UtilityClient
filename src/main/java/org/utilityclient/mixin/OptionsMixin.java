@@ -13,7 +13,8 @@ public class OptionsMixin {
 
     @Inject(at = @At("HEAD"), method = "init()V", cancellable = true)
     private void init(CallbackInfo ci) {
-        if (MinecraftClient.getInstance().currentScreen instanceof SettingsScreen ss) {
+        if (MinecraftClient.getInstance().currentScreen instanceof SettingsScreen) {
+            SettingsScreen ss = (SettingsScreen)MinecraftClient.getInstance().currentScreen;
             MinecraftClient.getInstance().openScreen(new GuiOptions(((OptionsAccessor)ss).getParent(), MinecraftClient.getInstance().options));
         }
 

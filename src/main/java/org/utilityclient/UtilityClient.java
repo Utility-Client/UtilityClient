@@ -13,6 +13,7 @@ import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.macro.MacroManager;
+import org.utilityclient.overlay.IModule;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.modules.CPSThread;
@@ -26,6 +27,7 @@ import java.awt.datatransfer.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -132,7 +134,8 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        themes.addAll(List.of(
+        // TODO: Make this better
+        ITheme[] themes1 = {
                 new RedTheme(),
                 new YellowTheme(),
                 new GreenTheme(),
@@ -144,14 +147,16 @@ public class UtilityClient extends Thread {
                 new GrayTheme(),
                 new AquaTheme(),
                 new DaylightCycleTheme()
-        ));
+        };
+
+        themes.addAll(Arrays.asList(themes1));
 
         // Run Addon Init here
         addonManager.start();
 
         currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
 
-        ModuleHandler.modules.addAll(List.of(
+        IModule[] modules1 = {
                 new FPSModule(),
                 new CoordsModule(),
                 new ClockModule(),
@@ -160,7 +165,9 @@ public class UtilityClient extends Thread {
                 new PingModule(),
                 new BiomeModule(),
                 new DistanceModule()
-        ));
+        };
+
+        ModuleHandler.modules.addAll(Arrays.asList(modules1));
 
         CPS_THREAD_INSTANCE.start();
         DISCORD_INSTANCE.start();
