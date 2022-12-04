@@ -1,19 +1,13 @@
 package org.utilityclient.utils.json;
 
-import com.mojang.authlib.minecraft.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.util.ResourceLocation;
-
 import java.awt.*;
 import java.awt.image.*;
-import java.util.HashMap;
 
 public class CapeUtils {
-    public ResourceLocation ucLocationCape;
+    //public ResourceLocation ucLocationCape;
 
     public void downloadCape(String url, String filename) {
-        String ucCapeUrl = url + filename + ".png";
+        /*String ucCapeUrl = url + filename + ".png";
         MinecraftProfileTexture mpt = new MinecraftProfileTexture(ucCapeUrl, new HashMap<>());
         final ResourceLocation rl = new ResourceLocation("skins/" + mpt.getHash());
         IImageBuffer iib = new IImageBuffer() {
@@ -25,7 +19,7 @@ public class CapeUtils {
             }
         };
         ThreadDownloadImageData textureCape = new ThreadDownloadImageData(null, ucCapeUrl, null, iib);
-        Minecraft.getMinecraft().getTextureManager().loadTexture(rl, textureCape);
+        Minecraft.getMinecraft().getTextureManager().loadTexture(rl, textureCape);*/
     }
 
     private BufferedImage parseCape(BufferedImage img) {
