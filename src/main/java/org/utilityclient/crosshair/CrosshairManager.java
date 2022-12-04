@@ -1,12 +1,11 @@
 package org.utilityclient.crosshair;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.MinecraftClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.options.GuiCrosshairOptions;
 import org.utilityclient.utils.SerializationUtils;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,21 +33,21 @@ public class CrosshairManager {
 
     }
 
-    public static void loop(ScaledResolution sr) throws Exception {
-        GlStateManager.disableDepth();
-        GlStateManager.disableAlpha();
+    public static void loop() {
+        GlStateManager.disableDepthTest();
+        GlStateManager.disableAlphaTest();
         int size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 
         int f = 0;
         for (int i = 0; i < size; i++) {
             for (int e = 0; e < size; e++) {
-                int x = sr.getScaledWidth() / 2 + i * 2 - size;
-                int y = sr.getScaledHeight() / 2 + e * 2 - size;
-                if(!pixels.getOrDefault(f, true)) Gui.drawRect(x, y, x + 2, y + 2, Config.getLong(ConfigEntry.CROSSHAIR_COLOR));
+                int x = MinecraftClient.getInstance().width / 2 + i * 2 - size;
+                int y = MinecraftClient.getInstance().height / 2 + e * 2 - size;
+                // FIXME if(!pixels.getOrDefault(f, true)) drawRect(x, y, x + 2, y + 2, Config.getLong(ConfigEntry.CROSSHAIR_COLOR));
                 f++;
             }
         }
-        GlStateManager.enableDepth();
-        GlStateManager.enableAlpha();
+        GlStateManager.enableDepthTest();
+        GlStateManager.enableAlphaTest();
     }
 }

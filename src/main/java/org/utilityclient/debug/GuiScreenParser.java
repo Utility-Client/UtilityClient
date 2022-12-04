@@ -1,6 +1,5 @@
 package org.utilityclient.debug;
 
-import net.minecraft.client.gui.ScaledResolution;
 import org.utilityclient.Instances;
 import org.utilityclient.debug.elements.GuiButton;
 import org.utilityclient.debug.elements.GuiInput;
@@ -39,16 +38,15 @@ public class GuiScreenParser extends Instances {
             // 7 width: integer
 
             int pivotX = 0, pivotY = 0;
-            ScaledResolution sr = new ScaledResolution(mc());
 
             switch (values[3]) {
-                case "center" -> pivotX = sr.getScaledWidth() / 2;
-                case "right" -> pivotX = sr.getScaledWidth();
+                case "center" -> pivotX = mc().width / 2;
+                case "right" -> pivotX = mc().width;
             }
 
             switch (values[4]) {
-                case "middle" -> pivotY = sr.getScaledHeight() / 2;
-                case "bottom" -> pivotY = sr.getScaledHeight();
+                case "middle" -> pivotY = mc().height / 2;
+                case "bottom" -> pivotY = mc().height;
             }
 
             switch (values[0]) {
