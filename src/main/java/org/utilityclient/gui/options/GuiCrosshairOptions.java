@@ -1,13 +1,13 @@
 package org.utilityclient.gui.options;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.SerializationUtils;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,22 +15,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class GuiCrosshairOptions extends GuiScreen
+public class GuiCrosshairOptions extends Screen
 {
-    private final GuiScreen parentScreen;
+    private final Screen parentScreen;
     private String title;
     private int size = 9;
     public static final File crosshairFile = new File("uc2/crosshair.txt");
     HashMap<Integer, Boolean> pixels = new HashMap<>();
 
-    public GuiCrosshairOptions(GuiScreen parentScreenIn)
+    public GuiCrosshairOptions(Screen parentScreenIn)
     {
-        this.parentScreen = parentScreenIn;
+        parentScreen = parentScreenIn;
     }
 
     public void initGui()
     {
-        this.title = I18n.format("uc.options.crosshair.title");
+        title = I18n.translate("uc.options.crosshair.title");
         try {
             size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 
@@ -43,11 +43,11 @@ public class GuiCrosshairOptions extends GuiScreen
         }
     }
 
-    protected void actionPerformed(GuiButton button) throws IOException
+    protected void actionPerformed(ButtonWidget button) throws IOException
     {
         if(button.id < 200) pixels.put(button.id, !pixels.getOrDefault(button.id, true));
 
-        if (button.enabled)
+        if (button.active)
         {
             if (button.id == 200) {
                 FileWriter fw = new FileWriter(crosshairFile, false);
@@ -57,7 +57,7 @@ public class GuiCrosshairOptions extends GuiScreen
 
                 Config.setInteger(ConfigEntry.CROSSHAIR_SIZE, size);
                 Config.save();
-                this.mc.displayGuiScreen(this.parentScreen);
+                client.openScreen(parentScreen);
             }
 
             if (button.id == 201) if(size > 1) {
@@ -74,29 +74,31 @@ public class GuiCrosshairOptions extends GuiScreen
         }
     }
 
-    public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    public void render(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, Color.TEXT.color);
-        this.drawCenteredString(this.fontRendererObj, size + "x" + size, this.width / 2, this.height / 4 * 3 + 5, Color.TEXT.color);
+        renderBackground();
+        drawCenteredString(textRenderer, title, width / 2, 20, Color.TEXT.color);
+        drawCenteredString(textRenderer, size + "x" + size, width / 2, height / 4 * 3 + 5, Color.TEXT.color);
 
-        buttonList.clear();
+        buttons.clear();
         int f = 0;
         for (int i = 0; i < size; i++) {
             for (int e = 0; e < size; e++) {
-                buttonList.add(new GuiButton(f,
-                        this.width / 2 + i * 20 - size * 10,
-                        this.height / 2 + e * 20 - size * 10,
+                ButtonWidget t = new ButtonWidget(f,
+                        width / 2 + i * 20 - size * 10,
+                        height / 2 + e * 20 - size * 10,
                         20, 20,
-                        "", !pixels.getOrDefault(f, true)));
+                        "");
+                t.active = !pixels.getOrDefault(f, true);
+                buttons.add(t);
                 f++;
             }
         }
 
-        this.buttonList.add(new GuiButton(201, this.width / 2 - 100, this.height / 4 * 3, 20, 20, "-"));
-        this.buttonList.add(new GuiButton(202, this.width / 2 + 80, this.height / 4 * 3, 20, 20, "+"));
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 8 * 7, I18n.format("gui.done")));
+        buttons.add(new ButtonWidget(201, width / 2 - 100, height / 4 * 3, 20, 20, "-"));
+        buttons.add(new ButtonWidget(202, width / 2 + 80, height / 4 * 3, 20, 20, "+"));
+        buttons.add(new ButtonWidget(200, width / 2 - 100, height / 8 * 7, I18n.translate("gui.done")));
 
-        super.drawScreen(mouseX, mouseY, partialTicks);
+        super.render(mouseX, mouseY, partialTicks);
     }
 }
