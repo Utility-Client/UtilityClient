@@ -7,7 +7,9 @@
     "client": [
         "ClientMixins",
         "AbstractClientPlayerMixin",
-        "TitleScreenMixin"
+        "TitleScreenMixin",
+        "OptionsMixin",
+        "OptionsAccessor"
     ],
     "injectors": {
         "defaultRequire": 1
