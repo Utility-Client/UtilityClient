@@ -2,6 +2,7 @@ package org.utilityclient.crosshair;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.options.GuiCrosshairOptions;
@@ -43,7 +44,7 @@ public class CrosshairManager {
             for (int e = 0; e < size; e++) {
                 int x = MinecraftClient.getInstance().width / 2 + i * 2 - size;
                 int y = MinecraftClient.getInstance().height / 2 + e * 2 - size;
-                // FIXME if(!pixels.getOrDefault(f, true)) drawRect(x, y, x + 2, y + 2, Config.getLong(ConfigEntry.CROSSHAIR_COLOR));
+                if(!pixels.getOrDefault(f, true)) DrawableHelper.fill(x, y, x + 2, y + 2, (int) Config.getLong(ConfigEntry.CROSSHAIR_COLOR));
                 f++;
             }
         }
