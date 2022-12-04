@@ -13,9 +13,9 @@ public class CoordsModule extends IModule {
     public String getValue() {
         if(UtilityClient.streamerMode) return "<disabled>";
 
-        return    mc().player.getPos().x + ", "
-                + mc().player.getPos().y + ", "
-                + mc().player.getPos().z;
+        return    mc().player.getBlockPos().getX() + ", "
+                + mc().player.getBlockPos().getY() + ", "
+                + mc().player.getBlockPos().getZ();
     }
 
     @Override
