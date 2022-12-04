@@ -36,19 +36,19 @@ public class GuiUtilityClient extends Screen
         buttons.add(new ButtonWidget(200, width / 2 + 4, height / 2, I18n.translate("gui.done")));
     }
 
-    public void actionPerformed(ButtonWidget button) throws IOException
+    public void buttonClicked(ButtonWidget button)
     {
         if (button.active) {
-            if (button.id != 1) Config.save();
+            if (button.id != 1) save();
             switch (button.id) {
                 case 200 -> {
                     client.openScreen(parentScreen);
-                    Config.save();
+                    save();
                 }
                 case 1 -> {
                     Config.setBoolean("keystrokesEnabled", !Config.getBoolean("keystrokesEnabled", true));
                     buttons.get(1).message = Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes";
-                    Config.save();
+                    save();
                 }
                 case 2 -> client.openScreen(new GuiCrosshairOptions(this));
                 case 3 -> client.openScreen(new GuiThemeOptions(this));
@@ -56,6 +56,14 @@ public class GuiUtilityClient extends Screen
                 case 5 -> client.openScreen(new GuiMacroManager(this));
                 case 6 -> client.openScreen(new GuiDiscordOptions(this));
             }
+        }
+    }
+
+    private void save() {
+        try {
+            Config.save();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
