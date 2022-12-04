@@ -177,7 +177,7 @@ public class UtilityClient extends Thread {
             if (keyBinds.get(0).isPressed()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
             else fovModifier = 1.0f;
 
-            if (keyBinds.get(1).isPressed()) if (MinecraftClient.getInstance().options.gamma == 1.0f) {
+            if (keyBinds.get(1).wasPressed()) if (MinecraftClient.getInstance().options.gamma == 1.0f) {
                 MinecraftClient.getInstance().options.gamma = 999999;
                 isFulbrightEnabled = true;
             } else {
@@ -185,16 +185,16 @@ public class UtilityClient extends Thread {
                 isFulbrightEnabled = false;
             }
 
-            if(keyBinds.get(2).isPressed()) renderOverlay = !renderOverlay;
+            if(keyBinds.get(2).wasPressed()) renderOverlay = !renderOverlay;
 
-            if(keyBinds.get(3).isPressed()) {
+            if(keyBinds.get(3).wasPressed()) {
                 String myString = Math.round(MinecraftClient.getInstance().player.x) + " " + Math.round(MinecraftClient.getInstance().player.y) + " " + Math.round(MinecraftClient.getInstance().player.z);
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
             }
 
-            if(keyBinds.get(4).isPressed()) {
+            if(keyBinds.get(4).wasPressed()) {
                 try {
                     Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                     Transferable t = clipboard.getContents(clipboard);
@@ -213,7 +213,7 @@ public class UtilityClient extends Thread {
                 }
             }
 
-            if(debugMode) if(keyBinds.get(5).isPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
+            if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
         }
         MacroManager.loop();
         addonManager.loop();
