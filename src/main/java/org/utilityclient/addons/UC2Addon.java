@@ -13,7 +13,7 @@ import org.utilityclient.Instances;
 public interface UC2Addon extends Instances.Interface {
     /**
      * @return Name of the Add-on. This will be displayed to users.
-     * @implNote Color coding using {@link net.minecraft.util.ChatFormatting} is allowed.
+     * @implNote Color coding using {@link com.mojang.realmsclient.gui.ChatFormatting} is allowed.
      */
     String getName();
 

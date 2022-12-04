@@ -1,33 +1,33 @@
 package org.utilityclient.gui.options;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.resources.I18n;
 import org.utilityclient.utils.Color;
 
 import java.io.IOException;
 
-public class GuiThemeOptions extends GuiScreen {
-    private final GuiScreen parentScreen;
+public class GuiThemeOptions extends Screen {
+    private final Screen parentScreen;
     private String title;
 
-    public GuiThemeOptions(GuiScreen parentScreenIn) {
+    public GuiThemeOptions(Screen parentScreenIn) {
         this.parentScreen = parentScreenIn;
     }
 
-    public void initGui() {
-        this.title = I18n.format("uc.options.theme.title");
+    public void init() {
+        this.title = I18n.translate("uc.options.theme.title");
 
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 2 - 40, 100, 20, I18n.format("uc.options.theme.previous")));
-        this.buttonList.add(new GuiButton(2, this.width / 2, this.height / 2 - 40, 100, 20, I18n.format("uc.options.theme.next")));
-        this.buttonList.add(new GuiButton(200, this.width / 2 - 100, this.height / 2, I18n.format("gui.done")));
+        buttons.add(new ButtonWidget(1, this.width / 2 - 100, this.height / 2 - 40, 100, 20, I18n.translate("uc.options.theme.previous")));
+        buttons.add(new ButtonWidget(2, this.width / 2, this.height / 2 - 40, 100, 20, I18n.translate("uc.options.theme.next")));
+        buttons.add(new ButtonWidget(200, this.width / 2 - 100, this.height / 2, I18n.translate("gui.done")));
     }
 
-    protected void actionPerformed(GuiButton button) throws IOException {
-        if (button.enabled) {
+    protected void buttonClicked(ButtonWidget button) {
+        if (button.active) {
             if (button.id == 1) {
                 UtilityClient.currentTheme--;
                 if(UtilityClient.currentTheme == -1) UtilityClient.currentTheme = UtilityClient.themes.size() - 1;
@@ -40,21 +40,25 @@ public class GuiThemeOptions extends GuiScreen {
 
             if (button.id == 200) {
                 Config.setInteger(ConfigEntry.SELECTED_THEME, UtilityClient.currentTheme);
-                Config.save();
-                this.mc.displayGuiScreen(this.parentScreen);
+                try {
+                    Config.save();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                client.openScreen(this.parentScreen);
             }
         }
     }
 
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.title, this.width / 2, 20, Color.TEXT.color);
-        this.drawCenteredString(this.fontRendererObj, "Current theme: " + UtilityClient.getCurrentTheme().getName(), this.width / 2, this.height / 2 - 90, Color.TEXT.color);
-        this.drawCenteredString(this.fontRendererObj,
-                UtilityClient.getCurrentTheme().getPrefixColor() + I18n.format("uc.options.theme.prefix")
+    public void render(int mouseX, int mouseY, float partialTicks) {
+        renderBackground();
+        drawCenteredString(textRenderer, this.title, this.width / 2, 20, Color.TEXT.color);
+        drawCenteredString(textRenderer, "Current theme: " + UtilityClient.getCurrentTheme().getName(), this.width / 2, this.height / 2 - 90, Color.TEXT.color);
+        drawCenteredString(textRenderer,
+                UtilityClient.getCurrentTheme().getPrefixColor() + I18n.translate("uc.options.theme.prefix")
                         + UtilityClient.getCurrentTheme().getSeparator()
-                        + UtilityClient.getCurrentTheme().getSuffixColor() +  I18n.format("uc.options.theme.suffix"),
+                        + UtilityClient.getCurrentTheme().getSuffixColor() +  I18n.translate("uc.options.theme.suffix"),
                 this.width / 2, this.height / 2 - 70, Color.TEXT.color);
-        super.drawScreen(mouseX, mouseY, partialTicks);
+        super.render(mouseX, mouseY, partialTicks);
     }
 }

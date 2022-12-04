@@ -10,8 +10,6 @@ import org.utilityclient.gui.options.macros.GuiMacroManager;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 
-import java.io.IOException;
-
 public class GuiUtilityClient extends Screen
 {
     private final Screen parentScreen;
