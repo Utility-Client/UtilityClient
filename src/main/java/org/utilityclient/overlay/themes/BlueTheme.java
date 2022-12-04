@@ -1,6 +1,6 @@
 package org.utilityclient.overlay.themes;
 
-import net.minecraft.util.EnumChatFormatting;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import org.utilityclient.overlay.ITheme;
 
 public class BlueTheme implements ITheme {
@@ -10,12 +10,12 @@ public class BlueTheme implements ITheme {
     }
 
     @Override
-    public EnumChatFormatting getPrefixColor() {
-        return EnumChatFormatting.DARK_BLUE;
+    public ChatFormatting getPrefixColor() {
+        return ChatFormatting.DARK_BLUE;
     }
 
     @Override
-    public EnumChatFormatting getSuffixColor() {
-        return EnumChatFormatting.BLUE;
+    public ChatFormatting getSuffixColor() {
+        return ChatFormatting.BLUE;
     }
 }
