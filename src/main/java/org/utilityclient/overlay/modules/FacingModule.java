@@ -10,9 +10,9 @@ public class FacingModule extends IModule {
 
     @Override
     public String getValue() {
-        //String str = mc().targetedEntity.getCustomName();
-        //return str.substring(0, 1).toUpperCase() + str.substring(1);
-        return "<disabled>";
+        char[] ca = mc().getCameraEntity().getHorizontalDirection().getName().toCharArray();
+        ca[0] = (ca[0]+"").toUpperCase().toCharArray()[0];
+        return new String(ca);
     }
 
     @Override
