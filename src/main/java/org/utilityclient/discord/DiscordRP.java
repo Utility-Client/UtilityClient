@@ -1,17 +1,16 @@
 package org.utilityclient.discord;
 
-import org.apache.logging.log4j.LogManager;
-import org.utilityclient.UtilityClient;
-import org.utilityclient.config.Config;
-import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.utils.Utils;
+// import org.apache.logging.log4j.LogManager;
+// import org.utilityclient.UtilityClient;
+// import org.utilityclient.config.Config;
+// import org.utilityclient.config.ConfigEntry;
+// import org.utilityclient.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -22,15 +21,15 @@ import java.util.zip.ZipInputStream;
  */
 public class DiscordRP extends Thread {
 
-    private static boolean shouldRun = false;
-    public static Core core;
-    private String oldTopText, oldBottomText;
+    //private static boolean shouldRun = false;
+    //public static Core core;
+    //private String oldTopText, oldBottomText;
 
     @Override
     public void run() {
         super.run();
 
-        try {
+        /*try {
             Core.init(Objects.requireNonNull(downloadDiscordLibrary()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,11 +48,11 @@ public class DiscordRP extends Thread {
             core.close();
         }));
 
-        while (shouldRun) loop();
+        while (shouldRun) loop();*/
     }
 
     private void loop() {
-        if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
+        /*if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
         if(!shouldRun) return;
 
         String topText = "";
@@ -94,16 +93,16 @@ public class DiscordRP extends Thread {
             oldBottomText = bottomText;
         }
 
-        core.runCallbacks();
+        core.runCallbacks();*/
     }
 
     public void setRichPresence(String topText, String bottomText) {
-        Activity activity = new Activity();
+        /*Activity activity = new Activity();
         activity.setDetails(topText);
         activity.setState(bottomText);
         activity.assets().setLargeImage("rebrand");
         activity.assets().setLargeText(UtilityClient.getClientName() + " " + UtilityClient.getVersion());
-        core.activityManager().updateActivity(activity);
+        core.activityManager().updateActivity(activity);*/
     }
 
     /**
