@@ -238,5 +238,6 @@ public class IngameMixins extends DrawableHelper {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlphaTest();
+        ci.cancel();
     }
 }
