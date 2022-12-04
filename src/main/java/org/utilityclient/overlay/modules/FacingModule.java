@@ -10,8 +10,9 @@ public class FacingModule extends IModule {
 
     @Override
     public String getValue() {
-        String str = mc().targetedEntity.getCustomName();;
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
+        //String str = mc().targetedEntity.getCustomName();
+        //return str.substring(0, 1).toUpperCase() + str.substring(1);
+        return "TODO: Currently broken, sorry";
     }
 
     @Override

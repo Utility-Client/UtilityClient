@@ -10,7 +10,10 @@
         "TitleScreenMixin",
         "OptionsMixin",
         "OptionsAccessor",
-        "PauseMixin"
+        "PauseMixin",
+        "IngameMixins",
+        "IngameAccessor",
+        "ClientAccessor"
     ],
     "injectors": {
         "defaultRequire": 1
