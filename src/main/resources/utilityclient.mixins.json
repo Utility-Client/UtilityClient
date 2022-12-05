@@ -13,7 +13,9 @@
         "PauseMixin",
         "IngameMixins",
         "IngameAccessor",
-        "ClientAccessor"
+        "ClientAccessor",
+        "MultiplayerGuiMixin",
+        "GuiMultiplayerAccessor"
     ],
     "injectors": {
         "defaultRequire": 1
