@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.Month;
 import java.time.ZonedDateTime;
 
 /**
@@ -43,5 +44,31 @@ public class Utils {
     public static long getSecondsOfDay() {
         ZonedDateTime nowZoned = ZonedDateTime.now();
         return Duration.between(nowZoned.toLocalDate().atStartOfDay(nowZoned.getZone()).toInstant(), Instant.now()).getSeconds();
+    }
+
+    public static Season getSeasonOfMonth(int month) {
+        switch (month) {
+            case 1:
+            case 2:
+            case 11:
+            case 12:
+                return Season.WINTER;
+
+            case 3:
+            case 4:
+            case 5:
+                return Season.SPRING;
+
+            case 6:
+            case 7:
+            case 8:
+                return Season.SUMMER;
+
+            case 9:
+            case 10:
+                return Season.FALL;
+        }
+
+        return Season.NONE;
     }
 }

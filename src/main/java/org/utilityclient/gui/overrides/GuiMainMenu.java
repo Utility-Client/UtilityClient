@@ -22,12 +22,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GLContext;
 import org.utilityclient.utils.Color;
+import org.utilityclient.utils.Utils;
 import org.utilityclient.utils.json.JSONUtils;
 import org.utilityclient.utils.json.objects.Release;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.time.LocalDateTime;
 
 public class GuiMainMenu extends Screen
 {
@@ -234,7 +236,7 @@ public class GuiMainMenu extends Screen
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(new Identifier("utilityclient", "background.png"));
+        client.getTextureManager().bindTexture(Utils.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
         // NOTE: Gui => DrawableHelper
         DrawableHelper.drawTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height, this.width, this.height);
     }
