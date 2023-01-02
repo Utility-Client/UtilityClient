@@ -24,6 +24,11 @@ public class CPSModule extends IModule {
     }
 
     @Override
+    public boolean shouldRender() {
+        return false;
+    }
+
+    @Override
     public String getAuthor() {
         return "Hexer";
     }
