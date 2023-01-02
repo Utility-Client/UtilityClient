@@ -60,10 +60,10 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
                 LOGGER.warn("Unable to start LAN server detection: " + var2.getMessage());
             }
 
-            serverListWidget = new MPServerListWidget(this, client, width, height, 32, height - 64, 36);
+            serverListWidget = new MPServerListWidget(this, client, width, height, 32, height - 84, 36);
             serverListWidget.setServers(serverList);
         } else {
-            serverListWidget.updateBounds(width, height, 32, height - 64);
+            serverListWidget.updateBounds(width, height, 32, height - 84);
         }
 
         initButtons();
