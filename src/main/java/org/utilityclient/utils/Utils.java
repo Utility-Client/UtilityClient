@@ -2,6 +2,7 @@ package org.utilityclient.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.utilityclient.config.Config;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -47,6 +48,8 @@ public class Utils {
     }
 
     public static Season getSeasonOfMonth(int month) {
+        if (Config.getBoolean("disableSeasonalTitleScreen", false)) return Season.NONE;
+
         switch (month) {
             case 1:
             case 2:
