@@ -2,10 +2,10 @@
 
 [![](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client&style=for-the-badge)](https://uc.gamingcraft.de/discord) ![](https://img.shields.io/github/downloads/Utility-Client/UtilityClient2/total?style=for-the-badge)<br>[Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases)
 
-## Install
-- Download the latest release [here](https://github.com/Utility-Client/UtilityClient2/releases).
-- Extract the zip into a folder with the **exact** name and move the folder into your Minecraft's `versions` folder.
-- Create a profile in your Minecraft Launcher.
+## Installation
+1. Download the latest release [here](https://github.com/Utility-Client/UtilityClient2/releases).
+2. Extract the zip into a folder with the **exact** name and move the folder into your Minecraft's `versions` folder.
+3. Create a new profile inside of the Minecraft Launcher.
 
 ## Contribute
 
@@ -54,8 +54,3 @@ Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
 </td>
 </tr>
 </table>
-
-## Applications used
-- [BOM Remover](https://www.mannaz.at/codebase/utf-byte-order-mark-bom-remover) by [whlk](https://github.com/whlk)
-- [Maven](https://maven.apache.org/) by [Apache](https://www.apache.org/)
-- [MavenMCP](https://github.com/Hexeption/MavenMCP) by [Hexeption](https://github.com/Hexeption)
