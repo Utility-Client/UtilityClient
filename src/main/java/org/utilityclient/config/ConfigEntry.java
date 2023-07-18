@@ -2,8 +2,9 @@ package org.utilityclient.config;
 
 /**
  * Config Entries with default values in Enum-form
+ *
+ * @author Sam302
  * @since 2.12
- * @author GamingCraft
  */
 public enum ConfigEntry {
     SELECTED_THEME("selectedTheme", "0"),

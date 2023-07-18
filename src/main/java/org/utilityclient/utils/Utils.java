@@ -6,13 +6,13 @@ import org.utilityclient.config.Config;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.Month;
 import java.time.ZonedDateTime;
 
 /**
  * General Utils, that don't need a whole class.
+ *
+ * @author Sam302
  * @since 2.14
- * @author GamingCraft
  */
 public class Utils {
     private static final Logger logger = LogManager.getLogger();

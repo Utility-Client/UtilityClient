@@ -9,8 +9,9 @@ import java.util.Scanner;
 
 /**
  * Easy loading and saving of files.
+ *
+ * @author Sam302
  * @since 2.9.1
- * @author GamingCraft
  */
 public class FileUtils {
     /**

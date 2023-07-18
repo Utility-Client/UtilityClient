@@ -5,8 +5,9 @@ import net.minecraft.client.MinecraftClient;
 /**
  * Instances of some Main Classes.
  * Including: UtilityClient's Main Class and Minecraft's Client Main Class.
+ *
+ * @author Sam302
  * @since 2.10 LTS
- * @author GamingCraft
  */
 public abstract class Instances {
     MinecraftClient mc = MinecraftClient.getInstance();
@@ -21,7 +22,7 @@ public abstract class Instances {
     /**
      * Interface version without caching.
      * @since 2.15 LTS
-     * @author GamingCraft
+     * @author Sam302
      * @see Instances
      */
     public interface Interface {

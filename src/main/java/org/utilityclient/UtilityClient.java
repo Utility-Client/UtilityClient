@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
+import org.apache.commons.lang3.ArrayUtils;
 import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -16,25 +17,26 @@ import org.utilityclient.macro.MacroManager;
 import org.utilityclient.overlay.IModule;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
-import org.utilityclient.overlay.modules.CPSThread;
 import org.utilityclient.overlay.modules.*;
-import org.apache.commons.lang3.ArrayUtils;
 import org.utilityclient.overlay.themes.*;
 import org.utilityclient.utils.Utils;
 
 import java.awt.*;
-import java.awt.datatransfer.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * The Main Class of UtilityClient.
  * Do not create new instances. Instead call {@link UtilityClient#getInstance()}
+ *
+ * @author Sam302
  * @since 2.0 LTS
- * @author GamingCraft
  */
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
