@@ -23,7 +23,8 @@ public enum ConfigEntry {
     DATE_PATTERN("datePattern", "dd/MM/YYYY"),
     TIME_PATTERN("timePattern", "HH:mm:ss"),
     SPRINT_AND_CROUCH_KEYSTROKES("keystrokes.showSprintAndCrouch", "false"),
-    RENDER_RAIN_SNOW("renderRainSnow", "true");
+    RENDER_RAIN_SNOW("renderRainSnow", "true"),
+    SHOW_CHANGELOG_IN_TITLE_SCREEN("showChangelogInTitleScreen", "true");
 
     private final String key;
     private final String defaultValue;
