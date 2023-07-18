@@ -19,6 +19,8 @@ public enum ConfigEntry {
     DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true"),
     DISCORD_SHOW_SERVER("discordShowServerInPresence", "true"),
     CROSSHAIR_COLOR("crosshairColor", String.valueOf(2164260863L)),
+    DATE_PATTERN("datePattern", "dd/MM/YYYY"),
+    TIME_PATTERN("timePattern", "HH:mm:ss"),
     RENDER_RAIN_SNOW("renderRainSnow", "true");
 
     private final String key;

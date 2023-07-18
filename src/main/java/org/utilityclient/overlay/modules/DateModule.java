@@ -1,5 +1,8 @@
 package org.utilityclient.overlay.modules;
 
+import org.utilityclient.UtilityClient;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.overlay.IModule;
 
 import java.time.LocalDate;
@@ -16,17 +19,11 @@ public class DateModule extends IModule {
 
     @Override
     public String getValue() {
-        return LocalDate.now().format(new DateTimeFormatterBuilder()
-                .appendValue(DAY_OF_MONTH, 2)
-                .appendLiteral('/')
-                .appendValue(MONTH_OF_YEAR, 2)
-                .appendLiteral('/')
-                .appendValue(YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
-                .toFormatter());
+        return LocalDate.now().format(new DateTimeFormatterBuilder().appendPattern(Config.getString(ConfigEntry.DATE_PATTERN)).toFormatter());
     }
 
     @Override
     public String getAuthor() {
-        return "GamingCraft";
+        return "Sam302";
     }
 }

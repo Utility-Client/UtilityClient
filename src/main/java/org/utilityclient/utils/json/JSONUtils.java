@@ -12,10 +12,11 @@ import java.net.URL;
 public class JSONUtils {
     public static Gson gson = new GsonBuilder().generateNonExecutableJson().disableInnerClassSerialization().create();
 
-    public static String downloadJson(String url) throws Exception {
+    public static String downloadJson(String url) {
         try {
             return downloadJson(new URL(url));
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return "{}";
         }
     }
