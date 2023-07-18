@@ -18,17 +18,21 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DemoServerWorld;
 import net.minecraft.world.level.LevelProperties;
 import net.minecraft.world.level.storage.LevelStorageAccess;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GLContext;
+import org.utilityclient.UtilityClient;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.Utils;
 import org.utilityclient.utils.json.JSONUtils;
 import org.utilityclient.utils.json.objects.Release;
 
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 
 public class GuiMainMenu extends Screen
@@ -46,24 +50,24 @@ public class GuiMainMenu extends Screen
     private int field_92020_v;
     private int field_92019_w;
     private Release release;
+    boolean isLatest = false;
 
     public GuiMainMenu() {
-        this.openGLWarning2 = field_96138_a;
-        this.openGLWarning1 = "";
+        openGLWarning2 = field_96138_a;
+        openGLWarning1 = "";
 
         if (!GLContext.getCapabilities().OpenGL20)
         {
-            this.openGLWarning1 = I18n.translate("title.oldgl1");
-            this.openGLWarning2 = I18n.translate("title.oldgl2");
-            this.openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
+            openGLWarning1 = I18n.translate("title.oldgl1");
+            openGLWarning2 = I18n.translate("title.oldgl2");
+            openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
 
-        try {
-            String rawJsonRelease = JSONUtils.downloadJson(new URL("https://api.github.com/repos/Utility-Client/UtilityClient/releases/latest"));
-            release = (Release) JSONUtils.parseToJson(rawJsonRelease, new TypeToken<Release>(){}.getType());
-        } catch (Exception e) {
-            System.out.println("An error occured while getting changelog");
-        }
+        String rawJsonRelease = JSONUtils.downloadJson("https://api.github.com/repos/Utility-Client/UtilityClient/releases/latest");
+        release = (Release) JSONUtils.parseToJson(rawJsonRelease, new TypeToken<Release>(){}.getType());
+        assert release != null;
+        isLatest = release.tag_name.contains(UtilityClient.getVersion());
+        isLatest = isLatest || UtilityClient.getVersion().contains("-");
     }
 
     public boolean shouldPauseGame()
@@ -75,24 +79,27 @@ public class GuiMainMenu extends Screen
 
     public void init()
     {
-        int j = this.height / 2 - 32;
+        int j = height / 2 - 32;
 
-        int offset = -(this.height / 4);
-        this.buttons.add(new ButtonWidget(1, this.width / 2 - 100 + offset, j, I18n.translate("menu.singleplayer")));
-        this.buttons.add(new ButtonWidget(2, this.width / 2 - 100 + offset, j + 24, I18n.translate("menu.multiplayer")));
-        this.buttons.add(new ButtonWidget(0, this.width / 2 - 100 + offset, j + 24 * 2, I18n.translate("menu.options")));
-        this.buttons.add(new ButtonWidget(4, this.width / 2 - 100 + offset, j + 24 * 3, I18n.translate("menu.quit")));
+        int offset = -(height / 4);
+        buttons.add(new ButtonWidget(1, width / 2 - 100 + offset, j, I18n.translate("menu.singleplayer")));
+        buttons.add(new ButtonWidget(2, width / 2 - 100 + offset, j + 24, I18n.translate("menu.multiplayer")));
+        buttons.add(new ButtonWidget(0, width / 2 - 100 + offset, j + 24 * 2, I18n.translate("menu.options")));
+        buttons.add(new ButtonWidget(4, width / 2 - 100 + offset, j + 24 * 3, I18n.translate("menu.quit")));
 
+        ButtonWidget updateBtn = new ButtonWidget(9, width - 102, height - 22, 100, 20, "Install Update");
+        updateBtn.active = !isLatest;
+        buttons.add(updateBtn);
 
-        synchronized (this.threadLock)
+        synchronized (threadLock)
         {
-            int field_92023_s = textRenderer.getStringWidth(this.openGLWarning1);
-            this.field_92024_r = textRenderer.getStringWidth(this.openGLWarning2);
-            int k = Math.max(field_92023_s, this.field_92024_r);
-            this.field_92022_t = (this.width - k) / 2;
-            this.field_92021_u = buttons.get(0).y - 24;
-            this.field_92020_v = this.field_92022_t + k;
-            this.field_92019_w = this.field_92021_u + 24;
+            int field_92023_s = textRenderer.getStringWidth(openGLWarning1);
+            field_92024_r = textRenderer.getStringWidth(openGLWarning2);
+            int k = Math.max(field_92023_s, field_92024_r);
+            field_92022_t = (width - k) / 2;
+            field_92021_u = buttons.get(0).y - 24;
+            field_92020_v = field_92022_t + k;
+            field_92019_w = field_92021_u + 24;
         }
 
         client.setConnectedToRealms(false);
@@ -123,6 +130,29 @@ public class GuiMainMenu extends Screen
         if (button.id == 4)
         {
             client.scheduleStop();
+        }
+
+        if (button.id == 9) {
+            try {
+                // Start Updater
+                InputStream initialStream = UtilityClient.class.getClassLoader().getResourceAsStream("updater.jar");
+                File targetFile = new File("versions/1.8.8-UtilityClient/updater.jar");
+                OutputStream outStream = Files.newOutputStream(targetFile.toPath());
+                byte[] buffer = new byte[8 * 1024];
+                int bytesRead;
+                while (true) {
+                    assert initialStream != null;
+                    if ((bytesRead = initialStream.read(buffer)) == -1) break;
+                    outStream.write(buffer, 0, bytesRead);
+                }
+                IOUtils.closeQuietly(initialStream);
+                IOUtils.closeQuietly(outStream);
+                // TODO: Replace "java" with ProcessHandle.current() when upgrading to newer Java version OR do the same with a Java 8 method.
+                Runtime.getRuntime().exec("java -jar " + new File("versions/1.8.8-UtilityClient/updater.jar").getAbsolutePath(), null, new File("versions/1.8.8-UtilityClient"));
+                MinecraftClient.getInstance().scheduleStop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         if (button.id == 11)
@@ -160,7 +190,7 @@ public class GuiMainMenu extends Screen
                 {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
                     Object object = oclass.getMethod("getDesktop").invoke(null);
-                    oclass.getMethod("browse", URI.class).invoke(object, new URI(this.openGLWarningLink));
+                    oclass.getMethod("browse", URI.class).invoke(object, new URI(openGLWarningLink));
                 }
                 catch (Throwable throwable)
                 {
@@ -176,10 +206,10 @@ public class GuiMainMenu extends Screen
 
     public void render(int mouseX, int mouseY, float partialTicks)
     {
-        this.drawUtilityClientBackground();
+        drawUtilityClientBackground();
         GlStateManager.enableAlphaTest();
         int i = 274;
-        int j = this.width / 2 - i / 2 -(this.height / 4);
+        int j = width / 2 - i / 2 -(height / 4);
         int k = 72;
         client.getTextureManager().bindTexture(minecraftTitleTextures);
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -190,7 +220,7 @@ public class GuiMainMenu extends Screen
         dh.drawTexture(j + 155, k, 0, 45, 155, 44);
 
         GlStateManager.pushMatrix();
-        GlStateManager.translatef((float)(this.width / 4), 70.0F, 0.0F);
+        GlStateManager.translatef((float)(width / 4), 70.0F, 0.0F);
         GlStateManager.rotatef(-20.0F, 0.0F, 0.0F, 1.0F);
         float f = 1.8F - MathHelper.abs(MathHelper.sin((float)(MinecraftClient.getTime() % 1000L) / 1000.0F * (float)Math.PI * 2.0F) * 0.1F);
         GlStateManager.scalef(f, f, f);
@@ -214,11 +244,11 @@ public class GuiMainMenu extends Screen
             textRenderer.draw("The changelog was disabled due to GitHub's rate limit.", 4, 4, -1);
         }
 
-        if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
+        if (openGLWarning1 != null && openGLWarning1.length() > 0)
         {
-            fill(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1426063360);
-            textRenderer.draw(this.openGLWarning1, this.field_92022_t, this.field_92021_u, -1);
-            textRenderer.draw(this.openGLWarning2, (this.width - this.field_92024_r) / 2, buttons.get(0).y - 12, -1);
+            fill(field_92022_t - 2, field_92021_u - 2, field_92020_v + 2, field_92019_w - 1, 1426063360);
+            textRenderer.draw(openGLWarning1, field_92022_t, field_92021_u, -1);
+            textRenderer.draw(openGLWarning2, (width - field_92024_r) / 2, buttons.get(0).y - 12, -1);
         }
 
         super.render(mouseX, mouseY, partialTicks);
@@ -238,7 +268,7 @@ public class GuiMainMenu extends Screen
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         client.getTextureManager().bindTexture(Utils.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
         // NOTE: Gui => DrawableHelper
-        DrawableHelper.drawTexture(0, 0, 0, 0, this.width, this.height, this.width, this.height, this.width, this.height);
+        DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 }
 

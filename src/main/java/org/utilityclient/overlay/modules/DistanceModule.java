@@ -23,7 +23,7 @@ public class DistanceModule extends IModule {
 
     @Override
     public String getAuthor() {
-        return "GamingCraft";
+        return "Sam302";
     }
 
     @Override
