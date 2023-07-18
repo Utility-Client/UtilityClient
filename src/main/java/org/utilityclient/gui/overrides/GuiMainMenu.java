@@ -107,30 +107,12 @@ public class GuiMainMenu extends Screen
 
     protected void buttonClicked(ButtonWidget button)
     {
-        if (button.id == 0)
-        {
-            client.openScreen(new SettingsScreen(this, client.options));
-        }
-
-        if (button.id == 5)
-        {
-            client.openScreen(new LanguageOptionsScreen(this, client.options, client.getLanguageManager()));
-        }
-
-        if (button.id == 1)
-        {
-            client.openScreen(new SelectWorldScreen(this));
-        }
-
-        if (button.id == 2)
-        {
-            client.openScreen(new MultiplayerScreen(this));
-        }
-
-        if (button.id == 4)
-        {
-            client.scheduleStop();
-        }
+        if (button.id == 0) client.openScreen(new SettingsScreen(this, client.options));
+        if (button.id == 5) client.openScreen(new LanguageOptionsScreen(this, client.options, client.getLanguageManager()));
+        if (button.id == 1) client.openScreen(new SelectWorldScreen(this));
+        if (button.id == 2) client.openScreen(new MultiplayerScreen(this));
+        if (button.id == 4) client.scheduleStop();
+        if (button.id == 11) client.startGame("Demo_World", "Demo_World", DemoServerWorld.INFO);
 
         if (button.id == 9) {
             try {
@@ -155,11 +137,6 @@ public class GuiMainMenu extends Screen
             }
         }
 
-        if (button.id == 11)
-        {
-            client.startGame("Demo_World", "Demo_World", DemoServerWorld.INFO);
-        }
-
         if (button.id == 12)
         {
             LevelStorageAccess isaveformat = client.getCurrentSave();
@@ -175,29 +152,21 @@ public class GuiMainMenu extends Screen
 
     public void confirmResult(boolean result, int id)
     {
-        if (result && id == 12)
-        {
+        if (result && id == 12) {
             LevelStorageAccess isaveformat = client.getCurrentSave();
             isaveformat.method_254();
             isaveformat.deleteLevel("Demo_World");
             client.openScreen(this);
-        }
-        else if (id == 13)
-        {
-            if (result)
-            {
-                try
-                {
+        } else if (id == 13) {
+            if (result) {
+                try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
                     Object object = oclass.getMethod("getDesktop").invoke(null);
                     oclass.getMethod("browse", URI.class).invoke(object, new URI(openGLWarningLink));
-                }
-                catch (Throwable throwable)
-                {
+                } catch (Throwable throwable) {
                     logger.error("Couldn't open link", throwable);
                 }
             }
-
             client.openScreen(this);
         }
     }
