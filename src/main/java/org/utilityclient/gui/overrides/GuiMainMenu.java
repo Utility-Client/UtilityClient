@@ -22,6 +22,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GLContext;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.Utils;
@@ -50,7 +52,7 @@ public class GuiMainMenu extends UCScreen {
     private int field_92019_w;
     private final Release release;
     private boolean isLatest;
-    private boolean shouldShowChangelog = true;
+    private boolean shouldShowChangelog = Config.getBoolean(ConfigEntry.SHOW_CHANGELOG_IN_TITLE_SCREEN);
     private ButtonWidget toggleChangelogBtn;
 
     public GuiMainMenu() {
@@ -138,6 +140,7 @@ public class GuiMainMenu extends UCScreen {
         if (button.id == 10) {
             toggleChangelogBtn.message = shouldShowChangelog ? "<<" : ">>";
             shouldShowChangelog = !shouldShowChangelog;
+            Config.setBoolean(ConfigEntry.SHOW_CHANGELOG_IN_TITLE_SCREEN, shouldShowChangelog);
         }
 
         if (button.id == 11) client.startGame("Demo_World", "Demo_World", DemoServerWorld.INFO);
