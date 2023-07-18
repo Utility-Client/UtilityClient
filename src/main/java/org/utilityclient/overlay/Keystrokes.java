@@ -2,32 +2,32 @@ package org.utilityclient.overlay;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.Window;
 import org.utilityclient.config.Config;
+import org.utilityclient.config.ConfigEntry;
 
 public class Keystrokes {
     public static void loop() {
-        if(!Config.getBoolean("keystrokesEnabled", true)) return;
+        if(!Config.getBoolean(ConfigEntry.KEYSTROKES)) return;
         Window window = new Window(MinecraftClient.getInstance());
+        int offset = 0;
+        if (Config.getBoolean(ConfigEntry.SPRINT_AND_CROUCH_KEYSTROKES)) {
+            offset = 24;
+            renderButton(window.getWidth()-72, window.getHeight()-24, 32, "Sprint", MinecraftClient.getInstance().options.keySprint);
+            renderButton(window.getWidth()-34, window.getHeight()-24, 30, "Sneak", MinecraftClient.getInstance().options.keySneak);
+        }
 
-        ButtonWidget a = new ButtonWidget(0, window.getWidth()-48, window.getHeight()-72, 20, 20, "W");
-        a.active = MinecraftClient.getInstance().options.keyForward.isPressed();
-        a.render(MinecraftClient.getInstance(), 0, 0);
+        renderButton(window.getWidth()-48, window.getHeight()-72-offset, 20, "^", MinecraftClient.getInstance().options.keyForward);
+        renderButton(window.getWidth()-72, window.getHeight()-48-offset, 20,"<", MinecraftClient.getInstance().options.keyLeft);
+        renderButton(window.getWidth()-48, window.getHeight()-48-offset, 20, "v", MinecraftClient.getInstance().options.keyBack);
+        renderButton(window.getWidth()-24, window.getHeight()-48-offset, 20, ">", MinecraftClient.getInstance().options.keyRight);
+        renderButton(window.getWidth()-72, window.getHeight()-24-offset, 68, "Jump", MinecraftClient.getInstance().options.keyJump);
+    }
 
-        ButtonWidget b = new ButtonWidget(0, window.getWidth()-72, window.getHeight()-48, 20, 20, "A");
-        b.active = MinecraftClient.getInstance().options.keyLeft.isPressed();
-        b.render(MinecraftClient.getInstance(), 0, 0);
-
-        ButtonWidget c = new ButtonWidget(0, window.getWidth()-48, window.getHeight()-48, 20, 20, "S");
-        c.active = MinecraftClient.getInstance().options.keyBack.isPressed();
-        c.render(MinecraftClient.getInstance(), 0, 0);
-
-        ButtonWidget d = new ButtonWidget(0, window.getWidth()-24, window.getHeight()-48, 20, 20, "D");
-        d.active = MinecraftClient.getInstance().options.keyRight.isPressed();
-        d.render(MinecraftClient.getInstance(), 0, 0);
-
-        ButtonWidget e = new ButtonWidget(0, window.getWidth()-72, window.getHeight()-24, 68, 20, "Space");
-        e.active = MinecraftClient.getInstance().options.keyJump.isPressed();
-        e.render(MinecraftClient.getInstance(), 0, 0);
+    public static void renderButton(int x, int y, int width, String label, KeyBinding active) {
+        ButtonWidget bw = new ButtonWidget(0, x, y, width, 20, label);
+        bw.active = active.isPressed();
+        bw.render(MinecraftClient.getInstance(), 0, 0);
     }
 }
