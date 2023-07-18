@@ -12,7 +12,7 @@ public enum ConfigEntry {
     HOTKEY_OVERLAY("hotkeyOverlay", "22"),
     CROSSHAIR_SIZE("crosshairSize", "11"),
     ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
-    KEYSTROKES("keystrokesEnabled", "true"),
+    KEYSTROKES("keystrokes.enabled", "true"),
     TOGGLE_SPRINT("toggleSprintEnabled", "false"),
     OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true"),
     DISCORD_RICH_PRESENCE("discordRichPresenceEnabled", "true"),
@@ -21,6 +21,7 @@ public enum ConfigEntry {
     CROSSHAIR_COLOR("crosshairColor", String.valueOf(2164260863L)),
     DATE_PATTERN("datePattern", "dd/MM/YYYY"),
     TIME_PATTERN("timePattern", "HH:mm:ss"),
+    SPRINT_AND_CROUCH_KEYSTROKES("keystrokes.showSprintAndCrouch", "false"),
     RENDER_RAIN_SNOW("renderRainSnow", "true");
 
     private final String key;
