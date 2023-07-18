@@ -27,9 +27,8 @@ public class ModuleHandler extends Instances {
             x++;
         }
 
-        if(Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND)) {
+        if (Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND))
             Screen.fill(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Color.BACKGROUND.color);
-        }
 
         int z = 1;
         for (IModule mod : modules) {
