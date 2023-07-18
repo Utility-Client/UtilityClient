@@ -6,22 +6,24 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.gui.options.macros.GuiMacroManager;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 
-public class GuiUtilityClient extends Screen
-{
-    private final Screen parentScreen;
+public class GuiUtilityClient extends UCScreen {
+    private final Screen parent;
     private String title;
-    public GuiUtilityClient(Screen parentScreenIn) {
-        parentScreen = parentScreenIn;
+
+    public GuiUtilityClient(Screen parent) {
+        super("Changing settings");
+        this.parent = parent;
     }
 
     public void init() {
         title = UtilityClient.getClientName();
 
-        buttons.add(new GuiCustomSlider(0, this.width / 2 - 204, this.height/2 - 66, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
+        buttons.add(new GuiCustomSlider(0, this.width / 2 - 204, this.height / 2 - 66, f -> Config.setFloat(ConfigEntry.ZOOM_FACTOR, f), Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f)));
         buttons.add(new ButtonWidget(1, width / 2 + 4, height / 2 - 66, Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes"));
 
         buttons.add(new ButtonWidget(2, width / 2 - 204, height / 2 - 44, "Edit Crosshair..."));
@@ -40,7 +42,7 @@ public class GuiUtilityClient extends Screen
             if (button.id != 1) save();
             switch (button.id) {
                 case 200:
-                    client.openScreen(parentScreen);
+                    client.openScreen(parent);
                     save();
                 break;
                 case 1:

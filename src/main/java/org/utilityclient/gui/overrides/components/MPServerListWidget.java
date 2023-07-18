@@ -1,4 +1,4 @@
-package org.utilityclient.gui.overrides;
+package org.utilityclient.gui.overrides.components;
 
 import com.google.common.collect.Lists;
 import net.minecraft.client.MinecraftClient;
@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screen.multiplayer.LanScanWidget;
 import net.minecraft.client.gui.widget.EntryListWidget;
 import net.minecraft.client.network.LanServerQueryManager;
 import net.minecraft.client.options.ServerList;
+import org.utilityclient.gui.overrides.GuiMultiplayer;
 
 import java.util.Iterator;
 import java.util.List;
@@ -36,7 +37,7 @@ public class MPServerListWidget extends EntryListWidget {
         }
     }
 
-    protected int getEntryCount() {
+    public int getEntryCount() {
         return this.servers.size() + 1 + this.lanServers.size();
     }
 

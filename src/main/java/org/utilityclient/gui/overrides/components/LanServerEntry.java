@@ -1,9 +1,10 @@
-package org.utilityclient.gui.overrides;
+package org.utilityclient.gui.overrides.components;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.EntryListWidget;
 import net.minecraft.client.network.LanServerQueryManager;
 import net.minecraft.client.resource.language.I18n;
+import org.utilityclient.gui.overrides.GuiMultiplayer;
 
 public class LanServerEntry implements EntryListWidget.Entry {
     private final GuiMultiplayer parent;

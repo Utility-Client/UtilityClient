@@ -4,13 +4,12 @@ import de.jcm.discordgamesdk.Core;
 import de.jcm.discordgamesdk.CreateParams;
 import de.jcm.discordgamesdk.activity.Activity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import org.apache.logging.log4j.LogManager;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Utils;
 
 import java.io.File;
@@ -23,15 +22,20 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 /**
- * @since 2.0 LTS
- * @author GamingCraft
+ * @author Sam302
  * @author Niklas-Dev
+ * @since 2.0 LTS
  */
 public class DiscordRP extends Thread {
 
     private static boolean shouldRun = false;
     public static Core core;
     private String oldTopText, oldBottomText;
+
+    public DiscordRP() {
+        this.setName("Discord rich presence");
+        this.setPriority(MIN_PRIORITY); // It's just the Discord RP. (Almost) no one cares, if it even works.
+    }
 
     @Override
     public void run() {
@@ -59,7 +63,7 @@ public class DiscordRP extends Thread {
 
         while (shouldRun) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(500);
                 loop();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -75,29 +79,26 @@ public class DiscordRP extends Thread {
         String bottomText = "";
 
         try {
-            if(MinecraftClient.getInstance().isInSingleplayer()) {
+            if (MinecraftClient.getInstance().isInSingleplayer()) {
                 topText = "Playing Singleplayer";
             } else if (MinecraftClient.getInstance().getCurrentServerEntry() != null) {
                 topText = "Playing Multiplayer";
-                if(Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER)) bottomText = "Current Server: " + MinecraftClient.getInstance().getCurrentServerEntry().address;
+                if (Config.getBoolean(ConfigEntry.DISCORD_SHOW_SERVER))
+                    bottomText = "Current Server: " + MinecraftClient.getInstance().getCurrentServerEntry().address;
             }
         } catch (Exception e) {
             Utils.ignore(e);
         }
 
-        if(MinecraftClient.getInstance().currentScreen instanceof TitleScreen) {
-            topText = "In Menus";
-            bottomText = "Main Menu";
+        if (MinecraftClient.getInstance().currentScreen instanceof UCScreen) {
+            UCScreen currentScreen = (UCScreen) MinecraftClient.getInstance().currentScreen;
+            topText = currentScreen.getActionLabel();
+            bottomText = "";
         }
 
-        if(MinecraftClient.getInstance().currentScreen instanceof MultiplayerScreen) {
-            topText = "In Menus";
-            bottomText = "Server List";
-        }
-
-        if(MinecraftClient.getInstance().currentScreen instanceof SelectWorldScreen) {
-            topText = "In Menus";
-            bottomText = "World List";
+        if (MinecraftClient.getInstance().currentScreen instanceof SelectWorldScreen) {
+            topText = "Choosing a world to play";
+            bottomText = "";
         }
 
         // Prevent unneeded updates.
@@ -122,12 +123,13 @@ public class DiscordRP extends Thread {
     }
 
     /**
-     * A big thank you to @JnCrMx for making this example!
+     * Downloads the discord library
+     *
      * @return The library as file
      * @throws IOException Something went wrong!
+     * @author Example by @JnCrMx
      */
-    public static File downloadDiscordLibrary() throws IOException
-    {
+    public static File downloadDiscordLibrary() throws IOException {
         // Find out which name Discord's library has (.dll for Windows, .so for Linux)
         String name = "discord_game_sdk";
         String suffix;
@@ -135,32 +137,19 @@ public class DiscordRP extends Thread {
         String osName = System.getProperty("os.name").toLowerCase(Locale.ROOT);
         String arch = System.getProperty("os.arch").toLowerCase(Locale.ROOT);
 
-        if(osName.contains("windows"))
-        {
-            suffix = ".dll";
-        }
-        else if(osName.contains("linux"))
-        {
-            suffix = ".so";
-        }
-        else if(osName.contains("mac os"))
-        {
-            suffix = ".dylib";
-        }
-        else
-        {
-            throw new RuntimeException("cannot determine OS type: "+osName);
-        }
+        if (osName.contains("windows")) suffix = ".dll";
+        else if (osName.contains("linux")) suffix = ".so";
+        else if (osName.contains("mac os")) suffix = ".dylib";
+        else throw new RuntimeException("cannot determine OS type: " + osName);
 
 		/*
-		Some systems report "amd64" (e.g. Windows and Linux), some "x86_64" (e.g. Mac OS).
+		Some systems report "amd64" (e.g. Windows and Linux), some "x86_64" (e.g. macOS).
 		At this point we need the "x86_64" version, as this one is used in the ZIP.
 		 */
-        if(arch.equals("amd64"))
-            arch = "x86_64";
+        if (arch.equals("amd64")) arch = "x86_64";
 
         // Path of Discord's library inside the ZIP
-        String zipPath = "lib/"+arch+"/"+name+suffix;
+        String zipPath = "lib/" + arch + "/" + name +suffix;
 
         // Open the URL as a ZipInputStream
         URL downloadUrl = new URL("https://dl-game-sdk.discordapp.net/2.5.6/discord_game_sdk.zip");
@@ -175,8 +164,7 @@ public class DiscordRP extends Thread {
                 // Create a new temporary directory
                 // We need to do this, because we may not change the filename on Windows
                 File tempDir = new File(System.getProperty("java.io.tmpdir"), "java-"+name+System.nanoTime());
-                if(!tempDir.mkdir())
-                    throw new IOException("Cannot create temporary directory");
+                if (!tempDir.mkdir()) throw new IOException("Cannot create temporary directory");
                 tempDir.deleteOnExit();
 
                 // Create a temporary file inside our directory (with a "normal" name)

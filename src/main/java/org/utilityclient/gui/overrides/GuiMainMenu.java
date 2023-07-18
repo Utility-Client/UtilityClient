@@ -6,7 +6,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.ConfirmScreen;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.SettingsScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.options.LanguageOptionsScreen;
@@ -23,20 +22,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GLContext;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.Utils;
 import org.utilityclient.utils.json.JSONUtils;
 import org.utilityclient.utils.json.objects.Release;
 
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
-import java.net.URL;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 
-public class GuiMainMenu extends Screen
-{
+public class GuiMainMenu extends UCScreen {
     private static final Logger logger = LogManager.getLogger();
     private final Object threadLock = new Object();
     private String openGLWarning1;
@@ -53,11 +52,12 @@ public class GuiMainMenu extends Screen
     boolean isLatest = false;
 
     public GuiMainMenu() {
+        super("On the title screen");
+
         openGLWarning2 = field_96138_a;
         openGLWarning1 = "";
 
-        if (!GLContext.getCapabilities().OpenGL20)
-        {
+        if (!GLContext.getCapabilities().OpenGL20) {
             openGLWarning1 = I18n.translate("title.oldgl1");
             openGLWarning2 = I18n.translate("title.oldgl2");
             openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";

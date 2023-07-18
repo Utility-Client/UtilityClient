@@ -5,7 +5,10 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.gui.screen.*;
 import net.minecraft.client.gui.screen.multiplayer.LanScanWidget;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
-import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.EntryListWidget;
+import net.minecraft.client.gui.widget.IdentifibleBooleanConsumer;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.network.LanServerQueryManager;
 import net.minecraft.client.network.MultiplayerServerListPinger;
 import net.minecraft.client.network.ServerInfo;
@@ -14,11 +17,13 @@ import net.minecraft.client.resource.language.I18n;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
+import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.overrides.components.MPServerListWidget;
+import org.utilityclient.gui.overrides.components.ServerEntry;
 
 import java.util.List;
 
-public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
-{
+public class GuiMultiplayer extends UCScreen implements IdentifibleBooleanConsumer {
     private static final Logger LOGGER = LogManager.getLogger();
     private final MultiplayerServerListPinger pinger = new MultiplayerServerListPinger();
     private final Screen parent;
@@ -40,6 +45,7 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
     private TextFieldWidget directConnectTextField;
 
     public GuiMultiplayer(Screen screen) {
+        super("In the server list");
         parent = screen;
     }
 
@@ -73,7 +79,6 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
         super.handleMouse();
         serverListWidget.handleMouse();
     }
-
 
     public void initButtons()
     {   // widthIn: 75
@@ -118,8 +123,7 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
 
     protected void buttonClicked(ButtonWidget button)
     {
-        if (button.active)
-        {
+        if (button.active) {
             EntryListWidget.Entry entry = serverListWidget.getSelected() < 0 ? null : serverListWidget.getEntry(serverListWidget.getSelected());
 
             if (button.id == 10)
@@ -128,8 +132,8 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
                                 new ServerInfo("Direct Connect", directConnectTextField.getText(), false)));
 
 
-            if (button.id == 2 && entry instanceof ServerEntry) {
-                String string = ((ServerEntry)entry).getServer().name;
+            if (button.id == 2 && entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
+                String string = ((org.utilityclient.gui.overrides.components.ServerEntry) entry).getServer().name;
                 if (string != null) {
                     this.field_1191 = true;
                     String string2 = I18n.translate("selectServer.deleteQuestion");
@@ -146,19 +150,16 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
                 field_1194 = true;
                 client.openScreen(new DirectConnectScreen(this, selectedEntry = new ServerInfo(I18n.translate("selectServer.defaultName"), "", false)));
             }
-            else if (button.id == 3)
-            {
+            else if (button.id == 3) {
                 field_1192 = true;
                 client.openScreen(new AddServerScreen(this, selectedEntry = new ServerInfo(I18n.translate("selectServer.defaultName"), "", false)));
-            }
-            else if (button.id == 7 && entry instanceof ServerEntry) {
+            } else if (button.id == 7 && entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
                 field_1193 = true;
-                ServerInfo serverInfo = ((ServerEntry)entry).getServer();
+                ServerInfo serverInfo = ((org.utilityclient.gui.overrides.components.ServerEntry) entry).getServer();
                 selectedEntry = new ServerInfo(serverInfo.name, serverInfo.address, false);
                 selectedEntry.copyFrom(serverInfo);
                 client.openScreen(new AddServerScreen(this, selectedEntry));
-            }
-            else if (button.id == 0) client.openScreen(parent);
+            } else if (button.id == 0) client.openScreen(parent);
             else if (button.id == 8) refresh();
         }
     }
@@ -173,7 +174,7 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
         EntryListWidget.Entry entry = this.serverListWidget.getSelected() < 0 ? null : this.serverListWidget.getEntry(this.serverListWidget.getSelected());
         if (this.field_1191) {
             this.field_1191 = false;
-            if (b && entry instanceof ServerEntry) {
+            if (b && entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
                 this.serverList.remove(this.serverListWidget.getSelected());
                 this.serverList.saveFile();
                 this.serverListWidget.setSelected(-1);
@@ -200,8 +201,8 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
             this.client.openScreen(this);
         } else if (this.field_1193) {
             this.field_1193 = false;
-            if (b && entry instanceof ServerEntry) {
-                ServerInfo serverInfo = ((ServerEntry)entry).getServer();
+            if (b && entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
+                ServerInfo serverInfo = ((org.utilityclient.gui.overrides.components.ServerEntry) entry).getServer();
                 serverInfo.name = this.selectedEntry.name;
                 serverInfo.address = this.selectedEntry.address;
                 serverInfo.copyFrom(this.selectedEntry);
@@ -225,7 +226,7 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
             if (i >= 0) {
                 if (code == 200) {
                     if (hasShiftDown()) {
-                        if (i > 0 && entry instanceof ServerEntry) {
+                        if (i > 0 && entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
                             this.serverList.swapEntries(i, i - 1);
                             this.selectEntry(this.serverListWidget.getSelected() - 1);
                             this.serverListWidget.scroll(-this.serverListWidget.getItemHeight());
@@ -293,10 +294,10 @@ public class GuiMultiplayer extends Screen implements IdentifibleBooleanConsumer
     }
     public void connect() {
         EntryListWidget.Entry entry = serverListWidget.getSelected() < 0 ? null : serverListWidget.getEntry(serverListWidget.getSelected());
-        if (entry instanceof ServerEntry) {
-            connect(((ServerEntry)entry).getServer());
-        } else if (entry instanceof LanServerEntry) {
-            LanServerQueryManager.LanServerInfo lanServerInfo = ((LanServerEntry)entry).getServer();
+        if (entry instanceof org.utilityclient.gui.overrides.components.ServerEntry) {
+            connect(((org.utilityclient.gui.overrides.components.ServerEntry) entry).getServer());
+        } else if (entry instanceof org.utilityclient.gui.overrides.components.LanServerEntry) {
+            LanServerQueryManager.LanServerInfo lanServerInfo = ((org.utilityclient.gui.overrides.components.LanServerEntry) entry).getServer();
             connect(new ServerInfo(lanServerInfo.getMotd(), lanServerInfo.getAddressPort(), true));
         }
 

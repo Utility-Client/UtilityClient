@@ -6,15 +6,15 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Color;
 
-import java.io.IOException;
-
-public class GuiThemeOptions extends Screen {
+public class GuiThemeOptions extends UCScreen {
     private final Screen parentScreen;
     private String title;
 
     public GuiThemeOptions(Screen parentScreenIn) {
+        super("Choosing a color scheme");
         this.parentScreen = parentScreenIn;
     }
 

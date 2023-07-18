@@ -5,12 +5,14 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Color;
 
-public class GuiDiscordOptions extends Screen {
+public class GuiDiscordOptions extends UCScreen {
     private final Screen parent;
 
     public GuiDiscordOptions(Screen parentIn) {
+        super("Changing settings");
         parent = parentIn;
     }
 
