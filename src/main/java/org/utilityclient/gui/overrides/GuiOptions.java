@@ -12,11 +12,11 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.Difficulty;
-import org.utilityclient.*;
+import org.utilityclient.UtilityClient;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.gui.options.GuiUtilityClient;
 
-public class GuiOptions extends Screen implements IdentifibleBooleanConsumer
-{
+public class GuiOptions extends UCScreen implements IdentifibleBooleanConsumer {
     private static final GameOptions.Option[] OPTIONS;
     private final Screen parent;
     private final GameOptions options;
@@ -24,8 +24,8 @@ public class GuiOptions extends Screen implements IdentifibleBooleanConsumer
     private LockButtonWidget lockDifficultyButton;
     protected String title = "Options";
 
-    public GuiOptions(Screen parent, GameOptions options)
-    {
+    public GuiOptions(Screen parent, GameOptions options) {
+        super("Changing settings");
         this.parent = parent;
         this.options = options;
     }

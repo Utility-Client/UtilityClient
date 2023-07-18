@@ -1,4 +1,4 @@
-package org.utilityclient.gui.overrides;
+package org.utilityclient.gui.overrides.components;
 
 import com.google.common.base.Charsets;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -19,6 +19,7 @@ import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.utilityclient.gui.overrides.GuiMultiplayer;
 
 import java.awt.image.BufferedImage;
 import java.net.UnknownHostException;

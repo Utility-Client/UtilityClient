@@ -6,6 +6,7 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.SerializationUtils;
 
@@ -14,8 +15,7 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class GuiCrosshairOptions extends Screen
-{
+public class GuiCrosshairOptions extends UCScreen {
     private final Screen parentScreen;
     private String title;
     private int size = 9;
@@ -23,8 +23,8 @@ public class GuiCrosshairOptions extends Screen
     public static final File crosshairFile = new File("uc2/crosshair.txt");
     HashMap<Integer, Boolean> pixels = new HashMap<>();
 
-    public GuiCrosshairOptions(Screen parentScreenIn)
-    {
+    public GuiCrosshairOptions(Screen parentScreenIn) {
+        super("Making a new crosshair");
         parentScreen = parentScreenIn;
     }
 

@@ -1,27 +1,33 @@
 package org.utilityclient.gui.overrides;
 
-import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.AchievementsScreen;
+import net.minecraft.client.gui.screen.OpenToLanScreen;
+import net.minecraft.client.gui.screen.StatsScreen;
+import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.realms.RealmsBridge;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
-import net.minecraft.realms.RealmsBridge;
+import org.utilityclient.gui.UCScreen;
 import org.utilityclient.overlay.modules.DistanceModule;
 
 import java.io.IOException;
 
-public class GuiIngameMenu extends Screen
-{
+public class GuiIngameMenu extends UCScreen {
 
-    public void init()
-    {
+    public GuiIngameMenu() {
+        super("Game paused");
+    }
+
+    public void init() {
         buttons.clear();
         int i = -16;
         buttons.add(new ButtonWidget(1, this.width / 2 - 100, this.height / 4 + 120 + i, client.isIntegratedServerRunning() ? I18n.translate("menu.returnToMenu") : I18n.translate("menu.disconnect")));
         buttons.add(new ButtonWidget(4, this.width / 2 - 100, this.height / 4 + 24 + i, I18n.translate("menu.returnToGame")));
-        buttons.add(new ButtonWidget(0, this.width / 2 - 100, this.height / 4 + 72 + i + 11,  I18n.translate("menu.options")));
-        buttons.add(new ButtonWidget(5, this.width / 2 - 100, this.height / 4 + 48 + i + 11,  I18n.translate("gui.achievements")));
+        buttons.add(new ButtonWidget(0, this.width / 2 - 100, this.height / 4 + 72 + i + 11, I18n.translate("menu.options")));
+        buttons.add(new ButtonWidget(5, this.width / 2 - 100, this.height / 4 + 48 + i + 11, I18n.translate("gui.achievements")));
         buttons.add(new ButtonWidget(99, this.width - 210, 10, "Toggle Streamer Mode"));
         if(DistanceModule.gotUpdated) buttons.add(new ButtonWidget(98, this.width - 210, 30, "Clear Destination"));
     }
