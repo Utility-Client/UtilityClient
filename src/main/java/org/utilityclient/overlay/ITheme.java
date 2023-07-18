@@ -5,8 +5,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 
 /**
+ * @author Sam302
  * @since 2.15 LTS
- * @author GamingCraft
  */
 public interface ITheme {
     /**

@@ -5,10 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.utilityclient.Instances;
 
 /**
- * @author GamingCraft
- * @since 2.15 LTS
- * @see Instances.Interface
+ * @author Sam302
  * @implNote Use mc() to get the Minecraft client instance and uc() to get the UtilityClient instance. Directly calling UtilityClient for static methods is allowed too.
+ * @see Instances.Interface
+ * @since 2.15 LTS
  */
 public interface UC2Addon extends Instances.Interface {
     /**

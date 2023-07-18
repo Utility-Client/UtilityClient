@@ -13,7 +13,8 @@ import java.util.Scanner;
 /**
  * The Config of UtilityClient
  * It gets written to uc2/config.cfg
- * @author GamingCraft
+ *
+ * @author Sam302
  * @since 2.12
  */
 public class Config {

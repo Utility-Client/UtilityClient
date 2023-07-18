@@ -1,7 +1,7 @@
 package org.utilityclient.utils;
 
 /**
- * @author GamingCraft
+ * @author Sam302
  * @since 2.14
  */
 public class MathUtil {
