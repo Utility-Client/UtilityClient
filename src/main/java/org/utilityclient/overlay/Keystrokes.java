@@ -14,13 +14,13 @@ public class Keystrokes {
         int offset = 0;
         if (Config.getBoolean(ConfigEntry.SPRINT_AND_CROUCH_KEYSTROKES)) {
             offset = 24;
-            renderButton(window.getWidth()-72, window.getHeight()-24, 32, "Sprint", MinecraftClient.getInstance().options.keySprint);
-            renderButton(window.getWidth()-34, window.getHeight()-24, 30, "Sneak", MinecraftClient.getInstance().options.keySneak);
+            renderButton(window.getWidth() - 72, window.getHeight() - 24, 32, "Sprint", MinecraftClient.getInstance().options.keySprint);
+            renderButton(window.getWidth() - 34, window.getHeight() - 24, 32, "Sneak", MinecraftClient.getInstance().options.keySneak);
         }
 
-        renderButton(window.getWidth()-48, window.getHeight()-72-offset, 20, "^", MinecraftClient.getInstance().options.keyForward);
-        renderButton(window.getWidth()-72, window.getHeight()-48-offset, 20,"<", MinecraftClient.getInstance().options.keyLeft);
-        renderButton(window.getWidth()-48, window.getHeight()-48-offset, 20, "v", MinecraftClient.getInstance().options.keyBack);
+        renderButton(window.getWidth() - 48, window.getHeight() - 72 - offset, 20, "^", MinecraftClient.getInstance().options.keyForward);
+        renderButton(window.getWidth() - 48, window.getHeight() - 48 - offset, 20, "v", MinecraftClient.getInstance().options.keyBack);
+        renderButton(window.getWidth() - 72, window.getHeight() - 48 - offset, 20, "<", MinecraftClient.getInstance().options.keyLeft);
         renderButton(window.getWidth()-24, window.getHeight()-48-offset, 20, ">", MinecraftClient.getInstance().options.keyRight);
         renderButton(window.getWidth()-72, window.getHeight()-24-offset, 68, "Jump", MinecraftClient.getInstance().options.keyJump);
     }

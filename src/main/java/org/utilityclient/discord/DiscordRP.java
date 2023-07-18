@@ -56,7 +56,15 @@ public class DiscordRP extends Thread {
             core.close();
         }));
 
-        while (shouldRun) loop();
+
+        while (shouldRun) {
+            try {
+                Thread.sleep(100);
+                loop();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void loop() {
