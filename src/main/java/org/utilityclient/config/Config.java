@@ -12,14 +12,14 @@ import java.util.Scanner;
 
 /**
  * The Config of UtilityClient
- * It gets written to uc2/config.cfg
+ * It gets written to uc3/config.cfg
  *
  * @author Sam302
  * @since 2.12
  */
 public class Config {
     private static final HashMap<String, String> config = new HashMap<>();
-    private static final File configFile = new File("uc2/config.cfg");
+    private static final File configFile = new File("uc3/config.cfg");
 
     public static void run() throws IOException {
         config.clear();

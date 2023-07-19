@@ -114,8 +114,8 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
-        Utils.ignore(new File("uc2").mkdirs());
-        Utils.ignore(new File("uc2/modules").mkdirs());
+        Utils.ignore(new File("uc3").mkdirs());
+        Utils.ignore(new File("uc3/modules").mkdirs());
 
         try {
             Config.run();

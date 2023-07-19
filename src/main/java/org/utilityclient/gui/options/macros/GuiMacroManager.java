@@ -11,7 +11,8 @@ import org.utilityclient.utils.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import static org.utilityclient.macro.MacroManager.*;
+
+import static org.utilityclient.macro.MacroManager.macros;
 
 public class GuiMacroManager extends Screen {
     public final Screen parent;
@@ -74,7 +75,7 @@ public class GuiMacroManager extends Screen {
             if (button.id >= 2000) {
                 id = button.id - 2000;
                 // Delete
-                new File("uc2/macros/" + macros.get(id).name + ".txt").deleteOnExit(); // Delete macro file
+                new File("uc3/macros/" + macros.get(id).name + ".txt").deleteOnExit(); // Delete macro file
                 try {
                     MacroManager.reload(); // Reload macros
                 } catch (FileNotFoundException e) {

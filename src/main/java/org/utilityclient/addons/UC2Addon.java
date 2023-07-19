@@ -9,6 +9,7 @@ import org.utilityclient.Instances;
  * @implNote Use mc() to get the Minecraft client instance and uc() to get the UtilityClient instance. Directly calling UtilityClient for static methods is allowed too.
  * @see Instances.Interface
  * @since 2.15 LTS
+ * @deprecated since 3.0, use UC3Addon instead. Support will cease in 3.5.
  */
 public interface UC2Addon extends Instances.Interface {
     /**

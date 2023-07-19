@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
 import static org.utilityclient.overlay.ModuleHandler.modules;
 
 public class GuiOverlaySettings extends Screen {
@@ -89,7 +90,7 @@ public class GuiOverlaySettings extends Screen {
 
     public static void saveStates() throws IOException {
         for (int i = 0; i < modules.size(); i++) {
-            File f = new File("uc2/modules/" + i + ".txt");
+            File f = new File("uc3/modules/" + i + ".txt");
             Utils.ignore(f.createNewFile());
             FileWriter fw = new FileWriter(f, false);
             fw.write(Boolean.toString(modules.get(i).isEnabled));
@@ -99,7 +100,7 @@ public class GuiOverlaySettings extends Screen {
 
     public static void loadStates() throws IOException {
         for (int i = 0; i < modules.size(); i++) {
-            File f = new File("uc2/modules/" + i + ".txt");
+            File f = new File("uc3/modules/" + i + ".txt");
             if (f.createNewFile()) {
                 FileWriter fw = new FileWriter(f, false);
                 fw.write(Boolean.toString(modules.get(i).isEnabled));

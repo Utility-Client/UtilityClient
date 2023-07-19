@@ -20,7 +20,7 @@ public class GuiCrosshairOptions extends UCScreen {
     private String title;
     private int size = 9;
     private int prevSize = 9;
-    public static final File crosshairFile = new File("uc2/crosshair.txt");
+    public static final File crosshairFile = new File("uc3/crosshair.txt");
     HashMap<Integer, Boolean> pixels = new HashMap<>();
 
     public GuiCrosshairOptions(Screen parentScreenIn) {

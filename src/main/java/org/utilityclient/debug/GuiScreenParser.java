@@ -15,7 +15,7 @@ public class GuiScreenParser extends Instances {
 
     public ArrayList<String> readFile() throws FileNotFoundException {
         ArrayList<String> lines = new ArrayList<>();
-        Scanner fr = new Scanner(new File("uc2/debugScreen.txt"));
+        Scanner fr = new Scanner(new File("uc3/debugScreen.txt"));
         while (fr.hasNextLine()) {
             String line = fr.nextLine();
             if (!line.startsWith("#")) lines.add(line);
