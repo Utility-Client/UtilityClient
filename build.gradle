@@ -114,12 +114,38 @@ java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
-	withSourcesJar()
+	// withSourcesJar()
 }
 
 jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}" }
+	}
+
+	from {
+		// Add dependencies here as well
+		String[] depList = ["discord-game-sdk4j"]
+		configurations.runtimeClasspath.collect {
+			duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+			for (String dep : depList) if (it.name.contains(dep)) {
+				println(dep)
+				return zipTree(it)
+			}
+		}
+	}
+
+	doLast {
+		copy {
+			from "$buildDir/devlibs/"
+			into "$buildDir/"
+		}
+
+		delete "$buildDir/devlibs/"
+		delete "$buildDir/tmp/"
+		delete "$buildDir/classes/"
+		delete "$buildDir/generated/"
+		delete "$buildDir/loom-cache/"
+		delete "$buildDir/resources/"
 	}
 }
 
