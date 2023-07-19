@@ -2,38 +2,19 @@
 
 [![](https://img.shields.io/discord/753596597983772802?color=%23f66b70&label=Utility%20Client&style=for-the-badge)](https://uc.gamingcraft.de/discord) ![](https://img.shields.io/github/downloads/Utility-Client/UtilityClient2/total?style=for-the-badge)<br>[Roadmap](https://trello.com/b/KgoKb6pQ/update-roadmap) - [Download](https://github.com/Utility-Client/UtilityClient2/releases)
 
-## Installation
-1. Download the latest release [here](https://github.com/Utility-Client/UtilityClient2/releases).
-2. Extract the zip into a folder with the **exact** name and move the folder into your Minecraft's `versions` folder.
-3. Create a new profile inside of the Minecraft Launcher.
+UtilityClient is a free, open-source and lightweight Client for the game "Minecraft" running currently on a FabricMC
+backend.
+There's also a mod loader included for Add-ons, which can be programmed in Java.
 
-## Contribute
+Currently only Version 1.8.9 of Minecraft is supported, but other versions are planned in the near future.
 
-### Required Tools
-- Git Bash or GitHub Desktop
-- JetBrains Intellij IDEA
-
-### How to Contribute
-
-#### Setup Workspace
-- Make a fork.
-- Clone your fork using GitHub Desktop or the Git Bash.
-- Create a `Application` Configuration inside IntelliJ.
-  - VM Options: `-Djava.library.path=versions/1.8.8/1.8.8-natives/`
-  - Main Class: `net.minecraft.Start`
-  - Working directory: `C:\Users\<windows_username>\AppData\Roaming\.minecraft`
-- Click `Apply` and `OK and press`.
-
-#### Start client from workspace
-Press `SHIFT` + `F10` or press the green Start Button or Bug for debugging.
-
-## Contributer
+## Contributor
 
 <table>
 <tr>
 <th> Developers </th>
 <th> Maintainer </th>
-<th> Contributer </th>
+<th> Contributor </th>
 </tr>
 <tr>
 <td>
