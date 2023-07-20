@@ -12,7 +12,8 @@ public class PingModule extends IModule {
     public String getValue() {
         try {
             return mc().player.networkHandler.getPlayerListEntry(mc().player.getUuid()).getLatency() + "ms";
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return "Error";
         }
     }

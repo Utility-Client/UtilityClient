@@ -67,6 +67,7 @@ public class IngameMixins extends DrawableHelper {
         try {
             if (UtilityClient.shouldRenderOverlay()){
                 ModuleHandler.loop();
+                if (client.options.viewDistance == 1) client.textRenderer.drawWithShadow(ChatFormatting.RED + "Mario mode", i - 4 - client.textRenderer.getStringWidth("Mario mode"), 16, 0);
                 if (UtilityClient.isFulbrightEnabled) client.textRenderer.drawWithShadow(ChatFormatting.GREEN + "Fulbright enabled", i - 4 - client.textRenderer.getStringWidth("Fulbright enabled"), 4, 0);
                 Keystrokes.loop();
             }
