@@ -113,6 +113,8 @@ public class GuiOptions extends UCScreen implements IdentifibleBooleanConsumer {
     {
         if (button.active)
         {
+            this.client.options.save();
+
             if (button.id < 100 && button instanceof OptionButtonWidget) {
                 GameOptions.Option option = ((OptionButtonWidget)button).getOption();
                 this.options.getBooleanValue(option, 1);
@@ -124,65 +126,17 @@ public class GuiOptions extends UCScreen implements IdentifibleBooleanConsumer {
                 this.difficultyButton.message = this.getDifficultyButtonText(this.client.world.getGlobalDifficulty());
             }
 
-            if (button.id == 109) {
-                this.client.openScreen(new ConfirmScreen(this, (new TranslatableText("difficulty.lock.title", new Object[0])).asFormattedString(), (new TranslatableText("difficulty.lock.question", new Object[]{new TranslatableText(this.client.world.getLevelProperties().getDifficulty().getName(), new Object[0])})).asFormattedString(), 109));
-            }
-
-            if (button.id == 110) {
-                this.client.options.save();
-                this.client.openScreen(new SkinOptionsScreen(this));
-            }
-
-            if (button.id == 99)
-            {
-                client.options.save();
-                client.openScreen(new GuiUtilityClient(this));
-            }
-
-            if (button.id == 101) {
-                this.client.options.save();
-                this.client.openScreen(new VideoOptionsScreen(this, this.options));
-            }
-
-            if (button.id == 100) {
-                this.client.options.save();
-                this.client.openScreen(new ControlsOptionsScreen(this, this.options));
-            }
-
-            if (button.id == 102) {
-                this.client.options.save();
-                this.client.openScreen(new LanguageOptionsScreen(this, this.options, this.client.getLanguageManager()));
-            }
-
-            if (button.id == 103) {
-                this.client.options.save();
-                this.client.openScreen(new ChatOptionsScreen(this, this.options));
-            }
-
-            if (button.id == 104) {
-                this.client.options.save();
-                this.client.openScreen(new SnooperScreen(this, this.options));
-            }
-
-            if (button.id == 200) {
-                this.client.options.save();
-                this.client.openScreen(this.parent);
-            }
-
-            if (button.id == 105) {
-                this.client.options.save();
-                this.client.openScreen(new ResourcePackScreen(this));
-            }
-
-            if (button.id == 106) {
-                this.client.options.save();
-                this.client.openScreen(new SoundsScreen(this, this.options));
-            }
-
-            if (button.id == 107)
-            {
-                client.options.save();
-            }
+            if (button.id == 99) client.openScreen(new GuiUtilityClient(this));
+            if (button.id == 100) this.client.openScreen(new ControlsOptionsScreen(this, this.options));
+            if (button.id == 101) this.client.openScreen(new VideoOptionsScreen(this, this.options));
+            if (button.id == 102) this.client.openScreen(new LanguageOptionsScreen(this, this.options, this.client.getLanguageManager()));
+            if (button.id == 103) this.client.openScreen(new ChatOptionsScreen(this, this.options));
+            if (button.id == 104) this.client.openScreen(new SnooperScreen(this, this.options));
+            if (button.id == 105) this.client.openScreen(new ResourcePackScreen(this));
+            if (button.id == 106) this.client.openScreen(new SoundsScreen(this, this.options));
+            if (button.id == 109) this.client.openScreen(new ConfirmScreen(this, (new TranslatableText("difficulty.lock.title")).asFormattedString(), (new TranslatableText("difficulty.lock.question", new TranslatableText(this.client.world.getLevelProperties().getDifficulty().getName()))).asFormattedString(), 109));
+            if (button.id == 110) this.client.openScreen(new SkinOptionsScreen(this));
+            if (button.id == 200) this.client.openScreen(this.parent);
         }
     }
 

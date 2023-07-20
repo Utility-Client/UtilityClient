@@ -75,13 +75,6 @@ public class GuiMainMenu extends UCScreen {
         isLatest = isLatest || UtilityClient.getVersion().contains("-");
     }
 
-    public boolean shouldPauseGame() {
-        return false;
-    }
-
-    protected void keyPressed(char typedChar, int keyCode) {
-    }
-
     public void init() {
         int j = height / 2 - 32;
 
