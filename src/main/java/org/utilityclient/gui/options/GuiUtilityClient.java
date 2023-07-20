@@ -46,8 +46,8 @@ public class GuiUtilityClient extends UCScreen {
                     save();
                 break;
                 case 1:
-                    Config.setBoolean("keystrokesEnabled", !Config.getBoolean("keystrokesEnabled", true));
-                    buttons.get(1).message = Config.getBoolean("keystrokesEnabled", true) ? "Disable Keystrokes" : "Enable Keystrokes";
+                    Config.setBoolean("keystrokesEnabled", !Config.getBoolean(ConfigEntry.KEYSTROKES));
+                    buttons.get(1).message = Config.getBoolean(ConfigEntry.KEYSTROKES) ? "Disable Keystrokes" : "Enable Keystrokes";
                     save();
                 break;
                 case 2: client.openScreen(new GuiCrosshairOptions(this)); break;

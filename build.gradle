@@ -133,14 +133,22 @@ jar {
 			}
 		}
 	}
+}
 
+remapJar {
 	doLast {
 		copy {
 			from "$buildDir/devlibs/"
 			into "$buildDir/"
 		}
 
+		copy {
+			from "$buildDir/libs/"
+			into "$buildDir/"
+		}
+
 		delete "$buildDir/devlibs/"
+		delete "$buildDir/libs/"
 		delete "$buildDir/tmp/"
 		delete "$buildDir/classes/"
 		delete "$buildDir/generated/"
