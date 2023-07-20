@@ -24,19 +24,14 @@ public class GuiCustomSlider extends ButtonWidget
         if(sliderValue >= 2f) message = "Zoom factor: Quake Pro++";
     }
 
-    /**
-     * Returns 0 if the button is disabled, 1 if the mouse is NOT hovering over this button and 2 if it IS hovering over
-     * this button.
-     */
-    public int getHoverState(boolean mouseOver)
-    {
+    protected int getYImage(boolean isHovered) {
         return 0;
     }
 
     /**
      * Fired when the mouse button is dragged. Equivalent of MouseListener.mouseDragged(MouseEvent e).
      */
-    protected void mouseDragged(MinecraftClient mc, int mouseX, int mouseY)
+    protected void renderBg(MinecraftClient mc, int mouseX, int mouseY)
     {
         if (this.visible)
         {
@@ -56,7 +51,7 @@ public class GuiCustomSlider extends ButtonWidget
      * Returns true if the mouse has been pressed on this control. Equivalent of MouseListener.mousePressed(MouseEvent
      * e).
      */
-    public boolean mousePressed(MinecraftClient mc, int mouseX, int mouseY)
+    public boolean isMouseOver(MinecraftClient mc, int mouseX, int mouseY)
     {
         if (super.isMouseOver(mc, mouseX, mouseY))
         {

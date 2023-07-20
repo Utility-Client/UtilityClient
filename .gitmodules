@@ -1,0 +1,3 @@
+[submodule "src/main/resources/assets/utilityclient/lang"]
+	path = src/main/resources/assets/utilityclient/lang
+	url = https://github.com/utility-client/i18n
