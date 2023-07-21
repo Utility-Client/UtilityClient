@@ -33,8 +33,7 @@ import java.util.Arrays;
 
 /**
  * The Main Class of UtilityClient.
- * Do not create new instances. Instead call {@link UtilityClient#getInstance()}
- *
+ * @apiNote Do not create new instances. Instead call {@link UtilityClient#getInstance()}
  * @author Sam302
  * @since 2.0 LTS
  */

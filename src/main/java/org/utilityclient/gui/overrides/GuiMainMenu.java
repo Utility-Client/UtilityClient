@@ -11,7 +11,9 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.options.LanguageOptionsScreen;
 import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.render.LoadingScreenRenderer;
 import net.minecraft.client.resource.language.I18n;
+import net.minecraft.client.util.Window;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DemoServerWorld;
@@ -76,9 +78,12 @@ public class GuiMainMenu extends UCScreen {
     }
 
     public void init() {
+        if(!client.isWindowFocused()) client.toggleFullscreen();
+
         int j = height / 2 - 32;
 
         int offset = -(height / 4);
+        if(!shouldShowChangelog) offset = 0;
         buttons.add(new ButtonWidget(1, width / 2 - 100 + offset, j, I18n.translate("menu.singleplayer")));
         buttons.add(new ButtonWidget(2, width / 2 - 100 + offset, j + 24, I18n.translate("menu.multiplayer")));
         buttons.add(new ButtonWidget(0, width / 2 - 100 + offset, j + 24 * 2, I18n.translate("menu.options")));
