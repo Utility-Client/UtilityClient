@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 8
+      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: '8'
+          java-version: '17'
           distribution: 'temurin'
-      - name: Build with Gradle
+      - name: Build UtilityClient
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
         with:
           arguments: clean jar remapJar
-      - name: Upload artifact
+      - name: Upload Dev-Build
         uses: actions/upload-artifact@v3.1.2
         with:
           path: build/*.jar
