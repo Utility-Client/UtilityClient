@@ -232,9 +232,10 @@ public class GuiMainMenu extends UCScreen {
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(Utils.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
+        renderBackground(); // TODO: Get the UtilityClient Background to render again.
+        // client.getTextureManager().bindTexture(Utils.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
         // NOTE: Gui => DrawableHelper
-        DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
+        // DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 }
 

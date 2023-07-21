@@ -3,11 +3,11 @@ package org.utilityclient.utils;
 import net.minecraft.util.Identifier;
 
 public enum Season {
-    WINTER(new Identifier("utilityclient", "backgrounds/winter.png")),
-    SPRING(new Identifier("utilityclient", "backgrounds/spring.png")),
-    SUMMER(new Identifier("utilityclient", "backgrounds/summer.png")),
-    FALL(new Identifier("utilityclient", "backgrounds/fall.png")),
-    NONE(new Identifier("utilityclient", "backgrounds/default.png"));
+    WINTER(new Identifier("utilityclient", "textures/backgrounds/winter.png")),
+    SPRING(new Identifier("utilityclient", "textures/backgrounds/spring.png")),
+    SUMMER(new Identifier("utilityclient", "textures/backgrounds/summer.png")),
+    FALL(new Identifier("utilityclient", "textures/backgrounds/fall.png")),
+    NONE(new Identifier("utilityclient", "textures/backgrounds/default.png"));
 
     final Identifier id;
 
