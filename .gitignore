@@ -1,6 +1,5 @@
 .gradle/
 .idea/*.xml
 build/
-gradle/wrapper/gradle-wrapper.jar
 run/
 target/
