@@ -11,7 +11,8 @@ public class DebugScreen extends GuiScreen {
         add(new GuiContainer(2, 2, 512, 512, Lists.newArrayList(
             new GuiLabel("Hello world <3", 2, 2, Color.TEXT.color, false),
             new GuiHyperlink("Click me", () -> System.out.println("You clicked me!"), 2, 12, Color.TEXT.color, false),
-            new GuiHeader("Header", 2, 24, Color.TEXT.color, false)
+            new GuiHeader("Header", 2, 24, Color.TEXT.color, false),
+            new GuiUCLogo(2, 36, .35f, GuiUCLogo.Variant.UC)
         )));
     }
 
