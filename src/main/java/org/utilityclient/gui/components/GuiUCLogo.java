@@ -1,24 +1,33 @@
 package org.utilityclient.gui.components;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.util.Identifier;
 import org.utilityclient.utils.RenderHelper;
 
 public class GuiUCLogo extends GuiComponent {
     protected Variant variant;
+    protected boolean center;
 
-    public GuiUCLogo(int x, int y, float scale, Variant variant) {
+    public GuiUCLogo(int x, int y, float scale, Variant variant, boolean center) {
         super(x, y, Math.round(variant.width * scale), Math.round(variant.height * scale));
         this.variant = variant;
+        this.center = center;
     }
 
-    public GuiUCLogo(int x, int y, float scale, Variant variant, GuiComponent parent) {
+    public GuiUCLogo(int x, int y, float scale, Variant variant, boolean center, GuiComponent parent) {
         super(x, y, Math.round(variant.width * scale), Math.round(variant.height * scale), parent);
         this.variant = variant;
+        this.center = center;
     }
 
     @Override
     public void render(int mouseX, int mouseY, float tickDelta) {
-        RenderHelper.texture(screenX, screenY, width, height, variant.getIdentifier(), 0, 0, variant.width, variant.height, variant.width, variant.height, true);
+        int _x = screenX;
+        if (center) _x -= width / 2;
+
+        GlStateManager.enableAlphaTest();
+        RenderHelper.texture(_x, screenY, width, height, variant.getIdentifier(), 0, 0, variant.width, variant.height, variant.width, variant.height, true);
+        GlStateManager.disableAlphaTest();
     }
 
     @Override

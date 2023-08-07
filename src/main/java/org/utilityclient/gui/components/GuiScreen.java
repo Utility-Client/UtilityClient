@@ -14,11 +14,11 @@ public class GuiScreen extends Screen {
      * @see GuiScreen#getActionLabel()
      */
     private final String actionLabel;
-
-    private List<GuiComponent> components = new ArrayList<>();
+    private final List<GuiComponent> components = new ArrayList<>();
     protected boolean shouldRenderBackground = false;
 
     public GuiScreen(String actionLabel) {
+        super();
         this.actionLabel = actionLabel;
     }
 
@@ -28,6 +28,12 @@ public class GuiScreen extends Screen {
      */
     public String getActionLabel() {
         return actionLabel;
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        components.clear();
     }
 
     @Override
