@@ -165,7 +165,7 @@ public class UtilityClient extends Thread {
 
     public void loop() {
         if (keyBinds.size() >= 3) {
-            if (keyBinds.get(0).isPressed()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR, 0.15f);
+            if (keyBinds.get(0).isPressed()) fovModifier = Config.getFloat(ConfigEntry.ZOOM_FACTOR);
             else fovModifier = 1.0f;
 
             if (keyBinds.get(1).wasPressed()) if (MinecraftClient.getInstance().options.gamma == 1.0f) {

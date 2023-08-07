@@ -80,8 +80,8 @@ public class Config {
         getConfig().put(key.getKey(), String.valueOf(value));
     }
 
-    public static float getFloat(ConfigEntry key, float defaultValue) {
-        return Float.parseFloat(getOrSetDefault(key.getKey(), String.valueOf(defaultValue)));
+    public static float getFloat(ConfigEntry key) {
+        return Float.parseFloat(getOrSetDefault(key.getKey(), key.getDefaultValue()));
     }
     public static float getFloat(String key, float defaultValue) {
         return Float.parseFloat(getOrSetDefault(key, String.valueOf(defaultValue)));
