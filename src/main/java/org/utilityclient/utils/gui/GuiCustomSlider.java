@@ -7,6 +7,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.text.DecimalFormat;
 
+@Deprecated
 public class GuiCustomSlider extends ButtonWidget
 {
     private float sliderValue;

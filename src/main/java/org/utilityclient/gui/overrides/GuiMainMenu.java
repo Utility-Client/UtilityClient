@@ -37,6 +37,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 
+@Deprecated
 public class GuiMainMenu extends GuiScreen {
     private static final Logger logger = LogManager.getLogger();
     private final Object threadLock = new Object();
