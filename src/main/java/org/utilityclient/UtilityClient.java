@@ -14,7 +14,7 @@ import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.gui.screens.DebugScreen;
-import org.utilityclient.macro.Macro;
+import org.utilityclient.input.Macro;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.modules.*;

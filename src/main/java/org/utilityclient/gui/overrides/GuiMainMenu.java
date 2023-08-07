@@ -77,7 +77,7 @@ public class GuiMainMenu extends GuiScreen {
     }
 
     public void init() {
-        if(!client.isWindowFocused()) client.toggleFullscreen();
+        //if(!client.isWindowFocused()) client.toggleFullscreen();
 
         int j = height / 2 - 32;
 

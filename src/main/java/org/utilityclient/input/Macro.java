@@ -1,4 +1,4 @@
-package org.utilityclient.macro;
+package org.utilityclient.input;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,7 +36,6 @@ public class Macro {
             KeyCode = keyCode;
             saveToFile();
         }
-
     }
 
     protected void loadFromFile() throws FileNotFoundException {
