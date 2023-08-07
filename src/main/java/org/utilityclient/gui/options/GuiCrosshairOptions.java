@@ -6,7 +6,7 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.SerializationUtils;
 
@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class GuiCrosshairOptions extends UCScreen {
+public class GuiCrosshairOptions extends GuiScreen {
     private final Screen parentScreen;
     private String title;
     private int size = 9;

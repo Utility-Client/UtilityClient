@@ -10,12 +10,12 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.realms.RealmsBridge;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.overlay.modules.DistanceModule;
 
 import java.io.IOException;
 
-public class GuiIngameMenu extends UCScreen {
+public class GuiIngameMenu extends GuiScreen {
 
     public GuiIngameMenu() {
         super("Game paused");

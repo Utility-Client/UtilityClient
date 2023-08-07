@@ -11,12 +11,7 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.options.LanguageOptionsScreen;
 import net.minecraft.client.gui.screen.world.SelectWorldScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.LoadingScreenRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.util.Window;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DemoServerWorld;
@@ -29,7 +24,7 @@ import org.lwjgl.opengl.GLContext;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.Utils;
 import org.utilityclient.utils.json.JSONUtils;
@@ -42,7 +37,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 
-public class GuiMainMenu extends UCScreen {
+public class GuiMainMenu extends GuiScreen {
     private static final Logger logger = LogManager.getLogger();
     private final Object threadLock = new Object();
     private String openGLWarning1;

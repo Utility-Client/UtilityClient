@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Utils;
 
 import java.io.File;
@@ -90,8 +90,8 @@ public class DiscordRP extends Thread {
             Utils.ignore(e);
         }
 
-        if (MinecraftClient.getInstance().currentScreen instanceof UCScreen) {
-            UCScreen currentScreen = (UCScreen) MinecraftClient.getInstance().currentScreen;
+        if (MinecraftClient.getInstance().currentScreen instanceof GuiScreen) {
+            GuiScreen currentScreen = (GuiScreen) MinecraftClient.getInstance().currentScreen;
             topText = currentScreen.getActionLabel();
             bottomText = "";
         }

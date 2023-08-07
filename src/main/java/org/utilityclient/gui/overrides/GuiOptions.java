@@ -13,10 +13,10 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.world.Difficulty;
 import org.utilityclient.UtilityClient;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.gui.options.GuiUtilityClient;
 
-public class GuiOptions extends UCScreen implements IdentifibleBooleanConsumer {
+public class GuiOptions extends GuiScreen implements IdentifibleBooleanConsumer {
     private static final GameOptions.Option[] OPTIONS;
     private final Screen parent;
     private final GameOptions options;

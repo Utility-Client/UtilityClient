@@ -17,13 +17,13 @@ import net.minecraft.client.resource.language.I18n;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.gui.overrides.components.MPServerListWidget;
 import org.utilityclient.gui.overrides.components.ServerEntry;
 
 import java.util.List;
 
-public class GuiMultiplayer extends UCScreen implements IdentifibleBooleanConsumer {
+public class GuiMultiplayer extends GuiScreen implements IdentifibleBooleanConsumer {
     private static final Logger LOGGER = LogManager.getLogger();
     private final MultiplayerServerListPinger pinger = new MultiplayerServerListPinger();
     private final Screen parent;

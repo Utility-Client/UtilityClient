@@ -6,12 +6,12 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.gui.options.macros.GuiMacroManager;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 
-public class GuiUtilityClient extends UCScreen {
+public class GuiUtilityClient extends GuiScreen {
     private final Screen parent;
     private String title;
 

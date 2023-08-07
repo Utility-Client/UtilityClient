@@ -6,10 +6,10 @@ import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Color;
 
-public class GuiThemeOptions extends UCScreen {
+public class GuiThemeOptions extends GuiScreen {
     private final Screen parentScreen;
     private String title;
 

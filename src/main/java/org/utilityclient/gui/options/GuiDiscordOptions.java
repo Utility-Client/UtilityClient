@@ -5,10 +5,10 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.gui.UCScreen;
+import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Color;
 
-public class GuiDiscordOptions extends UCScreen {
+public class GuiDiscordOptions extends GuiScreen {
     private final Screen parent;
 
     public GuiDiscordOptions(Screen parentIn) {
