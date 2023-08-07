@@ -7,7 +7,6 @@ import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.components.GuiScreen;
-import org.utilityclient.gui.options.macros.GuiMacroManager;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 
@@ -30,7 +29,9 @@ public class GuiUtilityClient extends GuiScreen {
         buttons.add(new ButtonWidget(3, width / 2 + 4, height / 2 - 44, "Change Theme..."));
 
         buttons.add(new ButtonWidget(4, width / 2 - 204, height / 2 - 22, "Overlay Settings..."));
-        buttons.add(new ButtonWidget(5, width / 2 + 4, height / 2 - 22, "Manage Macros..."));
+        ButtonWidget bw  = new ButtonWidget(5, width / 2 + 4, height / 2 - 22, "Manage Macros...");
+        bw.active = false;
+        buttons.add(bw);
 
         buttons.add(new ButtonWidget(6, width / 2 - 204, height / 2, "Discord Settings..."));
         buttons.add(new ButtonWidget(200, width / 2 + 4, height / 2, I18n.translate("gui.done")));
@@ -53,7 +54,6 @@ public class GuiUtilityClient extends GuiScreen {
                 case 2: client.openScreen(new GuiCrosshairOptions(this)); break;
                 case 3: client.openScreen(new GuiThemeOptions(this)); break;
                 case 4: client.openScreen(new GuiOverlaySettings(this)); break;
-                case 5: client.openScreen(new GuiMacroManager(this)); break;
                 case 6: client.openScreen(new GuiDiscordOptions(this)); break;
             }
         }

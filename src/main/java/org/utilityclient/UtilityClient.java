@@ -13,7 +13,6 @@ import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.gui.screens.DebugScreen;
-import org.utilityclient.macro.MacroManager;
 import org.utilityclient.overlay.IModule;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
@@ -173,7 +172,6 @@ public class UtilityClient extends Thread {
         CPS_THREAD_INSTANCE.start();
         DISCORD_INSTANCE.start();
         try {
-            MacroManager.run();
             GuiOverlaySettings.loadStates();
         } catch (IOException e) {
             e.printStackTrace();
@@ -224,7 +222,6 @@ public class UtilityClient extends Thread {
             //if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
             if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
         }
-        MacroManager.loop();
         addonManager.loop();
     }
 }
