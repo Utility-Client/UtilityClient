@@ -8,21 +8,59 @@ import net.minecraft.client.MinecraftClient;
  * @since 3.0
  */
 public abstract class GuiComponent {
+    /**
+     * More compact access to the Minecraft client main-class.
+     * Of course, MinecraftClient.getInstance() also works.
+     * @see MinecraftClient
+     */
     private final MinecraftClient client = MinecraftClient.getInstance();
-    public final int x, y, width, height;
+
+    /**
+     * The position from the point of the parent.
+     * @apiNote Can be mostly disregarded.
+     */
+    public final int localX, localY;
+
+    /**
+     * Dimensions of the component.
+     */
+    public final int width, height;
+
+    /**
+     * The position from the point of the screen.
+     * @apiNote Use for rendering.
+     */
+    public int screenX, screenY;
 
     public GuiComponent(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+        this.localX = x;
+        this.localY = y;
         this.width = width;
         this.height = height;
+        this.screenX = x;
+        this.screenY = y;
+    }
+
+    public GuiComponent(int x, int y, int width, int height, GuiComponent parent) {
+        this.localX = x;
+        this.localY = y;
+        this.width = width;
+        this.height = height;
+        this.screenX = x + parent.screenX;
+        this.screenY = y + parent.screenY;
     }
 
     public abstract void render(int mouseX, int mouseY, float tickDelta);
 
     public abstract void mouseClicked(int mouseX, int mouseY);
 
+    /**
+     * Checks if the point (screen-based coordinates) is inside the bounding box of this GuiComponent.
+     * @param x X-coordinate to check. (screen-based)
+     * @param y Y-coordinate to check. (screen-based)
+     * @return True if x and y are in-bounds.
+     */
     public boolean contains(int x, int y) {
-        return (x >= this.x && x <= this.x + this.width) && (y >= this.y && y <= this.y + this.height);
+        return (x >= this.screenX && x <= this.screenX + this.width) && (y >= this.screenY && y <= this.screenY + this.height);
     }
 }

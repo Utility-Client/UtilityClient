@@ -16,6 +16,7 @@ public class GuiScreen extends Screen {
     private final String actionLabel;
 
     private List<GuiComponent> components = new ArrayList<>();
+    protected boolean shouldRenderBackground = false;
 
     public GuiScreen(String actionLabel) {
         this.actionLabel = actionLabel;
@@ -32,6 +33,7 @@ public class GuiScreen extends Screen {
     @Override
     public void render(int mouseX, int mouseY, float tickDelta) {
         super.render(mouseX, mouseY, tickDelta);
+        if (shouldRenderBackground) renderBackground();
         components.forEach(c -> c.render(mouseX, mouseY, tickDelta));
     }
 
@@ -41,5 +43,9 @@ public class GuiScreen extends Screen {
         components.forEach(c -> {
             if(c.contains(mouseX, mouseY)) c.mouseClicked(mouseX, mouseY);
         });
+    }
+
+    public void add(GuiComponent c) {
+        components.add(c);
     }
 }

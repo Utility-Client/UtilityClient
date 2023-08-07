@@ -11,8 +11,8 @@ import org.utilityclient.utils.Color;
 import org.utilityclient.utils.RenderHelper;
 
 public class Keystrokes {
-    static Identifier inactive = new Identifier("textures/keystrokes/inactive.png");
-    static Identifier active = new Identifier("textures/keystrokes/active.png");
+    static Identifier inactive = new Identifier("textures/utilityclient/keystrokes/inactive.png");
+    static Identifier active = new Identifier("textures/utilityclient/keystrokes/active.png");
 
     public static void loop() {
         if(!Config.getBoolean(ConfigEntry.KEYSTROKES)) return;

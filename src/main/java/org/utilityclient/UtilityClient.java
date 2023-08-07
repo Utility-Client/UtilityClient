@@ -10,9 +10,9 @@ import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
-import org.utilityclient.debug.DebugScreen;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
+import org.utilityclient.gui.screens.DebugScreen;
 import org.utilityclient.macro.MacroManager;
 import org.utilityclient.overlay.IModule;
 import org.utilityclient.overlay.ITheme;
@@ -221,6 +221,7 @@ public class UtilityClient extends Thread {
                 }
             }
 
+            //if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
             if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
         }
         MacroManager.loop();
