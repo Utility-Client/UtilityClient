@@ -6,6 +6,7 @@ import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.ArrayUtils;
+import org.lwjgl.input.Keyboard;
 import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -13,7 +14,7 @@ import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.gui.screens.DebugScreen;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.macro.Macro;
 import org.utilityclient.overlay.ITheme;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.modules.*;
@@ -26,14 +27,14 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * The Main Class of UtilityClient.
- * @apiNote Do not create new instances. Instead call {@link UtilityClient#getInstance()}
+ *
  * @author Sam302
+ * @apiNote Do not create new instances. Instead call {@link UtilityClient#getInstance()}
  * @since 2.0 LTS
  */
 public class UtilityClient extends Thread {
@@ -45,6 +46,7 @@ public class UtilityClient extends Thread {
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
     public static ArrayList<ITheme> themes = new ArrayList<>();
+    public static ArrayList<Macro> macros = new ArrayList<>();
     public static int currentTheme = 0;
     public static boolean renderOverlay = true;
     public static boolean isFulbrightEnabled = false;
@@ -54,6 +56,7 @@ public class UtilityClient extends Thread {
 
     /**
      * Use this instead of creating new instances.
+     *
      * @return Instance of this class.
      */
     public static UtilityClient getInstance() {
@@ -97,18 +100,13 @@ public class UtilityClient extends Thread {
 
     /**
      * Register a keybinding
-     * @param name Name of the keybinding. Use {@link I18n#translate(String, Object...)} if needed.
+     * @param name    Name of the keybinding. Use {@link I18n#translate(String, Object...)} if needed.
      * @param keyCode Currently saved or default keyCode. <a href="https://minecraft.fandom.com/index.php?title=Key_codes/Keyboard1&action=render">List with all key codes<a/>
-     * @param isMacro Should be false. This adds the keybinding as a macro.
-     * @return The KeyBinding object. Use this to check, if the key is currently pressed.
      */
-    public static KeyBinding addKeyBind(String name, int keyCode, boolean isMacro) {
-        String cat = CLIENT_NAME;
-        if (isMacro) cat = "Macros";
-        KeyBinding kb = new KeyBinding(name, keyCode, cat);
+    public static void addKeyBind(String name, int keyCode) {
+        KeyBinding kb = new KeyBinding(name, keyCode, CLIENT_NAME);
         MinecraftClient.getInstance().options.keysAll = ArrayUtils.add(MinecraftClient.getInstance().options.keysAll, kb);
-        if (!isMacro) keyBinds.add(kb);
-        return kb;
+        keyBinds.add(kb);
     }
 
     public void run() {
@@ -117,22 +115,20 @@ public class UtilityClient extends Thread {
 
         try {
             Config.run();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        addKeyBind(I18n.translate("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM), false);
-        addKeyBind(I18n.translate("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT), false);
-        addKeyBind(I18n.translate("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY), false);
-        addKeyBind(I18n.translate("uc.keybinding.copyCoords"), 66, false);
-        addKeyBind("Set compass coords", 68, false);
-        if(debugMode) addKeyBind("GuiScreen editor", 67, false);
-
-        try {
+            macros.addAll(Macro.loadAllMacros());
             CrosshairManager.run();
-        } catch (IOException | ClassNotFoundException e) {
+            GuiOverlaySettings.loadStates();
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // TODO: Upgrade to custom keybinding handler
+        addKeyBind(I18n.translate("uc.keybinding.zoom"), Config.getInteger(ConfigEntry.HOTKEY_ZOOM));
+        addKeyBind(I18n.translate("uc.keybinding.fulbright"), Config.getInteger(ConfigEntry.HOTKEY_FULBRIGHT));
+        addKeyBind(I18n.translate("uc.keybinding.overlay"), Config.getInteger(ConfigEntry.HOTKEY_OVERLAY));
+        addKeyBind(I18n.translate("uc.keybinding.copyCoords"), 66);
+        addKeyBind("Set compass coords", 68);
+        if (debugMode) addKeyBind("GuiScreen editor", 67);
 
         themes.addAll(Arrays.asList(
                 new RedTheme(),
@@ -150,10 +146,9 @@ public class UtilityClient extends Thread {
 
         // Run Addon Init here
         addonManager.start();
-
         currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
 
-        IModule[] modules1 = {
+        ModuleHandler.modules.addAll(Arrays.asList(
                 new FPSModule(),
                 new CoordsModule(),
                 new ClockModule(),
@@ -162,17 +157,10 @@ public class UtilityClient extends Thread {
                 new PingModule(),
                 new BiomeModule(),
                 new DistanceModule()
-        };
-
-        ModuleHandler.modules.addAll(Arrays.asList(modules1));
+        ));
 
         CPS_THREAD_INSTANCE.start();
         DISCORD_INSTANCE.start();
-        try {
-            GuiOverlaySettings.loadStates();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void loop() {
@@ -188,23 +176,23 @@ public class UtilityClient extends Thread {
                 isFulbrightEnabled = false;
             }
 
-            if(keyBinds.get(2).wasPressed()) renderOverlay = !renderOverlay;
+            if (keyBinds.get(2).wasPressed()) renderOverlay = !renderOverlay;
 
-            if(keyBinds.get(3).wasPressed()) {
+            if (keyBinds.get(3).wasPressed()) {
                 String myString = Math.round(MinecraftClient.getInstance().player.x) + " " + Math.round(MinecraftClient.getInstance().player.y) + " " + Math.round(MinecraftClient.getInstance().player.z);
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
             }
 
-            if(keyBinds.get(4).wasPressed()) {
+            if (keyBinds.get(4).wasPressed()) {
                 try {
                     Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                     Transferable t = clipboard.getContents(clipboard);
                     if (t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
                         String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                         String[] coords = s.split(" ");
-                        if(coords.length < 3) throw new IndexOutOfBoundsException();
+                        if (coords.length < 3) throw new IndexOutOfBoundsException();
                         DistanceModule.x = Integer.parseInt(coords[0]);
                         DistanceModule.y = Integer.parseInt(coords[1]);
                         DistanceModule.z = Integer.parseInt(coords[2]);
@@ -217,8 +205,16 @@ public class UtilityClient extends Thread {
             }
 
             //if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
-            if(debugMode) if(keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
+            if (debugMode)
+                if (keyBinds.get(5).wasPressed()) MinecraftClient.getInstance().openScreen(new DebugScreen());
         }
+
+        for (Macro macro : macros) {
+            if (macro.state && !Keyboard.isKeyDown(macro.KeyCode))
+                MinecraftClient.getInstance().player.sendChatMessage(macro.Message);
+            macro.state = Keyboard.isKeyDown(macro.KeyCode);
+        }
+
         addonManager.loop();
     }
 }
