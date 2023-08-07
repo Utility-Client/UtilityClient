@@ -134,8 +134,7 @@ public class UtilityClient extends Thread {
             e.printStackTrace();
         }
 
-        // TODO: Make this better
-        ITheme[] themes1 = {
+        themes.addAll(Arrays.asList(
                 new RedTheme(),
                 new YellowTheme(),
                 new GreenTheme(),
@@ -147,9 +146,7 @@ public class UtilityClient extends Thread {
                 new GrayTheme(),
                 new AquaTheme(),
                 new DaylightCycleTheme()
-        };
-
-        themes.addAll(Arrays.asList(themes1));
+        ));
 
         // Run Addon Init here
         addonManager.start();
