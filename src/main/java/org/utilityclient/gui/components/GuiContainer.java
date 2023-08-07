@@ -11,11 +11,18 @@ public class GuiContainer extends GuiComponent {
     public GuiContainer(int x, int y, int width, int height, List<GuiComponent> children) {
         super(x, y, width, height);
         this.children = children;
+        for (GuiComponent c : children) c.setParent(this);
     }
 
     public GuiContainer(int x, int y, int width, int height, GuiComponent parent, List<GuiComponent> children) {
         super(x, y, width, height, parent);
         this.children = children;
+        for (GuiComponent c : children) c.setParent(this);
+    }
+
+    public void add(GuiComponent c) {
+        c.setParent(this);
+        children.add(c);
     }
 
     @Override

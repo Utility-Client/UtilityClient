@@ -13,7 +13,7 @@ public abstract class GuiComponent {
      * Of course, MinecraftClient.getInstance() also works.
      * @see MinecraftClient
      */
-    private final MinecraftClient client = MinecraftClient.getInstance();
+    protected final MinecraftClient client = MinecraftClient.getInstance();
 
     /**
      * The position from the point of the parent.
@@ -48,6 +48,11 @@ public abstract class GuiComponent {
         this.height = height;
         this.screenX = x + parent.screenX;
         this.screenY = y + parent.screenY;
+    }
+
+    public void setParent(GuiComponent p) {
+        screenX = p.screenX + localX;
+        screenY = p.screenY + localY;
     }
 
     public abstract void render(int mouseX, int mouseY, float tickDelta);
