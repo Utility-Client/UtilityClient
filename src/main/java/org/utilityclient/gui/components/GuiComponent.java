@@ -32,13 +32,13 @@ public abstract class GuiComponent {
      */
     public int screenX, screenY;
 
+    public GuiComponent parent;
+
     public GuiComponent(int x, int y, int width, int height) {
-        this.localX = x;
-        this.localY = y;
+        this.localX = x; this.screenX = x;
+        this.localY = y; this.screenY = y;
         this.width = width;
         this.height = height;
-        this.screenX = x;
-        this.screenY = y;
     }
 
     public GuiComponent(int x, int y, int width, int height, GuiComponent parent) {
@@ -46,11 +46,11 @@ public abstract class GuiComponent {
         this.localY = y;
         this.width = width;
         this.height = height;
-        this.screenX = x + parent.screenX;
-        this.screenY = y + parent.screenY;
+        setParent(parent);
     }
 
     public void setParent(GuiComponent p) {
+        parent = p;
         screenX = p.screenX + localX;
         screenY = p.screenY + localY;
     }
