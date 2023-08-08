@@ -108,9 +108,9 @@ public class UtilityClient extends Thread {
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(packageSearchIndex.toArray(new String[] {})));
         Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Register.class);
 
-        for (Class<?> clazz : annotated) {
+        for (Class<?> type : annotated) {
             try {
-                Object instance = clazz.getDeclaredConstructors()[0].newInstance();
+                Object instance = type.getDeclaredConstructors()[0].newInstance();
                 if (instance instanceof Registrable) {
                     Registrable r = (Registrable) instance;
                     r.register();
