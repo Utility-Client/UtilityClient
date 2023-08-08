@@ -3,7 +3,9 @@ package org.utilityclient.overlay.modules;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.MinecraftClient;
 import org.utilityclient.api.Module;
+import org.utilityclient.api.Register;
 
+@Register
 public class FPSModule extends Module {
     @Override
     public String getName() {

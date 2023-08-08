@@ -1,11 +1,14 @@
 package org.utilityclient.api;
 
+import org.utilityclient.UtilityClient;
+import org.utilityclient.overlay.ModuleHandler;
+
 /**
  * @apiNote Previously known as "IModule", refactored in 3.0 LTS
  * @author Sam302
  * @since 2.0 LTS
  */
-public abstract class Module extends Instances {
+public abstract class Module extends Registrable {
     /**
      * Controlled by GuiOverlaySettings.
      * Do not override.
@@ -40,5 +43,10 @@ public abstract class Module extends Instances {
      */
     public boolean shouldRender() {
         return true;
+    }
+
+    @Override
+    public void register() {
+        ModuleHandler.modules.add(this);
     }
 }

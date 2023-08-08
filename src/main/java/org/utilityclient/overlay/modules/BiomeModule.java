@@ -1,7 +1,9 @@
 package org.utilityclient.overlay.modules;
 
 import org.utilityclient.api.Module;
+import org.utilityclient.api.Register;
 
+@Register
 public class BiomeModule extends Module {
 
     @Override

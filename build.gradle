@@ -68,6 +68,7 @@ dependencies {
 	}
 
 	implementation 'com.github.JnCrMx:discord-game-sdk4j:v0.5.5'
+	implementation 'org.reflections:reflections:0.10.2'
 }
 
 if (lwjgl2) {
@@ -124,7 +125,7 @@ jar {
 
 	from {
 		// Add dependencies here as well
-		String[] depList = ["discord-game-sdk4j"]
+		String[] depList = [ "discord-game-sdk4j", "reflections" ]
 		configurations.runtimeClasspath.collect {
 			duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 			for (String dep : depList) if (it.name.contains(dep)) {
