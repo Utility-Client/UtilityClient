@@ -15,7 +15,8 @@
         "IngameAccessor",
         "ClientAccessor",
         "MultiplayerGuiMixin",
-        "GuiMultiplayerAccessor"
+        "GuiMultiplayerAccessor",
+        "CustomCloudHeight"
     ],
     "injectors": {
         "defaultRequire": 1
