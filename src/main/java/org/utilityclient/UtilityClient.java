@@ -1,6 +1,7 @@
 package org.utilityclient;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.CommonI18n;
 import org.lwjgl.input.Keyboard;
 import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
@@ -87,6 +88,9 @@ public class UtilityClient extends Thread {
     }
 
     public void run() {
+        // I want to see the world burn.
+        CommonI18n.thisIsNotUsedAnyWhereAndThisMethodDoesNotWorkSoPleaseDoNotUseThis("wooooooooo yeahya");
+
         Utils.ignore(new File("uc3").mkdirs());
         Utils.ignore(new File("uc3/modules").mkdirs());
 
