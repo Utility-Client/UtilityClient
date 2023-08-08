@@ -46,7 +46,7 @@ public class GuiMainMenu extends GuiScreen {
     private String openGLWarningLink;
     private static final Identifier minecraftTitleTextures = new Identifier("textures/gui/title/minecraft.png");
     public static final String openGLWarning = "Please click " + ChatFormatting.UNDERLINE + "here" + ChatFormatting.RESET + " for more information.";
-    private int field_92024_r;
+    private int openGLWarning2width;
     private int field_92022_t;
     private int field_92021_u;
     private int field_92020_v;
@@ -77,8 +77,6 @@ public class GuiMainMenu extends GuiScreen {
     }
 
     public void init() {
-        //if(!client.isWindowFocused()) client.toggleFullscreen();
-
         int j = height / 2 - 32;
 
         int offset = -(height / 4);
@@ -96,8 +94,8 @@ public class GuiMainMenu extends GuiScreen {
         buttons.add(toggleChangelogBtn);
 
         synchronized (threadLock) {
-            field_92024_r = textRenderer.getStringWidth(openGLWarning2);
-            int k = Math.max(textRenderer.getStringWidth(openGLWarning1), field_92024_r);
+            openGLWarning2width = textRenderer.getStringWidth(openGLWarning2);
+            int k = Math.max(textRenderer.getStringWidth(openGLWarning1), openGLWarning2width);
             field_92022_t = (width - k) / 2;
             field_92021_u = buttons.get(0).y - 24;
             field_92020_v = field_92022_t + k;
@@ -219,7 +217,7 @@ public class GuiMainMenu extends GuiScreen {
         if (openGLWarning1 != null && openGLWarning1.length() > 0) {
             fill(field_92022_t - 2, field_92021_u - 2, field_92020_v + 2, field_92019_w - 1, 1426063360);
             textRenderer.draw(openGLWarning1, field_92022_t, field_92021_u, -1);
-            textRenderer.draw(openGLWarning2, (width - field_92024_r) / 2, buttons.get(0).y - 12, -1);
+            textRenderer.draw(openGLWarning2, (width - openGLWarning2width) / 2, buttons.get(0).y - 12, -1);
         }
 
         super.render(mouseX, mouseY, partialTicks);
