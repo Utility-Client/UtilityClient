@@ -1,5 +1,7 @@
 package org.utilityclient.utils;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.utilityclient.config.Config;
@@ -48,7 +50,7 @@ public class Utils {
     }
 
     public static Season getSeasonOfMonth(int month) {
-        if (Config.getBoolean("disableSeasonalTitleScreen", false)) return Season.NONE;
+        if (Config.getBoolean("title.seasons", false)) return Season.NONE;
 
         switch (month) {
             case 1:
@@ -73,5 +75,15 @@ public class Utils {
         }
 
         return Season.NONE;
+    }
+
+    /**
+     * Writes a line to the in-game chat.
+     * @param text A text object.
+     * @since 3.0
+     * @see net.minecraft.text.LiteralText
+     */
+    public static void chat(Text text) {
+        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(text);
     }
 }
