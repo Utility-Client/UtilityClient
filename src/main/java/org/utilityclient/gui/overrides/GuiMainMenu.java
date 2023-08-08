@@ -51,7 +51,7 @@ public class GuiMainMenu extends GuiScreen {
     private int field_92021_u;
     private int field_92020_v;
     private int field_92019_w;
-    private final Release release;
+    private Release release;
     private boolean isLatest;
     private boolean shouldShowChangelog = Config.getBoolean(ConfigEntry.SHOW_CHANGELOG_IN_TITLE_SCREEN);
     private ButtonWidget toggleChangelogBtn;
@@ -68,12 +68,17 @@ public class GuiMainMenu extends GuiScreen {
             openGLWarningLink = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
 
-        String rawJsonRelease = JSONUtils.downloadJson("https://api.github.com/repos/Utility-Client/UtilityClient/releases/latest");
-        release = (Release) JSONUtils.parseToJson(rawJsonRelease, new TypeToken<Release>() {
-        }.getType());
-        assert release != null;
-        isLatest = release.tag_name.contains(UtilityClient.getVersion());
-        isLatest = isLatest || UtilityClient.getVersion().contains("-");
+        try {
+            String rawJsonRelease = JSONUtils.downloadJson("https://api.github.com/repos/Utility-Client/UtilityClient/releases/latest");
+            release = (Release) JSONUtils.parseToJson(rawJsonRelease, new TypeToken<Release>() {
+            }.getType());
+            assert release != null;
+            isLatest = release.tag_name.contains(UtilityClient.getVersion());
+            isLatest = isLatest || UtilityClient.getVersion().contains("-");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void init() {

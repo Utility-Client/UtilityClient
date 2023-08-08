@@ -1,12 +1,11 @@
 package org.utilityclient.keybindings;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import org.lwjgl.input.Keyboard;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
-import org.utilityclient.overlay.modules.DistanceModule;
+import org.utilityclient.overlay.Compass;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -28,10 +27,9 @@ public class PasteCoords extends KeyBinding {
                 String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                 String[] coords = s.split(" ");
                 if (coords.length < 3) throw new IndexOutOfBoundsException();
-                DistanceModule.x = Integer.parseInt(coords[0]);
-                DistanceModule.y = Integer.parseInt(coords[1]);
-                DistanceModule.z = Integer.parseInt(coords[2]);
-                DistanceModule.gotUpdated = true;
+                Compass.destX = Integer.parseInt(coords[0]);
+                Compass.destY = Integer.parseInt(coords[2]);
+                Compass.gotUpdated = true;
                 mc().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.GREEN + "Destination updated."));
             }
         } catch (Exception e) {

@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.crosshair.CrosshairManager;
+import org.utilityclient.overlay.Compass;
 import org.utilityclient.overlay.Keystrokes;
 import org.utilityclient.overlay.ModuleHandler;
 
@@ -27,6 +28,7 @@ import org.utilityclient.overlay.ModuleHandler;
 public class IngameMixins extends DrawableHelper {
 
     MinecraftClient client = MinecraftClient.getInstance();
+    Compass compass = new Compass();
 
     @Inject(at = @At("HEAD"), method = "render(F)V", cancellable = true)
     public void render(CallbackInfo ci) {
@@ -74,6 +76,8 @@ public class IngameMixins extends DrawableHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        compass.render((i - 32) / 2, Math.round(j * 0.55f));
         /* --- UTILITY CLIENT --- */
 
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);

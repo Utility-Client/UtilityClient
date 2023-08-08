@@ -11,7 +11,7 @@ import net.minecraft.realms.RealmsBridge;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.gui.components.GuiScreen;
-import org.utilityclient.overlay.modules.DistanceModule;
+import org.utilityclient.overlay.Compass;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class GuiIngameMenu extends GuiScreen {
         buttons.add(new ButtonWidget(0, this.width / 2 - 100, this.height / 4 + 72 + i + 11, I18n.translate("menu.options")));
         buttons.add(new ButtonWidget(5, this.width / 2 - 100, this.height / 4 + 48 + i + 11, I18n.translate("gui.achievements")));
         buttons.add(new ButtonWidget(99, this.width - 210, 10, "Toggle Streamer Mode"));
-        if(DistanceModule.gotUpdated) buttons.add(new ButtonWidget(98, this.width - 210, 30, "Clear Destination"));
+        if(Compass.gotUpdated) buttons.add(new ButtonWidget(98, this.width - 210, 30, "Clear Destination"));
     }
 
     protected void buttonClicked(ButtonWidget button)
@@ -87,7 +87,7 @@ public class GuiIngameMenu extends GuiScreen {
                 break;
 
             case 98:
-                DistanceModule.gotUpdated = false;
+                Compass.gotUpdated = false;
                 button.visible = false;
                 break;
         }

@@ -11,6 +11,7 @@ public class MathUtil {
      * @return Your fraction as integer
      */
     public static int fraction(int numerator, int denominator) {
+        if(denominator == 0) return 0; // Fail safe
         return numerator / denominator;
     }
 
