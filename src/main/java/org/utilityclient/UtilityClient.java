@@ -10,7 +10,6 @@ import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
-import org.utilityclient.keybindings.ToggleSneak;
 import org.utilityclient.overlay.modules.*;
 import org.utilityclient.utils.Utils;
 

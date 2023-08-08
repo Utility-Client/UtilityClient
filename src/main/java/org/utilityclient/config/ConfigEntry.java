@@ -1,30 +1,23 @@
 package org.utilityclient.config;
 
 /**
- * Config Entries with default values in Enum-form
- *
+ * Config Entries with default values as enum
  * @author Sam302
  * @since 2.12
  */
 public enum ConfigEntry {
     SELECTED_THEME("overlay.theme", "0"),
     OVERLAY_BACKGROUND("overlay.background", "true"),
-    HOTKEY_ZOOM("hotkey.zoom", "46"),
-    HOTKEY_FULBRIGHT("hotkey.fulbright", "50"),
-    HOTKEY_OVERLAY("hotkey.overlay", "22"),
-    ZOOM_FACTOR("zoom.factor", String.valueOf(0.15f)),
-    TOGGLE_SPRINT("toggle.sprint.active", "false"),
-    TOGGLE_SNEAK("toggle.sneak.active", "false"),
+    ZOOM_FACTOR("zoom.factor", "0.15"),
     DISCORD_RICH_PRESENCE("discord.presence.active", "true"),
     DISCORD_FRIEND_NOTIFICATIONS("discord.friends.active", "true"),
-    DISCORD_SHOW_SERVER("discordShowServerInPresence", "true"),
+    DISCORD_SHOW_SERVER("discord.presence.show_server", "true"),
     CROSSHAIR_SIZE("crosshair.size", "11"),
-    CROSSHAIR_COLOR("crosshair.color", String.valueOf(2164260863L)),
+    CROSSHAIR_COLOR("crosshair.color", "2164260863"),
     DATE_PATTERN("pattern.date", "dd/MM/YYYY"),
     TIME_PATTERN("pattern.time", "HH:mm:ss"),
     KEYSTROKES("keystrokes.active", "true"),
     SPRINT_AND_CROUCH_KEYSTROKES("keystrokes.sprint_and_crouch", "false"),
-    RENDER_RAIN_SNOW("debug.rain_snow", "true"),
     SHOW_CHANGELOG_IN_TITLE_SCREEN("changelog.active", "true");
 
     private final String key;
