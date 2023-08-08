@@ -13,7 +13,7 @@ import java.awt.datatransfer.StringSelection;
 @Register
 public class CopyCoords extends KeyBinding {
     public CopyCoords() {
-        super("General", "Copy Coordinates", Keyboard.KEY_C, false, false, true);
+        super("Compass", "Copy Coordinates", Keyboard.KEY_C, false, false, true);
     }
 
     @Override

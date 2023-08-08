@@ -1,43 +1,39 @@
 package org.utilityclient.overlay;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.client.util.Window;
 import net.minecraft.util.Identifier;
 import org.utilityclient.api.Instances;
+import org.utilityclient.utils.Color;
 import org.utilityclient.utils.RenderHelper;
 
 public class Compass extends Instances {
     public static final Identifier compassTexture = new Identifier("textures/items/compass.png");
-    public static final int spriteUnit = 16;
-    public static final int sprites = 32;
-    private int position = 0;
+    public static final int spriteUnit = 16, sprites = 32;
     public static int destX, destY;
-    public static double distance;
-    public static boolean gotUpdated = false;
+    public static boolean active = false;
+    private int currentSprite = 0;
+    private double distance;
 
     public void render(int x, int y) {
-        if (!gotUpdated) return;
+        if (!active) return;
         update();
-        RenderHelper.texture(x, y, 32, 32, compassTexture, 0, spriteUnit * position, spriteUnit, spriteUnit, spriteUnit, spriteUnit * sprites, false);
+        RenderHelper.texture(x, y, 32, 32,
+                compassTexture, 0, spriteUnit * currentSprite, spriteUnit, spriteUnit,
+                spriteUnit, spriteUnit * sprites, false);
         String text = ChatFormatting.YELLOW + "" + Math.round(distance) + " Block(s) away";
         if (distance <= 3) text = ChatFormatting.GREEN + "You arrived.";
-        mc().textRenderer.drawWithShadow(text, x - (mc().textRenderer.getStringWidth(text)/2f) + 16, y + 43, -1);
+        int textX = (int) (x - (mc().textRenderer.getStringWidth(text) / 2f) + 16), textY = y + 41, margin = 3;
+        RenderHelper.rect(textX - margin, textY - margin, mc().textRenderer.getStringWidth(text) + 2 * margin, mc().textRenderer.fontHeight + 2 * margin,
+                Color.BACKGROUND.color, 1f, true);
+        mc().textRenderer.drawWithShadow(text, textX, textY, Color.TEXT.color);
     }
 
     private void update() {
-        double playerX = mc().player.getPos().x, playerY = mc().player.getPos().z;
-        double relDestX = destX - playerX, relDestY = destY - playerY;
-
-        double normalizedHeadYaw = (mc().player.getHeadRotation()%360)-270;
-        normalizedHeadYaw *= -1;
-
-        double theta = Math.toDegrees(Math.atan2(relDestY, relDestX)) - 180d + normalizedHeadYaw;
-        //theta *= -1;
-
+        double relDestX = destX - mc().player.getPos().x, relDestY = destY - mc().player.getPos().z; // Calculate relative coordinates
+        double normalizedHeadYaw = ((mc().player.getHeadRotation()%360)-270)*-1; // Normalize head yaw
+        double theta = Math.toDegrees(Math.atan2(relDestY, relDestX)) - 180d + normalizedHeadYaw; // Calculate rotation to the destination
         if (theta < 0.0d) theta += 360.0;
-
-        double selSprite = theta / 360 * sprites;
-        position = (int) Math.round(selSprite);
-        distance = Math.sqrt(Math.pow(relDestX, 2) + Math.pow(relDestY, 2));
+        currentSprite = (int) Math.round(theta / 360 * sprites); // Apply compass sprite
+        distance = Math.sqrt(Math.pow(relDestX, 2) + Math.pow(relDestY, 2)); // Apply distance to the destination
     }
 }

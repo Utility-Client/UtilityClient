@@ -15,7 +15,7 @@ import java.awt.datatransfer.Transferable;
 @Register
 public class PasteCoords extends KeyBinding {
     public PasteCoords() {
-        super("General", "Paste coordinates", Keyboard.KEY_V, false, false, true);
+        super("Compass", "Paste coordinates to the Compass", Keyboard.KEY_V, false, false, true);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class PasteCoords extends KeyBinding {
                 if (coords.length < 3) throw new IndexOutOfBoundsException();
                 Compass.destX = Integer.parseInt(coords[0]);
                 Compass.destY = Integer.parseInt(coords[2]);
-                Compass.gotUpdated = true;
+                Compass.active = true;
                 mc().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.GREEN + "Destination updated."));
             }
         } catch (Exception e) {
