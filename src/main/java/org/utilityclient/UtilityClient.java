@@ -7,15 +7,14 @@ import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.input.Keyboard;
-import org.utilityclient.addons.AddonManager;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.gui.screens.DebugScreen;
-import org.utilityclient.input.Macro;
-import org.utilityclient.overlay.ITheme;
+import org.utilityclient.api.Macro;
+import org.utilityclient.api.Theme;
 import org.utilityclient.overlay.ModuleHandler;
 import org.utilityclient.overlay.modules.*;
 import org.utilityclient.overlay.themes.*;
@@ -45,14 +44,13 @@ public class UtilityClient extends Thread {
     private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
-    public static ArrayList<ITheme> themes = new ArrayList<>();
+    public static ArrayList<Theme> themes = new ArrayList<>();
     public static ArrayList<Macro> macros = new ArrayList<>();
     public static int currentTheme = 0;
     public static boolean renderOverlay = true;
     public static boolean isFulbrightEnabled = false;
     public static boolean streamerMode = false;
     public static boolean debugMode = getVersion().endsWith("DEV");
-    private static final AddonManager addonManager = new AddonManager();
 
     /**
      * Use this instead of creating new instances.
@@ -94,7 +92,7 @@ public class UtilityClient extends Thread {
     /**
      * @return The currently selected theme
      */
-    public static ITheme getCurrentTheme() {
+    public static Theme getCurrentTheme() {
         return themes.get(currentTheme);
     }
 
@@ -144,8 +142,6 @@ public class UtilityClient extends Thread {
                 new DaylightCycleTheme()
         ));
 
-        // Run Addon Init here
-        addonManager.start();
         currentTheme = Config.getInteger(ConfigEntry.SELECTED_THEME);
 
         ModuleHandler.modules.addAll(Arrays.asList(
@@ -214,7 +210,5 @@ public class UtilityClient extends Thread {
                 MinecraftClient.getInstance().player.sendChatMessage(macro.Message);
             macro.state = Keyboard.isKeyDown(macro.KeyCode);
         }
-
-        addonManager.loop();
     }
 }

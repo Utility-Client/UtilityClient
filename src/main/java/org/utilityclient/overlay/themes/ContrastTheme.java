@@ -1,9 +1,9 @@
 package org.utilityclient.overlay.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import org.utilityclient.overlay.ITheme;
+import org.utilityclient.api.Theme;
 
-public class ContrastTheme implements ITheme {
+public class ContrastTheme implements Theme {
     @Override
     public String getName() {
         return "Contrast Theme";

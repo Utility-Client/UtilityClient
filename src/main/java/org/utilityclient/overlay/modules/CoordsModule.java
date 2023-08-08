@@ -1,9 +1,9 @@
 package org.utilityclient.overlay.modules;
 
 import org.utilityclient.UtilityClient;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class CoordsModule extends IModule {
+public class CoordsModule extends Module {
     @Override
     public String getName() {
         return "Coords";

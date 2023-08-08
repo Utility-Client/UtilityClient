@@ -1,8 +1,8 @@
 package org.utilityclient.overlay.modules;
 
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class DistanceModule extends IModule {
+public class DistanceModule extends Module {
     public static int x, y, z;
     public static boolean gotUpdated = false;
 

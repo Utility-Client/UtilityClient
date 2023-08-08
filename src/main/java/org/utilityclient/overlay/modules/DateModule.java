@@ -1,17 +1,13 @@
 package org.utilityclient.overlay.modules;
 
-import org.utilityclient.UtilityClient;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.SignStyle;
 
-import static java.time.temporal.ChronoField.*;
-
-public class DateModule extends IModule {
+public class DateModule extends Module {
     @Override
     public String getName() {
         return "Date";

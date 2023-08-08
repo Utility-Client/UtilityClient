@@ -1,12 +1,11 @@
-package org.utilityclient.overlay;
-
-import org.utilityclient.Instances;
+package org.utilityclient.api;
 
 /**
+ * @apiNote Previously known as "IModule", refactored in 3.0 LTS
  * @author Sam302
  * @since 2.0 LTS
  */
-public abstract class IModule extends Instances {
+public abstract class Module extends Instances {
     /**
      * Controlled by GuiOverlaySettings.
      * Do not override.

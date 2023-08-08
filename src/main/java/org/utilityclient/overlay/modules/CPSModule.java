@@ -2,9 +2,9 @@ package org.utilityclient.overlay.modules;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import org.utilityclient.UtilityClient;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class CPSModule extends IModule {
+public class CPSModule extends Module {
     @Override
     public String getName() {
         return "CPS";

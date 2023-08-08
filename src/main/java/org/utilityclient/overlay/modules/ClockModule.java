@@ -2,14 +2,12 @@ package org.utilityclient.overlay.modules;
 
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 
-import static java.time.temporal.ChronoField.*;
-
-public class ClockModule extends IModule {
+public class ClockModule extends Module {
     @Override
     public String getName() {
         return "Clock";

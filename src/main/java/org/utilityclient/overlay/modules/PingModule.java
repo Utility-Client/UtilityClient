@@ -1,8 +1,8 @@
 package org.utilityclient.overlay.modules;
 
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class PingModule extends IModule {
+public class PingModule extends Module {
     @Override
     public String getName() {
         return "Ping";

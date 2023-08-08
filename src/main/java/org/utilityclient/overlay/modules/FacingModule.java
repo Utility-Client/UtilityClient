@@ -1,8 +1,8 @@
 package org.utilityclient.overlay.modules;
 
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class FacingModule extends IModule {
+public class FacingModule extends Module {
     @Override
     public String getName() {
         return "Facing";

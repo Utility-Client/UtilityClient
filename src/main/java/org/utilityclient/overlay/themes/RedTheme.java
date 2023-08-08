@@ -1,9 +1,9 @@
 package org.utilityclient.overlay.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import org.utilityclient.overlay.ITheme;
+import org.utilityclient.api.Theme;
 
-public class RedTheme implements ITheme {
+public class RedTheme implements Theme {
     @Override
     public String getName() {
         return "Red Theme";

@@ -2,9 +2,9 @@ package org.utilityclient.overlay.modules;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.MinecraftClient;
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class FPSModule extends IModule {
+public class FPSModule extends Module {
     @Override
     public String getName() {
         return "FPS";

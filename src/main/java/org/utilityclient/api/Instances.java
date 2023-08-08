@@ -1,6 +1,7 @@
-package org.utilityclient;
+package org.utilityclient.api;
 
 import net.minecraft.client.MinecraftClient;
+import org.utilityclient.UtilityClient;
 
 /**
  * Instances of some Main Classes.

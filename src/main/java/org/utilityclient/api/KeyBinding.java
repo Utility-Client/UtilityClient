@@ -1,4 +1,4 @@
-package org.utilityclient.input;
+package org.utilityclient.api;
 
 /**
  * A custom & advanced KeyBinding implementation for UtilityClient.
@@ -8,9 +8,10 @@ package org.utilityclient.input;
  */
 public abstract class KeyBinding {
     public final String Category, Name;
-    public final int KeyCode, Modifiers;
+    public final int KeyCode;
+    public final int[] Modifiers;
 
-    public KeyBinding(String category, String name, int keyCode, int modifiers) {
+    public KeyBinding(String category, String name, int keyCode, int[] modifiers) {
         this.Category = category;
         this.Name = name;
         this.KeyCode = keyCode;

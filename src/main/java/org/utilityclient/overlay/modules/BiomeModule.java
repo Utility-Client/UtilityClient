@@ -1,8 +1,8 @@
 package org.utilityclient.overlay.modules;
 
-import org.utilityclient.overlay.IModule;
+import org.utilityclient.api.Module;
 
-public class BiomeModule extends IModule {
+public class BiomeModule extends Module {
 
     @Override
     public String getName() {

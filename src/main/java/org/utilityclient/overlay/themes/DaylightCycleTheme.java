@@ -1,10 +1,10 @@
 package org.utilityclient.overlay.themes;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import org.utilityclient.overlay.ITheme;
+import org.utilityclient.api.Theme;
 import org.utilityclient.utils.Utils;
 
-public class DaylightCycleTheme implements ITheme {
+public class DaylightCycleTheme implements Theme {
     @Override
     public String getName() {
         return "Daylight Cycle Theme";

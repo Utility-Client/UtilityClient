@@ -1,14 +1,15 @@
-package org.utilityclient.overlay;
+package org.utilityclient.api;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 
 /**
+ * @apiNote Previously known as "ITheme", refactored in 3.0 LTS
  * @author Sam302
  * @since 2.15 LTS
  */
-public interface ITheme {
+public interface Theme {
     /**
      * @since 2.15 LTS
      * @return The name of the theme

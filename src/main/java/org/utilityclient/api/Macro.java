@@ -1,4 +1,4 @@
-package org.utilityclient.input;
+package org.utilityclient.api;
 
 import java.io.File;
 import java.io.FileNotFoundException;
