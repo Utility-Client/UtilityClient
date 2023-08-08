@@ -7,24 +7,24 @@ package org.utilityclient.config;
  * @since 2.12
  */
 public enum ConfigEntry {
-    SELECTED_THEME("selectedTheme", "0"),
-    HOTKEY_ZOOM("hotkeyZoom", "46"),
-    HOTKEY_FULBRIGHT("hotkeyFulbright", "50"),
-    HOTKEY_OVERLAY("hotkeyOverlay", "22"),
-    CROSSHAIR_SIZE("crosshairSize", "11"),
-    ZOOM_FACTOR("zoomFactor", String.valueOf(0.15f)),
-    KEYSTROKES("keystrokes.enabled", "true"),
-    TOGGLE_SPRINT("toggleSprintEnabled", "false"),
-    OVERLAY_BACKGROUND("overlayBackgroundEnabled", "true"),
-    DISCORD_RICH_PRESENCE("discordRichPresenceEnabled", "true"),
-    DISCORD_FRIEND_NOTIFICATIONS("discordFriendNotifications", "true"),
+    SELECTED_THEME("overlay.theme", "0"),
+    OVERLAY_BACKGROUND("overlay.background", "true"),
+    HOTKEY_ZOOM("hotkey.zoom", "46"),
+    HOTKEY_FULBRIGHT("hotkey.fulbright", "50"),
+    HOTKEY_OVERLAY("hotkey.overlay", "22"),
+    ZOOM_FACTOR("zoom.factor", String.valueOf(0.15f)),
+    TOGGLE_SPRINT("toggle_sprint.active", "false"),
+    DISCORD_RICH_PRESENCE("discord.presence.active", "true"),
+    DISCORD_FRIEND_NOTIFICATIONS("discord.friends.active", "true"),
     DISCORD_SHOW_SERVER("discordShowServerInPresence", "true"),
-    CROSSHAIR_COLOR("crosshairColor", String.valueOf(2164260863L)),
-    DATE_PATTERN("datePattern", "dd/MM/YYYY"),
-    TIME_PATTERN("timePattern", "HH:mm:ss"),
-    SPRINT_AND_CROUCH_KEYSTROKES("keystrokes.showSprintAndCrouch", "false"),
-    RENDER_RAIN_SNOW("renderRainSnow", "true"),
-    SHOW_CHANGELOG_IN_TITLE_SCREEN("showChangelogInTitleScreen", "true");
+    CROSSHAIR_SIZE("crosshair.size", "11"),
+    CROSSHAIR_COLOR("crosshair.color", String.valueOf(2164260863L)),
+    DATE_PATTERN("pattern.date", "dd/MM/YYYY"),
+    TIME_PATTERN("pattern.time", "HH:mm:ss"),
+    KEYSTROKES("keystrokes.active", "true"),
+    SPRINT_AND_CROUCH_KEYSTROKES("keystrokes.sprint_and_crouch", "false"),
+    RENDER_RAIN_SNOW("debug.rain_snow", "true"),
+    SHOW_CHANGELOG_IN_TITLE_SCREEN("changelog.active", "true");
 
     private final String key;
     private final String defaultValue;
