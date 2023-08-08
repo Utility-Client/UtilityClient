@@ -49,34 +49,6 @@ public class Utils {
         return Duration.between(nowZoned.toLocalDate().atStartOfDay(nowZoned.getZone()).toInstant(), Instant.now()).getSeconds();
     }
 
-    public static Season getSeasonOfMonth(int month) {
-        if (Config.getBoolean("title.seasons", false)) return Season.NONE;
-
-        switch (month) {
-            case 1:
-            case 2:
-            case 11:
-            case 12:
-                return Season.WINTER;
-
-            case 3:
-            case 4:
-            case 5:
-                return Season.SPRING;
-
-            case 6:
-            case 7:
-            case 8:
-                return Season.SUMMER;
-
-            case 9:
-            case 10:
-                return Season.FALL;
-        }
-
-        return Season.NONE;
-    }
-
     /**
      * Writes a line to the in-game chat.
      * @param text A text object.

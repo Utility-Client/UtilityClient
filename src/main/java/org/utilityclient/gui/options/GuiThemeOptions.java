@@ -52,13 +52,13 @@ public class GuiThemeOptions extends GuiScreen {
 
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
-        drawCenteredString(textRenderer, this.title, this.width / 2, 20, Color.TEXT.color);
-        drawCenteredString(textRenderer, "Current theme: " + UtilityClient.getCurrentTheme().getName(), this.width / 2, this.height / 2 - 90, Color.TEXT.color);
+        drawCenteredString(textRenderer, this.title, this.width / 2, 20, Color.SnowWhite.color);
+        drawCenteredString(textRenderer, "Current theme: " + UtilityClient.getCurrentTheme().getName(), this.width / 2, this.height / 2 - 90, Color.SnowWhite.color);
         drawCenteredString(textRenderer,
                 UtilityClient.getCurrentTheme().getPrefixColor() + I18n.translate("uc.options.theme.prefix")
                         + UtilityClient.getCurrentTheme().getSeparator()
                         + UtilityClient.getCurrentTheme().getSuffixColor() +  I18n.translate("uc.options.theme.suffix"),
-                this.width / 2, this.height / 2 - 70, Color.TEXT.color);
+                this.width / 2, this.height / 2 - 70, Color.SnowWhite.color);
         super.render(mouseX, mouseY, partialTicks);
     }
 }

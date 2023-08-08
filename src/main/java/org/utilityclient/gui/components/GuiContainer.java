@@ -27,7 +27,7 @@ public class GuiContainer extends GuiComponent {
 
     @Override
     public void render(int mouseX, int mouseY, float tickDelta) {
-        RenderHelper.rect(screenX, screenY, width, height, Color.BACKGROUND.color, 1f, true);
+        RenderHelper.rect(screenX, screenY, width, height, Color.Background.color, 1f, true);
         for (GuiComponent c : children) c.render(mouseX, mouseY, tickDelta);
     }
 

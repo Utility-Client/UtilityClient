@@ -39,12 +39,12 @@ public class GuiOverlaySettings extends Screen {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
-        drawCenteredString(textRenderer, "Overlay Settings", width / 2, 20, Color.TEXT.color);
+        drawCenteredString(textRenderer, "Overlay Settings", width / 2, 20, Color.SnowWhite.color);
 
         int offset = 0;
         for (int i = 0; i < modules.size(); i++) {
             if (modules.get(i).shouldRender())
-                textRenderer.draw(modules.get(i).getName(), width / 3, (height / 10 * 2) + ((i + offset) * 21) + 10, Color.TEXT.color);
+                textRenderer.draw(modules.get(i).getName(), width / 3, (height / 10 * 2) + ((i + offset) * 21) + 10, Color.SnowWhite.color);
             else offset -= 1;
         }
 

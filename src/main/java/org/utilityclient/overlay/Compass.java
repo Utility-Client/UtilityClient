@@ -24,8 +24,8 @@ public class Compass extends Instances {
         if (distance <= 3) text = ChatFormatting.GREEN + "You arrived.";
         int textX = (int) (x - (mc().textRenderer.getStringWidth(text) / 2f) + 16), textY = y + 41, margin = 3;
         RenderHelper.rect(textX - margin, textY - margin, mc().textRenderer.getStringWidth(text) + 2 * margin, mc().textRenderer.fontHeight + 2 * margin,
-                Color.BACKGROUND.color, 1f, true);
-        mc().textRenderer.drawWithShadow(text, textX, textY, Color.TEXT.color);
+                Color.Background.color, 1f, true);
+        mc().textRenderer.drawWithShadow(text, textX, textY, Color.SnowWhite.color);
     }
 
     private void update() {

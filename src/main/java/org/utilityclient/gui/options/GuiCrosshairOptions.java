@@ -95,8 +95,8 @@ public class GuiCrosshairOptions extends GuiScreen {
     public void render(int mouseX, int mouseY, float partialTicks)
     {
         renderBackground();
-        drawCenteredString(textRenderer, title, width / 2, 20, Color.TEXT.color);
-        drawCenteredString(textRenderer, size + "x" + size, width / 2, height / 4 * 3 + 5, Color.TEXT.color);
+        drawCenteredString(textRenderer, title, width / 2, 20, Color.SnowWhite.color);
+        drawCenteredString(textRenderer, size + "x" + size, width / 2, height / 4 * 3 + 5, Color.SnowWhite.color);
 
         if (prevSize != size) {
             updateButtons();

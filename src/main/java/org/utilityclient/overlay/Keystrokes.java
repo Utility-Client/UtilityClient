@@ -39,7 +39,7 @@ public class Keystrokes {
         if (keyName.contains("SHIFT")) keyName = "SHIFT";
         if (keyName.contains("ALT")) keyName = "ALT";
 
-        MinecraftClient.getInstance().textRenderer.draw(keyName, ((x + type.width / 8f) - MinecraftClient.getInstance().textRenderer.getStringWidth(keyName) / 2f), y+6, Color.TEXT.color, false);
+        MinecraftClient.getInstance().textRenderer.draw(keyName, ((x + type.width / 8f) - MinecraftClient.getInstance().textRenderer.getStringWidth(keyName) / 2f), y+6, Color.SnowWhite.color, false);
     }
 
     enum KeyType {

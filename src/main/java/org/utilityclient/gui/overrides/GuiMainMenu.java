@@ -26,6 +26,7 @@ import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.utils.Color;
+import org.utilityclient.utils.Season;
 import org.utilityclient.utils.Utils;
 import org.utilityclient.utils.json.JSONUtils;
 import org.utilityclient.utils.json.objects.Release;
@@ -201,7 +202,7 @@ public class GuiMainMenu extends GuiScreen {
 
         if (shouldShowChangelog) try {
             String[] changes = release.body.split("-");
-            if (_longest != 0) fill(_longest - 8, 0, width, height, Color.BACKGROUND.color);
+            if (_longest != 0) fill(_longest - 8, 0, width, height, Color.Background.color);
             int center = (changes.length * 10) / 2, y = (width - _longest) / 2 - textRenderer.getStringWidth(release.name + " - " + release.tag_name) / 2;
             if (_longest != 0)
                 textRenderer.drawWithShadow(release.name + " - " + release.tag_name, _longest + y, height / 2f - center - 10, -1);
@@ -239,7 +240,7 @@ public class GuiMainMenu extends GuiScreen {
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(Utils.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
+        client.getTextureManager().bindTexture(Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
         DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 }

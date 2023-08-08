@@ -30,17 +30,17 @@ public class ModuleHandler extends Instances {
         }
 
         if (Config.getBoolean(ConfigEntry.OVERLAY_BACKGROUND))
-            Screen.fill(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Color.BACKGROUND.color);
+            Screen.fill(op_x - 2, op_y - 2, largest + op_x + 2, x * mod_height + op_y + 2, Color.Background.color);
 
         int z = 1;
         for (Module mod : modules) {
             if (!mod.isEnabled) continue;
             if (!mod.shouldRender()) continue;
             String str = theme.getPrefixColor() + mod.getName() + theme.getSeparator() + theme.getSuffixColor() + mod.getValue();
-            theme.getFontRenderer().drawWithShadow(str, op_x, op_y + (mod_height*z), Color.TEXT.color);
+            theme.getFontRenderer().drawWithShadow(str, op_x, op_y + (mod_height*z), Color.SnowWhite.color);
             z++;
         }
 
-        theme.getFontRenderer().drawWithShadow(theme.getPrefixColor() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, Color.TEXT.color);
+        theme.getFontRenderer().drawWithShadow(theme.getPrefixColor() + UtilityClient.getClientName() + " " + UtilityClient.getVersion(), 4, 4, Color.SnowWhite.color);
     }
 }

@@ -27,7 +27,7 @@ public class GuiDiscordOptions extends GuiScreen {
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         renderBackground();
-        this.drawCenteredString(textRenderer, "Discord Options", this.width / 2, 20, Color.TEXT.color);
+        this.drawCenteredString(textRenderer, "Discord Options", this.width / 2, 20, Color.SnowWhite.color);
         super.render(mouseX, mouseY, partialTicks);
     }
 
