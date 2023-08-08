@@ -1,11 +1,10 @@
 package org.utilityclient;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.CommonI18n;
-import org.lwjgl.input.Keyboard;
 import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 import org.utilityclient.api.*;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
@@ -26,12 +25,13 @@ import java.util.Set;
  * @apiNote Do not create new instances. Instead call {@link UtilityClient#getInstance()}
  * @since 2.0 LTS
  */
+@StandaloneCompatible
 public class UtilityClient extends Thread {
     public static final CPSThread CPS_THREAD_INSTANCE = new CPSThread();
     public static final DiscordRP DISCORD_INSTANCE = new DiscordRP();
     private static final String CLIENT_NAME = "Utility Client";
     private static final String CLIENT_VERSION = "3.0-DEV";
-    private static final UtilityClient CLIENT_INSTANCE = new UtilityClient();
+    private static UtilityClient CLIENT_INSTANCE;
     public static float fovModifier = 1.0f;
     public static ArrayList<KeyBinding> keyBinds = new ArrayList<>();
     public static ArrayList<Theme> themes = new ArrayList<>();
@@ -42,6 +42,7 @@ public class UtilityClient extends Thread {
     public static boolean streamerMode = false;
     public static boolean debugMode = getVersion().endsWith("DEV");
     public static ArrayList<String> packageSearchIndex = new ArrayList<>();
+    public final Wrapper wrapper;
 
     /**
      * Use this instead of creating new instances.
@@ -50,6 +51,15 @@ public class UtilityClient extends Thread {
      */
     public static UtilityClient getInstance() {
         return CLIENT_INSTANCE;
+    }
+
+    /**
+     * @since 3.0
+     * @param uc The new Client instance
+     * @see UtilityClient
+     */
+    public static void setInstance(UtilityClient uc) {
+        CLIENT_INSTANCE = uc;
     }
 
     /**
@@ -87,9 +97,13 @@ public class UtilityClient extends Thread {
         return themes.get(currentTheme);
     }
 
+    public UtilityClient(Wrapper wrapperImpl) {
+        this.wrapper = wrapperImpl;
+    }
+
     public void run() {
         // I want to see the world burn.
-        CommonI18n.thisIsNotUsedAnyWhereAndThisMethodDoesNotWorkSoPleaseDoNotUseThis("wooooooooo yeahya");
+        // CommonI18n.thisIsNotUsedAnyWhereAndThisMethodDoesNotWorkSoPleaseDoNotUseThis("wooooooooo yeahya");
 
         Utils.ignore(new File("uc3").mkdirs());
         Utils.ignore(new File("uc3/modules").mkdirs());
@@ -134,9 +148,9 @@ public class UtilityClient extends Thread {
             for (KeyBinding kb : keyBinds) kb.frame();
 
             for (Macro macro : macros) {
-                if (macro.state && !Keyboard.isKeyDown(macro.KeyCode))
-                    MinecraftClient.getInstance().player.sendChatMessage(macro.Message);
-                macro.state = Keyboard.isKeyDown(macro.KeyCode);
+                if (macro.state && !wrapper.isKeyDown(macro.KeyCode))
+                    wrapper.sendChatMessage(macro.Message);
+                macro.state = wrapper.isKeyDown(macro.KeyCode);
             }
         }
     }

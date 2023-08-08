@@ -1,10 +1,8 @@
 package org.utilityclient.utils;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.utilityclient.config.Config;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -16,6 +14,7 @@ import java.time.ZonedDateTime;
  * @author Sam302
  * @since 2.14
  */
+@StandaloneCompatible
 public class Utils {
     private static final Logger logger = LogManager.getLogger();
 
@@ -47,15 +46,5 @@ public class Utils {
     public static long getSecondsOfDay() {
         ZonedDateTime nowZoned = ZonedDateTime.now();
         return Duration.between(nowZoned.toLocalDate().atStartOfDay(nowZoned.getZone()).toInstant(), Instant.now()).getSeconds();
-    }
-
-    /**
-     * Writes a line to the in-game chat.
-     * @param text A text object.
-     * @since 3.0
-     * @see net.minecraft.text.LiteralText
-     */
-    public static void chat(Text text) {
-        MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(text);
     }
 }
