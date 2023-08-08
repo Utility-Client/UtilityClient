@@ -10,6 +10,7 @@ import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
 import org.utilityclient.discord.DiscordRP;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
+import org.utilityclient.keybindings.ToggleSneak;
 import org.utilityclient.overlay.modules.*;
 import org.utilityclient.utils.Utils;
 
@@ -126,12 +127,14 @@ public class UtilityClient extends Thread {
     }
 
     public void loop() {
-        for (KeyBinding kb : keyBinds) kb.frame();
+        if (MinecraftClient.getInstance().currentScreen == null) {
+            for (KeyBinding kb : keyBinds) kb.frame();
 
-        for (Macro macro : macros) {
-            if (macro.state && !Keyboard.isKeyDown(macro.KeyCode))
-                MinecraftClient.getInstance().player.sendChatMessage(macro.Message);
-            macro.state = Keyboard.isKeyDown(macro.KeyCode);
+            for (Macro macro : macros) {
+                if (macro.state && !Keyboard.isKeyDown(macro.KeyCode))
+                    MinecraftClient.getInstance().player.sendChatMessage(macro.Message);
+                macro.state = Keyboard.isKeyDown(macro.KeyCode);
+            }
         }
     }
 }
