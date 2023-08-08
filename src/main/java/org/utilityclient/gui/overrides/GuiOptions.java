@@ -15,6 +15,7 @@ import net.minecraft.world.Difficulty;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.gui.options.GuiUtilityClient;
+import org.utilityclient.gui.screens.UtilityClientOptions;
 
 public class GuiOptions extends GuiScreen implements IdentifibleBooleanConsumer {
     private static final GameOptions.Option[] OPTIONS;
@@ -126,7 +127,7 @@ public class GuiOptions extends GuiScreen implements IdentifibleBooleanConsumer 
                 this.difficultyButton.message = this.getDifficultyButtonText(this.client.world.getGlobalDifficulty());
             }
 
-            if (button.id == 99) client.openScreen(new GuiUtilityClient(this));
+            if (button.id == 99) client.openScreen(new UtilityClientOptions(this));
             if (button.id == 100) this.client.openScreen(new ControlsOptionsScreen(this, this.options));
             if (button.id == 101) this.client.openScreen(new VideoOptionsScreen(this, this.options));
             if (button.id == 102) this.client.openScreen(new LanguageOptionsScreen(this, this.options, this.client.getLanguageManager()));
