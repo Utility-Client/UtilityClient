@@ -27,8 +27,7 @@ import java.util.zip.ZipInputStream;
  * @since 2.0 LTS
  */
 public class DiscordRP extends Thread {
-
-    private static boolean shouldRun = false;
+    private static boolean active = false;
     public static Core core;
     private String oldTopText, oldBottomText;
 
@@ -52,16 +51,16 @@ public class DiscordRP extends Thread {
         params.setFlags(CreateParams.Flags.DEFAULT);
         params.registerEventHandler(new DCEventAdapter());
         core = new Core(params);
-        shouldRun = true;
+        active = true;
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            shouldRun = false;
+            active = false;
             LogManager.getLogger().info("Discord Hook: Closing Discord hook.");
             core.close();
         }));
 
 
-        while (shouldRun) {
+        while (active) {
             try {
                 Thread.sleep(500);
                 loop();
@@ -73,7 +72,7 @@ public class DiscordRP extends Thread {
 
     private void loop() {
         if(!Config.getBoolean(ConfigEntry.DISCORD_RICH_PRESENCE)) return;
-        if(!shouldRun) return;
+        if(!active) return;
 
         String topText = "";
         String bottomText = "";
