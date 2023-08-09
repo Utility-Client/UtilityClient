@@ -1,7 +1,9 @@
 package org.utilityclient.overlay.modules;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.overlay.ModuleHandler;
 
+@StandaloneCompatible
 public class CPSThread extends Thread {
 
     private static int clicks;

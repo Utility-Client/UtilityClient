@@ -1,6 +1,7 @@
 package org.utilityclient.overlay.modules;
 
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.api.Module;
@@ -8,7 +9,7 @@ import org.utilityclient.api.Module;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 
-@Register
+@Register @StandaloneCompatible
 public class ClockModule extends Module {
     @Override
     public String getName() {
