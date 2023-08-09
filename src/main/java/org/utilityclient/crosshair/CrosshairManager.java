@@ -1,9 +1,5 @@
 package org.utilityclient.crosshair;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.Window;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.options.GuiCrosshairOptions;
@@ -36,7 +32,8 @@ public class CrosshairManager {
     }
 
     public static void loop() {
-        GlStateManager.disableDepthTest();
+        // TODO
+        /*GlStateManager.disableDepthTest();
         GlStateManager.disableAlphaTest();
         int size = Config.getInteger(ConfigEntry.CROSSHAIR_SIZE);
 
@@ -52,6 +49,6 @@ public class CrosshairManager {
             }
         }
         GlStateManager.enableDepthTest();
-        GlStateManager.enableAlphaTest();
+        GlStateManager.enableAlphaTest();*/
     }
 }

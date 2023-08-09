@@ -1,5 +1,7 @@
 package org.utilityclient.api;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +15,7 @@ import java.util.stream.Stream;
  * @author Sam302
  * @since 3.0
  */
+@StandaloneCompatible
 public class Macro {
     protected final File file;
     public String Name, Message;

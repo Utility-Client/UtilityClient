@@ -1,5 +1,6 @@
 package org.utilityclient.config;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.utils.Utils;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.Scanner;
  * @author Sam302
  * @since 2.12
  */
+@StandaloneCompatible
 public class Config {
     private static final HashMap<String, String> config = new HashMap<>();
     private static final File configFile = new File("uc3/config.cfg");

@@ -5,5 +5,6 @@ package org.utilityclient.api.abstraction;
  * @since 3.0
  * @see StandaloneCompatible
  */
+@StandaloneCompatible
 public @interface Uncommon {
 }

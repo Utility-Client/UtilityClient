@@ -1,5 +1,7 @@
 package org.utilityclient.api;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,6 +13,7 @@ import java.lang.annotation.Target;
  * @since 3.0
  * @see Registrable
  */
+@StandaloneCompatible
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Register {

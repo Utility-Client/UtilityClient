@@ -8,6 +8,7 @@ import org.utilityclient.utils.MathUtil;
  * @since 3.0
  * @author Sam302
  */
+@StandaloneCompatible
 public abstract class Wrapper {
     public static int fontHeight = 9;
 

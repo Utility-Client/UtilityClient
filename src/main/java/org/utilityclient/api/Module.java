@@ -1,6 +1,6 @@
 package org.utilityclient.api;
 
-import org.utilityclient.UtilityClient;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.overlay.ModuleHandler;
 
 /**
@@ -8,6 +8,7 @@ import org.utilityclient.overlay.ModuleHandler;
  * @author Sam302
  * @since 2.0 LTS
  */
+@StandaloneCompatible
 public abstract class Module extends Registrable {
     /**
      * Controlled by GuiOverlaySettings.

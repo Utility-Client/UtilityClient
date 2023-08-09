@@ -1,10 +1,13 @@
 package org.utilityclient.config;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 /**
  * Config Entries with default values as enum
  * @author Sam302
  * @since 2.12
  */
+@StandaloneCompatible
 public enum ConfigEntry {
     SELECTED_THEME("overlay.theme", "0"),
     OVERLAY_BACKGROUND("overlay.background", "true"),

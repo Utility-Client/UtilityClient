@@ -1,7 +1,7 @@
 package org.utilityclient.api;
 
-import org.lwjgl.input.Keyboard;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
 /**
  * A custom & advanced KeyBinding implementation for UtilityClient.
@@ -9,6 +9,7 @@ import org.utilityclient.UtilityClient;
  * @author Sam302
  * @since 3.0
  */
+@StandaloneCompatible
 public abstract class KeyBinding extends Registrable {
     public final String Category, Name;
     public final int KeyCode;
@@ -25,10 +26,10 @@ public abstract class KeyBinding extends Registrable {
     }
 
     public void frame() {
-        boolean ctrl = !Ctrl || Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL);
-        boolean shift = !Shift || Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
-        boolean alt = !Alt || Keyboard.isKeyDown(Keyboard.KEY_LMENU) || Keyboard.isKeyDown(Keyboard.KEY_RMENU);
-        boolean key = Keyboard.isKeyDown(KeyCode);
+        boolean ctrl = !Ctrl || uc().wrapper.isKeyDown(0x1D) || uc().wrapper.isKeyDown(0x9D);
+        boolean shift = !Shift || uc().wrapper.isKeyDown(0x2A) || uc().wrapper.isKeyDown(0x36);
+        boolean alt = !Alt || uc().wrapper.isKeyDown(0x38) || uc().wrapper.isKeyDown(0xB8);
+        boolean key = uc().wrapper.isKeyDown(KeyCode);
 
         if (ctrl && shift && alt && key) {
             if (!lastFrameDown) down();

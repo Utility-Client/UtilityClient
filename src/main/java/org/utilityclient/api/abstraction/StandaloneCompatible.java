@@ -6,4 +6,5 @@ package org.utilityclient.api.abstraction;
  * @since 3.0
  * @author Sam302
  */
+@StandaloneCompatible
 public @interface StandaloneCompatible {}

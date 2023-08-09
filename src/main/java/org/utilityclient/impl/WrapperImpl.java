@@ -96,7 +96,6 @@ public class WrapperImpl extends Wrapper {
         GlStateManager.disableFog();
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc().getTextureManager().bindTexture(new Identifier(id));
-        // Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier()
         DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 
