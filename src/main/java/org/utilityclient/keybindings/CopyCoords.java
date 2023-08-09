@@ -1,10 +1,9 @@
 package org.utilityclient.keybindings;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
-import org.lwjgl.input.Keyboard;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
 import org.utilityclient.api.abstraction.StandaloneCompatible;
+import org.utilityclient.utils.ChatFormatting;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -13,7 +12,7 @@ import java.awt.datatransfer.StringSelection;
 @Register @StandaloneCompatible
 public class CopyCoords extends KeyBinding {
     public CopyCoords() {
-        super("Compass", "Copy Coordinates", Keyboard.KEY_C, false, false, true);
+        super("Compass", "Copy Coordinates", 0x2E, false, false, true);
     }
 
     @Override

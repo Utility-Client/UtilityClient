@@ -3,9 +3,10 @@ package org.utilityclient.keybindings;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.config.*;
 
-@Register
+@Register @StandaloneCompatible
 public class Zoom extends KeyBinding {
     public Zoom() {
         super("General", "Zoom", 46, false, false, false);

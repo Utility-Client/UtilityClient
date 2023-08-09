@@ -1,12 +1,10 @@
 package org.utilityclient.keybindings;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.text.LiteralText;
-import org.lwjgl.input.Keyboard;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
 import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.overlay.Compass;
+import org.utilityclient.utils.ChatFormatting;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -16,7 +14,7 @@ import java.awt.datatransfer.Transferable;
 @Register @StandaloneCompatible
 public class PasteCoords extends KeyBinding {
     public PasteCoords() {
-        super("Compass", "Paste coordinates to the Compass", Keyboard.KEY_V, false, false, true);
+        super("Compass", "Paste coordinates to the Compass", 0x2F, false, false, true);
     }
 
     @Override
