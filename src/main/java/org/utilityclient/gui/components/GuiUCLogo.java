@@ -1,9 +1,9 @@
 package org.utilityclient.gui.components;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.util.Identifier;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.utils.RenderHelper;
 
+@StandaloneCompatible
 public class GuiUCLogo extends GuiComponent {
     protected Variant variant;
     protected boolean center;
@@ -25,9 +25,7 @@ public class GuiUCLogo extends GuiComponent {
         int _x = screenX;
         if (center) _x -= width / 2;
 
-        GlStateManager.enableAlphaTest();
         RenderHelper.texture(_x, screenY, width, height, variant.getIdentifier(), 0, 0, variant.width, variant.height, variant.width, variant.height, true);
-        GlStateManager.disableAlphaTest();
     }
 
     @Override
@@ -41,16 +39,16 @@ public class GuiUCLogo extends GuiComponent {
         UtilityClient("utilityclient.png", 0, 0),
         UtilityClient3("utilityclient3.png", 0, 0);
 
-        private Identifier id;
+        private final String id;
         public final int width, height;
 
         Variant(String iconPath, int width, int height) {
-            id = new Identifier("textures/utilityclient/icons/" + iconPath);
+            id = "textures/utilityclient/icons/" + iconPath;
             this.width = width;
             this.height = height;
         }
 
-        public Identifier getIdentifier() {
+        public String getIdentifier() {
             return id;
         }
     }

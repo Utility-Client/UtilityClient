@@ -1,9 +1,12 @@
 package org.utilityclient.utils;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 /**
  * @author Sam302
  * @since 2.14
  */
+@StandaloneCompatible
 public class MathUtil {
     /**
      * @param numerator The numerator of your fraction

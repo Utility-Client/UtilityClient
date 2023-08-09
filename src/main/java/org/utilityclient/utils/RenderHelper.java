@@ -1,15 +1,14 @@
 package org.utilityclient.utils;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.util.Identifier;
+import org.utilityclient.UtilityClient;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
 /**
  * Helper methods for drawing textures and rectangles.
  * @author Sam302
  * @since 3.0
  */
+@StandaloneCompatible
 public class RenderHelper {
     /**
      * Draws a rectangle from a texture to the screen.
@@ -27,12 +26,8 @@ public class RenderHelper {
      * @param blend Enables opacity/transparency for this texture.
      * @since 3.0
      */
-    public static void texture(int screenX, int screenY, int screenWidth, int screenHeight, Identifier texture, int textureX, int textureY, int textureWidth, int textureHeight, int totalTextureWidth, int totalTextureHeight, boolean blend) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        if (blend) GlStateManager.enableBlend();
-        MinecraftClient.getInstance().getTextureManager().bindTexture(texture);
-        DrawableHelper.drawTexture(screenX, screenY, textureX, textureY, textureWidth, textureHeight, screenWidth, screenHeight, totalTextureWidth, totalTextureHeight);
-        if (blend) GlStateManager.disableBlend();
+    public static void texture(int screenX, int screenY, int screenWidth, int screenHeight, String texture, int textureX, int textureY, int textureWidth, int textureHeight, int totalTextureWidth, int totalTextureHeight, boolean blend) {
+        UtilityClient.getInstance().wrapper.texture(screenX, screenY, screenWidth, screenHeight, texture, textureX, textureY, textureWidth, textureHeight, totalTextureWidth, totalTextureHeight, blend);
     }
 
     /**
@@ -47,9 +42,6 @@ public class RenderHelper {
      * @since 3.0
      */
     public static void rect(int x, int y, int width, int height, int color, float alpha, boolean blend) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, alpha);
-        if (blend) GlStateManager.enableBlend();
-        DrawableHelper.fill(x, y, x + width, y + height, color);
-        if (blend) GlStateManager.disableBlend();
+        UtilityClient.getInstance().wrapper.rect(x, y, width, height, color, alpha, blend);
     }
 }

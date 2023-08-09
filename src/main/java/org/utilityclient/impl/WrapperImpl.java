@@ -98,4 +98,23 @@ public class WrapperImpl extends Wrapper {
         // Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier()
         DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
+
+    @Override
+    public void rect(int x, int y, int width, int height, int color, float alpha, boolean blend) {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, alpha);
+        if (blend) GlStateManager.enableBlend();
+        DrawableHelper.fill(x, y, x + width, y + height, color);
+        if (blend) GlStateManager.disableBlend();
+    }
+
+    @Override
+    public void texture(int screenX, int screenY, int screenWidth, int screenHeight, String texture, int textureX, int textureY, int textureWidth, int textureHeight, int totalTextureWidth, int totalTextureHeight, boolean blend) {
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.enableAlphaTest(); // TODO: Add as parameter?
+        if (blend) GlStateManager.enableBlend();
+        MinecraftClient.getInstance().getTextureManager().bindTexture(new Identifier(texture));
+        DrawableHelper.drawTexture(screenX, screenY, textureX, textureY, textureWidth, textureHeight, screenWidth, screenHeight, totalTextureWidth, totalTextureHeight);
+        if (blend) GlStateManager.disableBlend();
+        GlStateManager.disableAlphaTest();
+    }
 }

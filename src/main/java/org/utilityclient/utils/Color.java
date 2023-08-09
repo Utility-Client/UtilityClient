@@ -1,5 +1,7 @@
 package org.utilityclient.utils;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 /**
  * Color codes used to draw UI in Minecraft.<br/>
  * This enum was created to prevent the use of "magic numbers" and make it easier to render specific colors.<br/><br/>
@@ -9,6 +11,7 @@ package org.utilityclient.utils;
  * @author Sangelo
  * @since 2.14
  */
+@StandaloneCompatible
 public enum Color {
     NightBlack(0xff171314),
     SnowWhite(0xffFFF9FB),

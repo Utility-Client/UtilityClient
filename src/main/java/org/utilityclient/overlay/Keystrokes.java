@@ -3,7 +3,6 @@ package org.utilityclient.overlay;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.Window;
-import net.minecraft.util.Identifier;
 import org.lwjgl.input.Keyboard;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
@@ -11,9 +10,6 @@ import org.utilityclient.utils.Color;
 import org.utilityclient.utils.RenderHelper;
 
 public class Keystrokes {
-    static Identifier inactive = new Identifier("textures/utilityclient/keystrokes/inactive.png");
-    static Identifier active = new Identifier("textures/utilityclient/keystrokes/active.png");
-
     public static void loop() {
         if(!Config.getBoolean(ConfigEntry.KEYSTROKES)) return;
         Window window = new Window(MinecraftClient.getInstance());
@@ -32,7 +28,7 @@ public class Keystrokes {
     }
 
     public static void render(int x, int y, KeyType type, KeyBinding kb) {
-        RenderHelper.texture(x, y, type.width / 4, type.height / 4, kb.isPressed() ? active : inactive, type.x, type.y, type.width, type.height, 80 * 4, 76 * 4, true);
+        RenderHelper.texture(x, y, type.width / 4, type.height / 4, kb.isPressed() ? "textures/utilityclient/keystrokes/active.png" : "textures/utilityclient/keystrokes/inactive.png", type.x, type.y, type.width, type.height, 80 * 4, 76 * 4, true);
 
         String keyName = Keyboard.getKeyName(kb.getCode());
         if (keyName.contains("CONTROL")) keyName = "CTRL";

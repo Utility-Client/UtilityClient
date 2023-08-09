@@ -1,5 +1,7 @@
 package org.utilityclient.utils;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +15,7 @@ import java.util.Scanner;
  * @author Sam302
  * @since 2.9.1
  */
+@StandaloneCompatible
 public class FileUtils {
     /**
      * @param file The file, that should be loaded

@@ -1,5 +1,6 @@
 package org.utilityclient.api.abstraction;
 
+import net.minecraft.util.Identifier;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.utils.MathUtil;
 
@@ -30,4 +31,6 @@ public abstract class Wrapper {
     public abstract float getPlayerHeadRotation();
     public abstract MathUtil.Vector3<Double> getPlayerPosition();
     public abstract void drawUtilityClientBackground(int width, int height, String id);
+    public abstract void rect(int x, int y, int width, int height, int color, float alpha, boolean blend);
+    public abstract void texture(int screenX, int screenY, int screenWidth, int screenHeight, String texture, int textureX, int textureY, int textureWidth, int textureHeight, int totalTextureWidth, int totalTextureHeight, boolean blend);
 }

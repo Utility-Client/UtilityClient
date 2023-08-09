@@ -1,7 +1,6 @@
 package org.utilityclient.overlay;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.util.Identifier;
 import org.utilityclient.api.Instances;
 import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.api.abstraction.Wrapper;
@@ -11,7 +10,6 @@ import org.utilityclient.utils.RenderHelper;
 
 @StandaloneCompatible
 public class Compass extends Instances {
-    public static final Identifier compassTexture = new Identifier("textures/items/compass.png");
     public static final int spriteUnit = 16, sprites = 32;
     public static int destX, destY;
     public static boolean active = false;
@@ -22,7 +20,7 @@ public class Compass extends Instances {
         if (!active) return;
         update();
         RenderHelper.texture(x, y, 32, 32,
-                compassTexture, 0, spriteUnit * currentSprite, spriteUnit, spriteUnit,
+                "textures/items/compass.png", 0, spriteUnit * currentSprite, spriteUnit, spriteUnit,
                 spriteUnit, spriteUnit * sprites, false);
         String text = ChatFormatting.YELLOW + "" + Math.round(distance) + " Block(s) away";
         if (distance <= 3) text = ChatFormatting.GREEN + "You arrived.";
