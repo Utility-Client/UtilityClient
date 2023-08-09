@@ -2,8 +2,9 @@ package org.utilityclient.overlay.modules;
 
 import org.utilityclient.api.Module;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
-@Register
+@Register @StandaloneCompatible
 public class PingModule extends Module {
     @Override
     public String getName() {
@@ -13,7 +14,7 @@ public class PingModule extends Module {
     @Override
     public String getValue() {
         try {
-            return mc().player.networkHandler.getPlayerListEntry(mc().player.getUuid()).getLatency() + "ms";
+            return uc().wrapper.getLatency() + "ms";
         } catch (Exception e) {
             e.printStackTrace();
             return "-/-";
@@ -27,6 +28,6 @@ public class PingModule extends Module {
 
     @Override
     public boolean shouldRender() {
-        return !mc().isInSingleplayer();
+        return !uc().wrapper.isSingleplayer();
     }
 }

@@ -2,8 +2,9 @@ package org.utilityclient.overlay.modules;
 
 import org.utilityclient.api.Module;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
-@Register
+@Register @StandaloneCompatible
 public class FacingModule extends Module {
     @Override
     public String getName() {
@@ -12,7 +13,7 @@ public class FacingModule extends Module {
 
     @Override
     public String getValue() {
-        char[] ca = mc().getCameraEntity().getHorizontalDirection().getName().toCharArray();
+        char[] ca = uc().wrapper.getPlayerFacing();
         ca[0] = (ca[0]+"").toUpperCase().toCharArray()[0];
         return new String(ca);
     }

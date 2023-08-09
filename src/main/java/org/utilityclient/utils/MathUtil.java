@@ -55,4 +55,51 @@ public class MathUtil {
         }
         return true;
     }
+
+    /**
+     * @since 3.0
+     * @author Sam302
+     * @param <Number> Any type representation of a number. Could also be another type of object.
+     */
+    public static class Vector3<Number> {
+        public Number x, y, z;
+
+        public Vector3() {}
+
+        public Vector3(Number x, Number y, Number z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        /**
+         * @since 3.0
+         * @author Sam302
+         * @param <Number> Any type representation of a number. Could also be another type of object.
+         */
+        public static class Builder<Number> {
+            public Number x, y, z;
+
+            public Builder() {}
+
+            public Builder<Number> x(Number x) {
+                this.x = x;
+                return this;
+            }
+
+            public Builder<Number> y(Number y) {
+                this.y = y;
+                return this;
+            }
+
+            public Builder<Number> z(Number z) {
+                this.z = z;
+                return this;
+            }
+
+            public Vector3<Number> build() {
+                return new Vector3<Number>(x, y, z);
+            }
+        }
+    }
 }

@@ -1,16 +1,16 @@
 package org.utilityclient.keybindings;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.text.LiteralText;
 import org.lwjgl.input.Keyboard;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
-@Register
+@Register @StandaloneCompatible
 public class CopyCoords extends KeyBinding {
     public CopyCoords() {
         super("Compass", "Copy Coordinates", Keyboard.KEY_C, false, false, true);
@@ -18,10 +18,10 @@ public class CopyCoords extends KeyBinding {
 
     @Override
     public void up() {
-        String text = Math.round(mc().player.x) + " " + Math.round(mc().player.y) + " " + Math.round(mc().player.z);
+        String text = uc().wrapper.getPlayerPosition(" ");
         StringSelection stringSelection = new StringSelection(text);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
-        uc().wrapper.writeChatMessage(ChatFormatting.GREEN + "Copied coordinates to the clipboard."));
+        uc().wrapper.writeChatMessage(ChatFormatting.GREEN + "Copied coordinates to the clipboard.");
     }
 }

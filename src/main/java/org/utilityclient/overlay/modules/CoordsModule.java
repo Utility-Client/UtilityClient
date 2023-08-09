@@ -3,8 +3,9 @@ package org.utilityclient.overlay.modules;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.api.Module;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
-@Register
+@Register @StandaloneCompatible
 public class CoordsModule extends Module {
     @Override
     public String getName() {
@@ -14,10 +15,7 @@ public class CoordsModule extends Module {
     @Override
     public String getValue() {
         if(UtilityClient.streamerMode) return "<disabled>";
-
-        return    mc().player.getBlockPos().getX() + ", "
-                + mc().player.getBlockPos().getY() + ", "
-                + mc().player.getBlockPos().getZ();
+        return uc().wrapper.getPlayerPosition(", ");
     }
 
     @Override

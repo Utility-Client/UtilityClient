@@ -10,6 +10,7 @@ import org.utilityclient.gui.components.GuiScreen;
 import org.utilityclient.gui.options.overlay.GuiOverlaySettings;
 import org.utilityclient.utils.gui.GuiCustomSlider;
 
+@Deprecated
 public class GuiUtilityClient extends GuiScreen {
     private final Screen parent;
     private String title;
