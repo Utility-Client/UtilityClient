@@ -22,6 +22,6 @@ public class CopyCoords extends KeyBinding {
         StringSelection stringSelection = new StringSelection(text);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
-        mc().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.GREEN + "Copied coordinates to the clipboard."));
+        uc().wrapper.writeChatMessage(ChatFormatting.GREEN + "Copied coordinates to the clipboard."));
     }
 }

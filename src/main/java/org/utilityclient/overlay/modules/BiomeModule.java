@@ -2,8 +2,9 @@ package org.utilityclient.overlay.modules;
 
 import org.utilityclient.api.Module;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
-@Register
+@Register @StandaloneCompatible
 public class BiomeModule extends Module {
 
     @Override
@@ -13,7 +14,7 @@ public class BiomeModule extends Module {
 
     @Override
     public String getValue() {
-        return mc().world.getChunk(mc().player.getBlockPos()).getBiomeAt(mc().player.getBlockPos(), mc().world.getBiomeSource()).name;
+        return uc().wrapper.getPlayerBiome();
     }
 
     @Override

@@ -11,8 +11,10 @@ import org.utilityclient.UtilityClient;
  * @since 2.10 LTS
  */
 public abstract class Instances {
+    @Deprecated
     MinecraftClient mc = MinecraftClient.getInstance();
     UtilityClient uc = UtilityClient.getInstance();
+    @Deprecated
     public MinecraftClient mc() {
         return mc;
     }
@@ -27,6 +29,7 @@ public abstract class Instances {
      * @see Instances
      */
     public interface Interface {
+        @Deprecated
         default MinecraftClient mc() {return MinecraftClient.getInstance();}
         default UtilityClient uc() {return UtilityClient.getInstance();}
     }

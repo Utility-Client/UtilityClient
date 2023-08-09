@@ -5,6 +5,7 @@ import net.minecraft.text.LiteralText;
 import org.lwjgl.input.Keyboard;
 import org.utilityclient.api.KeyBinding;
 import org.utilityclient.api.Register;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.overlay.Compass;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 
-@Register
+@Register @StandaloneCompatible
 public class PasteCoords extends KeyBinding {
     public PasteCoords() {
         super("Compass", "Paste coordinates to the Compass", Keyboard.KEY_V, false, false, true);
@@ -30,10 +31,10 @@ public class PasteCoords extends KeyBinding {
                 Compass.destX = Integer.parseInt(coords[0]);
                 Compass.destY = Integer.parseInt(coords[2]);
                 Compass.active = true;
-                mc().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.GREEN + "Destination updated."));
+                uc().wrapper.writeChatMessage(ChatFormatting.GREEN + "Destination updated.");
             }
         } catch (Exception e) {
-            mc().inGameHud.getChatHud().addMessage(new LiteralText(ChatFormatting.RED + "Error while updating destination."));
+            uc().wrapper.writeChatMessage(ChatFormatting.RED + "Error while updating destination.");
         }
     }
 }

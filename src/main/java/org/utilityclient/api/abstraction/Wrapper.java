@@ -15,4 +15,9 @@ public abstract class Wrapper {
     public abstract boolean isKeyDown(int keyCode);
     public abstract void sendChatMessage(String msg);
     public abstract void writeChatMessage(String msg);
+    public abstract String getPlayerBiome();
+    public abstract String getPlayerCoords(String seperationString);
+    public abstract float getGamma();
+    public abstract void setGamma(float gamma);
+    public abstract int getLatency();
 }
