@@ -2,6 +2,7 @@ package org.utilityclient.api;
 
 import net.minecraft.client.MinecraftClient;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 
 /**
  * Instances of some Main Classes.
@@ -10,14 +11,10 @@ import org.utilityclient.UtilityClient;
  * @author Sam302
  * @since 2.10 LTS
  */
+@StandaloneCompatible
 public abstract class Instances {
-    @Deprecated
-    MinecraftClient mc = MinecraftClient.getInstance();
     UtilityClient uc = UtilityClient.getInstance();
-    @Deprecated
-    public MinecraftClient mc() {
-        return mc;
-    }
+
     public UtilityClient uc() {
         return uc;
     }

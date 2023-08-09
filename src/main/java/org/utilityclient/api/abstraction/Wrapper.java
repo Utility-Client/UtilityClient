@@ -29,4 +29,5 @@ public abstract class Wrapper {
     public abstract void drawStringWithShadow(String text, int x, int y, int color);
     public abstract float getPlayerHeadRotation();
     public abstract MathUtil.Vector3<Double> getPlayerPosition();
+    public abstract void drawUtilityClientBackground(int width, int height, String id);
 }

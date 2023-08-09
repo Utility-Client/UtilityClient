@@ -22,6 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GLContext;
 import org.utilityclient.UtilityClient;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.gui.components.GuiScreen;
@@ -38,7 +39,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 
-@Deprecated
+@Deprecated @StandaloneCompatible
 public class GuiMainMenu extends GuiScreen {
     private static final Logger logger = LogManager.getLogger();
     private final Object threadLock = new Object();
@@ -180,7 +181,7 @@ public class GuiMainMenu extends GuiScreen {
     int _longest = 0;
 
     public void render(int mouseX, int mouseY, float partialTicks) {
-        drawUtilityClientBackground();
+        UtilityClient.getInstance().wrapper.drawUtilityClientBackground(width, height, Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
         GlStateManager.enableAlphaTest();
         int i = 274;
         int j = width / 2 - i / 2 - (height / 4);
@@ -234,14 +235,6 @@ public class GuiMainMenu extends GuiScreen {
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-    }
-
-    public void drawUtilityClientBackground() {
-        GlStateManager.disableLighting();
-        GlStateManager.disableFog();
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        client.getTextureManager().bindTexture(Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier());
-        DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 }
 

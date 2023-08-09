@@ -1,5 +1,7 @@
 package org.utilityclient.utils;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.io.*;
 import java.util.Base64;
 
@@ -7,6 +9,7 @@ import java.util.Base64;
  * Utilities for (De-)Serialization of Java Objects.
  * @since 2.9.1
  */
+@StandaloneCompatible
 public class SerializationUtils {
     /**
      * Serializes a Serializable into a String, that can be stored or deserialized into an Object again.

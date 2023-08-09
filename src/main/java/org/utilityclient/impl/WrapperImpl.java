@@ -1,11 +1,16 @@
 package org.utilityclient.impl;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Identifier;
 import org.lwjgl.input.Keyboard;
+import org.utilityclient.api.abstraction.Uncommon;
 import org.utilityclient.api.abstraction.Wrapper;
 import org.utilityclient.utils.MathUtil;
 
+@Uncommon
 public class WrapperImpl extends Wrapper {
     private MinecraftClient mc() {
         return MinecraftClient.getInstance();
@@ -82,5 +87,15 @@ public class WrapperImpl extends Wrapper {
     public MathUtil.Vector3<Double> getPlayerPosition() {
         return new MathUtil.Vector3<>
                 (mc().player.getPos().x, mc().player.getPos().y, mc().player.getPos().z);
+    }
+
+    @Override
+    public void drawUtilityClientBackground(int width, int height, String id) {
+        GlStateManager.disableLighting();
+        GlStateManager.disableFog();
+        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        mc().getTextureManager().bindTexture(new Identifier(id));
+        // Season.getSeasonOfMonth(LocalDateTime.now().getMonthValue()).getIdentifier()
+        DrawableHelper.drawTexture(0, 0, 0, 0, width, height, width, height, width, height);
     }
 }
