@@ -1,4 +1,4 @@
-package org.utilityclient.api;
+package org.utilityclient.api.abstraction;
 
 import org.utilityclient.UtilityClient;
 

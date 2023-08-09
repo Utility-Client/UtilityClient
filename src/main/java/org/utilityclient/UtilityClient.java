@@ -5,6 +5,7 @@ import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 import org.utilityclient.api.*;
 import org.utilityclient.api.abstraction.StandaloneCompatible;
+import org.utilityclient.api.abstraction.Wrapper;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.crosshair.CrosshairManager;
