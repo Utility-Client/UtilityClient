@@ -1,5 +1,6 @@
 package org.utilityclient.gui;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
 import org.utilityclient.gui.components.GuiComponent;
 import org.utilityclient.gui.components.GuiScreen;
 
@@ -9,6 +10,7 @@ import org.utilityclient.gui.components.GuiScreen;
  * @since 3.0
  * @apiNote Documentation is a bit vague. Should this be an issue, please create an Issue on GitHub. I'll (@sam302) add proper docs then.
  */
+@StandaloneCompatible
 public class GuiHelper {
     public static int below(GuiComponent other, int margin) {
         return other.screenY + other.height + margin;

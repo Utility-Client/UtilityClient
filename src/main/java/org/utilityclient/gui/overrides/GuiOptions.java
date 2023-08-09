@@ -14,7 +14,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.world.Difficulty;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.gui.components.GuiScreen;
-import org.utilityclient.gui.options.GuiUtilityClient;
 import org.utilityclient.gui.screens.UtilityClientOptions;
 
 public class GuiOptions extends GuiScreen implements IdentifibleBooleanConsumer {
