@@ -1,8 +1,11 @@
 package org.utilityclient.utils.json;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.awt.*;
 import java.awt.image.*;
 
+@StandaloneCompatible
 public class CapeUtils {
     //public ResourceLocation ucLocationCape;
 

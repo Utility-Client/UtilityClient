@@ -1,6 +1,5 @@
 package org.utilityclient.api.abstraction;
 
-import net.minecraft.util.Identifier;
 import org.utilityclient.UtilityClient;
 import org.utilityclient.utils.MathUtil;
 
@@ -33,4 +32,6 @@ public abstract class Wrapper {
     public abstract void drawUtilityClientBackground(int width, int height, String id);
     public abstract void rect(int x, int y, int width, int height, int color, float alpha, boolean blend);
     public abstract void texture(int screenX, int screenY, int screenWidth, int screenHeight, String texture, int textureX, int textureY, int textureWidth, int textureHeight, int totalTextureWidth, int totalTextureHeight, boolean blend);
+    public abstract void rect(int x1, int y1, int x2, int y2, int color);
+    public abstract void drawString(String text, float x, float y, int color, boolean shadow);
 }

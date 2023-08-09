@@ -13,7 +13,14 @@ import org.utilityclient.api.abstraction.StandaloneCompatible;
  */
 @StandaloneCompatible
 public abstract class Instances {
-    UtilityClient uc = UtilityClient.getInstance();
+    static UtilityClient uc = UtilityClient.getInstance();
+
+    /**
+     * @since 3.0
+     */
+    public static UtilityClient ucs() {
+        return uc;
+    }
 
     public UtilityClient uc() {
         return uc;

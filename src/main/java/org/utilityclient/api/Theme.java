@@ -1,15 +1,16 @@
 package org.utilityclient.api;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+import org.utilityclient.utils.ChatFormatting;
 import org.utilityclient.UtilityClient;
 
 /**
- * @apiNote Previously known as "ITheme", refactored in 3.0 LTS
+ * @apiNote Previously known as "ITheme", refactored in 3.0
+ * @apiNote Removed getFontRenderer() in 3.0
  * @author Sam302
  * @since 2.15 LTS
  */
+@StandaloneCompatible
 public abstract class Theme extends Registrable {
     /**
      * @since 2.15 LTS
@@ -33,14 +34,6 @@ public abstract class Theme extends Registrable {
      */
     public String getSeparator() {
         return ChatFormatting.GRAY + ": ";
-    }
-
-    /**
-     * @since 2.15 LTS
-     * @return The used font renderer. Override this to render using other font renderers.
-     */
-    public TextRenderer getFontRenderer() {
-        return MinecraftClient.getInstance().textRenderer;
     }
 
     @Override

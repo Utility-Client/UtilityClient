@@ -4,12 +4,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.Window;
 import org.lwjgl.input.Keyboard;
+import org.utilityclient.api.Instances;
 import org.utilityclient.config.Config;
 import org.utilityclient.config.ConfigEntry;
 import org.utilityclient.utils.Color;
 import org.utilityclient.utils.RenderHelper;
 
-public class Keystrokes {
+public class Keystrokes extends Instances {
     public static void loop() {
         if(!Config.getBoolean(ConfigEntry.KEYSTROKES)) return;
         Window window = new Window(MinecraftClient.getInstance());
@@ -35,7 +36,7 @@ public class Keystrokes {
         if (keyName.contains("SHIFT")) keyName = "SHIFT";
         if (keyName.contains("ALT")) keyName = "ALT";
 
-        MinecraftClient.getInstance().textRenderer.draw(keyName, ((x + type.width / 8f) - MinecraftClient.getInstance().textRenderer.getStringWidth(keyName) / 2f), y+6, Color.SnowWhite.color, false);
+        ucs().wrapper.drawString(keyName, ((x + type.width / 8f) - MinecraftClient.getInstance().textRenderer.getStringWidth(keyName) / 2f), y+6, Color.SnowWhite.color, false);
     }
 
     enum KeyType {

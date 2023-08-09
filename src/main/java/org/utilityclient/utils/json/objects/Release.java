@@ -1,8 +1,11 @@
 package org.utilityclient.utils.json.objects;
 
+import org.utilityclient.api.abstraction.StandaloneCompatible;
+
 import java.util.Date;
 import java.util.List;
 
+@StandaloneCompatible
 public class Release {
     public String url;
     public String assets_url;

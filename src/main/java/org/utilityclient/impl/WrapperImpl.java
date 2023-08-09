@@ -3,6 +3,7 @@ package org.utilityclient.impl;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import org.lwjgl.input.Keyboard;
@@ -116,5 +117,15 @@ public class WrapperImpl extends Wrapper {
         DrawableHelper.drawTexture(screenX, screenY, textureX, textureY, textureWidth, textureHeight, screenWidth, screenHeight, totalTextureWidth, totalTextureHeight);
         if (blend) GlStateManager.disableBlend();
         GlStateManager.disableAlphaTest();
+    }
+
+    @Override
+    public void rect(int x1, int y1, int x2, int y2, int color) {
+        Screen.fill(x1, y1, x2, y2, color);
+    }
+
+    @Override
+    public void drawString(String text, float x, float y, int color, boolean shadow) {
+        mc().textRenderer.draw(text, x, y, color, shadow);
     }
 }
