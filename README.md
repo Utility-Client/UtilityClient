@@ -8,30 +8,8 @@ There's also a mod loader included for Add-ons, which can be programmed in Java.
 
 Currently only Version 1.8.9 of Minecraft is supported, but other versions are planned in the near future.
 
-## Contributor
-
-<table>
-<tr>
-<th> Developers </th>
-<th> Maintainer </th>
-<th> Contributor </th>
-</tr>
-<tr>
-<td>
-    
-<img src="https://avatars.githubusercontent.com/u/49761607?v=4" width="100">
-
-[Samuel302](http://gamingcraft.de)
-
-</td>
-<td>
-  There are no maintainer.
-</td>
-<td>
-    
-<img src="https://avatars1.githubusercontent.com/u/63241406?v=4" width="100">
-
-[Niklas-Dev](https://github.com/Niklas-Dev)
-</td>
-</tr>
-</table>
+## Our Team
+#### Developers
+[Sam302rk](https://www.gamingcraft.de) (Lead Developer)
+#### Designer
+[Sangelo](https://sangelo.space) (Lead Designer) and [Fredrice](https://www.instagram.com/friedrice.276/) (Logo Design)
